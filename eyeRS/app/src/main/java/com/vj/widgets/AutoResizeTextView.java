@@ -11,10 +11,11 @@ import android.text.TextPaint;
 import android.util.AttributeSet;
 import android.util.SparseIntArray;
 import android.util.TypedValue;
-import android.widget.TextView;
 
 /**
  * http://stackoverflow.com/questions/16017165/auto-fit-textview-for-android
+ * <br>
+ * Matthew 19/06/2016: This may be useful. Made some minor changes.
  *
  * @author M-WaJeEh
  */
