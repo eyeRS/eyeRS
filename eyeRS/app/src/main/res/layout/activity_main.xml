@@ -1,129 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context="com.github.eyers.MainActivity">
+    android:fitsSystemWindows="true"
+    tools:openDrawer="start">
 
-    <TextView
-        android:id="@+id/txtWelcome"
+    <include
+        layout="@layout/app_bar_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <android.support.design.widget.NavigationView
+        android:id="@+id/nav_view"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="115dp"
-        android:layout_marginLeft="115dp"
-        android:layout_marginTop="15dp"
-        android:text="@string/txtWelcome"
-        android:textColor="?attr/actionModeSplitBackground"
-        android:textSize="16pt"
-        android:textStyle="bold" />
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:fitsSystemWindows="true"
+        app:headerLayout="@layout/nav_header_main"
+        app:menu="@menu/activity_main_drawer" />
 
-    <TextView
-        android:id="@+id/txtWelcomeDescr"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="125dp"
-        android:layout_marginLeft="125dp"
-        android:layout_marginTop="30dp"
-        android:text="@string/txtWelcomeDescr"
-        android:textColor="@android:color/darker_gray"
-        android:textSize="6pt"
-        android:textStyle="normal" />
-
-    <EditText
-        android:id="@+id/editCreatePin"
-        android:inputType="numberPassword"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:hint="@string/createPinHint"
-        android:layout_marginStart="120dp"
-        android:layout_marginLeft="120dp"
-        android:layout_marginTop="30dp" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:layout_marginStart="150dp"
-        android:layout_marginLeft="150dp"
-        android:textColor="@android:color/holo_red_dark"
-        android:textSize="5pt"
-        android:text="@string/txtPinRequired"/>
-
-    <EditText
-        android:id="@+id/editVerifyPin"
-        android:inputType="numberPassword"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:hint="@string/verifyPinHint"
-        android:layout_marginStart="120dp"
-        android:layout_marginLeft="120dp"
-        android:layout_marginTop="10dp" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="150dp"
-        android:layout_marginStart="150dp"
-        android:layout_marginTop="5dp"
-        android:text="@string/txtPinRequired"
-        android:textColor="@android:color/holo_red_dark"
-        android:textSize="5pt" />
-
-
-    <TextView
-        android:id="@+id/txtSecurityQtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="80dp"
-        android:layout_marginStart="80dp"
-        android:layout_marginTop="30dp"
-        android:text="@string/txtSecurityQtn"
-        android:textColor="?attr/editTextColor"
-        android:textSize="8pt"
-        android:textStyle="normal" />
-
-    <Spinner
-        android:id="@+id/spinnerQtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginStart="80dp"
-        android:layout_marginLeft="80dp" >
-
-    </Spinner>
-
-    <TextView
-        android:id="@+id/txtSecurityResponse"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="125dp"
-        android:layout_marginStart="125dp"
-        android:layout_marginTop="10dp"
-        android:text="@string/txtSecurityResponse"
-        android:textColor="?attr/editTextColor"
-        android:textSize="8pt"
-        android:textStyle="normal" />
-
-    <EditText
-        android:id="@+id/editSecurityResponse"
-        android:inputType="text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:hint="@string/responseHint"
-        android:layout_marginStart="110dp"
-        android:layout_marginLeft="110dp"
-        android:layout_marginTop="10dp" />
-
-    <Button
-        android:id="@+id/btnDone"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/doneText"
-        android:layout_marginTop="20dp"
-        android:layout_marginStart="160dp"
-        android:layout_marginLeft="160dp"
-        android:onClick="doneAction" />
-
-</LinearLayout>
+</android.support.v4.widget.DrawerLayout>
