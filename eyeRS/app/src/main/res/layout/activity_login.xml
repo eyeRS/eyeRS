@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.github.eyers.LoginActivity">
+    tools:context="com.github.eyers.activities.LoginActivity">
 
     <TextView
         android:id="@+id/txtInput"
@@ -81,6 +81,7 @@
         app:layout_constraintTop_toBottomOf="@+id/txtInput">
 
         <EditText
+            android:id="@+id/txtPIN"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Please enter you PIN code"
