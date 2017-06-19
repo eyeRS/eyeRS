@@ -9,4 +9,7 @@
     <string name="txtSecurityResponse">Security Response</string>
     <string name="responseHint">Your security answer</string>
     <string name="doneText">Done</string>
+    <string name="txtPinRequest">Enter your PIN</string>
+    <string name="EnterPinHint">PIN must be at least 4 digits</string>
+    <string name="txtForgotPin">Forgot your PIN?</string>
 </resources>
