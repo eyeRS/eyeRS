@@ -1,1 +1,3 @@
 https://github.com/libgdx/libgdx/blob/master/backends/gdx-backend-android/src/com/badlogic/gdx/backends/android/AndroidPreferences.java
+
+For icons we can use: http://game-icons.net/
