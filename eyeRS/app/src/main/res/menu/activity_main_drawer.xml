@@ -5,42 +5,44 @@
         <item
             android:id="@+id/nav_new"
             android:icon="@drawable/ic_menu_camera"
-            android:title="Add mew Item" />
+            android:title="@string/nav_new" />
         <item
             android:id="@+id/nav_gallery"
             android:icon="@drawable/ic_menu_gallery"
-            android:title="My Stuff" />
+            android:title="@string/nav_gallery" />
         <item
             android:id="@+id/nav_slideshow"
             android:icon="@drawable/ic_menu_slideshow"
-            android:title="Slideshow" />
+            android:title="@string/nav_slideshow" />
         <item
             android:id="@+id/nav_settings"
             android:icon="@drawable/ic_menu_manage"
-            android:title="Settings" />
+            android:title="@string/nav_settings" />
     </group>
 
-    <item android:title="Communicate">
+    <item android:title="@string/item_comm">
         <menu>
             <item
                 android:id="@+id/nav_share"
                 android:icon="@drawable/ic_menu_share"
-                android:title="Share" />
+                android:title="@string/nav_share" />
+            <item
+                android:id="@+id/nav_send"
+                android:icon="@drawable/ic_menu_send"
+                android:title="@string/nav_send" />
         </menu>
     </item>
 
-
-
-    <item android:title="Miscellaneous">
+    <item android:title="@string/item_misc">
         <menu>
             <item
                 android:id="@+id/nav_help"
                 android:icon="@drawable/ic_perspective_dice_six_faces_random"
-                android:title="Help" />
+                android:title="@string/nav_help" />
             <item
                 android:id="@+id/nav_about"
                 android:icon="@drawable/ic_info"
-                android:title="About" />
+                android:title="@string/nav_about" />
         </menu>
     </item>
 </menu>

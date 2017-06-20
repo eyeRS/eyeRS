@@ -25,7 +25,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
             android:layout_marginEnd="8dp"
             android:layout_marginLeft="8dp"
@@ -43,6 +43,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/main_btn_buff_bot"
                 android:orientation="horizontal"
+                android:baselineAligned="false"
                 tools:layout_editor_absoluteX="8dp"
                 tools:layout_editor_absoluteY="8dp">
 
@@ -55,7 +56,7 @@
                     <com.github.eyers.gui.SquareImageButton
                         android:id="@+id/imageButton2"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="0dp"
                         android:layout_marginLeft="@dimen/main_btn_buff_side"
                         android:layout_marginRight="@dimen/main_btn_buff_side"
                         android:layout_weight="1"
@@ -70,7 +71,7 @@
                         android:layout_height="wrap_content"
                         android:ellipsize="none"
                         android:gravity="center"
-                        android:text="Books"
+                        android:text="@string/txtBooks"
                         android:textSize="@dimen/main_btn_lbl" />
                 </LinearLayout>
 
@@ -83,7 +84,7 @@
                     <com.github.eyers.gui.SquareImageButton
                         android:id="@+id/imageButton5"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="0dp"
                         android:layout_marginLeft="@dimen/main_btn_buff_side"
                         android:layout_marginRight="@dimen/main_btn_buff_side"
                         android:layout_weight="1"
@@ -98,7 +99,7 @@
                         android:layout_height="wrap_content"
                         android:ellipsize="none"
                         android:gravity="center"
-                        android:text="Clothes"
+                        android:text="@string/txtClothes"
                         android:textSize="@dimen/main_btn_lbl" />
                 </LinearLayout>
 
@@ -109,6 +110,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/main_btn_buff_bot"
                 android:orientation="horizontal"
+                android:baselineAligned="false"
                 tools:layout_editor_absoluteX="8dp"
                 tools:layout_editor_absoluteY="8dp">
 
@@ -121,7 +123,7 @@
                     <com.github.eyers.gui.SquareImageButton
                         android:id="@+id/imageButton3"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="0dp"
                         android:layout_marginLeft="@dimen/main_btn_buff_side"
                         android:layout_marginRight="@dimen/main_btn_buff_side"
                         android:layout_weight="1"
@@ -138,7 +140,7 @@
                         android:gravity="center"
                         android:padding="0dp"
                         android:scaleType="centerCrop"
-                        android:text="Accessories"
+                        android:text="@string/txtAccessories"
                         android:textSize="@dimen/main_btn_lbl" />
                 </LinearLayout>
 
@@ -151,7 +153,7 @@
                     <com.github.eyers.gui.SquareImageButton
                         android:id="@+id/imageButton"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="0dp"
                         android:layout_marginLeft="@dimen/main_btn_buff_side"
                         android:layout_marginRight="@dimen/main_btn_buff_side"
                         android:layout_weight="1"
@@ -166,7 +168,7 @@
                         android:layout_height="wrap_content"
                         android:ellipsize="none"
                         android:gravity="center"
-                        android:text="Games"
+                        android:text="@string/txtGames"
                         android:textSize="@dimen/main_btn_lbl" />
                 </LinearLayout>
 
@@ -174,10 +176,11 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
                 android:layout_marginBottom="@dimen/main_btn_buff_bot"
                 android:layout_weight="1"
                 android:orientation="horizontal"
+                android:baselineAligned="false"
                 tools:layout_editor_absoluteX="8dp"
                 tools:layout_editor_absoluteY="8dp">
 
@@ -190,7 +193,7 @@
                     <com.github.eyers.gui.SquareImageButton
                         android:id="@+id/imageButton6"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="0dp"
                         android:layout_marginLeft="@dimen/main_btn_buff_side"
                         android:layout_marginRight="@dimen/main_btn_buff_side"
                         android:layout_weight="1"
@@ -205,7 +208,7 @@
                         android:layout_height="wrap_content"
                         android:ellipsize="none"
                         android:gravity="center"
-                        android:text="Other"
+                        android:text="@string/txtOther"
                         android:textSize="@dimen/main_btn_lbl" />
                 </LinearLayout>
 
@@ -218,7 +221,7 @@
                     <com.github.eyers.gui.SquareImageButton
                         android:id="@+id/imageButton4"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="0dp"
                         android:layout_marginLeft="@dimen/main_btn_buff_side"
                         android:layout_marginRight="@dimen/main_btn_buff_side"
                         android:layout_weight="1"
@@ -233,7 +236,7 @@
                         android:layout_height="wrap_content"
                         android:ellipsize="none"
                         android:gravity="center"
-                        android:text="Add category..."
+                        android:text="@string/txtAddCat"
                         android:textSize="@dimen/main_btn_lbl" />
                 </LinearLayout>
 
