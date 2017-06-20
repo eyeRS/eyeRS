@@ -1,13 +1,13 @@
 package com.github.eyers.gui;
 
 import android.content.Context;
+import android.support.v7.widget.AppCompatImageButton;
 import android.util.AttributeSet;
 
 /**
- * Created by Matthew on 2017/06/19.
+ *
  */
-public class SquareImageButton extends android.support.v7.widget.AppCompatImageButton {
-
+public class SquareImageButton extends AppCompatImageButton {
 
     public SquareImageButton(Context context) {
         super(context);
