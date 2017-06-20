@@ -1,7 +1,9 @@
 package com.github.eyers;
 
 import android.content.Context;
-import android.content.SharedPreferences;
+
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 /**
  * TODO: comment code.
@@ -18,16 +20,33 @@ public final class EyeRS {
      *
      */
     public static EyeRS app;
-    /**
-     *
-     */
-    private final SharedPreferences preferences;
+
 
     /**
      * @param context
      */
     public EyeRS(Context context) {
-        this.preferences = context.getSharedPreferences(PREFS_NAME, 0);
+    }
+
+    /**
+     * @param password
+     * @return
+     * @throws RuntimeException No Such Algorithm Exception
+     */
+    public static String sha256(String password) throws RuntimeException {
+        try {
+            MessageDigest sha256 = MessageDigest.getInstance("SHA-256");
+            byte[] passHash = sha256.digest((password + "0c@RFe-5G47|GTN").getBytes());
+
+            StringBuilder str = new StringBuilder();
+            for (int i = 0; i < passHash.length; i++) {
+                str.append(Integer.toString((passHash[i] & 0xff) + 0x100, 16).substring(1));
+            }
+
+            return str.toString();
+        } catch (NoSuchAlgorithmException ex) {
+            throw new RuntimeException(ex);
+        }
     }
 
     /**
@@ -38,12 +57,5 @@ public final class EyeRS {
     @Deprecated
     public EyeRS log() {
         return this;
-    }
-
-    /**
-     * @return
-     */
-    public SharedPreferences getPreferences() {
-        return this.preferences;
     }
 }
