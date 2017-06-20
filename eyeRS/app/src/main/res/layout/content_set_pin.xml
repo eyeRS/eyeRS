@@ -28,7 +28,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Submit" />
+            android:text="@string/btnSubmit" />
 
         <Button
             android:id="@+id/btnClear"
@@ -36,7 +36,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Clear" />
+            android:text="@string/btnClear" />
     </LinearLayout>
 
     <TextView
@@ -49,7 +49,7 @@
         android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:text="Reset Password"
+        android:text="@string/resetPIN"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -75,7 +75,7 @@
             android:id="@+id/txtPIN1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Please enter you PIN"
+            android:hint="@string/enterPinHint"
             android:inputType="number" />
     </android.support.design.widget.TextInputLayout>
 
@@ -96,7 +96,7 @@
             android:id="@+id/txtPIN2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Please confirm you PIN"
+            android:hint="@string/confirmPinHint"
             android:inputType="number" />
     </android.support.design.widget.TextInputLayout>
 
@@ -128,9 +128,9 @@
         android:layout_marginEnd="8dp">
 
         <EditText
-            android:id="@+id/txtSecurityQuestion"
+            android:id="@+id/txtSecurityResponse"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Answer" />
+            android:hint="@string/txtSecurityResponse" />
     </android.support.design.widget.TextInputLayout>
 </android.support.constraint.ConstraintLayout>
