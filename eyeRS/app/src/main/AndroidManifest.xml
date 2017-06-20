@@ -53,7 +53,15 @@
             android:name=".activities.SlideshowActivity"
             android:label="@string/title_activity_slideshow"
             android:theme="@style/AppTheme.NoActionBar"
-            android:windowSoftInputMode="adjustPan"></activity>
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".activities.ForgotPINActivity"
+            android:label="@string/title_activity_forgot_pin"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activities.ViewItemsActivity"
+            android:label="@string/title_activity_view_items"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

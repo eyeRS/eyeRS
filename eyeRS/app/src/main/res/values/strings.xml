@@ -13,4 +13,6 @@
     <string name="title_activity_set_pin">Reset PIN</string>
     <string name="title_activity_about">About</string>
     <string name="title_activity_slideshow">Slideshow</string>
+    <string name="title_activity_forgot_pin">ForgotPIN</string>
+    <string name="title_activity_view_items">ViewItemsActivity</string>
 </resources>
