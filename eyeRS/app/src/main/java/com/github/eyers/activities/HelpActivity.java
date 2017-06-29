@@ -3,7 +3,6 @@ package com.github.eyers.activities;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-
 import com.github.eyers.R;
 
 public final class HelpActivity extends AppCompatActivity {

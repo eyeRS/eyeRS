@@ -7,7 +7,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
 import com.github.eyers.EyeRS;
 import com.github.eyers.R;
 
@@ -22,8 +21,8 @@ public final class LoginActivity extends AppCompatActivity implements View.OnCli
 
         this.txtPIN = (EditText) findViewById(R.id.txtPIN);
 
-        ((Button) findViewById(R.id.btnLogin)).setOnClickListener(this);
-        ((Button) findViewById(R.id.btnForgot)).setOnClickListener(this);
+        findViewById(R.id.btnLogin).setOnClickListener(this);
+        findViewById(R.id.btnForgot).setOnClickListener(this);
 
         Toast.makeText(this, "Welcome!", Toast.LENGTH_SHORT).show();
     }
@@ -47,8 +46,8 @@ public final class LoginActivity extends AppCompatActivity implements View.OnCli
                     return;
                 }
 
-                final String hash = EyeRS.app.sha256(pin);
-                if (hash.equals(EyeRS.app.sha256("1234"))) { // Matthew: check against the hashed password storged
+                final String hash = EyeRS.sha256(pin);
+                if (hash.equals(EyeRS.sha256("1234"))) { // Matthew: check against the hashed password storged
                     super.startActivity(new Intent(this, MainActivity.class));
                 } else {
                     Toast.makeText(this, "Incorrect PIN code. Please try again.", Toast.LENGTH_SHORT).show();

@@ -31,7 +31,7 @@ public class SetPINActivity extends AppCompatActivity implements View.OnClickLis
     };
     private EditText txtPIN1;
     private EditText txtPIN2;
-    private EditText txtQuestion;
+    private EditText txtResponse;
     private Spinner spinner;
 
     @Override
@@ -41,15 +41,15 @@ public class SetPINActivity extends AppCompatActivity implements View.OnClickLis
 
         this.txtPIN1 = (EditText) findViewById(R.id.txtPIN1);
         this.txtPIN2 = (EditText) findViewById(R.id.txtPIN2);
-        this.txtQuestion = (EditText) findViewById(R.id.txtSecurityQuestion);
+        this.txtResponse = (EditText) findViewById(R.id.txtSecurityResponse);
 
         this.spinner = (Spinner) findViewById(R.id.spinner); //Links to the spinner in the layout
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_spinner_item, QUESTIONS);
         this.spinner.setAdapter(adapter);
 
-        ((Button) findViewById(R.id.btnSubmit)).setOnClickListener(this);
-        ((Button) findViewById(R.id.btnClear)).setOnClickListener(this);
+        findViewById(R.id.btnSubmit).setOnClickListener(this);
+        findViewById(R.id.btnClear).setOnClickListener(this);
     }
 
     /**
@@ -63,12 +63,12 @@ public class SetPINActivity extends AppCompatActivity implements View.OnClickLis
             case R.id.btnClear:
                 this.txtPIN1.setText("");
                 this.txtPIN2.setText("");
-                this.txtQuestion.setText("");
+                this.txtResponse.setText("");
                 return;
             case R.id.btnSubmit:
                 String pinA = txtPIN1.getText().toString();
                 String pinB = txtPIN1.getText().toString();
-                String answer = txtQuestion.getText().toString();
+                String answer = txtResponse.getText().toString();
 
                 if (pinA == null || pinA.equals("")) {
                     Toast.makeText(this, "Please enter a PIN.", Toast.LENGTH_LONG).show();

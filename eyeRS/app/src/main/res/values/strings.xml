@@ -5,15 +5,18 @@
 
     <string name="txtWelcome">Welcome !</string>
     <string name="txtWelcomeDescr">Make Life Easy\n with eyeRS</string>
-    <string name="enterPinHint">Please enter you PIN</string>
     <string name="confirmPinHint">Please confirm your PIN</string>
     <string name="txtPinRequired">This is a required field!</string>
     <string name="txtSecurityQtn">Please select a security question</string>
     <string name="txtSecurityResponse">Security Response</string>
     <string name="responseHint">Your security answer</string>
-    <string name="btnSubmit">Submit</string>
     <string name="btnClear">Clear</string>
     <string name="resetPIN">Reset your PIN</string>
+
+    <!-- Strings related to ForgotPin Content -->
+    <string name="autoResizeSecurityQtnTxtView">Security Question</string>
+    <string name="btnSubmit">Submit</string>
+    <string name="enterPinHint">Please enter you PIN code</string>
 
     <!-- Strings related to Login activity -->
 
