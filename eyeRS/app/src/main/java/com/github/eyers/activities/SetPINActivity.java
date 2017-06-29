@@ -17,6 +17,7 @@ import com.github.eyers.R;
 public class SetPINActivity extends AppCompatActivity implements View.OnClickListener {
 
     private static final String[] QUESTIONS = {
+
             "What is the name of your junior/primary school?",
             "What is the name of your first pet?",
             "In what year was your father born?",
