@@ -78,7 +78,7 @@
             android:layout_marginTop="8dp"
             android:layout_weight="1"
             android:hint="@string/enterPinHint"
-            android:inputType="number"
+            android:inputType="numberPassword"
             app:layout_constraintTop_toBottomOf="@+id/autoResizeTextView"
             tools:layout_editor_absoluteX="8dp" />
     </android.support.design.widget.TextInputLayout>

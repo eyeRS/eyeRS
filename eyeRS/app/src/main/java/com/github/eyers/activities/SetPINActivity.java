@@ -47,7 +47,7 @@ public class SetPINActivity extends AppCompatActivity implements View.OnClickLis
                 android.R.layout.simple_spinner_item, QUESTIONS);
         this.spinner.setAdapter(adapter);
 
-        findViewById(R.id.btnSubmit).setOnClickListener(this);
+        findViewById(R.id.btnResetPIN).setOnClickListener(this);
         findViewById(R.id.btnClear).setOnClickListener(this);
     }
 
