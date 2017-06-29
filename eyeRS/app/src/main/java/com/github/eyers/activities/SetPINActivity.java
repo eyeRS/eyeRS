@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -31,7 +30,7 @@ public class SetPINActivity extends AppCompatActivity implements View.OnClickLis
     };
     private EditText txtPIN1;
     private EditText txtPIN2;
-    private EditText txtResponse;
+    private EditText txtResponse; //retrieves the user's security response
     private Spinner spinner;
 
     @Override
@@ -44,7 +43,7 @@ public class SetPINActivity extends AppCompatActivity implements View.OnClickLis
         this.txtResponse = (EditText) findViewById(R.id.txtSecurityResponse);
 
         this.spinner = (Spinner) findViewById(R.id.spinner); //Links to the spinner in the layout
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_spinner_item, QUESTIONS);
         this.spinner.setAdapter(adapter);
 
