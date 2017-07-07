@@ -11,10 +11,15 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ShareActionProvider;
+
 import com.github.eyers.R;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
+
+    //Add a ShareActionProvider private variable
+    private ShareActionProvider shareActionProvider;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +70,16 @@ public class MainActivity extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
+    //Method called when the nav_send button is clicked
+    public void sendIntent() {
+        Intent intent = new Intent(Intent.ACTION_SEND);
+        intent.setType("text/plain");
+        intent.putExtra(Intent.EXTRA_TEXT, "Details of the catalog item to be sent will be attached here");
+        String chooserTitle = getString(R.string.chooser); //Get the chooser title
+        Intent chosenIntent = Intent.createChooser(intent, chooserTitle);
+        startActivity(chosenIntent); //Start the activity that the user selected
+    }
+
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
@@ -85,6 +100,8 @@ public class MainActivity extends AppCompatActivity
             case R.id.nav_slideshow:
                 super.startActivity(new Intent(this, SlideshowActivity.class));
                 break;
+            case R.id.nav_send:
+                sendIntent(); //Call sendIntent method
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

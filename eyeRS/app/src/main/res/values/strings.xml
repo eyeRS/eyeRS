@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <string name="app_name" translatable="false">eyeRS</string>
+
     <!-- Strings related to Set Pin Activity -->
 
     <string name="txtWelcome">Welcome !</string>
@@ -28,7 +30,6 @@
 
     <!-- Strings related to App activities -->
 
-    <string name="app_name" translatable="false">eyeRS</string>
     <string name="title_activity_main">My Stuff</string>
     <string name="title_activity_help">Help Activity</string>
     <string name="title_activity_set_pin">Reset PIN</string>
@@ -146,5 +147,8 @@
     <!-- Strings related to Help Activity -->
 
     <string name="txtHelp">Help</string>
+
+    <!-- Srings related to Send message action -->
+    L<string name="chooser">Send message&#8230;</string>
 
 </resources>
