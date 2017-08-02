@@ -58,12 +58,19 @@
             android:text="@string/btnLogin" />
 
         <Button
-            android:id="@+id/btnForgot"
+            android:id="@+id/btnRegister"
             style="@style/Widget.AppCompat.Button.Colored"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/btnForgotPin" />
+            android:text="@string/btnRegister" />
+
+        <TextView
+            android:id="@+id/txtForgotPin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/txtForgotPin"
+            android:clickable="true" />
     </LinearLayout>
 
     <android.support.design.widget.TextInputLayout
