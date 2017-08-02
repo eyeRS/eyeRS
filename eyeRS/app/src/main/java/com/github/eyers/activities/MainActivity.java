@@ -30,6 +30,7 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -38,7 +39,7 @@ public class MainActivity extends AppCompatActivity
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-
+        //Create the ActionBarDrawerToggle
         toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close){
 
@@ -65,7 +66,7 @@ public class MainActivity extends AppCompatActivity
         toggle.syncState();
     }
 
-    //Pass any configuration changes to the ActionBarDrawerToggle
+    //Pass details of any configuration changes to the ActionBarDrawerToggle
     @Override
     public void onConfigurationChanged(Configuration newConfig){
         super.onConfigurationChanged(newConfig);
@@ -92,6 +93,7 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
+    //Add items in the menu resource file to the action bar
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -105,19 +107,28 @@ public class MainActivity extends AppCompatActivity
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
 
+        //If the ActionBarDrawerToggle is clicked, let it handle what happens
+        if (toggle.onOptionsItemSelected(item)){
+            return true;
+        }
+
+        /*
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
         }
+        */
 
-        //Let the ActionBarDrawerToggle handle being clicked
-        if (toggle.onOptionsItemSelected(item)){
-            return true;
+        switch(item.getItemId()){
+            case R.id.action_settings:
+                //Code to run when the Settings action item is clicked
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
         }
-
-        return super.onOptionsItemSelected(item);
     }
 
     //Method called when the nav_send button is clicked

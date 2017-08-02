@@ -12,7 +12,7 @@ import android.widget.Toast;
 
 import com.github.eyers.R;
 
-public class ViewItemsActivity extends Activity {
+public class ViewItemsActivity2 extends Activity {
 
     public static final String EXTRA_ITEMNO = "itemNo";
 

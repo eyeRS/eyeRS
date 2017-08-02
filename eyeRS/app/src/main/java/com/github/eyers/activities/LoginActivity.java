@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 import com.github.eyers.EyeRS;
+
 import com.github.eyers.R;
 
 public final class LoginActivity extends AppCompatActivity implements View.OnClickListener {
@@ -22,7 +23,8 @@ public final class LoginActivity extends AppCompatActivity implements View.OnCli
         this.txtPIN = (EditText) findViewById(R.id.txtPIN);
 
         findViewById(R.id.btnLogin).setOnClickListener(this);
-        findViewById(R.id.btnForgot).setOnClickListener(this);
+        findViewById(R.id.txtForgotPin).setOnClickListener(this);
+        findViewById(R.id.btnRegister).setOnClickListener(this);
 
         Toast.makeText(this, "Welcome!", Toast.LENGTH_SHORT).show();
     }
@@ -35,8 +37,11 @@ public final class LoginActivity extends AppCompatActivity implements View.OnCli
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.btnForgot:
+            case R.id.txtForgotPin:
                 super.startActivity(new Intent(this, SetPINActivity.class));
+                return;
+            case R.id.btnRegister:
+                super.startActivity(new Intent(this, RegisterActivity.class));
                 return;
             case R.id.btnLogin:
                 final String pin = txtPIN.getText().toString();
@@ -47,13 +52,14 @@ public final class LoginActivity extends AppCompatActivity implements View.OnCli
                 }
 
                 final String hash = EyeRS.sha256(pin);
-                if (hash.equals(EyeRS.sha256("1234"))) { // Matthew: check against the hashed password storged
+                if (hash.equals(EyeRS.sha256("1234"))) { // Matthew: check against the hashed password stored
                     super.startActivity(new Intent(this, MainActivity.class));
                 } else {
                     Toast.makeText(this, "Incorrect PIN code. Please try again.", Toast.LENGTH_SHORT).show();
                 }
 
                 return;
+
         }
     }
 }
