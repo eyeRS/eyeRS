@@ -10,6 +10,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.github.eyers.R;
+
 public class ViewItemsActivity extends Activity {
 
     public static final String EXTRA_ITEMNO = "itemNo";
@@ -32,19 +34,19 @@ public class ViewItemsActivity extends Activity {
                     new String[] {"IMAGE_RESOURCE_ID", "NAME", "DESCRIPTION"},
                     "_id = ?", new String[] {Integer.toString(itemNo)}, null, null, null);
 					
-			Cursor cursor = db.query("CLOTHES",
+			cursor = db.query("CLOTHES",
                     new String[] {"IMAGE_RESOURCE_ID", "NAME", "DESCRIPTION"},
                     "_id = ?", new String[] {Integer.toString(itemNo)}, null, null, null);
 
-			Cursor cursor = db.query("ACCESSORIES",
+			cursor = db.query("ACCESSORIES",
                     new String[] {"IMAGE_RESOURCE_ID", "NAME", "DESCRIPTION"},
                     "_id = ?", new String[] {Integer.toString(itemNo)}, null, null, null);
             
-			Cursor cursor = db.query("GAMES",
+			cursor = db.query("GAMES",
                     new String[] {"IMAGE_RESOURCE_ID", "NAME", "DESCRIPTION"},
                     "_id = ?", new String[] {Integer.toString(itemNo)}, null, null, null);
 			
-			Cursor cursor = db.query("OTHER",
+			cursor = db.query("OTHER",
                     new String[] {"IMAGE_RESOURCE_ID", "NAME", "DESCRIPTION"},
                     "_id = ?", new String[] {Integer.toString(itemNo)}, null, null, null);
 			
@@ -57,37 +59,37 @@ public class ViewItemsActivity extends Activity {
                 String descriptionText = cursor.getString(2);
 				
 				//Get the clothes details from the cursor
-                int photoId = cursor.getInt(0);
-				String nameText = cursor.getString(0);
-                String descriptionText = cursor.getString(2);
+                photoId = cursor.getInt(0);
+				nameText = cursor.getString(0);
+                descriptionText = cursor.getString(2);
                 
 				//Get the accessories details from the cursor
-                int photoId = cursor.getInt(0);
-				String nameText = cursor.getString(0);
-                String descriptionText = cursor.getString(2);
+                photoId = cursor.getInt(0);
+				nameText = cursor.getString(0);
+                descriptionText = cursor.getString(2);
 				
 				//Get the games details from the cursor
-                int photoId = cursor.getInt(0);
-				String nameText = cursor.getString(0);
-                String descriptionText = cursor.getString(2);
+                photoId = cursor.getInt(0);
+				nameText = cursor.getString(0);
+                descriptionText = cursor.getString(2);
 				
 				//Get the other details from the cursor
-                int photoId = cursor.getInt(0);
-				String nameText = cursor.getString(0);
-                String descriptionText = cursor.getString(2);
+                photoId = cursor.getInt(0);
+				nameText = cursor.getString(0);
+                descriptionText = cursor.getString(2);
 
 				//Populate the item image
-                ImageView photo = (ImageView)findViewById(R.id.photo);
-                photo.setImageResource(photoId);
-                photo.setContentDescription(nameText);				
+                //ImageView photo = (ImageView)findViewById(R.id.photo);
+                //photo.setImageResource(photoId);
+                //photo.setContentDescription(nameText);
                 
 				//Populate the item name
-                TextView name = (TextView)findViewById(R.id.name);
-                name.setText(nameText);
+                //TextView name = (TextView)findViewById(R.id.name);
+                //name.setText(nameText);
 
                 //Populate the item description
-                TextView description = (TextView)findViewById(R.id.description);
-                description.setText(descriptionText);
+                //TextView description = (TextView)findViewById(R.id.description);
+                //description.setText(descriptionText);
 
             }
 
