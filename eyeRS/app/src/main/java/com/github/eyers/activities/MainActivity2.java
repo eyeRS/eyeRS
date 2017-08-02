@@ -71,10 +71,10 @@ public class MainActivity2 extends ListActivity {
                                  int position,
                                  long id){
 								 
-        Intent intent = new Intent(MainActivity.this, ViewItemsActivity.class);
+        Intent intent = new Intent(MainActivity2.this, ViewItemsActivity.class);
 		
         //Add the ID of the item that was clicked to the intent
-        intent.putExtra(NewItemActivity.EXTRA_ITEMNO, (int) id);
+        intent.putExtra(ViewItemsActivity2.EXTRA_ITEMNO, (int) id);
         startActivity(intent);
     }
 }
