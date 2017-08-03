@@ -3,20 +3,20 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_new"
+            android:id="@+id/nav_new_item"
             android:icon="@drawable/ic_menu_camera"
-            android:title="@string/nav_new" />
+            android:title="@string/nav_new_item" />
         <item
-            android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="@string/nav_gallery" />
+            android:id="@+id/nav_new_category"
+            android:icon="@drawable/ic_menu_category"
+            android:title="@string/nav_new_category" />
         <item
             android:id="@+id/nav_slideshow"
             android:icon="@drawable/ic_menu_slideshow"
             android:title="@string/nav_slideshow" />
         <item
             android:id="@+id/nav_settings"
-            android:icon="@drawable/ic_menu_manage"
+            android:icon="@drawable/ic_menu_settings"
             android:title="@string/nav_settings" />
     </group>
 
@@ -30,9 +30,9 @@
                 android:title="@string/nav_share" />
 
             <item
-                android:id="@+id/nav_send"
-                android:icon="@drawable/ic_menu_send"
-                android:title="@string/nav_send" />
+                android:id="@+id/nav_trade"
+                android:icon="@drawable/ic_menu_trade"
+                android:title="@string/nav_trade" />
         </menu>
     </item>
 
@@ -46,6 +46,10 @@
                 android:id="@+id/nav_about"
                 android:icon="@drawable/ic_info"
                 android:title="@string/nav_about" />
+            <item
+                android:id="@+id/nav_exit"
+                android:icon="@drawable/ic_menu_exit"
+                android:title="@string/nav_exit" />
         </menu>
     </item>
 </menu>

@@ -125,6 +125,7 @@
             android:id="@+id/edtTxtCreatePIN"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:inputType="numberPassword"
             android:hint="@string/enterPinHint"/>
 
     </android.support.design.widget.TextInputLayout>
@@ -146,7 +147,8 @@
             android:id="@+id/edtTxtVerifyPIN"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/confirmPinHint"/>
+            android:hint="@string/confirmPinHint"
+            android:inputType="numberPassword" />
 
     </android.support.design.widget.TextInputLayout>
 

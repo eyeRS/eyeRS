@@ -125,16 +125,17 @@
     <string name="nav_header_addr">android.studio@android.com</string>
     <string name="contentDescr">User details</string>
 
-    <string name="nav_new">Add new item</string>
-    <string name="nav_gallery">My Stuff</string>
+    <string name="nav_new_item">Add new item</string>
+    <string name="nav_new_category">Add new category</string>
     <string name="nav_slideshow">Slideshow</string>
     <string name="nav_settings">Settings</string>
     <string name="item_comm">Communicate</string>
     <string name="nav_share">Share</string>
-    <string name="nav_send">Send</string>
+    <string name="nav_trade">Trade</string>
     <string name="item_misc">Miscellaneous</string>
-    <string name="nav_help">Help</string>
+    <string name="nav_help">Help and Tips</string>
     <string name="nav_about">About</string>
+    <string name="nav_exit">Exit</string>
 
     <!-- Strings related to Main Activity -->
 
