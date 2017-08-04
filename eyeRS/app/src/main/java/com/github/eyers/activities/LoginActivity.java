@@ -54,11 +54,12 @@ public final class LoginActivity extends AppCompatActivity implements View.OnCli
                 final String hash = EyeRS.sha256(pin);
                 if (hash.equals(EyeRS.sha256("1234"))) { // Matthew: check against the hashed password stored
                     super.startActivity(new Intent(this, MainActivity.class));
+                    return;
                 } else {
                     Toast.makeText(this, "Incorrect PIN code. Please try again.", Toast.LENGTH_SHORT).show();
+                    return;
                 }
 
-                return;
 
         }
     }

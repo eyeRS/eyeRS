@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -29,10 +30,11 @@ public class SetPINActivity extends AppCompatActivity implements View.OnClickLis
             "What are the last 5 digits of your ID number?",
             "What time of the day were you born (hh:mm)?"
     };
+
     private EditText txtPIN1;
     private EditText txtPIN2;
     private EditText txtResponse; //retrieves the user's security response
-    private Spinner spinner;
+    private Spinner spinner; //contains the list of security questions
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,10 +45,28 @@ public class SetPINActivity extends AppCompatActivity implements View.OnClickLis
         this.txtPIN2 = (EditText) findViewById(R.id.txtPIN2);
         this.txtResponse = (EditText) findViewById(R.id.txtSecurityResponse);
 
-        this.spinner = (Spinner) findViewById(R.id.spinner); //Links to the spinner in the layout
+        this.spinner = (Spinner) findViewById(R.id.spinner);
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
-                android.R.layout.simple_spinner_item, QUESTIONS);
+                android.R.layout.simple_spinner_item, QUESTIONS); //Populates the spinner with the array contents
+
         this.spinner.setAdapter(adapter);
+        this.spinner.setOnItemSelectedListener(
+                new AdapterView.OnItemSelectedListener(){
+
+                    //When the user selects a security question from the Spinner
+                    @Override
+                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                        position = spinner.getSelectedItemPosition();
+
+                    }
+
+                    //Nothing selected from the Spinner
+                    @Override
+                    public void onNothingSelected(AdapterView<?> parent) {
+
+                    }
+                }
+        );
 
         findViewById(R.id.btnResetPIN).setOnClickListener(this);
         findViewById(R.id.btnClear).setOnClickListener(this);

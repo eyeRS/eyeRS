@@ -4,6 +4,7 @@
     <string name="app_name" translatable="false">eyeRS</string>
 
     <!-- Strings related to Register Activity -->
+
     <string name="txtWelcomeMsg">Welcome!</string>
     <string name="txtRequiredFields">*These fields are required</string>
     <string name="btnRegister">Register</string>
@@ -23,6 +24,7 @@
     <string name="resetPIN">Reset your PIN</string>
 
     <!-- Strings related to ForgotPin Content -->
+
     <string name="autoResizeSecurityQtnTxtView">Security Question</string>
     <string name="btnResetPIN">Reset PIN</string>
     <string name="enterPinHint">Please enter your new PIN</string>
@@ -47,6 +49,13 @@
     <string name="title_activity_slideshow">Slideshow</string>
     <string name="title_activity_forgot_pin">Forgot PIN</string>
     <string name="title_activity_view_items">View Items</string>
+
+    <!--Strings related to New Item activities -->
+
+    <string name="txtTitle">Name of item</string>
+    <string name="description">Description</string>
+    <string name="txtDescription">Item description</string>
+    <string name="btnAdd">Add</string>
 
     <!-- Strings related to Settings -->
 
@@ -73,6 +82,7 @@
     </string-array>
 
     <!-- Example settings for Data & Sync -->
+
     <string name="pref_header_data_sync">Data &amp; sync</string>
 
     <string name="pref_title_sync_frequency">Sync frequency</string>
@@ -110,6 +120,7 @@
     <string name="pref_title_system_sync_settings">System sync settings</string>
 
     <!-- Example settings for Notifications -->
+
     <string name="pref_header_notifications">Notifications</string>
 
     <string name="pref_title_new_message_notifications">New message notifications</string>

@@ -149,7 +149,7 @@ public class MainActivity extends AppCompatActivity
             case R.id.nav_help:
                 super.startActivity(new Intent(this, HelpActivity.class));
                 break;
-            case R.id.nav_new:
+            case R.id.nav_new_item:
                 super.startActivity(new Intent(this, NewItemActivity.class));
                 break;
             case R.id.nav_settings:
@@ -161,8 +161,7 @@ public class MainActivity extends AppCompatActivity
             case R.id.nav_slideshow:
                 super.startActivity(new Intent(this, SlideshowActivity.class));
                 break;
-            case R.id.nav_send:
-                sendIntent(); //Call sendIntent method
+
         }
 
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
