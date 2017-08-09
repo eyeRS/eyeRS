@@ -12,19 +12,78 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ShareActionProvider;
+import android.widget.ListView;
 
 import com.github.eyers.R;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
 
-    //Add a ShareActionProvider private variable
-    private ShareActionProvider shareActionProvider;
+    //Set current position to 0 by default
+    private int currentPosition = 0;
+    //Array of Activity titles
+    private String[] titles;
 
     private ActionBarDrawerToggle toggle;
     private DrawerLayout drawer;
+    private ListView drawerList;
     private NavigationView navigationView;
+
+    /*
+    //The OnItemClickListener's onItemClick method gets called when the user clicks on an item in the drawer's
+    //ListView
+    private class DrawerItemClickListener implements ListView.OnItemClickListener{
+
+        @Override
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            //Code to run when an item gets clicked
+            selectItem(position);
+            //Set the action bar title
+            setActionBarTitle(position);
+        }
+    }
+
+
+    //Call the selectItem() method when the user clicks on an item in the drawer's ListView
+    private void selectItem(int position){
+
+        //Update the main content by replacing activities
+        currentPosition = position;
+
+        //Decide which activity to display based on the position of the item
+        //the user selects in the drawer's ListView
+        switch(position){
+
+            case 1:
+                super.startActivity(new Intent(this, NewItemActivity.class));
+                break;
+            case 2:
+
+                break;
+            case 3:
+                super.startActivity(new Intent(this, ViewItemsActivity.class));
+                break;
+            case 4:
+                super.startActivity(new Intent(this, SettingsActivity.class));
+                break;
+            case 5:
+
+            case 6:
+                super.startActivity(new Intent(this, HelpActivity.class));
+                break;
+            case 7:
+                super.startActivity(new Intent(this, AboutActivity.class));
+                break;
+            default:
+                super.startActivity(new Intent(this, MainActivity.class));
+        }
+
+        //Set the action bar title
+        setActionBarTitle(position);
+        //Close drawer
+        drawer.closeDrawer(drawerList);
+    }
+    */
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +93,26 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        //titles = getResources().getStringArray(R.array.titles);
+
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+
+        /*
+        //Initialise the ListView
+        drawerList.setAdapter(new ArrayAdapter<String>(this,
+                android.R.layout.simple_list_item_activated_1, titles));
+        drawerList.setOnItemClickListener(new DrawerItemClickListener());
+
+        //Display the correct activity
+        if (savedInstanceState != null){
+            currentPosition = savedInstanceState.getInt("position");
+            setActionBarTitle(currentPosition);
+        }
+        //If the activity is newly created, display the MainActivity
+        else{
+            selectItem(0);
+        }
+        */
 
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
@@ -56,8 +134,29 @@ public class MainActivity extends AppCompatActivity
             }
         };
 
+        //getActionBar().setDisplayHomeAsUpEnabled(true);
+        //getActionBar().setHomeButtonEnabled(true);
+
         drawer.setDrawerListener(toggle);
     }
+
+    /*
+    //Set the action bar title based on the Activity selected
+    private void setActionBarTitle(int position) {
+        String title;
+        if (position == 0){
+            //If the user clicks on the Home option, use the app name for the title
+            title = getResources().getString(R.string.app_name);
+        }
+        else{
+            //Get the string from the titles array from the position that was clicked and use that
+            title = titles[position];
+        }
+
+        //Set the action bar title so it reflects the fragment that's displayed
+        getActionBar().setTitle(title);
+    }
+    */
 
     //Sync the state of the ActionBarDrawerToggle with the state of the drawer
     @Override
@@ -140,6 +239,15 @@ public class MainActivity extends AppCompatActivity
         Intent chosenIntent = Intent.createChooser(intent, chooserTitle);
         startActivity(chosenIntent); //Start the activity that the user selected
     }
+
+    /*
+    //Save the state of the current activity if the activity is going to be destroyed
+    @Override
+    public void onSaveInstanceState(Bundle outState){
+        super.onSaveInstanceState(outState);
+        outState.putInt("position", currentPosition);
+    }
+    */
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override

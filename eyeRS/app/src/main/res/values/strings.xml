@@ -162,6 +162,18 @@
     <string name="txtOther">Other</string>
     <string name="txtAddCat">Add Category&#8230;</string>
 
+    <string-array name="titles">
+        <item>Home</item>
+        <item>Add New Item</item>
+        <item>Add New Category</item>
+        <item>Slideshow</item>
+        <item>Settings</item>
+        <item>Share</item>
+        <item>Trade</item>
+        <item>Helps and Tips</item>
+        <item>About</item>
+    </string-array>
+
     <!-- Strings related to Help Activity -->
 
     <string name="txtHelp">Help</string>
