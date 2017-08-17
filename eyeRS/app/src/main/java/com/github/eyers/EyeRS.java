@@ -15,6 +15,7 @@ public final class EyeRS {
     /**
      *
      */
+
     public static final String PREFS_NAME = "EyeRS";
     /**
      *

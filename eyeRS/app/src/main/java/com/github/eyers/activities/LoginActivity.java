@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
 import com.github.eyers.EyeRS;
 
 import com.github.eyers.R;
@@ -36,31 +37,30 @@ public final class LoginActivity extends AppCompatActivity implements View.OnCli
      */
     @Override
     public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.txtForgotPin:
-                super.startActivity(new Intent(this, SetPINActivity.class));
-                return;
-            case R.id.btnRegister:
-                super.startActivity(new Intent(this, RegisterActivity.class));
-                return;
-            case R.id.btnLogin:
-                final String pin = txtPIN.getText().toString();
-
-                if (pin == null || pin.equals("")) {
-                    Toast.makeText(this, "Please enter your PIN code.", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
-                final String hash = EyeRS.sha256(pin);
-                if (hash.equals(EyeRS.sha256("1234"))) { // Matthew: check against the hashed password stored
-                    super.startActivity(new Intent(this, MainActivity.class));
-                    return;
-                } else {
-                    Toast.makeText(this, "Incorrect PIN code. Please try again.", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
-
-        }
+        super.startActivity(new Intent(this, ListActivity.class));
+//        switch (v.getId()) {
+//            case R.id.txtForgotPin:
+//                super.startActivity(new Intent(this, SetPINActivity.class));
+//                return;
+//            case R.id.btnRegister:
+//                super.startActivity(new Intent(this, RegisterActivity.class));
+//                return;
+//            case R.id.btnLogin:
+//                final String pin = txtPIN.getText().toString();
+//
+//                if (pin == null || pin.equals("")) {
+//                    Toast.makeText(this, "Please enter your PIN code.", Toast.LENGTH_SHORT).show();
+//                    return;
+//                }
+//
+//                final String hash = EyeRS.sha256(pin);
+//                if (hash.equals(EyeRS.sha256("1234"))) { // Matthew: check against the hashed password stored
+//                    super.startActivity(new Intent(this, MainActivity.class));
+//                    return;
+//                } else {
+//                    Toast.makeText(this, "Incorrect PIN code. Please try again.", Toast.LENGTH_SHORT).show();
+//                    return;
+//                }
+//        }
     }
 }

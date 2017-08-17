@@ -181,5 +181,6 @@
     <!-- Srings related to Send message action -->
     L
     <string name="chooser">Send message&#8230;</string>
+    <string name="title_activity_list">ListActivity</string>
 
 </resources>
