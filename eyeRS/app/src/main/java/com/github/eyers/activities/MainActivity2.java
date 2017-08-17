@@ -51,7 +51,7 @@ public class MainActivity2 extends ListActivity {
         catch (SQLiteException ex) {
 
             //Display a message to the user if a SQLiteException gets thrown.
-            Toast toast = Toast.makeText(this, "Database unavailable", Toast.LENGTH_SHORT);
+            Toast toast = Toast.makeText(this, "Error: Details could not be loaded at this time", Toast.LENGTH_SHORT);
             toast.show();
         }
     }
