@@ -22,9 +22,7 @@ public class EyeRSDatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-
         updateMyDatabase(db, 0, DB_VERSION);
-
     }
 
     @Override
@@ -74,7 +72,6 @@ public class EyeRSDatabaseHelper extends SQLiteOpenHelper {
     }
 
     private void insertBook(SQLiteDatabase db, String name, String description, int resourceId) {
-
         ContentValues bookValues = new ContentValues();
         bookValues.put("IMAGE_RESOURCE_ID", resourceId);
 		bookValues.put("NAME", name);
@@ -83,7 +80,6 @@ public class EyeRSDatabaseHelper extends SQLiteOpenHelper {
     }
 	
 	private void insertClothes(SQLiteDatabase db, String name, String description, int resourceId) {
-
         ContentValues clothesValues = new ContentValues();
         clothesValues.put("IMAGE_RESOURCE_ID", resourceId);
 		clothesValues.put("NAME", name);
@@ -92,7 +88,6 @@ public class EyeRSDatabaseHelper extends SQLiteOpenHelper {
     }
 	
 	private void insertAccessories(SQLiteDatabase db, String name, String description, int resourceId) {
-
         ContentValues accessoriesValues = new ContentValues();
         accessoriesValues.put("IMAGE_RESOURCE_ID", resourceId);
 		accessoriesValues.put("NAME", name);
@@ -101,7 +96,6 @@ public class EyeRSDatabaseHelper extends SQLiteOpenHelper {
     }
 	
 	private void insertGames(SQLiteDatabase db, String name, String description, int resourceId) {
-
         ContentValues gamesValues = new ContentValues();
         gamesValues.put("IMAGE_RESOURCE_ID", resourceId);
 		gamesValues.put("NAME", name);
