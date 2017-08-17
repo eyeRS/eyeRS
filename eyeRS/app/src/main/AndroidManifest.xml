@@ -19,9 +19,16 @@
             android:name=".activities.MainActivity"
             android:label="@string/title_activity_main"
             android:theme="@style/AppTheme.NoActionBar"
+<<<<<<< HEAD
             android:windowSoftInputMode="adjustPan" />
+=======
+            android:windowSoftInputMode="adjustPan">
+
+        </activity>
+>>>>>>> 1ca6b55c90c0c0c6814bdbe1a92d55b88ef521b2
         <activity
             android:name=".activities.LoginActivity"
+            android:label="@string/title_activity_login"
             android:windowSoftInputMode="adjustPan">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -33,27 +40,59 @@
             android:name=".activities.HelpActivity"
             android:label="@string/title_activity_help"
             android:theme="@style/AppTheme.NoActionBar"
+<<<<<<< HEAD
             android:windowSoftInputMode="adjustPan" />
         <activity android:name=".activities.NewItemActivity" />
+=======
+            android:windowSoftInputMode="adjustPan">
+
+        </activity>
+        <activity
+            android:name=".activities.NewItemActivity"
+            android:label="@string/title_activity_new_item"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustPan">
+
+        </activity>
+>>>>>>> 1ca6b55c90c0c0c6814bdbe1a92d55b88ef521b2
         <activity
             android:name=".activities.SetPINActivity"
             android:label="@string/title_activity_set_pin"
             android:theme="@style/AppTheme.NoActionBar"
+<<<<<<< HEAD
             android:windowSoftInputMode="adjustPan" />
+=======
+            android:windowSoftInputMode="adjustPan">
+
+        </activity>
+>>>>>>> 1ca6b55c90c0c0c6814bdbe1a92d55b88ef521b2
         <activity
             android:name=".activities.SettingsActivity"
             android:label="@string/title_activity_settings"
             android:theme="@style/AppTheme.NoActionBar"
+<<<<<<< HEAD
             android:windowSoftInputMode="adjustPan" />
+=======
+            android:windowSoftInputMode="adjustPan">
+
+        </activity>
+>>>>>>> 1ca6b55c90c0c0c6814bdbe1a92d55b88ef521b2
         <activity
             android:name=".activities.AboutActivity"
             android:label="@string/title_activity_about"
             android:theme="@style/AppTheme.NoActionBar"
+<<<<<<< HEAD
             android:windowSoftInputMode="adjustPan" />
+=======
+            android:windowSoftInputMode="adjustPan">
+
+        </activity>
+>>>>>>> 1ca6b55c90c0c0c6814bdbe1a92d55b88ef521b2
         <activity
             android:name=".activities.SlideshowActivity"
             android:label="@string/title_activity_slideshow"
             android:theme="@style/AppTheme.NoActionBar"
+<<<<<<< HEAD
             android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".activities.ForgotPINActivity"
@@ -68,6 +107,29 @@
             android:name=".activities.ListActivity"
             android:label="@string/title_activity_list"
             android:theme="@style/AppTheme.NoActionBar"></activity>
+=======
+            android:windowSoftInputMode="adjustPan">
+
+        </activity>
+        <activity
+            android:name=".activities.ForgotPINActivity"
+            android:label="@string/title_activity_forgot_pin"
+            android:theme="@style/AppTheme.NoActionBar">
+
+        </activity>
+        <activity
+            android:name=".activities.ViewItemsActivity"
+            android:label="@string/title_activity_view_items"
+            android:theme="@style/AppTheme.NoActionBar">
+
+        </activity>
+        <activity android:name=".activities.RegisterActivity"
+            android:label="@string/title_activity_register"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustPan">
+
+        </activity>
+>>>>>>> 1ca6b55c90c0c0c6814bdbe1a92d55b88ef521b2
     </application>
 
 </manifest>

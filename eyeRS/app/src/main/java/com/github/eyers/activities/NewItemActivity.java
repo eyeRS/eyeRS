@@ -2,6 +2,8 @@ package com.github.eyers.activities;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -12,7 +14,7 @@ import android.widget.Spinner;
 
 import com.github.eyers.R;
 
-public class NewItemActivity extends Activity implements View.OnClickListener {
+public class NewItemActivity extends AppCompatActivity implements View.OnClickListener {
 
     private static final String[] CATEGORIES = {
         "Books", "Clothes", "Games", "Accessories", "Other"
@@ -27,6 +29,8 @@ public class NewItemActivity extends Activity implements View.OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_item);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
         this.photo = (ImageButton) findViewById(R.id.new_item_image);
         this.txtTitle =  (EditText) findViewById(R.id.edtTxtTitle);
