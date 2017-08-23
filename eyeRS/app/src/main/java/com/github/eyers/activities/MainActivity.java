@@ -261,7 +261,7 @@ public class MainActivity extends AppCompatActivity
                 super.startActivity(new Intent(this, NewItemActivity.class));
                 break;
             case R.id.nav_settings:
-
+                super.startActivity(new Intent(this, SettingsActivity.class));
                 break;
             case R.id.nav_about:
                 super.startActivity(new Intent(this, AboutActivity.class));
