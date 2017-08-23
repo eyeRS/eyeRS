@@ -72,8 +72,7 @@
             android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".activities.SettingsActivity"
-            android:label="@string/title_activity_settings"
-            android:parentActivityName=".activities.MainActivity">
+            android:label="@string/title_activity_settings">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.github.eyers.activities.MainActivity" />
