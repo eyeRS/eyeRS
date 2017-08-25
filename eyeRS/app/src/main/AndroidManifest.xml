@@ -21,8 +21,6 @@
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="adjustPan" />
         android:windowSoftInputMode="adjustPan">
-
-
         <activity
             android:name=".activities.LoginActivity"
             android:label="@string/title_activity_login"
@@ -38,31 +36,26 @@
             android:label="@string/title_activity_help"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="adjustPan" />
-
         <activity
             android:name=".activities.NewItemActivity"
             android:label="@string/title_activity_new_item"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="adjustPan" />
-
         <activity
             android:name=".activities.SetPINActivity"
             android:label="@string/title_activity_set_pin"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="adjustPan" />
-
         <activity
             android:name=".activities.SettingsActivity"
             android:label="@string/title_activity_settings"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="adjustPan" />
-
         <activity
             android:name=".activities.AboutActivity"
             android:label="@string/title_activity_about"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="adjustPan" />
-
         <activity
             android:name=".activities.SlideshowActivity"
             android:label="@string/title_activity_slideshow"
@@ -79,14 +72,14 @@
         <activity
             android:name=".activities.ListActivity"
             android:label="@string/title_activity_list"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         android:windowSoftInputMode="adjustPan">
         <activity
             android:name=".activities.RegisterActivity"
             android:label="@string/title_activity_register"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="adjustPan" />
-
+        <activity android:name=".activities.ProfileActivity"></activity>
     </application>
 
 </manifest>
