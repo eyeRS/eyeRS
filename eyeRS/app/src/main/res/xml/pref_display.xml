@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- NOTE: User will be able to change colour scheme of the app -->
+    <ListPreference
+        android:defaultValue="#4A90E2"
+        android:entries="@array/theme_colors"
+        android:entryValues="@array/theme_colors"
+        android:title="@string/pref_change_color" />
+
+    <!-- User will also be able to change the app's font text -->
+    <Preference android:title="@string/pref_change_font">
+        <intent android:action="android.settings.FONT_SETTINGS" />
+    </Preference>
+</PreferenceScreen>

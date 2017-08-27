@@ -207,7 +207,8 @@ public class MainActivity extends AppCompatActivity
         // as you specify a parent activity in AndroidManifest.xml.
 
         //If the ActionBarDrawerToggle is clicked, let it handle what happens
-        if (toggle.onOptionsItemSelected(item)){
+        if (item.getItemId() == R.id.action_settings){
+            super.startActivity(new Intent(this, SettingsActivity.class));
             return true;
         }
 
