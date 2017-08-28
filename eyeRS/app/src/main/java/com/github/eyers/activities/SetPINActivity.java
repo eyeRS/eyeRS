@@ -88,7 +88,7 @@ public class SetPINActivity extends AppCompatActivity implements View.OnClickLis
                 this.txtPIN2.setText("");
                 this.txtResponse.setText("");
                 return;
-            case R.id.btnSubmit:
+            case R.id.btnResetPIN:
                 String pinA = txtPIN1.getText().toString();
                 String pinB = txtPIN1.getText().toString();
                 String answer = txtResponse.getText().toString();

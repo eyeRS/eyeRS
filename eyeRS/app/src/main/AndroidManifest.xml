@@ -47,11 +47,6 @@
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".activities.SettingsActivity"
-            android:label="@string/title_activity_settings"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:windowSoftInputMode="adjustPan" />
-        <activity
             android:name=".activities.AboutActivity"
             android:label="@string/title_activity_about"
             android:theme="@style/AppTheme.NoActionBar"
@@ -61,10 +56,6 @@
             android:label="@string/title_activity_slideshow"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="adjustPan" />
-        <activity
-            android:name=".activities.ForgotPINActivity"
-            android:label="@string/title_activity_forgot_pin"
-            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".activities.ViewItemsActivity"
             android:label="@string/title_activity_view_items"
@@ -79,7 +70,13 @@
             android:label="@string/title_activity_register"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="adjustPan" />
-        <activity android:name=".activities.ProfileActivity"></activity>
+        <activity
+            android:name=".activities.SettingsActivity"
+            android:label="@string/title_activity_settings">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.github.eyers.activities.MainActivity" />
+        </activity>
     </application>
 
 </manifest>

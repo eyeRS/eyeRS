@@ -1,0 +1,6 @@
+details/view item
+add new category
+slideshow
+profile screen
+about
+search activity
