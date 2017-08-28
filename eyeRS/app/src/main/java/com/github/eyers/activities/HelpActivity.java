@@ -43,7 +43,7 @@ public final class HelpActivity extends AppCompatActivity implements View.OnClic
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btnFeedback:
-                Toast.makeText(this, "Take the user to the play store page to leavev a comment", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "Take the user to the Google Play Store page to leave a comment", Toast.LENGTH_LONG).show();
                 break;
         }
     }
