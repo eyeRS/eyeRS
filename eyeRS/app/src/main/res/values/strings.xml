@@ -88,6 +88,8 @@
 
     <!-- Profile Settings -->
     <string name="pref_header_profile">Profile</string>
+    <string name="displayName">Please enter your display name</string>
+    <string name="saveBtn">Save changes</string>
 
     <!-- Category Settings -->
     <string name="pref_header_category">Category Management</string>
