@@ -91,6 +91,7 @@
                 <EditText
                     android:id="@+id/edtTxtUsername"
                     android:layout_width="match_parent"
+                    android:textAlignment="center"
                     android:layout_height="wrap_content"
                     android:hint="@string/enterUsernameHint" />
 
@@ -113,6 +114,7 @@
                     android:id="@+id/edtTxtEmail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textAlignment="center"
                     android:hint="@string/enterEmailHint"
                     android:inputType="textEmailAddress" />
 
@@ -135,6 +137,7 @@
                     android:id="@+id/edtTxtCreatePIN"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textAlignment="center"
                     android:hint="@string/enterPinHint"
                     android:inputType="numberPassword" />
 
@@ -157,6 +160,7 @@
                     android:id="@+id/edtTxtVerifyPIN"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textAlignment="center"
                     android:hint="@string/confirmPinHint"
                     android:inputType="numberPassword" />
 
@@ -210,6 +214,7 @@
                 <EditText
                     android:id="@+id/edtTxtSecurityResponses"
                     android:layout_width="match_parent"
+                    android:textAlignment="center"
                     android:layout_height="wrap_content"
                     android:hint="@string/txtSecurityResponse"
                     app:layout_constraintTop_toBottomOf="@+id/spinner"/>

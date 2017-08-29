@@ -54,6 +54,7 @@
     <string name="title_activity_slideshow">Catalog Slideshow</string>
     <string name="title_activity_forgot_pin">Forgot PIN</string>
     <string name="title_activity_view_items">View Catalog Items</string>
+    <string name="title_activity_item_detail">Item Details</string>
 
     <!--Strings related to New Item activities -->
 
@@ -168,8 +169,11 @@
     <string name="btnFeedback">Send Feedback</string>
 
     <!-- Srings related to Send message action -->
-    L
+
     <string name="chooser">Send message&#8230;</string>
     <string name="title_activity_list">ListActivity</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

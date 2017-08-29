@@ -87,6 +87,11 @@
                 app:srcCompat="@mipmap/ic_launcher"
                 tools:ignore="contentDescription" />
 
+            <FrameLayout
+                android:id="@+id/item_container"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
         </LinearLayout>
 
     </ScrollView>
