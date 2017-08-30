@@ -10,7 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
-import android.widget.Button;
+
 import com.github.eyers.R;
 
 /**
@@ -54,7 +54,7 @@ public class SetPINActivity extends AppCompatActivity implements View.OnClickLis
 
         this.spinner.setAdapter(adapter);
         this.spinner.setOnItemSelectedListener(
-                new AdapterView.OnItemSelectedListener(){
+                new AdapterView.OnItemSelectedListener() {
 
                     //When the user selects a security question from the Spinner
                     @Override

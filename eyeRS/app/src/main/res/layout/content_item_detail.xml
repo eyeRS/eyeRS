@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <fragment xmlns:android="http://schemas.android.com/apk/res/android"
-    class="com.github.eyers.activities.ItemDetailFragment"
-    android:id="@+id/detail_frag"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/detail_frag"
+    class="com.github.eyers.activities.ItemDetailFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.github.eyers.activities.ItemDetail">

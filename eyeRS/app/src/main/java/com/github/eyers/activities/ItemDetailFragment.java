@@ -12,7 +12,6 @@ import android.widget.TextView;
 
 import com.github.eyers.R;
 import com.github.eyers.StockLabelFragment;
-import com.github.eyers.test.ItemLabel;
 
 
 /**
@@ -29,15 +28,15 @@ public class ItemDetailFragment extends Fragment {
 
     }
 
-    @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1) //FragmentTransactions only work on this target API or better
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
+    //FragmentTransactions only work on this target API or better
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        if (savedInstanceState != null){
+        if (savedInstanceState != null) {
             itemID = savedInstanceState.getLong("workoutID");
-        }
-        else {
+        } else {
             //Use a fragment transaction to add the Stock Label fragment to the frame layout
             FragmentTransaction ft = getChildFragmentManager().beginTransaction();
             StockLabelFragment stockLabelFragment = new StockLabelFragment();
@@ -53,29 +52,29 @@ public class ItemDetailFragment extends Fragment {
     }
 
     @Override
-    public void onStart(){
+    public void onStart() {
         super.onStart();
         //Gets the fragment's root View. This can be used to get references to the item name and symbol and sector views
         View view = getView();
 
-        if (view != null){
-            TextView name = (TextView)view.findViewById(R.id.lblName);
+        if (view != null) {
+            TextView name = (TextView) view.findViewById(R.id.lblName);
             StockLabelFragment stockLabelFragment = new StockLabelFragment();
             name.setText(stockLabelFragment.getName());
-            TextView symbol = (TextView)view.findViewById(R.id.lblSymbol);
+            TextView symbol = (TextView) view.findViewById(R.id.lblSymbol);
             symbol.setText(stockLabelFragment.getSymbol());
-            TextView sector = (TextView)view.findViewById(R.id.lblShift);
+            TextView sector = (TextView) view.findViewById(R.id.lblShift);
             sector.setText(stockLabelFragment.getSector());
         }
     }
 
     @Override
-    public void onSaveInstanceState(Bundle savedInstanceState){
+    public void onSaveInstanceState(Bundle savedInstanceState) {
         savedInstanceState.putLong("itemID", itemID);
     }
 
     //The activity will use this Setter to set the value of the itemID
-    public void setItem(long id){
+    public void setItem(long id) {
 
         this.itemID = id;
     }

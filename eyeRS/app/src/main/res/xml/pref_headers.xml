@@ -33,7 +33,6 @@
     <header
 
         android:icon="@drawable/ic_action_about"
-        android:title="@string/pref_header_about"
-        />
+        android:title="@string/pref_header_about" />
 
 </preference-headers>

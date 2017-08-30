@@ -5,9 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 /**
  * Created by Nathan Shava on 29-Aug-17.
@@ -15,12 +13,11 @@ import android.widget.TextView;
 
 public class StockLabelFragment extends Fragment {
 
+    private String name, symbol, sector;
+    private ImageView itemView;
     //Required empty public constructor
     public StockLabelFragment() {
     }
-
-    private String name, symbol, sector;
-    private ImageView itemView;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -37,7 +34,7 @@ public class StockLabelFragment extends Fragment {
     //We set the fragment's layout in the onCreateView() method
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState){
+                             Bundle savedInstanceState) {
 
         View layout = inflater.inflate(R.layout.item_stock_label, container, false);
         return layout;

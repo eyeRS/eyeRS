@@ -1,6 +1,5 @@
 package com.github.eyers.activities;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -9,7 +8,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.Spinner;
 
 import com.github.eyers.R;
@@ -17,7 +15,7 @@ import com.github.eyers.R;
 public class NewItemActivity extends AppCompatActivity implements View.OnClickListener {
 
     private static final String[] CATEGORIES = {
-        "Books", "Clothes", "Games", "Accessories", "Other"
+            "Books", "Clothes", "Games", "Accessories", "Other"
     };
 
     private ImageButton photo;
@@ -33,7 +31,7 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
         setSupportActionBar(toolbar);
 
         this.photo = (ImageButton) findViewById(R.id.new_item_image);
-        this.txtTitle =  (EditText) findViewById(R.id.edtTxtTitle);
+        this.txtTitle = (EditText) findViewById(R.id.edtTxtTitle);
         this.txtDescription = (EditText) findViewById(R.id.edtTxtDescription);
         this.spinner = (Spinner) findViewById(R.id.spinner);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
@@ -41,7 +39,7 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
 
         this.spinner.setAdapter(adapter);
         this.spinner.setOnItemSelectedListener(
-                new AdapterView.OnItemSelectedListener(){
+                new AdapterView.OnItemSelectedListener() {
 
                     @Override
                     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -61,7 +59,7 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
 
     @Override
     public void onClick(View v) {
-        switch(v.getId()){
+        switch (v.getId()) {
             case R.id.btnAdd:
 
                 return;

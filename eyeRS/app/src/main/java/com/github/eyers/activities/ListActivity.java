@@ -49,11 +49,10 @@ public class ListActivity extends AppCompatActivity
             ft.addToBackStack(null);
             ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE); //Get the new and old fragments to fade in and out
             ft.commit(); //Commit the transaction
-        }
-        else{
+        } else {
 
             Intent intent = new Intent(this, ItemDetail.class);
-            intent.putExtra(ItemDetail.EXTRA_ITEM_ID, (int)id);
+            intent.putExtra(ItemDetail.EXTRA_ITEM_ID, (int) id);
             startActivity(intent);
         }
     }

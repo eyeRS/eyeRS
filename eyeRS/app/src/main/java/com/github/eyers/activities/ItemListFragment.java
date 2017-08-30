@@ -6,10 +6,8 @@ import android.support.v4.app.ListFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import com.github.eyers.R;
 import com.github.eyers.StockLabel;
 import com.github.eyers.StockLabelAdapter;
 
@@ -21,15 +19,10 @@ import java.util.ArrayList;
 
 public class ItemListFragment extends ListFragment {
 
-    //Handles events for items clicked in the list
-    interface ItemListListener{
-        void itemClicked(long id);
-    }
-
     private ItemListListener listener;
 
     //required empty public constructor
-    public ItemListFragment(){
+    public ItemListFragment() {
 
     }
 
@@ -50,16 +43,21 @@ public class ItemListFragment extends ListFragment {
 
     //Called when the fragment gets attached to the activity
     @Override
-    public void onAttach(Activity activity){
+    public void onAttach(Activity activity) {
         super.onAttach(activity);
-        this.listener = (ItemListListener)activity;
+        this.listener = (ItemListListener) activity;
     }
 
     //Tell the listener when an item in the ListView is clicked
     @Override
-    public void onListItemClick(ListView listView, View view, int position, long id){
-        if (listener != null){
+    public void onListItemClick(ListView listView, View view, int position, long id) {
+        if (listener != null) {
             listener.itemClicked(id);
         }
+    }
+
+    //Handles events for items clicked in the list
+    interface ItemListListener {
+        void itemClicked(long id);
     }
 }
