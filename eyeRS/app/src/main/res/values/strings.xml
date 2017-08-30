@@ -172,6 +172,7 @@
 
     <string name="chooser">Send message&#8230;</string>
     <string name="title_activity_list">ListActivity</string>
+    <string name="title_activity_search">SearchActivity</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
