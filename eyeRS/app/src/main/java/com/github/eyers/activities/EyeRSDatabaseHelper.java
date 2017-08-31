@@ -1,5 +1,9 @@
 package com.github.eyers.activities;
 
+/**
+ * Created by Nathan Shava on 29-Jul-17.
+ */
+
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
@@ -32,6 +36,7 @@ public class EyeRSDatabaseHelper extends SQLiteOpenHelper {
     }
 
     private void updateMyDatabase(SQLiteDatabase db, int oldVersion, int newVersion) {
+
         if (oldVersion <= 1) {
             db.execSQL("CREATE TABLE BOOKS ("
                     + "_id INTEGER PRIMARY KEY AUTOINCREMENT, "

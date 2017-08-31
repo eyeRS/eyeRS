@@ -119,16 +119,16 @@ public class MainActivity extends AppCompatActivity
 
         //Create the ActionBarDrawerToggle
         toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close){
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close) {
 
             //Called when a drawer has settled in a completely closed state
-            public void onDrawerClosed(View view){
+            public void onDrawerClosed(View view) {
                 super.onDrawerClosed(view);
                 invalidateOptionsMenu();
             }
 
             //Called when a drawer has settled in a completely open state
-            public void onDrawerOpened(View drawerView){
+            public void onDrawerOpened(View drawerView) {
                 super.onDrawerOpened(drawerView);
                 invalidateOptionsMenu();
             }
@@ -160,21 +160,21 @@ public class MainActivity extends AppCompatActivity
 
     //Sync the state of the ActionBarDrawerToggle with the state of the drawer
     @Override
-    protected void onPostCreate(Bundle savedInstanceState){
+    protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
         toggle.syncState();
     }
 
     //Pass details of any configuration changes to the ActionBarDrawerToggle
     @Override
-    public void onConfigurationChanged(Configuration newConfig){
+    public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
         toggle.onConfigurationChanged(newConfig);
     }
 
     //Called when we call invalidateOptionsMenu()
     @Override
-    public boolean onPrepareOptionsMenu(Menu menu){
+    public boolean onPrepareOptionsMenu(Menu menu) {
         //If the drawer is open, hide related items to the content view
         boolean drawerOpen = drawer.isDrawerOpen(navigationView);
         //Set the visibility of the menu items when the Drawer is opened or closed
@@ -207,7 +207,8 @@ public class MainActivity extends AppCompatActivity
         // as you specify a parent activity in AndroidManifest.xml.
 
         //If the ActionBarDrawerToggle is clicked, let it handle what happens
-        if (toggle.onOptionsItemSelected(item)){
+        if (item.getItemId() == R.id.action_settings) {
+            super.startActivity(new Intent(this, SettingsActivity.class));
             return true;
         }
 
@@ -220,7 +221,7 @@ public class MainActivity extends AppCompatActivity
         }
         */
 
-        switch(item.getItemId()){
+        switch (item.getItemId()) {
             case R.id.action_settings:
                 //Code to run when the Settings action item is clicked
                 return true;

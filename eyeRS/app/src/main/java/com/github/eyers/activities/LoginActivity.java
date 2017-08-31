@@ -4,12 +4,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.github.eyers.EyeRS;
-
 import com.github.eyers.R;
 
 public final class LoginActivity extends AppCompatActivity implements View.OnClickListener {
@@ -37,7 +35,7 @@ public final class LoginActivity extends AppCompatActivity implements View.OnCli
      */
     @Override
     public void onClick(View v) {
-//        super.startActivity(new Intent(this, ListActivity.class));
+        super.startActivity(new Intent(this, ListActivity.class));
         switch (v.getId()) {
             case R.id.txtForgotPin:
                 super.startActivity(new Intent(this, SetPINActivity.class));

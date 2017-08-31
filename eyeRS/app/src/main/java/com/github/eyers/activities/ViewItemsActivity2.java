@@ -1,13 +1,11 @@
 package com.github.eyers.activities;
 
+import android.app.Activity;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
-import android.app.Activity;
-import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.github.eyers.R;
@@ -22,68 +20,68 @@ public class ViewItemsActivity2 extends Activity {
         setContentView(R.layout.activity_view_items);
 
         //Get the item from the intent
-        int itemNo = (Integer)getIntent().getExtras().get(EXTRA_ITEMNO);
+        int itemNo = (Integer) getIntent().getExtras().get(EXTRA_ITEMNO);
 
         //Create a cursor
-        try{
-			
+        try {
+
             SQLiteOpenHelper eyersDatabaseHelper = new EyeRSDatabaseHelper(this);
             SQLiteDatabase db = eyersDatabaseHelper.getReadableDatabase();
-            
-			Cursor cursor = db.query("BOOKS",
-                    new String[] {"IMAGE_RESOURCE_ID", "NAME", "DESCRIPTION"},
-                    "_id = ?", new String[] {Integer.toString(itemNo)}, null, null, null);
-					
-			cursor = db.query("CLOTHES",
-                    new String[] {"IMAGE_RESOURCE_ID", "NAME", "DESCRIPTION"},
-                    "_id = ?", new String[] {Integer.toString(itemNo)}, null, null, null);
 
-			cursor = db.query("ACCESSORIES",
-                    new String[] {"IMAGE_RESOURCE_ID", "NAME", "DESCRIPTION"},
-                    "_id = ?", new String[] {Integer.toString(itemNo)}, null, null, null);
-            
-			cursor = db.query("GAMES",
-                    new String[] {"IMAGE_RESOURCE_ID", "NAME", "DESCRIPTION"},
-                    "_id = ?", new String[] {Integer.toString(itemNo)}, null, null, null);
-			
-			cursor = db.query("OTHER",
-                    new String[] {"IMAGE_RESOURCE_ID", "NAME", "DESCRIPTION"},
-                    "_id = ?", new String[] {Integer.toString(itemNo)}, null, null, null);
-			
-			//Move to the first record in the Cursor
-            if (cursor.moveToFirst()){
+            Cursor cursor = db.query("BOOKS",
+                    new String[]{"IMAGE_RESOURCE_ID", "NAME", "DESCRIPTION"},
+                    "_id = ?", new String[]{Integer.toString(itemNo)}, null, null, null);
+
+            cursor = db.query("CLOTHES",
+                    new String[]{"IMAGE_RESOURCE_ID", "NAME", "DESCRIPTION"},
+                    "_id = ?", new String[]{Integer.toString(itemNo)}, null, null, null);
+
+            cursor = db.query("ACCESSORIES",
+                    new String[]{"IMAGE_RESOURCE_ID", "NAME", "DESCRIPTION"},
+                    "_id = ?", new String[]{Integer.toString(itemNo)}, null, null, null);
+
+            cursor = db.query("GAMES",
+                    new String[]{"IMAGE_RESOURCE_ID", "NAME", "DESCRIPTION"},
+                    "_id = ?", new String[]{Integer.toString(itemNo)}, null, null, null);
+
+            cursor = db.query("OTHER",
+                    new String[]{"IMAGE_RESOURCE_ID", "NAME", "DESCRIPTION"},
+                    "_id = ?", new String[]{Integer.toString(itemNo)}, null, null, null);
+
+            //Move to the first record in the Cursor
+            if (cursor.moveToFirst()) {
 
                 //Get the books details from the cursor
                 int photoId = cursor.getInt(0);
-				String nameText = cursor.getString(0);
+                String nameText = cursor.getString(0);
                 String descriptionText = cursor.getString(2);
-				
-				//Get the clothes details from the cursor
+
+                //Get the clothes details from the cursor
                 photoId = cursor.getInt(0);
-				nameText = cursor.getString(0);
-                descriptionText = cursor.getString(2);
-                
-				//Get the accessories details from the cursor
-                photoId = cursor.getInt(0);
-				nameText = cursor.getString(0);
-                descriptionText = cursor.getString(2);
-				
-				//Get the games details from the cursor
-                photoId = cursor.getInt(0);
-				nameText = cursor.getString(0);
-                descriptionText = cursor.getString(2);
-				
-				//Get the other details from the cursor
-                photoId = cursor.getInt(0);
-				nameText = cursor.getString(0);
+                nameText = cursor.getString(0);
                 descriptionText = cursor.getString(2);
 
-				//Populate the item image
+                //Get the accessories details from the cursor
+                photoId = cursor.getInt(0);
+                nameText = cursor.getString(0);
+                descriptionText = cursor.getString(2);
+
+                //Get the games details from the cursor
+                photoId = cursor.getInt(0);
+                nameText = cursor.getString(0);
+                descriptionText = cursor.getString(2);
+
+                //Get the other details from the cursor
+                photoId = cursor.getInt(0);
+                nameText = cursor.getString(0);
+                descriptionText = cursor.getString(2);
+
+                //Populate the item image
                 //ImageView photo = (ImageView)findViewById(R.id.photo);
                 //photo.setImageResource(photoId);
                 //photo.setContentDescription(nameText);
-                
-				//Populate the item name
+
+                //Populate the item name
                 //TextView name = (TextView)findViewById(R.id.name);
                 //name.setText(nameText);
 
@@ -96,12 +94,11 @@ public class ViewItemsActivity2 extends Activity {
             //Close the cursor and database
             cursor.close();
             db.close();
-        }
-        catch (SQLiteException ex){
-			
+        } catch (SQLiteException ex) {
+
             Toast toast = Toast.makeText(this, "Database unavailable", Toast.LENGTH_SHORT);
             toast.show();
-			
+
         }
     }
 }

@@ -87,7 +87,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/edtTxtPin"
-                    android:inputType="numberPassword" />
+                    android:inputType="numberPassword"
+                    android:textAlignment="center" />
 
             </android.support.design.widget.TextInputLayout>
 
