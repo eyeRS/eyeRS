@@ -1,15 +1,16 @@
 package com.github.eyers;
 
 /**
- *
+ * @deprecated needs to be removed or reworked
  */
-public class StockInfo {
+@Deprecated
+public class ItemInfo {
 
     private String symbol;
     private String name;
     private String sector;
 
-    public StockInfo(String symbol, String name, String sector) {
+    public ItemInfo(String symbol, String name, String sector) {
         this.symbol = symbol;
         this.name = name;
         this.sector = sector;
@@ -29,6 +30,6 @@ public class StockInfo {
 
     @Override
     public String toString() {
-        return "StockInfo{" + "symbol=" + symbol + ", name=" + name + ", sector=" + sector + '}';
+        return "ItemInfo{" + "symbol=" + symbol + ", name=" + name + ", sector=" + sector + '}';
     }
 }

@@ -8,8 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
-import com.github.eyers.StockLabel;
-import com.github.eyers.StockLabelAdapter;
+import com.github.eyers.ItemLabel;
+import com.github.eyers.LabelAdapter;
 
 import java.util.ArrayList;
 
@@ -30,10 +30,10 @@ public class ItemListFragment extends ListFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        ArrayList<StockLabel> arrayOfUsers = new ArrayList<StockLabel>();
+        ArrayList<ItemLabel> arrayOfUsers = new ArrayList<ItemLabel>();
 
-        //Create the StockLabelAdapter object
-        StockLabelAdapter adapter = new StockLabelAdapter(inflater.getContext(), arrayOfUsers);
+        //Create the LabelAdapter object
+        LabelAdapter adapter = new LabelAdapter(inflater.getContext(), arrayOfUsers);
 
         //Bind the adapter to the list view
         setListAdapter(adapter);

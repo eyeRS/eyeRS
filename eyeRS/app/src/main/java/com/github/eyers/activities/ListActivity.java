@@ -8,9 +8,9 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ListView;
 
+import com.github.eyers.ItemLabel;
+import com.github.eyers.LabelAdapter;
 import com.github.eyers.R;
-import com.github.eyers.StockLabel;
-import com.github.eyers.StockLabelAdapter;
 
 import java.util.ArrayList;
 
@@ -24,10 +24,14 @@ public class ListActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        ArrayList<StockLabel> arrayOfUsers = new ArrayList<StockLabel>();
-        StockLabelAdapter adapter = new StockLabelAdapter(this, arrayOfUsers);
+        ArrayList<ItemLabel> arrayOfUsers = new ArrayList<ItemLabel>();
+        LabelAdapter adapter = new LabelAdapter(this, arrayOfUsers);
         ListView listView = (ListView) findViewById(R.id.listview);
         listView.setAdapter(adapter);
+
+        for (int i = 0; i < 10; i++) {
+            adapter.add(new ItemLabel("test", "test", "test"));
+        }
 
 //        EyeRSDatabaseHelper f = new EyeRSDatabaseHelper();
 //    f.getReadableDatabase().beginTransaction();

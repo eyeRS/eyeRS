@@ -11,12 +11,12 @@ import android.widget.ImageView;
  * Created by Nathan Shava on 29-Aug-17.
  */
 
-public class StockLabelFragment extends Fragment {
+public class ItemLabelFragment extends Fragment {
 
     private String name, symbol, sector;
     private ImageView itemView;
     //Required empty public constructor
-    public StockLabelFragment() {
+    public ItemLabelFragment() {
     }
 
     @Override
@@ -36,7 +36,7 @@ public class StockLabelFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View layout = inflater.inflate(R.layout.item_stock_label, container, false);
+        View layout = inflater.inflate(R.layout.item_label, container, false);
         return layout;
 
     }

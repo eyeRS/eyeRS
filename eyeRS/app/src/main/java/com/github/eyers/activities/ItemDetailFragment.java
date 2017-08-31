@@ -10,8 +10,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.github.eyers.ItemLabelFragment;
 import com.github.eyers.R;
-import com.github.eyers.StockLabelFragment;
 
 
 /**
@@ -39,8 +39,8 @@ public class ItemDetailFragment extends Fragment {
         } else {
             //Use a fragment transaction to add the Stock Label fragment to the frame layout
             FragmentTransaction ft = getChildFragmentManager().beginTransaction();
-            StockLabelFragment stockLabelFragment = new StockLabelFragment();
-            ft.replace(R.id.item_container, stockLabelFragment);
+            ItemLabelFragment itemLabelFragment = new ItemLabelFragment();
+            ft.replace(R.id.fragment_container, itemLabelFragment);
             ft.addToBackStack(null);
             ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
             ft.commit();
@@ -48,7 +48,7 @@ public class ItemDetailFragment extends Fragment {
         }
 
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.item_stock_label, container, false);
+        return inflater.inflate(R.layout.item_label, container, false);
     }
 
     @Override
@@ -59,12 +59,12 @@ public class ItemDetailFragment extends Fragment {
 
         if (view != null) {
             TextView name = (TextView) view.findViewById(R.id.lblName);
-            StockLabelFragment stockLabelFragment = new StockLabelFragment();
-            name.setText(stockLabelFragment.getName());
-            TextView symbol = (TextView) view.findViewById(R.id.lblSymbol);
-            symbol.setText(stockLabelFragment.getSymbol());
-            TextView sector = (TextView) view.findViewById(R.id.lblShift);
-            sector.setText(stockLabelFragment.getSector());
+            ItemLabelFragment itemLabelFragment = new ItemLabelFragment();
+            name.setText(itemLabelFragment.getName());
+//            TextView symbol = (TextView) view.findViewById(R.id.lblSymbol);
+//            symbol.setText(itemLabelFragment.getSymbol());
+//            TextView sector = (TextView) view.findViewById(R.id.lblShift);
+//            sector.setText(itemLabelFragment.getSector());
         }
     }
 
