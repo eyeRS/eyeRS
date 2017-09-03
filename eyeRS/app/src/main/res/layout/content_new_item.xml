@@ -41,6 +41,7 @@
             <ImageButton
                 android:id="@+id/new_item_image"
                 android:layout_width="190dp"
+                tools:ignore="ContentDescription"
                 android:layout_height="190dp"
                 android:layout_gravity="center_horizontal"
                 android:clickable="true"
@@ -84,6 +85,7 @@
                 <EditText
                     android:id="@+id/edtTxtTitle"
                     android:layout_width="match_parent"
+                    android:textAlignment="center"
                     android:layout_height="wrap_content"
                     android:hint="@string/txtTitle" />
 

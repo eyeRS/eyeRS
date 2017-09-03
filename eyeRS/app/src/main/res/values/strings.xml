@@ -8,8 +8,8 @@
     <string name="txtWelcomeMsg">Welcome!</string>
     <string name="txtRequiredFields">*All fields are required*</string>
     <string name="btnRegister">Register</string>
-    <string name="enterUsernameHint">Enter Username</string>
-    <string name="enterEmailHint">Enter Email</string>
+    <string name="enterUsernameHint">Enter your new Username</string>
+    <string name="enterEmailHint">Enter your Email Address</string>
     <string name="txtSecurityQuestions">Select a security question</string>
 
     <!-- Strings related to Set Pin Activity -->
@@ -168,7 +168,14 @@
     <string name="txtHelp">Help</string>
     <string name="btnFeedback">Send Feedback</string>
 
-    <!-- Srings related to Send message action -->
+    <!-- Strings related to About Activity -->
+    <string name="appDesc">The organised life experience!</string>
+    <string name="cpyRight">Version 1, 30 November 2017 Copyright &#169; 2017 eyeRS Dev</string>
+
+    <!-- Strings related to Search Activity -->
+    <string name="action_search">Search &#8230;</string>
+
+    <!-- Strings related to Send message action -->
 
     <string name="chooser">Send message&#8230;</string>
     <string name="title_activity_list">ListActivity</string>

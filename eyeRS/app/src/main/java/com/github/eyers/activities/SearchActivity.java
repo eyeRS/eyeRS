@@ -27,7 +27,7 @@ public class SearchActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         /** From here on copy the code to the necessary activities for functionality of the search
-         * fucntion.
+         * function.
          */
 
         getSupportActionBar().setTitle("Search Bar");
@@ -45,6 +45,7 @@ public class SearchActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
          */
