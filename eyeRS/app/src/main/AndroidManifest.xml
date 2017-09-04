@@ -80,7 +80,7 @@
             android:name=".activities.ItemDetail"
             android:label="@string/title_activity_item_detail"
             android:theme="@style/AppTheme.NoActionBar"
-            android:windowSoftInputMode="adjustPan"></activity>
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".activities.SearchActivity"
             android:label="@string/title_activity_search"
@@ -89,6 +89,12 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.github.eyers.activities.ViewItemsActivity" />
+        </activity>
+        <activity
+            android:name=".activities.NewCategoryActivity"
+            android:label="@string/title_activity_new_category"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustPan">
         </activity>
     </application>
 

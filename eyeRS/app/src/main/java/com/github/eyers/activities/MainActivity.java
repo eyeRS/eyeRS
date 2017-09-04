@@ -256,19 +256,22 @@ public class MainActivity extends AppCompatActivity
 
         switch (item.getItemId()) {
             case R.id.nav_help:
-                super.startActivity(new Intent(this, HelpActivity.class));
+                super.startActivity(new Intent(this, HelpActivity.class)); //starts the Help & Tips activity
                 break;
             case R.id.nav_new_item:
-                super.startActivity(new Intent(this, NewItemActivity.class));
+                super.startActivity(new Intent(this, NewItemActivity.class)); //starts the New Item activity
+                break;
+            case R.id.nav_new_category:
+                super.startActivity(new Intent(this, NewCategoryActivity.class)); //starts the New Category activity
                 break;
             case R.id.nav_settings:
-                super.startActivity(new Intent(this, SettingsActivity.class));
+                super.startActivity(new Intent(this, SettingsActivity.class)); //starts the Settings activity
                 break;
             case R.id.nav_about:
-                super.startActivity(new Intent(this, AboutActivity.class));
+                super.startActivity(new Intent(this, AboutActivity.class)); //starts the About activity
                 break;
             case R.id.nav_slideshow:
-                super.startActivity(new Intent(this, SlideshowActivity.class));
+                super.startActivity(new Intent(this, SlideshowActivity.class)); //starts the Slideshow activity
                 break;
 
         }

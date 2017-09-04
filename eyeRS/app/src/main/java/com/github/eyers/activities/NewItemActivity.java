@@ -9,6 +9,7 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.github.eyers.R;
 
@@ -20,7 +21,7 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
 
     private ImageButton photo;
     private EditText txtTitle;
-    private EditText txtDescription;
+    private EditText txtDesc;
     private Spinner spinner;
 
     @Override
@@ -32,7 +33,7 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
 
         this.photo = (ImageButton) findViewById(R.id.new_item_image);
         this.txtTitle = (EditText) findViewById(R.id.edtTxtTitle);
-        this.txtDescription = (EditText) findViewById(R.id.edtTxtDescription);
+        this.txtDesc = (EditText) findViewById(R.id.edtTxtDescription);
         this.spinner = (Spinner) findViewById(R.id.spinner);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_spinner_item, CATEGORIES); //Populates the spinner with the array contents
@@ -54,13 +55,28 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
                 }
         );
 
-        findViewById(R.id.btnAdd);
+        findViewById(R.id.btnAddItem).setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.btnAdd:
+
+            case R.id.btnAddItem: //user clicks add
+
+                if (txtTitle != null ){
+                    //User cannot add a new item without a title, description may be null although not advisable
+                    if (txtDesc == null){
+                        Toast.makeText(this, "You should consider adding a Description for " +
+                                "your item", Toast.LENGTH_LONG).show();
+                    }
+
+
+                }
+                else{
+                    Toast.makeText(this, "Please add a Title to successfully" +
+                            "add a new item", Toast.LENGTH_LONG).show();
+                }
 
                 return;
 
