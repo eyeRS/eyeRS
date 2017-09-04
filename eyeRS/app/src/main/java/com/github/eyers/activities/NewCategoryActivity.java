@@ -13,6 +13,7 @@ public class NewCategoryActivity extends AppCompatActivity implements View.OnCli
 
     private EditText txtTitle;
     private EditText txtDesc;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
