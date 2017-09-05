@@ -1,13 +1,19 @@
 package com.github.eyers.activities;
 
+import android.content.ContentValues;
+import android.content.Intent;
+import android.database.SQLException;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.github.eyers.R;
 
@@ -27,12 +33,21 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             "What time of the day were you born (hh:mm)?"
     };
 
+    //Fields
     private EditText txtUsername;
     private EditText txtEmail;
     private EditText txtPIN1;
     private EditText txtPIN2;
     private EditText txtResponse; //retrieves the user's security response
     private Spinner spinner;    //contains the list of security questions
+
+    //db variables
+    public SQLiteDatabase db;
+    public EyeRSDatabaseHelper eyeRSDatabaseHelper;
+    private static String username;
+    private static String email;
+    private static String matchedPIN;
+    private static String securityResponse;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +61,8 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         this.txtPIN1 = (EditText) findViewById(R.id.edtTxtCreatePIN);
         this.txtPIN2 = (EditText) findViewById(R.id.edtTxtVerifyPIN);
         this.txtResponse = (EditText) findViewById(R.id.edtTxtSecurityResponses);
+
+        eyeRSDatabaseHelper = new EyeRSDatabaseHelper(this);
 
         this.spinner = (Spinner) findViewById(R.id.spinner);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
@@ -72,17 +89,68 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
     }
 
+    //Method to add user's Registration details
+    public void addRegInfo(){
+
+        ContentValues userRegValues = new ContentValues();
+        //Insert the user's name
+        userRegValues.put(NewRegInfo.UserRegistrationInfo.USER_NAME, username);
+        //Insert the user's email address
+        userRegValues.put(NewRegInfo.UserRegistrationInfo.EMAIL_ADD, email);
+        //Insert the user's pin
+        userRegValues.put(NewRegInfo.UserRegistrationInfo.USER_PIN, matchedPIN);
+        //Insert the user's security response
+        userRegValues.put(NewRegInfo.UserRegistrationInfo.SECURITY_RESPONSE, securityResponse);
+
+        try{
+
+            db = eyeRSDatabaseHelper.getWritableDatabase();
+            //Insert the user registration details into the db
+            db.insert(NewRegInfo.UserRegistrationInfo.TABLE_NAME, null,
+                    userRegValues);
+            db.close();
+            Toast.makeText(this, "Your details have been saved successfully ", Toast.LENGTH_SHORT).show();
+
+            //Display message in the logcat window after successful operation execution
+            Log.e("DATABASE OPERATIONS", "...New user added to DB!");
+        }
+        catch (SQLException ex){
+            Toast.makeText(this, "Unable to add item", Toast.LENGTH_SHORT).show();
+        }
+    }
+
     /**
      * Called when a view has been clicked.
      *
-     * @param v The view that was clicked.
+     * @param view The view that was clicked.
      */
     @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
+    public void onClick(View view) {
+
+        String pinA = txtPIN1.getText().toString();
+        String pinB = txtPIN2.getText().toString();
+
+        switch (view.getId()) {
             case R.id.btnRegister:
 
+                username = txtUsername.getText().toString();
+                email = txtEmail.getText().toString();
+                securityResponse = txtResponse.getText().toString();
+
+                if (pinA.equals(pinB)){ //if the PINs match then get a copy for the db
+                    matchedPIN = txtPIN2.getText().toString();
+                    addRegInfo();
+                    //Navigate to the Login screen once registration has been successful
+                    super.startActivity(new Intent(this, LoginActivity.class));
+                }
                 return;
+            case R.id.btnClearReg: //user clicks on the Clear button
+                this.txtUsername.setText("");
+                this.txtEmail.setText("");
+                this.txtPIN1.setText("");
+                this.txtPIN2.setText("");
+                this.txtResponse.setText("");
+
 
         }
     }

@@ -33,7 +33,7 @@ public class SearchActivity extends AppCompatActivity {
         getSupportActionBar().setTitle("Search Bar");
         toolbar.setTitleTextColor(Color.parseColor("#FFFFFF"));
 
-        MaterialSearchView searchView = (MaterialSearchView)findViewById(R.id.search_view);
+        this.searchView = (MaterialSearchView)findViewById(R.id.search_view);
 
         /**
 

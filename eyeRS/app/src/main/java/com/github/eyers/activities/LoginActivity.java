@@ -12,6 +12,7 @@ import com.github.eyers.R;
 
 public final class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
+    //Fields
     private EditText txtPIN;
 
     @Override

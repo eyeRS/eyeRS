@@ -4,13 +4,11 @@ package com.github.eyers.activities;
  * Created by Nathan Shava on 29-Jul-17.
  */
 
-import android.content.ContentValues;
 import android.content.Context;
+import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
-
-import java.sql.Blob;
 
 public class EyeRSDatabaseHelper extends SQLiteOpenHelper {
 
@@ -104,71 +102,40 @@ public class EyeRSDatabaseHelper extends SQLiteOpenHelper {
 
         if (oldVersion <= 1) {
 
-            //Create the Item table
-            db.execSQL(CREATE_ITEM_TABLE_QUERY);
-            //Display message in the logcat window after successful operation execution
-            Log.e("DATABASE OPERATIONS", "...Item table created!");
+            try{
 
-            //Create the Category table
-            db.execSQL(CREATE_CATEGORY_TABLE_QUERY);
-            //Display message in the logcat window after successful operation execution
-            Log.e("DATABASE OPERATIONS", "...Category table created!");
+                //Create the Item table
+                db.execSQL(CREATE_ITEM_TABLE_QUERY);
+                //Display message in the logcat window after successful operation execution
+                Log.e("DATABASE OPERATIONS", "...Item table created!");
 
-            //Create the default categories
-            db.execSQL(CREATE_CATEGORY_BOOKS); //Books default category
-            db.execSQL(CREATE_CATEGORY_CLOTHES); //Clothes default category
-            db.execSQL(CREATE_CATEGORY_ACCESSORIES); //Accessories default category
-            db.execSQL(CREATE_CATEGORY_GAMES); //Games default category
-            db.execSQL(CREATE_CATEGORY_OTHER); //Other default category
-            //Display message in the logcat window after successful operation execution
-            Log.e("DATABASE OPERATIONS", "...Default categories created successfully!");
+                //Create the Category table
+                db.execSQL(CREATE_CATEGORY_TABLE_QUERY);
+                //Display message in the logcat window after successful operation execution
+                Log.e("DATABASE OPERATIONS", "...Category table created!");
+
+                //Create the default categories
+                db.execSQL(CREATE_CATEGORY_BOOKS); //Books default category
+                db.execSQL(CREATE_CATEGORY_CLOTHES); //Clothes default category
+                db.execSQL(CREATE_CATEGORY_ACCESSORIES); //Accessories default category
+                db.execSQL(CREATE_CATEGORY_GAMES); //Games default category
+                db.execSQL(CREATE_CATEGORY_OTHER); //Other default category
+
+                db.close();
+
+                //Display message in the logcat window after successful operation execution
+                Log.e("DATABASE OPERATIONS", "...Default categories created successfully!");
+
+            }
+            catch (SQLException ex){
+
+            }
+
 
         }
         if (oldVersion >= 2) {
             //Code to be executed when eyers db is updated to a higher version
         }
     } //end void updateMyDatabase()
-
-    //Method to add a new Item
-    public void addItemInfo(SQLiteDatabase db, String itemName,
-                            String itemDesc, String dateAdded, Blob item_Icon){
-
-        ContentValues contentValues = new ContentValues();
-        //insert the item's name
-        contentValues.put(NewItemInfo.ItemInfo.ITEM_NAME, itemName);
-        //insert the item's description
-        contentValues.put(NewItemInfo.ItemInfo.ITEM_DESC, itemDesc);
-        //insert the date the item is added
-        contentValues.put(NewItemInfo.ItemInfo.DATE_ADDED, dateAdded);
-        //code to insert the item's image to be inserted here
-
-
-        //insert the item into the db (Item Desc may be null)
-        db.insert(NewItemInfo.ItemInfo.TABLE_NAME, NewItemInfo.ItemInfo.ITEM_DESC,
-                contentValues);
-        //Display message in the logcat window after successful operation execution
-        Log.e("DATABASE OPERATIONS", "...New item added to DB!");
-
-    } //end void addItemInfo()
-
-    //Method to add a new Category
-    public void addCategoryInfo(SQLiteDatabase db, String categoryName,
-                                String categoryDesc, Blob category_icon){
-
-        ContentValues contentValues = new ContentValues();
-        //insert the category's name
-        contentValues.put(NewCategoryInfo.CategoryInfo.CATEGORY_NAME, categoryName);
-        //insert the category's description
-        contentValues.put(NewCategoryInfo.CategoryInfo.CATEGORY_DESC, categoryDesc);
-        //code to insert the category's icon to be inserted here
-
-
-        //insert the category into the db (Category Desc column may be null)
-        db.insert(NewCategoryInfo.CategoryInfo.TABLE_NAME, NewCategoryInfo.CategoryInfo.CATEGORY_DESC,
-                contentValues);
-        //Display message in the logcat window after successful operation execution
-        Log.e("DATABASE OPERATIONS", "...New category added to DB!");
-
-    } //end void addCategoryInfo()
 
 } //end class EyeRSDatabaseHelper

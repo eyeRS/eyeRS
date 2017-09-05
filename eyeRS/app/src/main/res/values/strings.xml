@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name" translatable="false">eyeRS</string>
+    <string name="app_name" translatable="false">EyeRS</string>
 
     <!-- Strings related to Register Activity -->
 
     <string name="txtWelcomeMsg">Welcome!</string>
     <string name="txtRequiredFields">*All fields are required*</string>
     <string name="btnRegister">Register</string>
+    <string name="createPinHint">Enter your new PIN</string>
+    <string name="confirmPinHint">Verify your new PIN</string>
+    <string name="btnClearReg">Clear</string>
     <string name="enterUsernameHint">Enter your new Username</string>
     <string name="enterEmailHint">Enter your Email Address</string>
     <string name="txtSecurityQuestions">Select a security question</string>
@@ -15,27 +18,22 @@
     <!-- Strings related to Set Pin Activity -->
 
     <string name="txtWelcome">Welcome !</string>
-    <string name="txtWelcomeDescr">Make Life Easy\n with eyeRS</string>
+    <string name="txtWelcomeDesc">Make Life Easy\n with eyeRS</string>
     <string name="txtPinRequired">This is a required field!</string>
     <string name="txtSecurityQtn">Please select a security question</string>
     <string name="txtSecurityResponse">Security Response</string>
     <string name="responseHint">Your security answer</string>
-    <string name="btnSubmit">Submit</string>
-    <string name="btnClear">Clear</string>
-    <string name="resetPIN">*Enter your new PIN here*</string>
-    <string name="resetPIN2">*Enter your Security details from the User registration to complete the PIN reset process*</string>
-
-    <!-- Strings related to ForgotPin Content -->
-
-    <string name="autoResizeSecurityQtnTxtView">Security Question</string>
-    <string name="btnResetPIN">Reset PIN</string>
-    <string name="enterPinHint">Please enter your new PIN</string>
-    <string name="confirmPinHint">Please confirm your new PIN</string>
+    <string name="validateUsername">Enter your username</string>
+    <string name="btnResetPIN">Reset</string>
+    <string name="btnClearPIN">Clear</string>
+    <string name="enterPinHint">Enter your new PIN here</string>
+    <string name="validationMsg">*Enter your Security details from the User registration to complete the PIN reset process*</string>
 
     <!-- Strings related to Login activity -->
 
     <string name="btnLogin">Login</string>
     <string name="btnForgotPin">Forgot your PIN?</string>
+    <string name="txtWelcomeDescLogin">Make your life easy with EyeRS</string>
     <string name="txtPinRequest">Enter your PIN</string>
     <string name="EnterPinHint">PIN must be at least 4 digits</string>
     <string name="txtForgotPin">Forgot your PIN?</string>
@@ -174,7 +172,8 @@
 
     <!-- Strings related to About Activity -->
     <string name="appDesc">The organised life experience!</string>
-    <string name="cpyRight">Version 1, 30 November 2017 Copyright &#169; 2017 eyeRS Dev</string>
+    <string name="txtAppCap">Version 1, 30 November 2017</string>
+    <string name="cpyRight">Copyright &#169; 2017 eyeRS Dev</string>
 
     <!-- Strings related to Search Activity -->
     <string name="action_search">Search &#8230;</string>

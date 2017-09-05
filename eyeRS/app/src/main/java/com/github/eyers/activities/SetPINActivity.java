@@ -1,9 +1,13 @@
 package com.github.eyers.activities;
 
+import android.content.ContentValues;
 import android.content.Intent;
+import android.database.SQLException;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -16,7 +20,7 @@ import com.github.eyers.R;
 /**
  *
  */
-public class SetPINActivity extends AppCompatActivity implements View.OnClickListener {
+public class  SetPINActivity extends AppCompatActivity implements View.OnClickListener {
 
     private static final String[] QUESTIONS = {
 
@@ -32,10 +36,20 @@ public class SetPINActivity extends AppCompatActivity implements View.OnClickLis
             "What time of the day were you born (hh:mm)?"
     };
 
+    //Fields
     private EditText txtPIN1;
     private EditText txtPIN2;
+    private EditText txtUsername;
     private EditText txtResponse; //retrieves the user's security response
     private Spinner spinner; //contains the list of security questions
+
+    //db variables
+    private static String matchedPIN; // retrieves the PIN as a String if they match
+    private static String securityResponse; //retrieves the security response as a String value
+    private static String username; //retrieves the username as a String value
+    private SQLiteDatabase db;
+    public EyeRSDatabaseHelper eyeRSDatabaseHelper;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +61,9 @@ public class SetPINActivity extends AppCompatActivity implements View.OnClickLis
         this.txtPIN1 = (EditText) findViewById(R.id.txtPIN1);
         this.txtPIN2 = (EditText) findViewById(R.id.txtPIN2);
         this.txtResponse = (EditText) findViewById(R.id.txtSecurityResponse);
+        this.txtUsername = (EditText) findViewById(R.id.verifyTxtUsername);
+
+        eyeRSDatabaseHelper = new EyeRSDatabaseHelper(this);
 
         this.spinner = (Spinner) findViewById(R.id.spinner);
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
@@ -72,26 +89,30 @@ public class SetPINActivity extends AppCompatActivity implements View.OnClickLis
         );
 
         findViewById(R.id.btnResetPIN).setOnClickListener(this);
-        findViewById(R.id.btnClear).setOnClickListener(this);
+        findViewById(R.id.btnClearPIN).setOnClickListener(this);
     }
 
     /**
      * Called when a view has been clicked.
      *
-     * @param v The view that was clicked.
+     * @param view The view that was clicked.
      */
     @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.btnClear:
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.btnClearPIN:
                 this.txtPIN1.setText("");
                 this.txtPIN2.setText("");
                 this.txtResponse.setText("");
                 return;
             case R.id.btnResetPIN:
                 String pinA = txtPIN1.getText().toString();
-                String pinB = txtPIN1.getText().toString();
+                String pinB = txtPIN2.getText().toString();
                 String answer = txtResponse.getText().toString();
+
+                //Retrieve the other EditText values for the SQLite update
+                securityResponse = txtResponse.getText().toString();
+                username = txtUsername.getText().toString();
 
                 if (pinA == null || pinA.equals("")) {
                     Toast.makeText(this, "Please enter a PIN.", Toast.LENGTH_LONG).show();
@@ -106,9 +127,45 @@ public class SetPINActivity extends AppCompatActivity implements View.OnClickLis
                     Toast.makeText(this, "Please enter a security question.", Toast.LENGTH_LONG).show();
                     return;
                 }
+                else if (pinA.equals(pinB)){ //If PINs match then get a copy for the db
+                    matchedPIN = txtPIN2.getText().toString();
+                    //Update the details
+                    updateLoginInfo();
+                }
 
                 super.startActivity(new Intent(this, MainActivity.class));
-                return;
         }
+    }
+
+    //SQL Update-statement for PIN & Security Response
+    public static final String UPDATE_CREDENTIALS =
+            "UPDATE TABLE " + NewRegInfo.UserRegistrationInfo.TABLE_NAME
+                    + " SET "
+                    + NewRegInfo.UserRegistrationInfo.USER_PIN + " ="
+                    + matchedPIN + ", "
+                    + NewRegInfo.UserRegistrationInfo.SECURITY_RESPONSE + " ="
+                    + securityResponse + " WHERE "
+                    + NewRegInfo.UserRegistrationInfo.USER_NAME + " ="
+                    + username + ";";
+
+    //Method to add the updates for the user's login credentials to the db
+    public void updateLoginInfo(){
+
+        try{
+
+            db = eyeRSDatabaseHelper.getWritableDatabase();
+            db.execSQL(UPDATE_CREDENTIALS); //Updates the credentials
+            db.close();
+            Toast.makeText(this, "Your credentials have been updated successfully ",
+                    Toast.LENGTH_SHORT).show();
+
+            //Display message in the logcat window after successful operation execution
+            Log.e("DATABASE OPERATIONS", "...Credentials updated successfully!");
+        }
+        catch (SQLException ex){
+            Toast.makeText(this, "Unable to add item", Toast.LENGTH_SHORT).show();
+        }
+
+
     }
 }
