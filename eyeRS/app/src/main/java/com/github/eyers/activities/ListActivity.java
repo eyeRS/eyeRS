@@ -9,22 +9,20 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.github.eyers.EyeRSDatabaseHelper;
 import com.github.eyers.ItemLabel;
 import com.github.eyers.LabelAdapter;
 import com.github.eyers.R;
 
 import java.util.ArrayList;
-import com.github.eyers.EyeRSDatabaseHelper;
 
 public class ListActivity extends AppCompatActivity
         implements ItemListFragment.ItemListListener {
-
-    //db variables
-    private SQLiteDatabase db;
 
     //SQL-SELECT - Get all the items
     private static String GET_ALL_ITEMS =
@@ -33,6 +31,8 @@ public class ListActivity extends AppCompatActivity
                     + NewItemInfo.ItemInfo.DATE_ADDED + ", "
                     + NewItemInfo.ItemInfo.ITEM_ICON + " FROM "
                     + NewItemInfo.ItemInfo.TABLE_NAME + ";";
+    //db variables
+    private SQLiteDatabase db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,24 +46,24 @@ public class ListActivity extends AppCompatActivity
         ListView listView = (ListView) findViewById(R.id.listview);
         listView.setAdapter(adapter);
 
-        for (int i = 0; i < 10; i++) {
-            adapter.add(new ItemLabel("test", "test", "test"));
-        }
-
         //Create the cursor
-        try{
-
+        try {
             SQLiteOpenHelper eyersDatabaseHelper = new EyeRSDatabaseHelper(this);
             db = eyersDatabaseHelper.getWritableDatabase();
 
             //Retrieves the records found in the item table
-            Cursor cursor = db.rawQuery(GET_ALL_ITEMS, new String[] {arrayOfUsers.toString()});
+            Cursor cursor = db.rawQuery(GET_ALL_ITEMS, new String[]{arrayOfUsers.toString()});
 
+            while (cursor.moveToNext()) {
+                adapter.add(new ItemLabel(cursor.getString(cursor.getColumnIndex(NewItemInfo.ItemInfo.ITEM_NAME))));
+            }
             cursor.close(); //close the cursor
 
-        }
-        catch (SQLiteException ex){
+        } catch (SQLiteException ex) {
             Toast.makeText(this, "Unable to view items", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, ex.getMessage(), Toast.LENGTH_LONG).show();
+
+            Log.e("ERROR", "Unable to view items", ex);
         }
 
 //        EyeRSDatabaseHelper f = new EyeRSDatabaseHelper();

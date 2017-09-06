@@ -6,23 +6,13 @@ package com.github.eyers;
 
 public class ItemLabel {
 
-    private final String name, symbol, sector;
+    private final String name;
 
-    public ItemLabel(String name, String symbol, String sector) {
+    public ItemLabel(String name) {
         this.name = name;
-        this.symbol = symbol;
-        this.sector = sector;
     }
 
     public String getName() {
         return this.name;
-    }
-
-    public String getSymbol() {
-        return this.symbol;
-    }
-
-    public String getSector() {
-        return this.sector;
     }
 }
