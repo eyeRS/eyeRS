@@ -13,6 +13,8 @@ import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.Toast;
 
+import com.github.eyers.EyeRSDatabaseHelper;
+
 public class MainActivity2 extends ListActivity {
 
     //We're adding these private variables so we can close the database and cursor in our onDestroy() method

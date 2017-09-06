@@ -15,10 +15,18 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.github.eyers.EyeRSDatabaseHelper;
 import com.github.eyers.R;
 
+/**
+ * @see android.view.View.OnClickListener
+ * @see android.support.v7.app.AppCompatActivity
+ */
 public class RegisterActivity extends AppCompatActivity implements View.OnClickListener {
 
+    /**
+     * The possible security questions.
+     */
     private static final String[] QUESTIONS = {
 
             "What is the name of your junior/primary school?",
@@ -32,7 +40,13 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             "What are the last 5 digits of your ID number?",
             "What time of the day were you born (hh:mm)?"
     };
-
+    private static String username;
+    private static String email;
+    private static String matchedPIN;
+    private static String securityResponse;
+    //db variables
+    public SQLiteDatabase db;
+    public EyeRSDatabaseHelper eyeRSDatabaseHelper;
     //Fields
     private EditText txtUsername;
     private EditText txtEmail;
@@ -40,14 +54,6 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     private EditText txtPIN2;
     private EditText txtResponse; //retrieves the user's security response
     private Spinner spinner;    //contains the list of security questions
-
-    //db variables
-    public SQLiteDatabase db;
-    public EyeRSDatabaseHelper eyeRSDatabaseHelper;
-    private static String username;
-    private static String email;
-    private static String matchedPIN;
-    private static String securityResponse;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,7 +96,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     }
 
     //Method to add user's Registration details
-    public void addRegInfo(){
+    public void addRegInfo() {
 
         ContentValues userRegValues = new ContentValues();
         //Insert the user's name
@@ -102,7 +108,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         //Insert the user's security response
         userRegValues.put(NewRegInfo.UserRegistrationInfo.SECURITY_RESPONSE, securityResponse);
 
-        try{
+        try {
 
             db = eyeRSDatabaseHelper.getWritableDatabase();
             //Insert the user registration details into the db
@@ -113,8 +119,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
             //Display message in the logcat window after successful operation execution
             Log.e("DATABASE OPERATIONS", "...New user added to DB!");
-        }
-        catch (SQLException ex){
+        } catch (SQLException ex) {
             Toast.makeText(this, "Unable to add item", Toast.LENGTH_SHORT).show();
         }
     }
@@ -137,7 +142,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                 email = txtEmail.getText().toString();
                 securityResponse = txtResponse.getText().toString();
 
-                if (pinA.equals(pinB)){ //if the PINs match then get a copy for the db
+                if (pinA.equals(pinB)) { //if the PINs match then get a copy for the db
                     matchedPIN = txtPIN2.getText().toString();
                     addRegInfo();
                     //Navigate to the Login screen once registration has been successful

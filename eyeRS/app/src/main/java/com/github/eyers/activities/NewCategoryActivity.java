@@ -3,27 +3,27 @@ package com.github.eyers.activities;
 import android.content.ContentValues;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.github.eyers.EyeRSDatabaseHelper;
 import com.github.eyers.R;
 
 public class NewCategoryActivity extends AppCompatActivity implements View.OnClickListener {
 
+    private static String categoryName;
+    private static String categoryDesc;
     //Fields
     private EditText txtTitle;
     private EditText txtDesc;
-
     //db variables
     private EyeRSDatabaseHelper eyeRSDatabaseHelper;
     private SQLiteDatabase db;
-    private static String categoryName;
-    private static String categoryDesc;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,8 +32,8 @@ public class NewCategoryActivity extends AppCompatActivity implements View.OnCli
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        this.txtTitle = (EditText)findViewById(R.id.edtTxtCatTitle);
-        this.txtDesc = (EditText)findViewById(R.id.edtTxtCatDesc);
+        this.txtTitle = (EditText) findViewById(R.id.edtTxtCatTitle);
+        this.txtDesc = (EditText) findViewById(R.id.edtTxtCatDesc);
 
         findViewById(R.id.btnAddCategory).setOnClickListener(this);
     }
@@ -48,12 +48,11 @@ public class NewCategoryActivity extends AppCompatActivity implements View.OnCli
 
             case R.id.btnAddCategory: //user clicks add
 
-                if (txtTitle != null && txtDesc != null){
+                if (txtTitle != null && txtDesc != null) {
 
                     //User cannot add a new category without a title & description
-                        addCategoryInfo();
-                }
-                else{
+                    addCategoryInfo();
+                } else {
 
                     Toast.makeText(this, "Please add a Title and a Description to successfully" +
                             "create a new category", Toast.LENGTH_LONG).show();
@@ -63,7 +62,7 @@ public class NewCategoryActivity extends AppCompatActivity implements View.OnCli
     }
 
     //Method to add a new Category
-    public void addCategoryInfo(){
+    public void addCategoryInfo() {
 
         ContentValues categoryValues = new ContentValues();
         //Insert the category's name
@@ -73,7 +72,7 @@ public class NewCategoryActivity extends AppCompatActivity implements View.OnCli
         //code to insert the category's icon to be inserted here
 
 
-        try{
+        try {
 
             db = eyeRSDatabaseHelper.getWritableDatabase();
             //insert the category into the db (Category Desc column may be null)
@@ -83,8 +82,7 @@ public class NewCategoryActivity extends AppCompatActivity implements View.OnCli
 
             //Display message in the logcat window after successful operation execution
             Log.e("DATABASE OPERATIONS", "...New category added to DB!");
-        }
-        catch (SQLException ex){
+        } catch (SQLException ex) {
 
         }
 

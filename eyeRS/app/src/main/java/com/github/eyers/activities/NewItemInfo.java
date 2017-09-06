@@ -1,7 +1,6 @@
 package com.github.eyers.activities;
 
 import java.sql.Blob;
-import java.sql.Date;
 
 /**
  * Created by Nathan Shava on 04-Sep-17.

@@ -6,7 +6,7 @@ package com.github.eyers.activities;
 
 public class NewRegInfo {
 
-    public static abstract class UserRegistrationInfo{
+    public static abstract class UserRegistrationInfo {
 
         //Table name
         public static final String TABLE_NAME = "user_reg";

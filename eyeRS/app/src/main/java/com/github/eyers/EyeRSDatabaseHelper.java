@@ -1,4 +1,4 @@
-package com.github.eyers.activities;
+package com.github.eyers;
 
 /**
  * Created by Nathan Shava on 29-Jul-17.
@@ -10,10 +10,10 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-public class EyeRSDatabaseHelper extends SQLiteOpenHelper {
+import com.github.eyers.activities.NewCategoryInfo;
+import com.github.eyers.activities.NewItemInfo;
 
-    private static final String DB_NAME = "EYERS"; //the name of the database
-    private static final int DB_VERSION = 1; //the version of the database
+public class EyeRSDatabaseHelper extends SQLiteOpenHelper {
 
     //CREATE ITEM TABLE QUERY
     public static final String CREATE_ITEM_TABLE_QUERY =
@@ -23,7 +23,6 @@ public class EyeRSDatabaseHelper extends SQLiteOpenHelper {
                     + NewItemInfo.ItemInfo.ITEM_DESC + " TEXT, "
                     + NewItemInfo.ItemInfo.DATE_ADDED + " DATE, "
                     + NewItemInfo.ItemInfo.ITEM_ICON + " BLOB);";
-
     //CREATE CATEGORY TABLE QUERY
     public static final String CREATE_CATEGORY_TABLE_QUERY =
             "CREATE TABLE IF NOT EXISTS " + NewCategoryInfo.CategoryInfo.TABLE_NAME
@@ -31,7 +30,6 @@ public class EyeRSDatabaseHelper extends SQLiteOpenHelper {
                     + NewCategoryInfo.CategoryInfo.CATEGORY_NAME + " TEXT, "
                     + NewCategoryInfo.CategoryInfo.CATEGORY_DESC + " TEXT, "
                     + NewCategoryInfo.CategoryInfo.CATEGORY_ICON + " BLOB);";
-
     //CREATE DEFAULT CATEGORIES
     public static final String CREATE_CATEGORY_BOOKS =
             "CREATE TABLE IF NOT EXISTS " + "BOOKS"
@@ -40,7 +38,6 @@ public class EyeRSDatabaseHelper extends SQLiteOpenHelper {
                     + "book_desc TEXT, "
                     + "date_added TEXT, "
                     + "book_icon BLOB);";
-
     public static final String CREATE_CATEGORY_CLOTHES =
             "CREATE TABLE IF NOT EXISTS " + "CLOTHES"
                     + " (" + "_id INTEGER PRIMARY KEY AUTOINCREMENT, "
@@ -48,7 +45,6 @@ public class EyeRSDatabaseHelper extends SQLiteOpenHelper {
                     + "clothing_desc TEXT, "
                     + "date_added TEXT, "
                     + "clothing_icon BLOB);";
-
     public static final String CREATE_CATEGORY_ACCESSORIES =
             "CREATE TABLE IF NOT EXISTS " + "ACCESSORIES"
                     + " (" + "_id INTEGER PRIMARY KEY AUTOINCREMENT, "
@@ -56,7 +52,6 @@ public class EyeRSDatabaseHelper extends SQLiteOpenHelper {
                     + "accessory_desc TEXT, "
                     + "date_added TEXT, "
                     + "accessory_icon BLOB);";
-
     public static final String CREATE_CATEGORY_GAMES =
             "CREATE TABLE IF NOT EXISTS " + "GAMES"
                     + " (" + "_id INTEGER PRIMARY KEY AUTOINCREMENT, "
@@ -64,7 +59,6 @@ public class EyeRSDatabaseHelper extends SQLiteOpenHelper {
                     + "game_desc TEXT, "
                     + "date_added TEXT, "
                     + "game_icon BLOB);";
-
     public static final String CREATE_CATEGORY_OTHER =
             "CREATE TABLE IF NOT EXISTS " + "OTHER"
                     + " (" + "_id INTEGER PRIMARY KEY AUTOINCREMENT, "
@@ -72,6 +66,8 @@ public class EyeRSDatabaseHelper extends SQLiteOpenHelper {
                     + "other_desc TEXT, "
                     + "date_added TEXT, "
                     + "other_icon BLOB);";
+    private static final String DB_NAME = "EYERS"; //the name of the database
+    private static final int DB_VERSION = 1; //the version of the database
 
     //Constructor
     public EyeRSDatabaseHelper(Context context) {
@@ -102,7 +98,7 @@ public class EyeRSDatabaseHelper extends SQLiteOpenHelper {
 
         if (oldVersion <= 1) {
 
-            try{
+            try {
 
                 //Create the Item table
                 db.execSQL(CREATE_ITEM_TABLE_QUERY);
@@ -126,8 +122,7 @@ public class EyeRSDatabaseHelper extends SQLiteOpenHelper {
                 //Display message in the logcat window after successful operation execution
                 Log.e("DATABASE OPERATIONS", "...Default categories created successfully!");
 
-            }
-            catch (SQLException ex){
+            } catch (SQLException ex) {
 
             }
 

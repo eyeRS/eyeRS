@@ -1,6 +1,5 @@
 package com.github.eyers.activities;
 
-import android.content.ContentValues;
 import android.content.Intent;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
@@ -15,12 +14,13 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.github.eyers.EyeRSDatabaseHelper;
 import com.github.eyers.R;
 
 /**
  *
  */
-public class  SetPINActivity extends AppCompatActivity implements View.OnClickListener {
+public class SetPINActivity extends AppCompatActivity implements View.OnClickListener {
 
     private static final String[] QUESTIONS = {
 
@@ -35,21 +35,28 @@ public class  SetPINActivity extends AppCompatActivity implements View.OnClickLi
             "What are the last 5 digits of your ID number?",
             "What time of the day were you born (hh:mm)?"
     };
-
+    //db variables
+    private static String matchedPIN; // retrieves the PIN as a String if they match
+    private static String securityResponse; //retrieves the security response as a String value
+    private static String username; //retrieves the username as a String value
+    //SQL Update-statement for PIN & Security Response
+    public static final String UPDATE_CREDENTIALS =
+            "UPDATE TABLE " + NewRegInfo.UserRegistrationInfo.TABLE_NAME
+                    + " SET "
+                    + NewRegInfo.UserRegistrationInfo.USER_PIN + " ="
+                    + matchedPIN + ", "
+                    + NewRegInfo.UserRegistrationInfo.SECURITY_RESPONSE + " ="
+                    + securityResponse + " WHERE "
+                    + NewRegInfo.UserRegistrationInfo.USER_NAME + " ="
+                    + username + ";";
+    public EyeRSDatabaseHelper eyeRSDatabaseHelper;
     //Fields
     private EditText txtPIN1;
     private EditText txtPIN2;
     private EditText txtUsername;
     private EditText txtResponse; //retrieves the user's security response
     private Spinner spinner; //contains the list of security questions
-
-    //db variables
-    private static String matchedPIN; // retrieves the PIN as a String if they match
-    private static String securityResponse; //retrieves the security response as a String value
-    private static String username; //retrieves the username as a String value
     private SQLiteDatabase db;
-    public EyeRSDatabaseHelper eyeRSDatabaseHelper;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -126,8 +133,7 @@ public class  SetPINActivity extends AppCompatActivity implements View.OnClickLi
                 } else if (answer == null || answer.equals("")) {
                     Toast.makeText(this, "Please enter a security question.", Toast.LENGTH_LONG).show();
                     return;
-                }
-                else if (pinA.equals(pinB)){ //If PINs match then get a copy for the db
+                } else if (pinA.equals(pinB)) { //If PINs match then get a copy for the db
                     matchedPIN = txtPIN2.getText().toString();
                     //Update the details
                     updateLoginInfo();
@@ -137,21 +143,10 @@ public class  SetPINActivity extends AppCompatActivity implements View.OnClickLi
         }
     }
 
-    //SQL Update-statement for PIN & Security Response
-    public static final String UPDATE_CREDENTIALS =
-            "UPDATE TABLE " + NewRegInfo.UserRegistrationInfo.TABLE_NAME
-                    + " SET "
-                    + NewRegInfo.UserRegistrationInfo.USER_PIN + " ="
-                    + matchedPIN + ", "
-                    + NewRegInfo.UserRegistrationInfo.SECURITY_RESPONSE + " ="
-                    + securityResponse + " WHERE "
-                    + NewRegInfo.UserRegistrationInfo.USER_NAME + " ="
-                    + username + ";";
-
     //Method to add the updates for the user's login credentials to the db
-    public void updateLoginInfo(){
+    public void updateLoginInfo() {
 
-        try{
+        try {
 
             db = eyeRSDatabaseHelper.getWritableDatabase();
             db.execSQL(UPDATE_CREDENTIALS); //Updates the credentials
@@ -161,8 +156,7 @@ public class  SetPINActivity extends AppCompatActivity implements View.OnClickLi
 
             //Display message in the logcat window after successful operation execution
             Log.e("DATABASE OPERATIONS", "...Credentials updated successfully!");
-        }
-        catch (SQLException ex){
+        } catch (SQLException ex) {
             Toast.makeText(this, "Unable to add item", Toast.LENGTH_SHORT).show();
         }
 

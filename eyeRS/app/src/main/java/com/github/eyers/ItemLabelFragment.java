@@ -15,6 +15,7 @@ public class ItemLabelFragment extends Fragment {
 
     private String name, symbol, sector;
     private ImageView itemView;
+
     //Required empty public constructor
     public ItemLabelFragment() {
     }
