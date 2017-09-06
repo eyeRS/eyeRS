@@ -33,7 +33,7 @@ public class ViewItemsActivity extends AppCompatActivity {
             }
         });
 
-        searchView = (MaterialSearchView)findViewById(R.id.search_view);
+        searchView = (MaterialSearchView) findViewById(R.id.search_view);
     }
 
     @Override

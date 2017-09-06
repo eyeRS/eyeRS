@@ -9,7 +9,6 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.github.eyers.activities.NewCategoryInfo;
 import com.github.eyers.activities.NewItemInfo;
@@ -17,56 +16,63 @@ import com.github.eyers.activities.NewItemInfo;
 public class EyeRSDatabaseHelper extends SQLiteOpenHelper {
 
     //CREATE ITEM TABLE QUERY
-    public static final String CREATE_ITEM_TABLE_QUERY =
+    private static final String CREATE_ITEM_TABLE_QUERY =
             "CREATE TABLE IF NOT EXISTS " + NewItemInfo.ItemInfo.TABLE_NAME
                     + " (" + "_id INTEGER PRIMARY KEY AUTOINCREMENT, "
                     + NewItemInfo.ItemInfo.ITEM_NAME + " TEXT, "
                     + NewItemInfo.ItemInfo.ITEM_DESC + " TEXT, "
                     + NewItemInfo.ItemInfo.DATE_ADDED + " DATE, "
                     + NewItemInfo.ItemInfo.ITEM_ICON + " BLOB);";
+
     //CREATE CATEGORY TABLE QUERY
-    public static final String CREATE_CATEGORY_TABLE_QUERY =
+    private static final String CREATE_CATEGORY_TABLE_QUERY =
             "CREATE TABLE IF NOT EXISTS " + NewCategoryInfo.CategoryInfo.TABLE_NAME
                     + " (" + "_id INTEGER PRIMARY KEY AUTOINCREMENT, "
                     + NewCategoryInfo.CategoryInfo.CATEGORY_NAME + " TEXT, "
                     + NewCategoryInfo.CategoryInfo.CATEGORY_DESC + " TEXT, "
                     + NewCategoryInfo.CategoryInfo.CATEGORY_ICON + " BLOB);";
+
     //CREATE DEFAULT CATEGORIES
-    public static final String CREATE_CATEGORY_BOOKS =
+    private static final String CREATE_CATEGORY_BOOKS = //BOOKS
             "CREATE TABLE IF NOT EXISTS " + "BOOKS"
                     + " (" + "_id INTEGER PRIMARY KEY AUTOINCREMENT, "
                     + "book_title TEXT, "
                     + "book_desc TEXT, "
                     + "date_added TEXT, "
                     + "book_icon BLOB);";
-    public static final String CREATE_CATEGORY_CLOTHES =
+
+    private static final String CREATE_CATEGORY_CLOTHES = //CLOTHES
             "CREATE TABLE IF NOT EXISTS " + "CLOTHES"
                     + " (" + "_id INTEGER PRIMARY KEY AUTOINCREMENT, "
                     + "clothing_type TEXT, "
                     + "clothing_desc TEXT, "
                     + "date_added TEXT, "
                     + "clothing_icon BLOB);";
-    public static final String CREATE_CATEGORY_ACCESSORIES =
+
+    private static final String CREATE_CATEGORY_ACCESSORIES = //ACCESSORIES
             "CREATE TABLE IF NOT EXISTS " + "ACCESSORIES"
                     + " (" + "_id INTEGER PRIMARY KEY AUTOINCREMENT, "
                     + "accessory_name TEXT, "
                     + "accessory_desc TEXT, "
                     + "date_added TEXT, "
                     + "accessory_icon BLOB);";
-    public static final String CREATE_CATEGORY_GAMES =
+
+    private static final String CREATE_CATEGORY_GAMES = //GAMES
             "CREATE TABLE IF NOT EXISTS " + "GAMES"
                     + " (" + "_id INTEGER PRIMARY KEY AUTOINCREMENT, "
                     + "game_title TEXT, "
                     + "game_desc TEXT, "
                     + "date_added TEXT, "
                     + "game_icon BLOB);";
-    public static final String CREATE_CATEGORY_OTHER =
+
+    private static final String CREATE_CATEGORY_OTHER = //OTHER
             "CREATE TABLE IF NOT EXISTS " + "OTHER"
                     + " (" + "_id INTEGER PRIMARY KEY AUTOINCREMENT, "
                     + "other_title TEXT, "
                     + "other_desc TEXT, "
                     + "date_added TEXT, "
                     + "other_icon BLOB);";
+
     private static final String DB_NAME = "EYERS"; //the name of the database
     private static final int DB_VERSION = 1; //the version of the database
 
@@ -97,7 +103,7 @@ public class EyeRSDatabaseHelper extends SQLiteOpenHelper {
 
     private void updateMyDatabase(SQLiteDatabase db, int oldVersion, int newVersion) {
 
-        if (oldVersion <= 1) {
+        if (oldVersion <= newVersion) {
 
             try {
 
@@ -126,15 +132,15 @@ public class EyeRSDatabaseHelper extends SQLiteOpenHelper {
 
             } catch (SQLException ex) {
                 Log.e("DATABASE OPERATIONS", "...Unable to create categories!");
-            }
-            finally {
+            } finally {
                 db.endTransaction();
             }
 
 
         }
-        if (oldVersion >= 2) {
+        if (oldVersion >= newVersion) {
             //Code to be executed when eyers db is updated to a higher version
+
         }
     } //end void updateMyDatabase()
 

@@ -11,6 +11,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -20,9 +22,15 @@ import com.github.eyers.LabelAdapter;
 import com.github.eyers.R;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ListActivity extends AppCompatActivity
         implements ItemListFragment.ItemListListener {
+
+    //Declarations
+    private LabelAdapter adapter;
+    private ArrayList<ItemLabel> arrayOfUsers;
+    private ListView listView;
 
     //SQL-SELECT - Get all the items
     private static String GET_ALL_ITEMS =
@@ -31,8 +39,10 @@ public class ListActivity extends AppCompatActivity
                     + NewItemInfo.ItemInfo.DATE_ADDED + ", "
                     + NewItemInfo.ItemInfo.ITEM_ICON + " FROM "
                     + NewItemInfo.ItemInfo.TABLE_NAME + ";";
+
     //db variables
     private SQLiteDatabase db;
+    private Cursor cursor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,35 +51,66 @@ public class ListActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        ArrayList<ItemLabel> arrayOfUsers = new ArrayList<ItemLabel>();
-        LabelAdapter adapter = new LabelAdapter(this, arrayOfUsers);
-        ListView listView = (ListView) findViewById(R.id.listview);
+        arrayOfUsers = new ArrayList<ItemLabel>();
+        adapter = new LabelAdapter(this, arrayOfUsers);
+        listView = (ListView) findViewById(R.id.listview);
         listView.setAdapter(adapter);
 
-        //Create the cursor
-        try {
-            SQLiteOpenHelper eyersDatabaseHelper = new EyeRSDatabaseHelper(this);
-            db = eyersDatabaseHelper.getWritableDatabase();
-
-            //Retrieves the records found in the item table
-            Cursor cursor = db.rawQuery(GET_ALL_ITEMS, new String[]{arrayOfUsers.toString()});
-
-            while (cursor.moveToNext()) {
-                adapter.add(new ItemLabel(cursor.getString(cursor.getColumnIndex(NewItemInfo.ItemInfo.ITEM_NAME))));
-            }
-            cursor.close(); //close the cursor
-
-        } catch (SQLiteException ex) {
-            Toast.makeText(this, "Unable to view items", Toast.LENGTH_SHORT).show();
-            Toast.makeText(this, ex.getMessage(), Toast.LENGTH_LONG).show();
-
-            Log.e("ERROR", "Unable to view items", ex);
-        }
+        populateItems();
 
 //        EyeRSDatabaseHelper f = new EyeRSDatabaseHelper();
 //    f.getReadableDatabase().beginTransaction();
 //        f.getReadableDatabase().qu
 //        f.getReadableDatabase().close();
+    }
+
+    //Method to populate the ListView
+    public List<String> populateItems() {
+
+        List<String> itemNames = new ArrayList<String>();
+
+        //Create the cursor and retrieve the items from the db
+        try {
+
+            SQLiteOpenHelper eyeRSDatabaseHelper = new EyeRSDatabaseHelper(this);
+            db = eyeRSDatabaseHelper.getWritableDatabase();
+
+            db.beginTransaction();
+            cursor = db.rawQuery(GET_ALL_ITEMS, null);
+
+            while (cursor.moveToNext()) {
+
+                String itemName = cursor.getString(
+                        cursor.getColumnIndex(NewItemInfo.ItemInfo.ITEM_NAME));
+
+                itemNames.add(itemName); //Add the item name to the ArrayList
+
+            }
+
+            cursor.close();
+            db.close();
+
+        } catch (SQLiteException ex) {
+
+            Toast.makeText(this, "Unable to view items", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, ex.getMessage(), Toast.LENGTH_LONG).show();
+
+            Log.e("ERROR", "Unable to view items", ex);
+
+        } finally {
+
+            db.endTransaction();
+        }
+
+        return itemNames;
+    }
+
+    //Method allows us to view what we have just inserted into the db
+    @Override
+    protected void onResume() {
+        super.onResume();
+        adapter = new LabelAdapter(this, arrayOfUsers);
+        listView.setAdapter(adapter);
     }
 
     @Override

@@ -164,8 +164,7 @@ public class SetPINActivity extends AppCompatActivity implements View.OnClickLis
             Log.e("DATABASE OPERATIONS", "...Credentials updated successfully!");
         } catch (SQLException ex) {
             Toast.makeText(this, "Unable to add item", Toast.LENGTH_SHORT).show();
-        }
-        finally {
+        } finally {
             db.endTransaction();
         }
 

@@ -121,8 +121,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             Log.e("DATABASE OPERATIONS", "...New user added to DB!");
         } catch (SQLException ex) {
             Toast.makeText(this, "Unable to add item", Toast.LENGTH_SHORT).show();
-        }
-        finally {
+        } finally {
             db.endTransaction();
         }
     }

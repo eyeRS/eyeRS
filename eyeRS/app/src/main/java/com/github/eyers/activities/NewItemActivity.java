@@ -1,8 +1,10 @@
 package com.github.eyers.activities;
 
 import android.content.ContentValues;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
+import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -15,25 +17,33 @@ import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.github.eyers.EyeRSDatabaseHelper;
+
 import com.github.eyers.R;
 
-public class NewItemActivity extends AppCompatActivity implements View.OnClickListener {
+import java.util.ArrayList;
+import java.util.List;
 
-    private static final String[] CATEGORIES = {
-            "BOOKS", "CLOTHES", "GAMES", "ACCESSORIES", "OTHER"
-    };
+public class NewItemActivity extends AppCompatActivity implements View.OnClickListener {
 
     //db variables
     private static String itemName;
     private static String itemDesc;
     private static String dateAdded;
+    private SQLiteDatabase db;
+    private Cursor cursor;
 
     //Fields
     private ImageButton photo;
     private EditText txtTitle;
     private EditText txtDesc;
     private Spinner spinner;
-    private SQLiteDatabase db;
+    ArrayAdapter<String> adapter;
+
+    //SQL-select query to retrieve the category names
+    public static final String GET_ALL_CATEGORIES =
+            "SELECT " + NewCategoryInfo.CategoryInfo.CATEGORY_NAME + " FROM"
+                    + NewCategoryInfo.CategoryInfo.TABLE_NAME + ";";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,8 +56,49 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
         this.txtTitle = (EditText) findViewById(R.id.edtTxtItemTitle);
         this.txtDesc = (EditText) findViewById(R.id.edtTxtItemDesc);
         this.spinner = (Spinner) findViewById(R.id.spinner);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_spinner_item, CATEGORIES); //Populates the spinner with the array contents
+
+        findViewById(R.id.btnAddItem).setOnClickListener(this);
+
+    }
+
+    //Method to populate the spinner
+    public List<String> populateCategories() {
+
+        List<String> categoryNames = new ArrayList<String>();
+
+        //We need to retrieve the categories for the spinner from the db
+        try {
+
+            SQLiteOpenHelper eyeRSDatabaseHelper = new EyeRSDatabaseHelper(this);
+            db = eyeRSDatabaseHelper.getWritableDatabase();
+
+            db.beginTransaction();
+            cursor = db.rawQuery(GET_ALL_CATEGORIES, null);
+
+            while (cursor.moveToNext()) {
+
+                String categoryName = cursor.getString(
+                        cursor.getColumnIndex(NewCategoryInfo.CategoryInfo.CATEGORY_NAME));
+
+                categoryNames.add(categoryName); //Add the category name to the List for the spinner
+
+            }
+
+            cursor.close();
+            db.close();
+
+        } catch (SQLiteException ex) {
+
+            Toast.makeText(this, "Unable to view categories", Toast.LENGTH_SHORT).show();
+
+        } finally {
+
+            db.endTransaction();
+        }
+
+        //Populate the category spinner with category names available from the db
+        adapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, categoryNames);
 
         this.spinner.setAdapter(adapter);
         this.spinner.setOnItemSelectedListener(
@@ -66,7 +117,17 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
                 }
         );
 
-        findViewById(R.id.btnAddItem).setOnClickListener(this);
+        return categoryNames;
+    }
+
+    //Method allows us to view what we have just inserted into the db
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        adapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, populateCategories());
+        spinner.setAdapter(adapter);
     }
 
     /**
@@ -150,8 +211,7 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
 
         } catch (SQLiteException ex) {
             Toast.makeText(this, "Unable to add item", Toast.LENGTH_SHORT).show();
-        }
-        finally {
+        } finally {
             db.endTransaction();
         }
 
@@ -182,8 +242,7 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
 
         } catch (SQLiteException ex) {
             Toast.makeText(this, "Unable to add item", Toast.LENGTH_SHORT).show();
-        }
-        finally {
+        } finally {
             db.endTransaction();
         }
 
@@ -214,8 +273,7 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
 
         } catch (SQLiteException ex) {
             Toast.makeText(this, "Unable to add item", Toast.LENGTH_SHORT).show();
-        }
-        finally {
+        } finally {
             db.endTransaction();
         }
 
@@ -246,8 +304,7 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
 
         } catch (SQLiteException ex) {
             Toast.makeText(this, "Unable to add item", Toast.LENGTH_SHORT).show();
-        }
-        finally {
+        } finally {
             db.endTransaction();
         }
 
@@ -278,8 +335,7 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
 
         } catch (SQLiteException ex) {
             Toast.makeText(this, "Unable to add item", Toast.LENGTH_SHORT).show();
-        }
-        finally {
+        } finally {
             db.endTransaction();
         }
 
@@ -309,8 +365,7 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
 
         } catch (SQLiteException ex) {
             Toast.makeText(this, "Unable to add item", Toast.LENGTH_SHORT).show();
-        }
-        finally {
+        } finally {
             db.endTransaction();
         }
 
