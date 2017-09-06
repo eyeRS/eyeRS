@@ -15,7 +15,6 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.github.eyers.EyeRSDatabaseHelper;
 import com.github.eyers.R;
 
 /**
@@ -40,13 +39,15 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             "What are the last 5 digits of your ID number?",
             "What time of the day were you born (hh:mm)?"
     };
+
     private static String username;
     private static String email;
     private static String matchedPIN;
     private static String securityResponse;
+
     //db variables
     public SQLiteDatabase db;
-    public EyeRSDatabaseHelper eyeRSDatabaseHelper;
+
     //Fields
     private EditText txtUsername;
     private EditText txtEmail;
@@ -68,7 +69,6 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         this.txtPIN2 = (EditText) findViewById(R.id.edtTxtVerifyPIN);
         this.txtResponse = (EditText) findViewById(R.id.edtTxtSecurityResponses);
 
-        eyeRSDatabaseHelper = new EyeRSDatabaseHelper(this);
 
         this.spinner = (Spinner) findViewById(R.id.spinner);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
@@ -110,17 +110,20 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
         try {
 
-            db = eyeRSDatabaseHelper.getWritableDatabase();
+            db.beginTransaction();
             //Insert the user registration details into the db
             db.insert(NewRegInfo.UserRegistrationInfo.TABLE_NAME, null,
                     userRegValues);
-            db.close();
-            Toast.makeText(this, "Your details have been saved successfully ", Toast.LENGTH_SHORT).show();
+
+            Toast.makeText(this, "Your details have been saved successfully ", Toast.LENGTH_LONG).show();
 
             //Display message in the logcat window after successful operation execution
             Log.e("DATABASE OPERATIONS", "...New user added to DB!");
         } catch (SQLException ex) {
             Toast.makeText(this, "Unable to add item", Toast.LENGTH_SHORT).show();
+        }
+        finally {
+            db.endTransaction();
         }
     }
 
@@ -144,7 +147,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
                 if (pinA.equals(pinB)) { //if the PINs match then get a copy for the db
                     matchedPIN = txtPIN2.getText().toString();
-                    addRegInfo();
+                    addRegInfo(); //call the method to add details to the db
                     //Navigate to the Login screen once registration has been successful
                     super.startActivity(new Intent(this, LoginActivity.class));
                 }
@@ -155,7 +158,6 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                 this.txtPIN1.setText("");
                 this.txtPIN2.setText("");
                 this.txtResponse.setText("");
-
 
         }
     }

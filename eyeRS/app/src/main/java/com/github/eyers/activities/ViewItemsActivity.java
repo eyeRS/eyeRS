@@ -15,8 +15,6 @@ import com.miguelcatalan.materialsearchview.MaterialSearchView;
 
 public class ViewItemsActivity extends AppCompatActivity {
 
-    //Add a ShareActionProvider private variable
-    private ShareActionProvider shareActionProvider;
     private MaterialSearchView searchView;
 
     @Override
@@ -34,6 +32,8 @@ public class ViewItemsActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+
+        searchView = (MaterialSearchView)findViewById(R.id.search_view);
     }
 
     @Override

@@ -2,20 +2,37 @@ package com.github.eyers.activities;
 
 import android.app.FragmentTransaction;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteException;
+import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.github.eyers.ItemLabel;
 import com.github.eyers.LabelAdapter;
 import com.github.eyers.R;
 
 import java.util.ArrayList;
+import com.github.eyers.EyeRSDatabaseHelper;
 
 public class ListActivity extends AppCompatActivity
         implements ItemListFragment.ItemListListener {
+
+    //db variables
+    private SQLiteDatabase db;
+
+    //SQL-SELECT - Get all the items
+    private static String GET_ALL_ITEMS =
+            "SELECT " + NewItemInfo.ItemInfo.ITEM_NAME + ", "
+                    + NewItemInfo.ItemInfo.ITEM_DESC + ", "
+                    + NewItemInfo.ItemInfo.DATE_ADDED + ", "
+                    + NewItemInfo.ItemInfo.ITEM_ICON + " FROM "
+                    + NewItemInfo.ItemInfo.TABLE_NAME + ";";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +48,22 @@ public class ListActivity extends AppCompatActivity
 
         for (int i = 0; i < 10; i++) {
             adapter.add(new ItemLabel("test", "test", "test"));
+        }
+
+        //Create the cursor
+        try{
+
+            SQLiteOpenHelper eyersDatabaseHelper = new EyeRSDatabaseHelper(this);
+            db = eyersDatabaseHelper.getWritableDatabase();
+
+            //Retrieves the records found in the item table
+            Cursor cursor = db.rawQuery(GET_ALL_ITEMS, new String[] {arrayOfUsers.toString()});
+
+            cursor.close(); //close the cursor
+
+        }
+        catch (SQLiteException ex){
+            Toast.makeText(this, "Unable to view items", Toast.LENGTH_SHORT).show();
         }
 
 //        EyeRSDatabaseHelper f = new EyeRSDatabaseHelper();

@@ -15,7 +15,6 @@ import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.github.eyers.EyeRSDatabaseHelper;
 import com.github.eyers.R;
 
 public class NewItemActivity extends AppCompatActivity implements View.OnClickListener {
@@ -23,11 +22,12 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
     private static final String[] CATEGORIES = {
             "BOOKS", "CLOTHES", "GAMES", "ACCESSORIES", "OTHER"
     };
+
     //db variables
     private static String itemName;
     private static String itemDesc;
     private static String dateAdded;
-    public EyeRSDatabaseHelper eyeRSDatabaseHelper;
+
     //Fields
     private ImageButton photo;
     private EditText txtTitle;
@@ -41,9 +41,6 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
         setContentView(R.layout.activity_new_item);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        eyeRSDatabaseHelper = new EyeRSDatabaseHelper(this);
-        db = eyeRSDatabaseHelper.getWritableDatabase();
 
         this.photo = (ImageButton) findViewById(R.id.new_item_image);
         this.txtTitle = (EditText) findViewById(R.id.edtTxtItemTitle);
@@ -91,32 +88,32 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
 
                     //if the user is adding a book item
                     if (spinner.getSelectedItem() == "BOOKS") {
-                        addBook();
+                        addBook(); //call the method to add a book item to the db
                         return;
                     }
                     //if the user is adding a clothing item
                     if (spinner.getSelectedItem() == "CLOTHES") {
-                        addClothing();
+                        addClothing(); //call the method to add a clothing item to the db
                         return;
                     }
                     //if the user is adding an accessory item
                     if (spinner.getSelectedItem() == "ACCESSORIES") {
-                        addAccessory();
+                        addAccessory(); //call the method to add an accessory item to the db
                         return;
                     }
                     //if the user is adding a gaming item
                     if (spinner.getSelectedItem() == "GAMES") {
-                        addGame();
+                        addGame(); //call the method to add a gaming item to the db
                         return;
                     }
                     //if the user is adding any other item
                     if (spinner.getSelectedItem() == "OTHER") {
-                        addOther();
+                        addOther(); //call the method to add another item to the db
                         return;
                     }
                     //if the user is adding any item that doesn't correspond to the default categories
                     if (spinner.getSelectedItem() == NewCategoryInfo.CategoryInfo.CATEGORY_NAME) {
-                        addItemInfo();
+                        addItemInfo(); //call the method to add a user specified-item to the db
                         return;
                     }
 
@@ -142,13 +139,20 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
 
         try {
 
-            db = eyeRSDatabaseHelper.getWritableDatabase();
+            db.beginTransaction();
             //Insert the Book item
             db.insert("BOOKS", dateAdded, booksValues); //Date added may be null
-            db.close();
-            Toast.makeText(this, "Your book item has been added successfully ", Toast.LENGTH_SHORT).show();
+
+            //Display a message to the user
+            Toast.makeText(this, "Your book item has been added successfully ", Toast.LENGTH_LONG).show();
+            //Display message in the logcat window after successful operation execution
+            Log.e("DATABASE OPERATIONS", "...Book item added to DB!");
+
         } catch (SQLiteException ex) {
             Toast.makeText(this, "Unable to add item", Toast.LENGTH_SHORT).show();
+        }
+        finally {
+            db.endTransaction();
         }
 
     } //end void addBook()
@@ -167,13 +171,20 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
 
         try {
 
-            db = eyeRSDatabaseHelper.getWritableDatabase();
+            db.beginTransaction();
             //Insert the Clothing item
             db.insert("CLOTHES", dateAdded, clothesValues); //Date added may be null
-            db.close();
-            Toast.makeText(this, "Your clothing item has been added successfully ", Toast.LENGTH_SHORT).show();
+
+            //Display a message to the user
+            Toast.makeText(this, "Your clothing item has been added successfully ", Toast.LENGTH_LONG).show();
+            //Display message in the logcat window after successful operation execution
+            Log.e("DATABASE OPERATIONS", "...Clothing item added to DB!");
+
         } catch (SQLiteException ex) {
             Toast.makeText(this, "Unable to add item", Toast.LENGTH_SHORT).show();
+        }
+        finally {
+            db.endTransaction();
         }
 
     } //end void addClothing()
@@ -192,13 +203,20 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
 
         try {
 
-            db = eyeRSDatabaseHelper.getWritableDatabase();
+            db.beginTransaction();
             //Insert the Accessory item
             db.insert("ACCESSORIES", dateAdded, accessoriesValues); //Date added may be null
-            db.close();
-            Toast.makeText(this, "Your accessory added successfully ", Toast.LENGTH_SHORT).show();
+
+            //Display a message to the user
+            Toast.makeText(this, "Your accessory item has been added successfully ", Toast.LENGTH_LONG).show();
+            //Display message in the logcat window after successful operation execution
+            Log.e("DATABASE OPERATIONS", "...Accessory item added to DB!");
+
         } catch (SQLiteException ex) {
             Toast.makeText(this, "Unable to add item", Toast.LENGTH_SHORT).show();
+        }
+        finally {
+            db.endTransaction();
         }
 
     } //end void addAccessory()
@@ -217,13 +235,20 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
 
         try {
 
-            db = eyeRSDatabaseHelper.getWritableDatabase();
+            db.beginTransaction();
             //Create the Games default category in the DB
             db.insert("GAMES", dateAdded, gamesValues); //Date added may be null
-            db.close();
-            Toast.makeText(this, "Your gaming item has been added successfully ", Toast.LENGTH_SHORT).show();
+
+            //Display a message to the user
+            Toast.makeText(this, "Your gaming item has been added successfully ", Toast.LENGTH_LONG).show();
+            //Display message in the logcat window after successful operation execution
+            Log.e("DATABASE OPERATIONS", "...Game item added to DB!");
+
         } catch (SQLiteException ex) {
             Toast.makeText(this, "Unable to add item", Toast.LENGTH_SHORT).show();
+        }
+        finally {
+            db.endTransaction();
         }
 
     } //end void addGame()
@@ -242,13 +267,20 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
 
         try {
 
-            db = eyeRSDatabaseHelper.getWritableDatabase();
+            db.beginTransaction();
             //Create the Other default category in the DB
             db.insert("OTHER", dateAdded, otherValues); //Date added may be null
-            db.close();
-            Toast.makeText(this, "Your other item has been added successfully ", Toast.LENGTH_SHORT).show();
+
+            //Display a message to the user
+            Toast.makeText(this, "Your other item has been added successfully ", Toast.LENGTH_LONG).show();
+            //Display message in the logcat window after successful operation execution
+            Log.e("DATABASE OPERATIONS", "...Other item added to DB!");
+
         } catch (SQLiteException ex) {
             Toast.makeText(this, "Unable to add item", Toast.LENGTH_SHORT).show();
+        }
+        finally {
+            db.endTransaction();
         }
 
     } //end void addOther()
@@ -267,15 +299,20 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
 
         try {
 
-            db = eyeRSDatabaseHelper.getWritableDatabase();
+            db.beginTransaction();
             db.insert(NewItemInfo.ItemInfo.TABLE_NAME, dateAdded, contentValues); //Date added may be null
-            db.close();
-            Toast.makeText(this, "Your item has been added successfully ", Toast.LENGTH_SHORT).show();
+
+            //Display a message to the user
+            Toast.makeText(this, "Your item has been added successfully ", Toast.LENGTH_LONG).show();
+            //Display message in the logcat window after successful operation execution
+            Log.e("DATABASE OPERATIONS", "...New item added to DB!");
+
         } catch (SQLiteException ex) {
             Toast.makeText(this, "Unable to add item", Toast.LENGTH_SHORT).show();
         }
-        //Display message in the logcat window after successful operation execution
-        Log.e("DATABASE OPERATIONS", "...New item added to DB!");
+        finally {
+            db.endTransaction();
+        }
 
     } //end void addItemInfo()
 }

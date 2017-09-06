@@ -9,6 +9,7 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.github.eyers.activities.NewCategoryInfo;
 import com.github.eyers.activities.NewItemInfo;
@@ -100,6 +101,7 @@ public class EyeRSDatabaseHelper extends SQLiteOpenHelper {
 
             try {
 
+                db.beginTransaction();
                 //Create the Item table
                 db.execSQL(CREATE_ITEM_TABLE_QUERY);
                 //Display message in the logcat window after successful operation execution
@@ -123,7 +125,10 @@ public class EyeRSDatabaseHelper extends SQLiteOpenHelper {
                 Log.e("DATABASE OPERATIONS", "...Default categories created successfully!");
 
             } catch (SQLException ex) {
-
+                Log.e("DATABASE OPERATIONS", "...Unable to create categories!");
+            }
+            finally {
+                db.endTransaction();
             }
 
 

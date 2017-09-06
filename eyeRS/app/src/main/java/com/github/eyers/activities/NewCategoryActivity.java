@@ -11,18 +11,18 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.github.eyers.EyeRSDatabaseHelper;
 import com.github.eyers.R;
 
 public class NewCategoryActivity extends AppCompatActivity implements View.OnClickListener {
 
     private static String categoryName;
     private static String categoryDesc;
+
     //Fields
     private EditText txtTitle;
     private EditText txtDesc;
+
     //db variables
-    private EyeRSDatabaseHelper eyeRSDatabaseHelper;
     private SQLiteDatabase db;
 
     @Override
@@ -73,17 +73,21 @@ public class NewCategoryActivity extends AppCompatActivity implements View.OnCli
 
 
         try {
+            db.beginTransaction();
 
-            db = eyeRSDatabaseHelper.getWritableDatabase();
             //insert the category into the db (Category Desc column may be null)
             db.insert(NewCategoryInfo.CategoryInfo.TABLE_NAME, null, categoryValues);
-            db.close();
-            Toast.makeText(this, "Your category has been created successfully ", Toast.LENGTH_SHORT).show();
 
+            //Display a message to the user
+            Toast.makeText(this, "Your new category has been created successfully ", Toast.LENGTH_LONG).show();
             //Display message in the logcat window after successful operation execution
             Log.e("DATABASE OPERATIONS", "...New category added to DB!");
-        } catch (SQLException ex) {
 
+        } catch (SQLException ex) {
+            Toast.makeText(this, "Unable to create category", Toast.LENGTH_SHORT).show();
+        }
+        finally {
+            db.endTransaction();
         }
 
     } //end void addCategoryInfo()
