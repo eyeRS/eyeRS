@@ -15,6 +15,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.github.eyers.EyeRSDatabaseHelper;
 import com.github.eyers.R;
 
 /**
@@ -40,6 +41,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             "What time of the day were you born (hh:mm)?"
     };
 
+    //Declarations
     private static String username;
     private static String email;
     private static String matchedPIN;
@@ -47,6 +49,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
     //db variables
     public SQLiteDatabase db;
+    private EyeRSDatabaseHelper eyeRSDatabaseHelper;
 
     //Fields
     private EditText txtUsername;
@@ -93,6 +96,17 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
         findViewById(R.id.btnRegister).setOnClickListener(this);
 
+    }
+
+    //Open the database connection
+    public RegisterActivity open() {
+        db = eyeRSDatabaseHelper.getWritableDatabase();
+        return this;
+    }
+
+    //Close the connection
+    public void close() {
+        eyeRSDatabaseHelper.close();
     }
 
     //Method to add user's Registration details
@@ -146,7 +160,13 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
                 if (pinA.equals(pinB)) { //if the PINs match then get a copy for the db
                     matchedPIN = txtPIN2.getText().toString();
+
+                    open(); //open db
+
                     addRegInfo(); //call the method to add details to the db
+
+                    close(); //close db
+
                     //Navigate to the Login screen once registration has been successful
                     super.startActivity(new Intent(this, LoginActivity.class));
                 }

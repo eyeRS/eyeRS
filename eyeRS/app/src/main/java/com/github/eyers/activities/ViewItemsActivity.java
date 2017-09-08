@@ -8,7 +8,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ShareActionProvider;
 
 import com.github.eyers.R;
 import com.miguelcatalan.materialsearchview.MaterialSearchView;

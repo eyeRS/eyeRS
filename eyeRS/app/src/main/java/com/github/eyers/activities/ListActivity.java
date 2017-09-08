@@ -5,15 +5,13 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
-import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.SimpleCursorAdapter;
 import android.widget.Toast;
 
 import com.github.eyers.EyeRSDatabaseHelper;
@@ -22,7 +20,6 @@ import com.github.eyers.LabelAdapter;
 import com.github.eyers.R;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class ListActivity extends AppCompatActivity
         implements ItemListFragment.ItemListListener {
@@ -42,7 +39,7 @@ public class ListActivity extends AppCompatActivity
 
     //db variables
     private SQLiteDatabase db;
-    private Cursor cursor;
+    private EyeRSDatabaseHelper eyeRSDatabaseHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,10 +50,12 @@ public class ListActivity extends AppCompatActivity
 
         arrayOfUsers = new ArrayList<ItemLabel>();
         adapter = new LabelAdapter(this, arrayOfUsers);
-        listView = (ListView) findViewById(R.id.listview);
-        listView.setAdapter(adapter);
+
+        open(); //open the db connection
 
         populateItems();
+
+        close(); //close the db connection
 
 //        EyeRSDatabaseHelper f = new EyeRSDatabaseHelper();
 //    f.getReadableDatabase().beginTransaction();
@@ -64,31 +63,62 @@ public class ListActivity extends AppCompatActivity
 //        f.getReadableDatabase().close();
     }
 
-    //Method to populate the ListView
-    public List<String> populateItems() {
+    //Open the database connection
+    public ListActivity open() {
+        db = eyeRSDatabaseHelper.getWritableDatabase();
+        return this;
+    }
 
-        List<String> itemNames = new ArrayList<String>();
+    //Close the connection
+    public void close() {
+        eyeRSDatabaseHelper.close();
+    }
+
+    //Return all items in the db
+    public Cursor getAllItems() {
+
+        Cursor cursor = db.rawQuery(GET_ALL_ITEMS, null);
+
+        if (cursor != null) {
+            cursor.moveToFirst();
+        }
+
+        return cursor;
+    }
+
+    //Get a specific item
+    public Cursor getItem() {
+        String query = "";
+        Cursor cursor = db.rawQuery(query, null);
+
+        if (cursor != null) {
+            cursor.moveToFirst();
+        }
+
+        return cursor;
+    }
+
+    //Method to populate the ListView
+    public void populateItems() {
 
         //Create the cursor and retrieve the items from the db
         try {
 
-            SQLiteOpenHelper eyeRSDatabaseHelper = new EyeRSDatabaseHelper(this);
-            db = eyeRSDatabaseHelper.getWritableDatabase();
+            //Create the cursor
+            Cursor cursor = getAllItems();
 
-            db.beginTransaction();
-            cursor = db.rawQuery(GET_ALL_ITEMS, null);
+            //Item details to be displayed
+            String[] items = new String[]{NewItemInfo.ItemInfo.ITEM_NAME};
 
-            while (cursor.moveToNext()) {
+            int[] viewIds = new int[]{R.id.lblName};
 
-                String itemName = cursor.getString(
-                        cursor.getColumnIndex(NewItemInfo.ItemInfo.ITEM_NAME));
+            SimpleCursorAdapter cursorAdapter;
 
-                itemNames.add(itemName); //Add the item name to the ArrayList
+            cursorAdapter = new SimpleCursorAdapter(getBaseContext(),
+                    R.layout.content_list, cursor, items, viewIds, 0);
 
-            }
-
-            cursor.close();
-            db.close();
+            listView = (ListView) findViewById(R.id.listview);
+            listView.setAdapter(cursorAdapter);
 
         } catch (SQLiteException ex) {
 
@@ -101,16 +131,14 @@ public class ListActivity extends AppCompatActivity
 
             db.endTransaction();
         }
-
-        return itemNames;
     }
 
-    //Method allows us to view what we have just inserted into the db
+    //Method allows us to view recently inserted elements from the db
     @Override
     protected void onResume() {
         super.onResume();
-        adapter = new LabelAdapter(this, arrayOfUsers);
-        listView.setAdapter(adapter);
+
+        populateItems(); //display any new items recently added
     }
 
     @Override

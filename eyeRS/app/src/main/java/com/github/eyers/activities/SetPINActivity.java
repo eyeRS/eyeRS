@@ -3,7 +3,6 @@ package com.github.eyers.activities;
 import android.content.Intent;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -18,9 +17,6 @@ import android.widget.Toast;
 import com.github.eyers.EyeRSDatabaseHelper;
 import com.github.eyers.R;
 
-/**
- *
- */
 public class SetPINActivity extends AppCompatActivity implements View.OnClickListener {
 
     private static final String[] QUESTIONS = {
@@ -42,6 +38,7 @@ public class SetPINActivity extends AppCompatActivity implements View.OnClickLis
     private static String securityResponse; //retrieves the security response as a String value
     private static String username; //retrieves the username as a String value
     private SQLiteDatabase db;
+    private EyeRSDatabaseHelper eyeRSDatabaseHelper;
 
     //SQL Update-statement for PIN & Security Response
     public static final String UPDATE_CREDENTIALS =
@@ -101,6 +98,17 @@ public class SetPINActivity extends AppCompatActivity implements View.OnClickLis
         findViewById(R.id.btnClearPIN).setOnClickListener(this);
     }
 
+    //Open the database connection
+    public SetPINActivity open() {
+        db = eyeRSDatabaseHelper.getWritableDatabase();
+        return this;
+    }
+
+    //Close the connection
+    public void close() {
+        eyeRSDatabaseHelper.close();
+    }
+
     /**
      * Called when a view has been clicked.
      *
@@ -137,8 +145,13 @@ public class SetPINActivity extends AppCompatActivity implements View.OnClickLis
                     return;
                 } else if (pinA.equals(pinB)) { //If PINs match then get a copy for the db
                     matchedPIN = txtPIN2.getText().toString();
+
+                    open(); //open db
+
                     //Update the details
                     updateLoginInfo();
+
+                    close(); //close db
                 }
 
                 super.startActivity(new Intent(this, MainActivity.class));
@@ -150,24 +163,21 @@ public class SetPINActivity extends AppCompatActivity implements View.OnClickLis
 
         try {
 
-            SQLiteOpenHelper eyeRSDatabaseHelper = new EyeRSDatabaseHelper(this);
-            db = eyeRSDatabaseHelper.getWritableDatabase();
-
             db.beginTransaction();
             db.execSQL(UPDATE_CREDENTIALS); //Updates the credentials
 
-            db.close();
             Toast.makeText(this, "Your credentials have been updated successfully ",
                     Toast.LENGTH_SHORT).show();
 
             //Display message in the logcat window after successful operation execution
             Log.e("DATABASE OPERATIONS", "...Credentials updated successfully!");
+
         } catch (SQLException ex) {
             Toast.makeText(this, "Unable to add item", Toast.LENGTH_SHORT).show();
         } finally {
             db.endTransaction();
         }
-
-
     }
+
+
 }

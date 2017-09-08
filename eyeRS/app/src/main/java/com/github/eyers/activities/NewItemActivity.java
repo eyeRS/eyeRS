@@ -4,25 +4,20 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
-import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.SimpleCursorAdapter;
 import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.github.eyers.EyeRSDatabaseHelper;
-
 import com.github.eyers.R;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class NewItemActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -31,14 +26,17 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
     private static String itemDesc;
     private static String dateAdded;
     private SQLiteDatabase db;
-    private Cursor cursor;
+    private EyeRSDatabaseHelper eyeRSDatabaseHelper;
+
+    //Category names to be displayed
+    String[] categories = new String[]{"BOOKS", "CLOTHES", "ACCESSORIES", "GAMES",
+            "OTHER", NewCategoryInfo.CategoryInfo.CATEGORY_NAME};
 
     //Fields
     private ImageButton photo;
     private EditText txtTitle;
     private EditText txtDesc;
     private Spinner spinner;
-    ArrayAdapter<String> adapter;
 
     //SQL-select query to retrieve the category names
     public static final String GET_ALL_CATEGORIES =
@@ -55,52 +53,12 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
         this.photo = (ImageButton) findViewById(R.id.new_item_image);
         this.txtTitle = (EditText) findViewById(R.id.edtTxtItemTitle);
         this.txtDesc = (EditText) findViewById(R.id.edtTxtItemDesc);
-        this.spinner = (Spinner) findViewById(R.id.spinner);
+        spinner = (Spinner) findViewById(R.id.spinner);
 
         findViewById(R.id.btnAddItem).setOnClickListener(this);
 
-    }
+        populateSpinner();
 
-    //Method to populate the spinner
-    public List<String> populateCategories() {
-
-        List<String> categoryNames = new ArrayList<String>();
-
-        //We need to retrieve the categories for the spinner from the db
-        try {
-
-            SQLiteOpenHelper eyeRSDatabaseHelper = new EyeRSDatabaseHelper(this);
-            db = eyeRSDatabaseHelper.getWritableDatabase();
-
-            db.beginTransaction();
-            cursor = db.rawQuery(GET_ALL_CATEGORIES, null);
-
-            while (cursor.moveToNext()) {
-
-                String categoryName = cursor.getString(
-                        cursor.getColumnIndex(NewCategoryInfo.CategoryInfo.CATEGORY_NAME));
-
-                categoryNames.add(categoryName); //Add the category name to the List for the spinner
-
-            }
-
-            cursor.close();
-            db.close();
-
-        } catch (SQLiteException ex) {
-
-            Toast.makeText(this, "Unable to view categories", Toast.LENGTH_SHORT).show();
-
-        } finally {
-
-            db.endTransaction();
-        }
-
-        //Populate the category spinner with category names available from the db
-        adapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_spinner_item, categoryNames);
-
-        this.spinner.setAdapter(adapter);
         this.spinner.setOnItemSelectedListener(
                 new AdapterView.OnItemSelectedListener() {
 
@@ -116,18 +74,69 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
                     }
                 }
         );
-
-        return categoryNames;
     }
 
-    //Method allows us to view what we have just inserted into the db
+    //Open the database connection
+    public NewItemActivity open() {
+        db = eyeRSDatabaseHelper.getWritableDatabase();
+        return this;
+    }
+
+    //Close the connection
+    public void close() {
+        eyeRSDatabaseHelper.close();
+    }
+
+    //Return all items in the db
+    public Cursor getAllCategories() {
+
+        Cursor cursor = db.rawQuery(GET_ALL_CATEGORIES, null);
+
+        if (cursor != null) {
+            cursor.moveToFirst();
+        }
+
+        return cursor;
+    }
+
+    //Method to populate the spinner
+    public void populateSpinner() {
+
+        //We need to retrieve the categories for the spinner from the db
+        try {
+
+            open(); //open db
+
+            //Create the cursor
+            Cursor cursor = getAllCategories();
+
+            int[] viewIds = new int[]{R.id.spinner};
+
+            SimpleCursorAdapter cursorAdapter;
+
+            cursorAdapter = new SimpleCursorAdapter(getBaseContext(),
+                    R.layout.content_new_item, cursor, categories, viewIds, 0);
+
+            spinner.setAdapter(cursorAdapter);
+
+            close(); //close db
+
+        } catch (SQLiteException ex) {
+
+            Toast.makeText(this, "Unable to view categories", Toast.LENGTH_SHORT).show();
+
+        } finally {
+
+            db.endTransaction();
+        }
+    }
+
+    //Method allows us to recently inserted elements from the db
     @Override
     protected void onResume() {
         super.onResume();
 
-        adapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_spinner_item, populateCategories());
-        spinner.setAdapter(adapter);
+        populateSpinner(); //display any new added categories
     }
 
     /**
@@ -175,7 +184,6 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
                     //if the user is adding any item that doesn't correspond to the default categories
                     if (spinner.getSelectedItem() == NewCategoryInfo.CategoryInfo.CATEGORY_NAME) {
                         addItemInfo(); //call the method to add a user specified-item to the db
-                        return;
                     }
 
                 }
