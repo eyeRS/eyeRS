@@ -1,47 +1,71 @@
 package com.github.eyers.activities;
 
+import android.app.Activity;
 import android.content.ContentValues;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
+import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.github.eyers.EyeRSDatabaseHelper;
 import com.github.eyers.R;
+import com.github.eyers.test.CamTestActivity;
+
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 
 public class NewItemActivity extends AppCompatActivity implements View.OnClickListener {
-
+    public static final int MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE = 123;
+    /**
+     * SQL-select query to retrieve the category names.
+     */
+    public static final String GET_ALL_CATEGORIES =
+            "SELECT " + NewCategoryInfo.CategoryInfo.CATEGORY_NAME + " FROM"
+                    + NewCategoryInfo.CategoryInfo.TABLE_NAME + ";";
     //db variables
     private static String itemName;
     private static String itemDesc;
     private static String dateAdded;
+    /**
+     * Category names to be displayed.
+     */
+    String[] categories = {
+            "BOOKS", "CLOTHES", "ACCESSORIES", "GAMES",
+            "OTHER", NewCategoryInfo.CategoryInfo.CATEGORY_NAME
+    };
+    private int REQUEST_CAMERA = 0, SELECT_FILE = 1;
+    private Button btnSelect;
+    private ImageView ivImage;
+    private String userChoosenTask;
     private SQLiteDatabase db;
     private EyeRSDatabaseHelper eyeRSDatabaseHelper;
-
-    //Category names to be displayed
-    String[] categories = new String[]{"BOOKS", "CLOTHES", "ACCESSORIES", "GAMES",
-            "OTHER", NewCategoryInfo.CategoryInfo.CATEGORY_NAME};
-
     //Fields
     private ImageButton photo;
     private EditText txtTitle;
     private EditText txtDesc;
     private Spinner spinner;
-
-    //SQL-select query to retrieve the category names
-    public static final String GET_ALL_CATEGORIES =
-            "SELECT " + NewCategoryInfo.CategoryInfo.CATEGORY_NAME + " FROM"
-                    + NewCategoryInfo.CategoryInfo.TABLE_NAME + ";";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,7 +81,7 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
 
         findViewById(R.id.btnAddItem).setOnClickListener(this);
 
-        populateSpinner();
+        // populateSpinner();
 
         this.spinner.setOnItemSelectedListener(
                 new AdapterView.OnItemSelectedListener() {
@@ -74,11 +98,14 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
                     }
                 }
         );
+
+        this.ivImage = (ImageView) findViewById(R.id.new_item_image);
+        this.ivImage.setOnClickListener(this);
     }
 
     //Open the database connection
     public NewItemActivity open() {
-        db = eyeRSDatabaseHelper.getWritableDatabase();
+        this.db = eyeRSDatabaseHelper.getWritableDatabase();
         return this;
     }
 
@@ -126,7 +153,6 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
             Toast.makeText(this, "Unable to view categories", Toast.LENGTH_SHORT).show();
 
         } finally {
-
             db.endTransaction();
         }
     }
@@ -136,7 +162,7 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
     protected void onResume() {
         super.onResume();
 
-        populateSpinner(); //display any new added categories
+        //   populateSpinner(); //display any new added categories
     }
 
     /**
@@ -153,9 +179,8 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
         switch (view.getId()) {
 
             case R.id.btnAddItem: //user clicks add
-
+                selectImage();
                 if (txtTitle != null) {
-
                     //if the user is adding a book item
                     if (spinner.getSelectedItem() == "BOOKS") {
                         addBook(); //call the method to add a book item to the db
@@ -187,7 +212,10 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
                     }
 
                 }
-
+                break;
+            case R.id.new_item_image:
+                selectImage();
+                break;
         }
 
     }
@@ -378,4 +406,110 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
         }
 
     } //end void addItemInfo()
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        switch (requestCode) {
+            case MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE:
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    if (userChoosenTask.equals("Take Photo"))
+                        cameraIntent();
+                    else if (userChoosenTask.equals("Choose from Library"))
+                        galleryIntent();
+                } else {
+                    //code for deny
+                }
+                break;
+        }
+    }
+
+    private void selectImage() {
+        final String[] items = {"Take Photo", "Choose from Library", "Cancel"};
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Add Photo!");
+        builder.setItems(items, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int item) {
+                boolean result = CamTestActivity.checkPermission(NewItemActivity.this);
+
+                if (items[item].equals("Take Photo")) {
+                    userChoosenTask = "Take Photo";
+                    if (result)
+                        cameraIntent();
+
+                } else if (items[item].equals("Choose from Library")) {
+                    userChoosenTask = "Choose from Library";
+                    if (result)
+                        galleryIntent();
+
+                } else if (items[item].equals("Cancel")) {
+                    dialog.dismiss();
+                }
+            }
+        });
+        builder.show();
+    }
+
+    private void galleryIntent() {
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);//
+        startActivityForResult(Intent.createChooser(intent, "Select File"), SELECT_FILE);
+    }
+
+    private void cameraIntent() {
+        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        startActivityForResult(intent, REQUEST_CAMERA);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (resultCode == Activity.RESULT_OK) {
+            if (requestCode == SELECT_FILE)
+                onSelectFromGalleryResult(data);
+            else if (requestCode == REQUEST_CAMERA)
+                onCaptureImageResult(data);
+        }
+    }
+
+    private void onCaptureImageResult(Intent data) {
+        Bitmap thumbnail = (Bitmap) data.getExtras().get("data");
+        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+        thumbnail.compress(Bitmap.CompressFormat.JPEG, 90, bytes);
+
+        File destination = new File(Environment.getExternalStorageDirectory(),
+                System.currentTimeMillis() + ".jpg");
+
+        FileOutputStream fo;
+        try {
+            destination.createNewFile();
+            fo = new FileOutputStream(destination);
+            fo.write(bytes.toByteArray());
+            fo.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        ivImage.setImageBitmap(thumbnail);
+    }
+
+    @SuppressWarnings("deprecation")
+    private void onSelectFromGalleryResult(Intent data) {
+
+        Bitmap bm = null;
+        if (data != null) {
+            try {
+                bm = MediaStore.Images.Media.getBitmap(getApplicationContext().getContentResolver(), data.getData());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        ivImage.setImageBitmap(bm);
+    }
 }
