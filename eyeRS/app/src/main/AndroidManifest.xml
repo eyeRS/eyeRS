@@ -94,7 +94,11 @@
             android:name=".activities.NewCategoryActivity"
             android:label="@string/title_activity_new_category"
             android:theme="@style/AppTheme.NoActionBar"
-            android:windowSoftInputMode="adjustPan"></activity>
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".test.CamTestActivity"
+            android:label="@string/title_activity_cam_test"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

@@ -9,6 +9,7 @@ import android.widget.Toast;
 
 import com.github.eyers.EyeRS;
 import com.github.eyers.R;
+import com.github.eyers.test.CamTestActivity;
 
 public final class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -36,7 +37,8 @@ public final class LoginActivity extends AppCompatActivity implements View.OnCli
      */
     @Override
     public void onClick(View v) {
-        super.startActivity(new Intent(this, ListActivity.class));
+        super.startActivity(new Intent(this, CamTestActivity.class));
+
         switch (v.getId()) {
             case R.id.txtForgotPin:
                 super.startActivity(new Intent(this, SetPINActivity.class));
