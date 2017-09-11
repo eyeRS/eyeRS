@@ -8,6 +8,7 @@ import com.github.eyers.R;
 
 public class AboutActivity extends AppCompatActivity {
 
+    //
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
