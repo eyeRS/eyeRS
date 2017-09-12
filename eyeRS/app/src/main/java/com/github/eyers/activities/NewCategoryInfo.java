@@ -16,8 +16,6 @@ public class NewCategoryInfo {
         //Column names
         public static final String CATEGORY_NAME = "category_name";
         public static final String CATEGORY_DESC = "category_desc";
-        public static Blob CATEGORY_ICON;
-
     }
 
 }

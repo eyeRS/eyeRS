@@ -146,12 +146,8 @@ public class SetPINActivity extends AppCompatActivity implements View.OnClickLis
                 } else if (pinA.equals(pinB)) { //If PINs match then get a copy for the db
                     matchedPIN = txtPIN2.getText().toString();
 
-                    open(); //open db
-
                     //Update the details
                     updateLoginInfo();
-
-                    close(); //close db
                 }
 
                 super.startActivity(new Intent(this, MainActivity.class));
@@ -161,7 +157,12 @@ public class SetPINActivity extends AppCompatActivity implements View.OnClickLis
     //Method to add the updates for the user's login credentials to the db
     public void updateLoginInfo() {
 
+        //Database handler
+        eyeRSDatabaseHelper = new EyeRSDatabaseHelper(getApplicationContext());
+
         try {
+
+            open(); //open the db connection
 
             db.beginTransaction();
             db.execSQL(UPDATE_CREDENTIALS); //Updates the credentials
@@ -177,7 +178,8 @@ public class SetPINActivity extends AppCompatActivity implements View.OnClickLis
         } finally {
             db.endTransaction();
         }
-    }
 
+        close(); //close the db connection
+    }
 
 }

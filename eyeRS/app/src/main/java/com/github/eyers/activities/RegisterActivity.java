@@ -112,6 +112,8 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     //Method to add user's Registration details
     public void addRegInfo() {
 
+        open(); //open the db connection
+
         ContentValues userRegValues = new ContentValues();
         //Insert the user's name
         userRegValues.put(NewRegInfo.UserRegistrationInfo.USER_NAME, username);
@@ -125,6 +127,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         try {
 
             db.beginTransaction();
+
             //Insert the user registration details into the db
             db.insert(NewRegInfo.UserRegistrationInfo.TABLE_NAME, null,
                     userRegValues);
@@ -138,6 +141,8 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         } finally {
             db.endTransaction();
         }
+
+        close(); //close the db connection
     }
 
     /**
