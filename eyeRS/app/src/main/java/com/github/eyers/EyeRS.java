@@ -6,7 +6,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 /**
- * TODO: comment code.
+ * Contain util methods and constants.
  * <p>
  * Created by Matthew on 2017/06/19.
  */

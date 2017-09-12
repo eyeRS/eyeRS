@@ -141,7 +141,7 @@ public class MainActivity extends AppCompatActivity
         //getActionBar().setDisplayHomeAsUpEnabled(true);
         //getActionBar().setHomeButtonEnabled(true);
 
-        drawer.setDrawerListener(toggle);
+        drawer.setDrawerListener(toggle);this.searchView = (MaterialSearchView) findViewById(R.id.search_view);
     }
 
     /*
@@ -205,6 +205,7 @@ public class MainActivity extends AppCompatActivity
         // Creates search menu bar in the action bar
         getMenuInflater().inflate(R.menu.search_bar, menu);
         MenuItem item = menu.findItem(R.id.action_search);
+
         searchView.setMenuItem(item);
         // end of search bar code
 

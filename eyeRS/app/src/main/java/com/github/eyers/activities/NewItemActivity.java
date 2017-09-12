@@ -126,7 +126,9 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
         return cursor;
     }
 
-    //Method to populate the spinner
+    /**
+     * Method to populate the spinner.
+     */
     public void populateSpinner() {
 
         //We need to retrieve the categories for the spinner from the db
@@ -157,7 +159,9 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
         }
     }
 
-    //Method allows us to recently inserted elements from the db
+    /**
+     * Method allows us to recently inserted elements from the db.
+     */
     @Override
     protected void onResume() {
         super.onResume();
@@ -315,7 +319,9 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
 
     } //end void addAccessory()
 
-    //Games Category
+    /**
+     * Games Category.
+     */
     private void addGame() {
 
         ContentValues gamesValues = new ContentValues();
@@ -346,7 +352,9 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
 
     } //end void addGame()
 
-    //Other Category
+    /**
+     * Other Category.
+     */
     private void addOther() {
 
         ContentValues otherValues = new ContentValues();
@@ -377,7 +385,9 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
 
     } //end void addOther()
 
-    //Method to add a new Item
+    /**
+     * Method to add a new Item.
+     */
     public void addItemInfo() {
 
         ContentValues contentValues = new ContentValues();

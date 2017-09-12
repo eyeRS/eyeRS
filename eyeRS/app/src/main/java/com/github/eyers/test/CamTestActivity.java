@@ -29,8 +29,8 @@ import java.io.IOException;
 
 public class CamTestActivity extends AppCompatActivity implements View.OnClickListener {
 
-    public static final int MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE = 123;
-    private int REQUEST_CAMERA = 0, SELECT_FILE = 1;
+    public static final int REQUEST_READ_EXTERNAL_STORAGE = 123;
+    private int REQUEST_CAMERA = 0x0, SELECT_FILE = 0x1;
     private Button btnSelect;
     private ImageView ivImage;
     private String userChoosenTask;
@@ -48,14 +48,14 @@ public class CamTestActivity extends AppCompatActivity implements View.OnClickLi
                     alertBuilder.setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                         @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
                         public void onClick(DialogInterface dialog, int which) {
-                            ActivityCompat.requestPermissions((Activity) context, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE);
+                            ActivityCompat.requestPermissions((Activity) context, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, REQUEST_READ_EXTERNAL_STORAGE);
                         }
                     });
                     AlertDialog alert = alertBuilder.create();
                     alert.show();
 
                 } else {
-                    ActivityCompat.requestPermissions((Activity) context, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE);
+                    ActivityCompat.requestPermissions((Activity) context, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, REQUEST_READ_EXTERNAL_STORAGE);
                 }
                 return false;
             } else {
@@ -78,7 +78,7 @@ public class CamTestActivity extends AppCompatActivity implements View.OnClickLi
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         switch (requestCode) {
-            case MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE:
+            case REQUEST_READ_EXTERNAL_STORAGE:
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     if (userChoosenTask.equals("Take Photo"))
                         cameraIntent();
