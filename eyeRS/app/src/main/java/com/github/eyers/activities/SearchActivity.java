@@ -27,8 +27,8 @@ public class SearchActivity extends AppCompatActivity {
          * function.
          */
 
-        getSupportActionBar().setTitle("Search Bar");
-        toolbar.setTitleTextColor(Color.parseColor("#FFFFFF"));
+        getSupportActionBar().setTitle("Search Bar"); // Sets the name of the menu bar
+        toolbar.setTitleTextColor(Color.parseColor("#FFFFFF")); // sets the color of the menu bar
 
         this.searchView = (MaterialSearchView) findViewById(R.id.search_view);
 

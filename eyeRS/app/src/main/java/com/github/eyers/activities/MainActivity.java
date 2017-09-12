@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.ListView;
 
 import com.github.eyers.R;
+import com.miguelcatalan.materialsearchview.MaterialSearchView;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
@@ -23,6 +24,9 @@ public class MainActivity extends AppCompatActivity
     private int currentPosition = 0;
     //Array of Activity titles
     private String[] titles;
+
+    // Used to declare the search view bar
+    private MaterialSearchView searchView;
 
     private ActionBarDrawerToggle toggle;
     private DrawerLayout drawer;
@@ -197,6 +201,13 @@ public class MainActivity extends AppCompatActivity
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
+
+        // Creates search menu bar in the action bar
+        getMenuInflater().inflate(R.menu.search_bar, menu);
+        MenuItem item = menu.findItem(R.id.action_search);
+        searchView.setMenuItem(item);
+        // end of search bar code
+
         return true;
     }
 
