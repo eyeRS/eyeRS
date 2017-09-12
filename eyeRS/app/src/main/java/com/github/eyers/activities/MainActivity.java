@@ -141,7 +141,8 @@ public class MainActivity extends AppCompatActivity
         //getActionBar().setDisplayHomeAsUpEnabled(true);
         //getActionBar().setHomeButtonEnabled(true);
 
-        drawer.setDrawerListener(toggle);this.searchView = (MaterialSearchView) findViewById(R.id.search_view);
+        drawer.setDrawerListener(toggle);
+        this.searchView = (MaterialSearchView) findViewById(R.id.search_view);
     }
 
     /*
