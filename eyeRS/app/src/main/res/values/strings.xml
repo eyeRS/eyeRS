@@ -27,7 +27,7 @@
     <string name="btnResetPIN">Reset</string>
     <string name="btnClearPIN">Clear</string>
     <string name="enterPinHint">Enter your new PIN here</string>
-    <string name="validationMsg">*Enter your Security details from the User registration to complete the PIN reset process*</string>
+    <string name="validationMsg">*Enter your Security details from the registration process*</string>
 
     <!-- Strings related to Login activity -->
 
@@ -47,12 +47,13 @@
     <string name="title_activity_help">Help &amp; Tips</string>
     <string name="title_activity_register">My Registration</string>
     <string name="title_activity_set_pin">Reset my PIN</string>
-    <string name="title_activity_settings">My Settings</string>
+    <string name="title_activity_profile">My Profile</string>
     <string name="title_activity_about">About EyeRS</string>
     <string name="title_activity_slideshow">My Slideshow</string>
     <string name="title_activity_view_items">My Items</string>
     <string name="title_activity_item_detail">Item Details</string>
     <string name="title_activity_new_category">My new Category</string>
+    <string name="title_activity_app_settings">My Settings</string>
 
     <!--Strings related to New Item activities -->
 
@@ -69,7 +70,15 @@
     <string name="lblName">Name</string>
     <string name="lblSymbol">Symbol</string>
 
-    <!-- This section defines strings relating to Settings Activities -->
+    <!-- This section defines strings relating to the AppSettings Activities -->
+    <string-array name="settings_titles">
+        <item>General settings</item>
+        <item>Profile settings</item>
+        <item>Category settings</item>
+        <item>Item Management settings</item>
+        <item>Help &amp; tips</item>
+        <item>About</item>
+    </string-array>
 
     <!-- General Settings -->
 
@@ -172,7 +181,7 @@
 
     <!-- Strings related to About Activity -->
     <string name="appDesc">The organised life experience!</string>
-    <string name="txtAppCap">Version 1, 30 November 2017</string>
+    <string name="txtAppCap">Version 1, November 2017</string>
     <string name="cpyRight">Copyright &#169; 2017 eyeRS Dev</string>
 
     <!-- Strings related to Search Activity -->

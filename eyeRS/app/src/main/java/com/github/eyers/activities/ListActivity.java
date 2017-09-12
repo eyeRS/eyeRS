@@ -32,9 +32,7 @@ public class ListActivity extends AppCompatActivity
     //SQL-SELECT - Get all the items
     private static String GET_ALL_ITEMS =
             "SELECT " + NewItemInfo.ItemInfo.ITEM_NAME + ", "
-                    + NewItemInfo.ItemInfo.ITEM_DESC + ", "
-                    + NewItemInfo.ItemInfo.DATE_ADDED + ", "
-                    + NewItemInfo.ItemInfo.ITEM_ICON + " FROM "
+                    + NewItemInfo.ItemInfo.ITEM_DESC + ", FROM "
                     + NewItemInfo.ItemInfo.TABLE_NAME + ";";
 
     //db variables

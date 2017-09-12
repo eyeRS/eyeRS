@@ -40,7 +40,7 @@ public final class LoginActivity extends AppCompatActivity implements View.OnCli
      */
     @Override
     public void onClick(View v) {
-        super.startActivity(new Intent(this, CamTestActivity.class));
+        //super.startActivity(new Intent(this, CamTestActivity.class));
 
         switch (v.getId()) {
             case R.id.txtForgotPin:

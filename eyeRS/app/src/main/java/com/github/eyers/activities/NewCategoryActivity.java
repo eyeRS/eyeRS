@@ -82,6 +82,9 @@ public class NewCategoryActivity extends AppCompatActivity implements View.OnCli
     //Method to add a new Category
     public void addCategoryInfo() {
 
+        //Database handler
+        eyeRSDatabaseHelper = new EyeRSDatabaseHelper(getApplicationContext());
+
         open(); //open the db connection
 
         ContentValues categoryValues = new ContentValues();

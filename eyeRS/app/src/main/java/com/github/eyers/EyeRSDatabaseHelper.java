@@ -2,6 +2,7 @@ package com.github.eyers;
 
 /**
  * Created by Nathan Shava on 29-Jul-17.
+ * This class creates the SQLite database which is utilized across the app's activities to store & read data
  */
 
 import android.content.Context;

@@ -170,7 +170,6 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
     }
 
     //DEFAULT CATEGORIES - INSERT operation
-
     /**
      * Adding a book item
      */
@@ -487,6 +486,14 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
         ivImage.setImageBitmap(bm);
     }
 
+    /**
+     *
+     * @param parent
+     * @param view
+     * @param position
+     * @param id
+     * Method handles what happens when an item is selected from the spinner
+     */
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
@@ -499,7 +506,11 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
 
     }
 
-    //Nothing selected from the Spinner
+    /**
+     *
+     * @param parent
+     * Method handles what happens when nothing is selected from the spinner
+     */
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
 

@@ -4,6 +4,7 @@ import java.sql.Blob;
 
 /**
  * Created by Nathan Shava on 04-Sep-17.
+ * The class holds data for the database table and column names belonging to a Category in the database
  */
 
 public class NewCategoryInfo {

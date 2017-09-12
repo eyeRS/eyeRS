@@ -9,6 +9,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -17,7 +18,8 @@ import android.widget.Toast;
 import com.github.eyers.EyeRSDatabaseHelper;
 import com.github.eyers.R;
 
-public class SetPINActivity extends AppCompatActivity implements View.OnClickListener {
+public class SetPINActivity extends AppCompatActivity implements View.OnClickListener,
+    OnItemSelectedListener {
 
     private static final String[] QUESTIONS = {
 
@@ -51,7 +53,6 @@ public class SetPINActivity extends AppCompatActivity implements View.OnClickLis
                     + NewRegInfo.UserRegistrationInfo.USER_NAME + " ="
                     + username + ";";
 
-
     //Fields
     private EditText txtPIN1;
     private EditText txtPIN2;
@@ -76,23 +77,7 @@ public class SetPINActivity extends AppCompatActivity implements View.OnClickLis
                 android.R.layout.simple_spinner_item, QUESTIONS); //Populates the spinner with the array contents
 
         this.spinner.setAdapter(adapter);
-        this.spinner.setOnItemSelectedListener(
-                new AdapterView.OnItemSelectedListener() {
-
-                    //When the user selects a security question from the Spinner
-                    @Override
-                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                        position = spinner.getSelectedItemPosition();
-
-                    }
-
-                    //Nothing selected from the Spinner
-                    @Override
-                    public void onNothingSelected(AdapterView<?> parent) {
-
-                    }
-                }
-        );
+        this.spinner.setOnItemSelectedListener(this);
 
         findViewById(R.id.btnResetPIN).setOnClickListener(this);
         findViewById(R.id.btnClearPIN).setOnClickListener(this);
@@ -182,4 +167,26 @@ public class SetPINActivity extends AppCompatActivity implements View.OnClickLis
         close(); //close the db connection
     }
 
+    /**
+     *
+     * @param parent
+     * @param view
+     * @param position
+     * @param id
+     * Method handles what happens when an item is selected from the spinner
+     */
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+    }
+
+    /**
+     *
+     * @param parent
+     * Method handles what happens when nothing is selected from the spinner
+     */
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
+    }
 }

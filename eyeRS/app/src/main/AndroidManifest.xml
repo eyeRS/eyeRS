@@ -71,13 +71,6 @@
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".activities.SettingsActivity"
-            android:label="@string/title_activity_settings">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.github.eyers.activities.MainActivity" />
-        </activity>
-        <activity
             android:name=".activities.ItemDetail"
             android:label="@string/title_activity_item_detail"
             android:theme="@style/AppTheme.NoActionBar"
@@ -85,7 +78,6 @@
         <activity
             android:name=".activities.SearchActivity"
             android:label="@string/title_activity_search"
-            android:parentActivityName=".activities.ViewItemsActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -99,7 +91,19 @@
         <activity
             android:name=".test.CamTestActivity"
             android:label="@string/title_activity_cam_test"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activities.AppSettingsActivity"
+            android:label="@string/title_activity_app_settings"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustPan">
+        </activity>
+        <activity android:name=".activities.ProfileActivity"
+            android:label="@string/title_activity_profile"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustPan">
+
+        </activity>
     </application>
 
 </manifest>
