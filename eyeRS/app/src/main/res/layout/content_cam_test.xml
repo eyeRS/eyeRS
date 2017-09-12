@@ -37,7 +37,8 @@
                 android:id="@+id/ivImage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_menu_exit" />
+                app:srcCompat="@drawable/ic_menu_exit" />
+
         </LinearLayout>
     </LinearLayout>
 

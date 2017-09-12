@@ -32,9 +32,7 @@ public class ListActivity extends AppCompatActivity
     //SQL-SELECT - Get all the items
     private static String GET_ALL_ITEMS =
             "SELECT " + NewItemInfo.ItemInfo.ITEM_NAME + ", "
-                    + NewItemInfo.ItemInfo.ITEM_DESC + ", "
-                    + NewItemInfo.ItemInfo.DATE_ADDED + ", "
-                    + NewItemInfo.ItemInfo.ITEM_ICON + " FROM "
+                    + NewItemInfo.ItemInfo.ITEM_DESC + ", FROM "
                     + NewItemInfo.ItemInfo.TABLE_NAME + ";";
 
     //db variables
@@ -51,21 +49,13 @@ public class ListActivity extends AppCompatActivity
         arrayOfUsers = new ArrayList<ItemLabel>();
         adapter = new LabelAdapter(this, arrayOfUsers);
 
-        open(); //open the db connection
-
         populateItems();
 
-        close(); //close the db connection
-
-//        EyeRSDatabaseHelper f = new EyeRSDatabaseHelper();
-//    f.getReadableDatabase().beginTransaction();
-//        f.getReadableDatabase().qu
-//        f.getReadableDatabase().close();
     }
 
     //Open the database connection
     public ListActivity open() {
-        db = eyeRSDatabaseHelper.getWritableDatabase();
+        db = eyeRSDatabaseHelper.getReadableDatabase();
         return this;
     }
 
@@ -101,6 +91,11 @@ public class ListActivity extends AppCompatActivity
     //Method to populate the ListView
     public void populateItems() {
 
+        //Database handler
+        eyeRSDatabaseHelper = new EyeRSDatabaseHelper(getApplicationContext());
+
+        open(); //open the db connection
+
         //Create the cursor and retrieve the items from the db
         try {
 
@@ -131,6 +126,8 @@ public class ListActivity extends AppCompatActivity
 
             db.endTransaction();
         }
+
+        close(); //close the db connection
     }
 
     //Method allows us to view recently inserted elements from the db

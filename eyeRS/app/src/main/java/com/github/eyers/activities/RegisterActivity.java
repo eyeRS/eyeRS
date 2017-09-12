@@ -10,6 +10,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -22,7 +23,8 @@ import com.github.eyers.R;
  * @see android.view.View.OnClickListener
  * @see android.support.v7.app.AppCompatActivity
  */
-public class RegisterActivity extends AppCompatActivity implements View.OnClickListener {
+public class RegisterActivity extends AppCompatActivity implements View.OnClickListener,
+    OnItemSelectedListener {
 
     /**
      * The possible security questions.
@@ -45,6 +47,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     private static String username;
     private static String email;
     private static String matchedPIN;
+    private static String securityQuestion;
     private static String securityResponse;
 
     //db variables
@@ -78,21 +81,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                 android.R.layout.simple_spinner_item, QUESTIONS); //Populates the spinner with the array contents
 
         this.spinner.setAdapter(adapter);
-        this.spinner.setOnItemSelectedListener(
-                new AdapterView.OnItemSelectedListener() {
-
-                    @Override
-                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                        position = spinner.getSelectedItemPosition();
-
-                    }
-
-                    @Override
-                    public void onNothingSelected(AdapterView<?> parent) {
-
-                    }
-                }
-        );
+        this.spinner.setOnItemSelectedListener(this);
 
         findViewById(R.id.btnRegister).setOnClickListener(this);
 
@@ -112,6 +101,8 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     //Method to add user's Registration details
     public void addRegInfo() {
 
+        open(); //open the db connection
+
         ContentValues userRegValues = new ContentValues();
         //Insert the user's name
         userRegValues.put(NewRegInfo.UserRegistrationInfo.USER_NAME, username);
@@ -125,6 +116,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         try {
 
             db.beginTransaction();
+
             //Insert the user registration details into the db
             db.insert(NewRegInfo.UserRegistrationInfo.TABLE_NAME, null,
                     userRegValues);
@@ -138,6 +130,8 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         } finally {
             db.endTransaction();
         }
+
+        close(); //close the db connection
     }
 
     /**
@@ -179,5 +173,33 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                 this.txtResponse.setText("");
 
         }
+    }
+
+    /**
+     *
+     * @param parent
+     * @param view
+     * @param position
+     * @param id
+     * Method handles what happens when an item is selected from the spinner
+     */
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+        //Question selected from Spinner
+        securityQuestion = parent.getItemAtPosition(position).toString();
+
+
+    }
+
+    /**
+     *
+     * @param parent
+     * Method handles what happens when nothing is selected from the spinner
+     *
+     */
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
     }
 }

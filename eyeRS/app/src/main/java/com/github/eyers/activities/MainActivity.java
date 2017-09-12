@@ -221,27 +221,11 @@ public class MainActivity extends AppCompatActivity
 
         //If the ActionBarDrawerToggle is clicked, let it handle what happens
         if (item.getItemId() == R.id.action_settings) {
-            super.startActivity(new Intent(this, SettingsActivity.class));
+            super.startActivity(new Intent(this, AppSettingsActivity.class));
             return true;
         }
 
-        /*
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-        */
-
-        switch (item.getItemId()) {
-            case R.id.action_settings:
-                //Code to run when the Settings action item is clicked
-                return true;
-
-            default:
-                return super.onOptionsItemSelected(item);
-        }
+        return super.onOptionsItemSelected(item);
     }
 
     //Method called when the nav_send button is clicked
@@ -278,7 +262,7 @@ public class MainActivity extends AppCompatActivity
                 super.startActivity(new Intent(this, NewCategoryActivity.class)); //starts the New Category activity
                 break;
             case R.id.nav_settings:
-                super.startActivity(new Intent(this, SettingsActivity.class)); //starts the Settings activity
+                super.startActivity(new Intent(this, AppSettingsActivity.class)); //starts the App Settings activity
                 break;
             case R.id.nav_about:
                 super.startActivity(new Intent(this, AboutActivity.class)); //starts the About activity

@@ -4,6 +4,7 @@ import java.sql.Blob;
 
 /**
  * Created by Nathan Shava on 04-Sep-17.
+ * The class holds data for the database table and column names belonging to a Category in the database
  */
 
 public class NewCategoryInfo {
@@ -16,8 +17,6 @@ public class NewCategoryInfo {
         //Column names
         public static final String CATEGORY_NAME = "category_name";
         public static final String CATEGORY_DESC = "category_desc";
-        public static Blob CATEGORY_ICON;
-
     }
 
 }
