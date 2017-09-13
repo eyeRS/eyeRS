@@ -10,13 +10,14 @@ import android.widget.ImageView;
 /**
  * Created by Nathan Shava on 29-Aug-17.
  */
-
 public class ItemLabelFragment extends Fragment {
 
     private String name, symbol, sector;
     private ImageView itemView;
 
-    //Required empty public constructor
+    /**
+     * Required empty public constructor.
+     */
     public ItemLabelFragment() {
     }
 
@@ -32,34 +33,30 @@ public class ItemLabelFragment extends Fragment {
         }
     }
 
-    //We set the fragment's layout in the onCreateView() method
+    /**
+     * We set the fragment's layout in the onCreateView() method.
+     *
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
         View layout = inflater.inflate(R.layout.item_label, container, false);
         return layout;
-
     }
 
-    //Save the state of the stopwatch if it's about to be destroyed
+    /**
+     * Save the state of the stopwatch if it's about to be destroyed.
+     *
+     * @param savedInstanceState
+     */
     @Override
     public void onSaveInstanceState(Bundle savedInstanceState) {
         savedInstanceState.putString("name", name);
         savedInstanceState.putString("symbol", symbol);
         savedInstanceState.putString("sector", sector);
-
-    }
-
-    public String getName() {
-        return this.name;
-    }
-
-    public String getSymbol() {
-        return this.symbol;
-    }
-
-    public String getSector() {
-        return this.sector;
     }
 }

@@ -10,6 +10,9 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+/**
+ *
+ */
 public final class LabelAdapter extends ArrayAdapter<ItemLabel> {
 
     public LabelAdapter(Context context, ArrayList<ItemLabel> stocks) {

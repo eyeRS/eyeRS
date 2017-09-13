@@ -6,6 +6,9 @@ import android.support.v7.widget.Toolbar;
 
 import com.github.eyers.R;
 
+/**
+ *
+ */
 public class ProfileActivity extends AppCompatActivity {
 
     @Override

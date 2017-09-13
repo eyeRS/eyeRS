@@ -14,6 +14,9 @@ import android.widget.Toast;
 import com.github.eyers.EyeRSDatabaseHelper;
 import com.github.eyers.R;
 
+/**
+ *
+ */
 public class NewCategoryActivity extends AppCompatActivity implements View.OnClickListener {
 
     //Declarations
