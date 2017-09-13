@@ -271,7 +271,6 @@ public class MainActivity extends AppCompatActivity
                 super.startActivity(new Intent(this, SlideshowActivity.class)); //starts the Slideshow activity
                 break;
 
-
         }
 
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

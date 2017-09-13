@@ -2,8 +2,10 @@ package com.github.eyers.activities;
 
 import android.app.Activity;
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
@@ -43,6 +45,8 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
     //db variables
     private static String itemName;
     private static String itemDesc;
+    String category;
+    ArrayAdapter<String> categoriesAdapter;
 
     private int REQUEST_CAMERA = 0, SELECT_FILE = 1;
     private ImageView ivImage;
@@ -63,7 +67,7 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
 
         this.txtTitle = (EditText) findViewById(R.id.edtTxtItemTitle);
         this.txtDesc = (EditText) findViewById(R.id.edtTxtItemDesc);
-        this.spinner = (Spinner) findViewById(R.id.spinner);
+        this.spinner = (Spinner) findViewById(R.id.category_spinner);
         this.spinner.setOnItemSelectedListener(this); //spinner click listener
 
         populateSpinner(); //load contents of spinner from the db
@@ -72,6 +76,11 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
 
         this.ivImage = (ImageView) findViewById(R.id.new_item_image);
         this.ivImage.setOnClickListener(this);
+
+        if (savedInstanceState != null) {
+            //Retrieve the previously selected spinner item
+            spinner.setSelection(savedInstanceState.getInt("spinner"));
+        }
     }
 
     /**
@@ -86,7 +95,7 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
         List<String> categories = eyeRSDatabaseHelper.getAllCategories();
 
         //Create an adapter for the spinner
-        ArrayAdapter<String> categoriesAdapter = new ArrayAdapter<String>(this,
+        categoriesAdapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_spinner_item, categories);
 
         //Set the adapter to the spinner
@@ -94,13 +103,32 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
     }
 
     /**
-     * Method allows us to recently inserted elements from the db.
+     * Method allows us to save the activity's selections just before the app gets paused
+     */
+    public void onPause() {
+
+        super.onPause();
+
+        //Save the spinner's selection
+        spinner = (Spinner)findViewById(R.id.category_spinner);
+        SharedPreferences category_prefs = getSharedPreferences("category_prefs", Context.MODE_PRIVATE);
+        category_prefs.edit().putInt("spinner_indx", spinner.getSelectedItemPosition()).apply();
+
+    }
+
+    /**
+     * Method allows us to retrieve previous selection before the activity was paused
      */
     @Override
     protected void onResume() {
         super.onResume();
 
-        populateSpinner(); //display any new added categories
+        //Retrieve the saved spinner selection
+        spinner = (Spinner)findViewById(R.id.category_spinner);
+        SharedPreferences category_prefs = getSharedPreferences("category_prefs", Context.MODE_PRIVATE);
+        int spinner_index = category_prefs.getInt("spinner_indx", 0);
+        spinner.setSelection(spinner_index);
+
     }
 
     //Open the db connection
@@ -498,12 +526,11 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
         //Category selected from Spinner
-        String category = parent.getItemAtPosition(position).toString();
+        category = parent.getItemAtPosition(position).toString();
 
         //Show the selected category spinner item
         Toast.makeText(parent.getContext(), "You selected the " + category + " category",
                 Toast.LENGTH_SHORT).show();
-
     }
 
     /**
@@ -513,6 +540,14 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
      */
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
+
+    }
+
+    //Save the state of the spinner if it's about to be destroyed
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+        //save the selection of the spinner
+        savedInstanceState.putInt("spinner", spinner.getSelectedItemPosition());
 
     }
 }

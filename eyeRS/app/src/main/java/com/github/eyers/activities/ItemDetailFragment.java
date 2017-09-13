@@ -15,10 +15,9 @@ import com.github.eyers.R;
 
 
 /**
+ * Class will be used to display details of items based on users' selection.
  * Created by Nathan Shava on 29-Aug-17.
  */
-
-//Class will be used to display details of items based on users' selection
 public class ItemDetailFragment extends Fragment {
 
     private long itemID; //The ID of the item the user will select
@@ -60,7 +59,7 @@ public class ItemDetailFragment extends Fragment {
         if (view != null) {
             TextView name = (TextView) view.findViewById(R.id.lblName);
             ItemLabelFragment itemLabelFragment = new ItemLabelFragment();
-            name.setText(itemLabelFragment.getName());
+//            name.setText(itemLabelFragment.getName());
 //            TextView symbol = (TextView) view.findViewById(R.id.lblSymbol);
 //            symbol.setText(itemLabelFragment.getSymbol());
 //            TextView sector = (TextView) view.findViewById(R.id.lblShift);

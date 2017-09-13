@@ -21,6 +21,9 @@ import com.github.eyers.R;
 
 import java.util.ArrayList;
 
+/**
+ *
+ */
 public class ListActivity extends AppCompatActivity
         implements ItemListFragment.ItemListListener {
 

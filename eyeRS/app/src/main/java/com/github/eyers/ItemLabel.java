@@ -1,9 +1,8 @@
 package com.github.eyers;
 
 /**
- * Created by siD on 2017/08/17.
+ * Created by Matthew Van der Bijl on 2017/08/17.
  */
-
 public class ItemLabel {
 
     private final String name;

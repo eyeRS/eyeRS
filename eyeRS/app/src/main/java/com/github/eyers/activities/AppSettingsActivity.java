@@ -42,27 +42,35 @@ public class AppSettingsActivity extends AppCompatActivity implements OnItemClic
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-        if (position == 0) { //General settings is the first item in the list view i.e. position 0
-            Intent intent = new Intent();
+        if (position == 0) { //Security settings is the first item in the list view i.e. position 0
+            Intent intent = new Intent(this, SetPINActivity.class);
             startActivity(intent);
         }
-        if (position == 1) { //Profile settings is the next item in the list view i.e. position 1
-            Intent intent = new Intent(this, ProfileActivity.class);
+        if (position == 1) { //Display settings is the next item in the list view i.e. position 1
+            Intent intent = new Intent(this, DisplaySettingsActivity.class);
             startActivity(intent);
         }
-        if (position == 2) { //Category settings is the next item in the list view i.e. position 2
-            Intent intent = new Intent();
+        if (position == 2) { //Profile settings is the next item in the list view i.e. position 2
+            Intent intent = new Intent(this, ProfileSettings.class);
             startActivity(intent);
         }
-        if (position == 3) { //Item Management settings is the next item in the list view i.e. position 3
-            Intent intent = new Intent();
+        if (position == 3) { //Sound settings is the next item in the list view i.e. position 3
+            Intent intent = new Intent(this, SoundSettings.class);
             startActivity(intent);
         }
-        if (position == 4) { //Help & tips is the next item in the list view i.e. position 4
+        if (position == 4) { //Category management settings is the next item in the list view i.e. position 4
+            Intent intent = new Intent(this, CategoryManagementSettings.class);
+            startActivity(intent);
+        }
+        if (position == 5) { //Item management settings is the next item in the list view i.e. position 5
+            Intent intent = new Intent(this, ItemManagementSettings.class);
+            startActivity(intent);
+        }
+        if (position == 6){ //Help & tips is the next item in the list view i.e. position 6
             Intent intent = new Intent(this, HelpActivity.class);
             startActivity(intent);
         }
-        if (position == 5) { //About is the next item in the list view i.e. position 5
+        if (position == 7){ //About is the next item in the list view i.e. position 7
             Intent intent = new Intent(this, AboutActivity.class);
             startActivity(intent);
         }

@@ -31,12 +31,12 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
      */
     private static final String[] QUESTIONS = {
 
-            "What is the name of your junior/primary school?",
+            "What is the name of your junior school?",
             "What is the name of your first pet?",
             "In what year was your father born?",
             "In what city does your nearest sibling stay?",
-            "What is the first name of the teacher who gave you your first failing grade?",
-            "What was the house number or street name you lived in as a child?",
+            "What is the name of the teacher who gave you your first failing grade?",
+            "What was the house number/street name you lived in as a child?",
             "What were the last 4 digits of your childhood mobile number?",
             "In what city or town was your first full time job?",
             "What are the last 5 digits of your ID number?",
@@ -200,6 +200,14 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
      */
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
+
+    }
+
+    //Save the state of the spinner if it's about to be destroyed
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+        //save the selection of the spinner
+        savedInstanceState.putInt("spinner", spinner.getSelectedItemPosition());
 
     }
 }
