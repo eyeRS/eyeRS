@@ -11,8 +11,10 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
+
 import com.github.eyers.activities.NewCategoryInfo;
 import com.github.eyers.activities.NewItemInfo;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -88,7 +90,17 @@ public class EyeRSDatabaseHelper extends SQLiteOpenHelper {
         updateMyDatabase(db, oldVersion, newVersion);
     }
 
-    private void updateMyDatabase(SQLiteDatabase db, int oldVersion, int newVersion) {
+    /**
+     *
+     * @param db
+     * @param oldVersion
+     * @param newVersion
+     * Method will handle any database updates that occur within the app after the user performs
+     * specific actions
+     */
+    public void updateMyDatabase(SQLiteDatabase db, int oldVersion, int newVersion) {
+
+        if (oldVersion < 1) { //if the app is run for the first time
 
             try {
 
@@ -115,8 +127,13 @@ public class EyeRSDatabaseHelper extends SQLiteOpenHelper {
             } catch (SQLException ex) {
                 Log.e("DATABASE OPERATIONS", "...Unable to create categories!");
             }
+        }
+        if (newVersion > 0){ //any updates that occur within the app are handled here
 
-        } //end void updateMyDatabase()
+
+        }
+
+    } //end void updateMyDatabase()
 
     /**
      * SQL-select query to retrieve the category names.
@@ -126,11 +143,13 @@ public class EyeRSDatabaseHelper extends SQLiteOpenHelper {
                     + NewCategoryInfo.CategoryInfo.TABLE_NAME + ";";
 
     //Return all categories in the db
-    public List<String> getAllCategories(){
+    public List<String> getAllCategories() {
 
         List<String> categories = new ArrayList<String>();
 
         SQLiteDatabase db = getReadableDatabase();
+
+        //Create a cursor to get the data from the db
         Cursor cursor = db.rawQuery(GET_ALL_CATEGORIES, null);
 
         // looping through all rows in the CATEGORIES table and adding to the list

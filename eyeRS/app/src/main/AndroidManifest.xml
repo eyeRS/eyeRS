@@ -97,9 +97,37 @@
             android:label="@string/title_activity_app_settings"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="adjustPan">
+
         </activity>
-        <activity android:name=".activities.ProfileActivity"
-            android:label="@string/title_activity_profile"
+        <activity
+            android:name=".activities.DisplaySettingsActivity"
+            android:label="@string/title_activity_display_settings"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustPan">
+
+        </activity>
+        <activity
+            android:name=".activities.SoundSettings"
+            android:label="@string/title_activity_sound_settings"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustPan">
+
+        </activity>
+        <activity android:name=".activities.CategoryManagementSettings"
+            android:label="@string/title_activity_category_mgmt_settings"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustPan">
+
+        </activity>
+        <activity android:name=".activities.ProfileSettings"
+            android:label="@string/title_activity_profile_settings"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustPan">
+
+        </activity>
+        <activity
+            android:name=".activities.ItemManagementSettings"
+            android:label="@string/title_activity_item_mgmt_settings"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="adjustPan">
 

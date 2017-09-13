@@ -54,6 +54,11 @@
     <string name="title_activity_item_detail">Item Details</string>
     <string name="title_activity_new_category">My new Category</string>
     <string name="title_activity_app_settings">My Settings</string>
+    <string name="title_activity_display_settings">Display settings</string>
+    <string name="title_activity_sound_settings">Sound settings</string>
+    <string name="title_activity_category_mgmt_settings">Category Management settings</string>
+    <string name="title_activity_profile_settings">Profile settings</string>
+    <string name="title_activity_item_mgmt_settings">Item management settings</string>
 
     <!--Strings related to New Item activities -->
 
@@ -72,23 +77,17 @@
 
     <!-- This section defines strings relating to the AppSettings Activities -->
     <string-array name="settings_titles">
-        <item>General settings</item>
-        <item>Profile settings</item>
-        <item>Category settings</item>
-        <item>Item Management settings</item>
+        <item>Security</item>
+        <item>Display</item>
+        <item>Profile</item>
+        <item>Sound</item>
+        <item>Category management</item>
+        <item>Item management</item>
         <item>Help &amp; tips</item>
         <item>About</item>
     </string-array>
 
-    <!-- General Settings -->
-
-    <string name="pref_header_general">General</string>
-
-    <string name="pref_title_sort_asc">Sort</string>
-    <string name="pref_description_sort_asc">Arranges items in Ascending order</string>
-
-    <string name="pref_description_recently_added">Sorts items based on order of entry</string>
-    <string name="pref_title_recently_added">Recently Added</string>
+    <!-- Display Settings -->
 
     <!-- Security Settings -->
     <string name="pref_header_security">Security</string>
