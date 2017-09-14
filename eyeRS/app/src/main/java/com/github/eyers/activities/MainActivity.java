@@ -13,6 +13,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.github.eyers.R;
 import com.miguelcatalan.materialsearchview.MaterialSearchView;
@@ -20,12 +21,16 @@ import com.miguelcatalan.materialsearchview.MaterialSearchView;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
 
-    //Set current position to 0 by default
+    /**
+     * Set current position to 0 by default.
+     */
     private int currentPosition = 0;
     //Array of Activity titles
     private String[] titles;
 
-    // Used to declare the search view bar
+    /**
+     * Used to declare the search view bar.
+     */
     private MaterialSearchView searchView;
 
     private ActionBarDrawerToggle toggle;
@@ -270,12 +275,25 @@ public class MainActivity extends AppCompatActivity
             case R.id.nav_slideshow:
                 super.startActivity(new Intent(this, SlideshowActivity.class)); //starts the Slideshow activity
                 break;
-
+            case R.id.nav_share:
+            case R.id.nav_trade:
+                Toast.makeText(this, "TODO", Toast.LENGTH_LONG).show();
+                break;
+            case R.id.nav_exit:
+                exit();
+                break;
         }
 
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    private void exit() {
+        Intent intent = new Intent(Intent.ACTION_MAIN);
+        intent.addCategory(Intent.CATEGORY_HOME);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
     }
 
     /**
@@ -285,7 +303,8 @@ public class MainActivity extends AppCompatActivity
      */
     @Override
     public void onClick(View v) {
-        switch (v.getId()) {
-        }
+//        switch (v.getId()) {
+//        }
+        Toast.makeText(this, "TODO Button: " + v.getId(), Toast.LENGTH_LONG).show();
     }
 }

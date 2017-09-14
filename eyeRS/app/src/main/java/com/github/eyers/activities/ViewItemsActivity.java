@@ -12,6 +12,9 @@ import android.view.View;
 import com.github.eyers.R;
 import com.miguelcatalan.materialsearchview.MaterialSearchView;
 
+/**
+ *
+ */
 public class ViewItemsActivity extends AppCompatActivity {
 
     private MaterialSearchView searchView;
