@@ -92,9 +92,12 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         this.spinner.setOnItemSelectedListener(this);
 
         findViewById(R.id.btnRegister).setOnClickListener(this);
-
+        findViewById(R.id.btnClearReg).setOnClickListener(this);
     }
 
+    /**
+     *
+     */
     private Pattern regexPattern = regexPattern = Pattern.compile("^[(a-zA-Z-0-9-\\_\\+\\.)]+@[(a-z-A-z)]+\\.[(a-zA-z)]{2,3}$");
 
     /**
@@ -108,7 +111,6 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
      * Method to add user's Registration details.
      */
     public void addRegInfo() {
-
         open(); //open the db connection
 
         ContentValues userRegValues = new ContentValues();
@@ -122,7 +124,6 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         userRegValues.put(NewRegInfo.UserRegistrationInfo.SECURITY_RESPONSE, securityResponse);
 
         try {
-
             db.beginTransaction();
 
             //Insert the user registration details into the db
@@ -150,10 +151,12 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     }
 
     /**
+     * Method handles what happens when an item is selected from the spinner.
+     *
      * @param parent
      * @param view
      * @param position
-     * @param id       Method handles what happens when an item is selected from the spinner
+     * @param id
      */
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -221,11 +224,14 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         return regexPattern.matcher(emailAddress).matches();
     }
 
-    //Save the state of the spinner if it's about to be destroyed
+    /**
+     *Save the state of the spinner if it's about to be destroyed.
+     *
+     * @param savedInstanceState
+     */
     @Override
     public void onSaveInstanceState(Bundle savedInstanceState) {
         //save the selection of the spinner
         savedInstanceState.putInt("spinner", spinner.getSelectedItemPosition());
-
     }
 }
