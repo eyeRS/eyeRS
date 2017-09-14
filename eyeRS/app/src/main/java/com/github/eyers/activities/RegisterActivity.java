@@ -54,6 +54,9 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
     //db variables
     public SQLiteDatabase db;
+    /**
+     * CHECK: not used.
+     */
     private EyeRSDatabaseHelper eyeRSDatabaseHelper;
 
     //Fields
@@ -220,6 +223,11 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         }
     }
 
+    /**
+     *
+     * @param emailAddress
+     * @return
+     */
     public boolean validateEmailAddress(String emailAddress) {
         return regexPattern.matcher(emailAddress).matches();
     }

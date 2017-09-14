@@ -109,6 +109,7 @@ public class SetPINActivity extends AppCompatActivity implements View.OnClickLis
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btnClearPIN:
+                this.txtUsername.setText("");
                 this.txtPIN1.setText("");
                 this.txtPIN2.setText("");
                 this.txtResponse.setText("");
