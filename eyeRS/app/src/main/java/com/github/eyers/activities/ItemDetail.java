@@ -8,8 +8,9 @@ import com.github.eyers.R;
 
 /**
  * Created by Nathan Shava on 29-Aug-17.
+ *
+ * @author Nathan
  */
-
 public class ItemDetail extends Activity {
 
     public static final String EXTRA_ITEM_ID = "id";

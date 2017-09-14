@@ -59,18 +59,26 @@ public class NewCategoryActivity extends AppCompatActivity implements View.OnCli
         }
     }
 
-    //Open the database connection
+    /**
+     * Open the database connection.
+     *
+     * @return
+     */
     public NewCategoryActivity open() {
         db = eyeRSDatabaseHelper.getWritableDatabase();
         return this;
     }
 
-    //Close the connection
+    /**
+     * Close the connection.
+     */
     public void close() {
         eyeRSDatabaseHelper.close();
     }
 
-    //Method to add a new Category
+    /**
+     * Method to add a new Category.
+     */
     public void addCategoryInfo() {
 
         //String to query the db for all existing category names

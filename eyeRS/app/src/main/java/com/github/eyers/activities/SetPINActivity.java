@@ -42,7 +42,9 @@ public class SetPINActivity extends AppCompatActivity implements View.OnClickLis
     private SQLiteDatabase db;
     private EyeRSDatabaseHelper eyeRSDatabaseHelper;
 
-    //SQL Update-statement for PIN & Security Response
+    /**
+     * SQL Update-statement for PIN & Security Response.
+     */
     public static final String UPDATE_CREDENTIALS =
             "UPDATE TABLE " + NewRegInfo.UserRegistrationInfo.TABLE_NAME
                     + " SET "
@@ -83,7 +85,11 @@ public class SetPINActivity extends AppCompatActivity implements View.OnClickLis
         findViewById(R.id.btnClearPIN).setOnClickListener(this);
     }
 
-    //Open the database connection
+    /**
+     * Open the database connection.
+     *
+     * @return
+     */
     public SetPINActivity open() {
         db = eyeRSDatabaseHelper.getWritableDatabase();
         return this;

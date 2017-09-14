@@ -13,7 +13,7 @@ import com.github.eyers.R;
 
 /**
  * This class will contain a list of settings in which the user can
- * use to navigate to various preferred app settings
+ * use to navigate to various preferred app settings.
  */
 public class AppSettingsActivity extends AppCompatActivity implements OnItemClickListener {
 

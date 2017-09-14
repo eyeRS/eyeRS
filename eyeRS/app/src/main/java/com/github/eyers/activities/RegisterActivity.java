@@ -19,6 +19,8 @@ import android.widget.Toast;
 import com.github.eyers.EyeRSDatabaseHelper;
 import com.github.eyers.R;
 
+import java.util.regex.Pattern;
+
 /**
  * @see android.view.View.OnClickListener
  * @see android.support.v7.app.AppCompatActivity
@@ -59,8 +61,14 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     private EditText txtEmail;
     private EditText txtPIN1;
     private EditText txtPIN2;
-    private EditText txtResponse; //retrieves the user's security response
-    private Spinner spinner;    //contains the list of security questions
+    /**
+     * Retrieves the user's security response.
+     */
+    private EditText txtResponse;
+    /**
+     * Contains the list of security questions.
+     */
+    private Spinner spinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,7 +86,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
         this.spinner = (Spinner) findViewById(R.id.spinner);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_spinner_item, QUESTIONS); //Populates the spinner with the array contents
+                android.R.layout.simple_spinner_item, QUESTIONS); // Populates the spinner with the array contents
 
         this.spinner.setAdapter(adapter);
         this.spinner.setOnItemSelectedListener(this);
@@ -87,18 +95,18 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
     }
 
-    //Open the database connection
-    public RegisterActivity open() {
+    private Pattern regexPattern = regexPattern = Pattern.compile("^[(a-zA-Z-0-9-\\_\\+\\.)]+@[(a-z-A-z)]+\\.[(a-zA-z)]{2,3}$");
+
+    /**
+     * Open the database connection.
+     */
+    public void open() {
         db = eyeRSDatabaseHelper.getWritableDatabase();
-        return this;
     }
 
-    //Close the connection
-    public void close() {
-        eyeRSDatabaseHelper.close();
-    }
-
-    //Method to add user's Registration details
+    /**
+     * Method to add user's Registration details.
+     */
     public void addRegInfo() {
 
         open(); //open the db connection
@@ -135,6 +143,35 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     }
 
     /**
+     * Close the connection.
+     */
+    public void close() {
+        eyeRSDatabaseHelper.close();
+    }
+
+    /**
+     * @param parent
+     * @param view
+     * @param position
+     * @param id       Method handles what happens when an item is selected from the spinner
+     */
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        // Question selected from Spinner:
+        securityQuestion = parent.getItemAtPosition(position).toString();
+    }
+
+    /**
+     * Method handles what happens when nothing is selected from the spinner.
+     *
+     * @param parent
+     */
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
+    }
+
+    /**
      * Called when a view has been clicked.
      *
      * @param view The view that was clicked.
@@ -151,6 +188,11 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                 username = txtUsername.getText().toString();
                 email = txtEmail.getText().toString();
                 securityResponse = txtResponse.getText().toString();
+
+                if (!validateEmailAddress(email)) {
+                    Toast.makeText(this, "Please enter a valid email address.", Toast.LENGTH_LONG).show();
+                    return;
+                }
 
                 if (pinA.equals(pinB)) { //if the PINs match then get a copy for the db
                     matchedPIN = txtPIN2.getText().toString();
@@ -175,32 +217,8 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         }
     }
 
-    /**
-     *
-     * @param parent
-     * @param view
-     * @param position
-     * @param id
-     * Method handles what happens when an item is selected from the spinner
-     */
-    @Override
-    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
-        //Question selected from Spinner
-        securityQuestion = parent.getItemAtPosition(position).toString();
-
-
-    }
-
-    /**
-     *
-     * @param parent
-     * Method handles what happens when nothing is selected from the spinner
-     *
-     */
-    @Override
-    public void onNothingSelected(AdapterView<?> parent) {
-
+    public boolean validateEmailAddress(String emailAddress) {
+        return regexPattern.matcher(emailAddress).matches();
     }
 
     //Save the state of the spinner if it's about to be destroyed
