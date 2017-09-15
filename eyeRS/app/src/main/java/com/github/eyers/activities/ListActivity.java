@@ -1,7 +1,9 @@
 package com.github.eyers.activities;
 
 import android.app.FragmentTransaction;
+import android.app.LoaderManager;
 import android.content.Intent;
+import android.content.Loader;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
@@ -25,7 +27,7 @@ import java.util.ArrayList;
  *
  */
 public class ListActivity extends AppCompatActivity
-        implements ItemListFragment.ItemListListener {
+        implements ItemListFragment.ItemListListener, LoaderManager.LoaderCallbacks<Cursor> {
 
     //Declarations
     private LabelAdapter adapter;
@@ -161,6 +163,23 @@ public class ListActivity extends AppCompatActivity
             intent.putExtra(ItemDetail.EXTRA_ITEM_ID, (int) id);
             startActivity(intent);
         }
+    }
+
+    /** A callback method invoked by the loader when initLoader() is called */
+    @Override
+    public Loader<Cursor> onCreateLoader(int id, Bundle args) {
+        return null;
+    }
+
+    /** A callback method, invoked after the requested content provider returns all the data */
+    @Override
+    public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
+
+    }
+
+    @Override
+    public void onLoaderReset(Loader<Cursor> loader) {
+
     }
 }
 
