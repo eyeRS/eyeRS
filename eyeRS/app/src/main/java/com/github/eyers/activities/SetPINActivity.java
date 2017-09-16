@@ -1,6 +1,11 @@
 package com.github.eyers.activities;
 
+import android.app.LoaderManager;
+import android.content.Context;
 import android.content.Intent;
+import android.content.Loader;
+import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -19,18 +24,15 @@ import com.github.eyers.EyeRSDatabaseHelper;
 import com.github.eyers.R;
 
 public class SetPINActivity extends AppCompatActivity implements View.OnClickListener,
-    OnItemSelectedListener {
+    OnItemSelectedListener, LoaderManager.LoaderCallbacks<Cursor> {
 
     private static final String[] QUESTIONS = {
 
-            "What is the name of your junior/primary school?",
+            "What is the name of your junior school?",
             "What is the name of your first pet?",
             "In what year was your father born?",
-            "In what city does your nearest sibling stay?",
-            "What is the first name of the teacher who gave you your first failing grade?",
-            "What was the house number or street name you lived in as a child?",
-            "What were the last 4 digits of your childhood mobile number?",
-            "In what city or town was your first full time job?",
+            "What city does your nearest sibling stay?",
+            "What city or town was your first full time job?",
             "What are the last 5 digits of your ID number?",
             "What time of the day were you born (hh:mm)?"
     };
@@ -39,7 +41,7 @@ public class SetPINActivity extends AppCompatActivity implements View.OnClickLis
     private static String matchedPIN; // retrieves the PIN as a String if they match
     private static String securityResponse; //retrieves the security response as a String value
     private static String username; //retrieves the username as a String value
-    private SQLiteDatabase db;
+    public SQLiteDatabase db;
     private EyeRSDatabaseHelper eyeRSDatabaseHelper;
 
     /**
@@ -74,7 +76,7 @@ public class SetPINActivity extends AppCompatActivity implements View.OnClickLis
         this.txtResponse = (EditText) findViewById(R.id.txtSecurityResponse);
         this.txtUsername = (EditText) findViewById(R.id.verifyTxtUsername);
 
-        this.spinner = (Spinner) findViewById(R.id.spinner);
+        this.spinner = (Spinner) findViewById(R.id.setPin_spinner);
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_spinner_item, QUESTIONS); //Populates the spinner with the array contents
 
@@ -83,6 +85,14 @@ public class SetPINActivity extends AppCompatActivity implements View.OnClickLis
 
         findViewById(R.id.btnResetPIN).setOnClickListener(this);
         findViewById(R.id.btnClearPIN).setOnClickListener(this);
+
+        if (savedInstanceState != null) {
+            /**
+             * Retrieve the saved state of the spinner before the app was destroyed
+             */
+            spinner.setSelection(savedInstanceState.getInt("spinner"));
+        }
+
     }
 
     /**
@@ -194,6 +204,63 @@ public class SetPINActivity extends AppCompatActivity implements View.OnClickLis
      */
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
+
+    }
+
+    /**
+     * Method allows us to save the activity's selections just before the app gets paused
+     */
+    public void onPause() {
+
+        super.onPause();
+
+        //Save the spinner's selection
+        spinner = (Spinner)findViewById(R.id.setPin_spinner);
+        SharedPreferences category_prefs = getSharedPreferences("category_prefs", Context.MODE_PRIVATE);
+        category_prefs.edit().putInt("spinner_indx", spinner.getSelectedItemPosition()).apply();
+
+    }
+
+    /**
+     * Method allows us to retrieve previous selection before the activity was paused
+     */
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        //Retrieve the saved spinner selection
+        spinner = (Spinner)findViewById(R.id.setPin_spinner);
+        SharedPreferences category_prefs = getSharedPreferences("category_prefs", Context.MODE_PRIVATE);
+        int spinner_index = category_prefs.getInt("spinner_indx", 0);
+        spinner.setSelection(spinner_index);
+
+    }
+
+    /**
+     * @param savedInstanceState
+     * Save the state of the spinner if it's about to be destroyed
+     */
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+        //save the selection of the spinner
+        savedInstanceState.putInt("spinner", spinner.getSelectedItemPosition());
+
+    }
+
+    /** A callback method invoked by the loader when initLoader() is called */
+    @Override
+    public Loader<Cursor> onCreateLoader(int id, Bundle args) {
+        return null;
+    }
+
+    /** A callback method, invoked after the requested content provider returns all the data */
+    @Override
+    public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
+
+    }
+
+    @Override
+    public void onLoaderReset(Loader<Cursor> loader) {
 
     }
 }

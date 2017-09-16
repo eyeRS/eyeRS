@@ -20,6 +20,8 @@ import java.util.List;
 
 public class EyeRSDatabaseHelper extends SQLiteOpenHelper {
 
+    private SQLiteDatabase db;
+
     //CREATE ITEM TABLE QUERY
     private static final String CREATE_ITEM_TABLE_QUERY =
             "CREATE TABLE IF NOT EXISTS " + NewItemInfo.ItemInfo.TABLE_NAME
@@ -130,7 +132,6 @@ public class EyeRSDatabaseHelper extends SQLiteOpenHelper {
         }
         if (newVersion > 0){ //any updates that occur within the app are handled here
 
-
         }
 
     } //end void updateMyDatabase()
@@ -138,16 +139,25 @@ public class EyeRSDatabaseHelper extends SQLiteOpenHelper {
     /**
      * SQL-select query to retrieve the category names.
      */
-    public static final String GET_ALL_CATEGORIES =
+    public final String GET_ALL_CATEGORIES =
             "SELECT " + NewCategoryInfo.CategoryInfo.CATEGORY_NAME + " FROM "
                     + NewCategoryInfo.CategoryInfo.TABLE_NAME + ";";
 
-    //Return all categories in the db
-    public List<String> getAllCategories() {
+    /** Returns all the customers in the table */
+    public Cursor getAllCategories(){
+        return db.rawQuery(GET_ALL_CATEGORIES, null);
+    }
 
-        List<String> categories = new ArrayList<String>();
+    /**
+     * @return
+     * Method returns the result set of the SQL query and adds elements into a list structure for the
+     * spinner
+     */
+    public List<String> getCategoriesList() {
 
-        SQLiteDatabase db = getReadableDatabase();
+        List<String> addCategories = new ArrayList<String>();
+
+        db = getReadableDatabase();
 
         //Create a cursor to get the data from the db
         Cursor cursor = db.rawQuery(GET_ALL_CATEGORIES, null);
@@ -157,7 +167,7 @@ public class EyeRSDatabaseHelper extends SQLiteOpenHelper {
 
             do {
 
-                categories.add(cursor.getString(0));
+                addCategories.add(cursor.getString(0));
 
             } while (cursor.moveToNext());
         }
@@ -166,7 +176,7 @@ public class EyeRSDatabaseHelper extends SQLiteOpenHelper {
         cursor.close();
         db.close();
 
-        return categories; //return the categories
+        return addCategories; //return the categories
     }
 
 } //end class EyeRSDatabaseHelper

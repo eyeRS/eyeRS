@@ -1,7 +1,10 @@
 package com.github.eyers.activities;
 
+import android.app.LoaderManager;
 import android.content.Intent;
+import android.content.Loader;
 import android.content.res.Configuration;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -19,7 +22,8 @@ import com.github.eyers.R;
 import com.miguelcatalan.materialsearchview.MaterialSearchView;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
+        implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener,
+        LoaderManager.LoaderCallbacks<Cursor> {
 
     /**
      * Set current position to 0 by default.
@@ -306,5 +310,22 @@ public class MainActivity extends AppCompatActivity
 //        switch (v.getId()) {
 //        }
         Toast.makeText(this, "TODO Button: " + v.getId(), Toast.LENGTH_LONG).show();
+    }
+
+    /** A callback method invoked by the loader when initLoader() is called */
+    @Override
+    public Loader<Cursor> onCreateLoader(int id, Bundle args) {
+        return null;
+    }
+
+    /** A callback method, invoked after the requested content provider returns all the data */
+    @Override
+    public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
+
+    }
+
+    @Override
+    public void onLoaderReset(Loader<Cursor> loader) {
+
     }
 }

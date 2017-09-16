@@ -132,6 +132,12 @@
             android:windowSoftInputMode="adjustPan">
 
         </activity>
+        <provider
+            android:name="DbOperations"
+            android:authorities="com.github.eyers.DbOperations"
+            android:exported="false">
+
+        </provider>
     </application>
 
 </manifest>

@@ -20,9 +20,11 @@
         android:fillViewport="true"
         android:scrollbars="horizontal|vertical"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -35,7 +37,7 @@
             android:orientation="vertical"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent" >
+            app:layout_constraintRight_toRightOf="parent">
 
             <TextView
                 android:id="@+id/txtWelcome"
@@ -181,7 +183,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/textInputLayout4" />
 
             <Spinner
-                android:id="@+id/spinner"
+                android:id="@+id/register_spinner"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="5dp"
@@ -206,15 +208,14 @@
                 android:layout_marginTop="40dp"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/spinner">
+                app:layout_constraintTop_toBottomOf="@+id/register_spinner">
 
                 <EditText
                     android:id="@+id/edtTxtSecurityResponses"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/txtSecurityResponse"
-                    android:textAlignment="center"
-                    app:layout_constraintTop_toBottomOf="@+id/spinner" />
+                    android:textAlignment="center" />
 
             </android.support.design.widget.TextInputLayout>
 
