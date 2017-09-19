@@ -33,9 +33,7 @@ public class MainActivity extends AppCompatActivity
      * Set current position to 0 by default.
      */
     private int currentPosition = 0;
-    /**
-     * Array of Activity titles.
-     */
+    //Array of Activity titles
     private String[] titles;
 
     /**
@@ -178,33 +176,21 @@ public class MainActivity extends AppCompatActivity
     }
     */
 
-    /**
-     * Sync the state of the ActionBarDrawerToggle with the state of the drawer.
-     *
-     * @param savedInstanceState
-     */
+    //Sync the state of the ActionBarDrawerToggle with the state of the drawer
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
         toggle.syncState();
     }
 
-    /**
-     * Pass details of any configuration changes to the ActionBarDrawerToggle.
-     * @param newConfig
-     */
+    //Pass details of any configuration changes to the ActionBarDrawerToggle
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
         toggle.onConfigurationChanged(newConfig);
     }
 
-    /**
-     * Called when we call invalidateOptionsMenu().
-     *
-     * @param menu
-     * @return
-     */
+    //Called when we call invalidateOptionsMenu()
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
         //If the drawer is open, hide related items to the content view
@@ -224,12 +210,7 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-    /**
-     * Add items in the menu resource file to the action bar.
-     *
-     * @param menu
-     * @return
-     */
+    //Add items in the menu resource file to the action bar
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -251,9 +232,7 @@ public class MainActivity extends AppCompatActivity
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
 
-        /**
-         * If the ActionBarDrawerToggle is clicked, let it handle what happens.
-         */
+        //If the ActionBarDrawerToggle is clicked, let it handle what happens
         if (item.getItemId() == R.id.action_settings) {
             super.startActivity(new Intent(this, AppSettingsActivity.class));
             return true;
@@ -262,9 +241,7 @@ public class MainActivity extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
-    /**
-     * Method called when the nav_send button is clicked.
-     */
+    //Method called when the nav_send button is clicked
     public void sendIntent() {
         Intent intent = new Intent(Intent.ACTION_SEND);
         intent.setType("text/plain");
@@ -320,9 +297,6 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
-    /**
-     * Closes the application.
-     */
     private void exit() {
         Intent intent = new Intent(Intent.ACTION_MAIN);
         intent.addCategory(Intent.CATEGORY_HOME);
@@ -337,8 +311,8 @@ public class MainActivity extends AppCompatActivity
      */
     @Override
     public void onClick(View v) {
-        switch (v.getId()) {
-        }
+//        switch (v.getId()) {
+//        }
         Toast.makeText(this, "TODO Button: " + v.getId(), Toast.LENGTH_LONG).show();
     }
 
