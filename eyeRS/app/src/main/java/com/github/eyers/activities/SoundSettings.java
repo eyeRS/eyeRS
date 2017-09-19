@@ -51,12 +51,12 @@ public class SoundSettings extends AppCompatActivity {
                 /** If the user wishes to get touch sounds */
                 if (isChecked){
 
-                    Toast.makeText(SoundSettings.this, "Welcome message enabled!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SoundSettings.this, "Touch sounds enabled!", Toast.LENGTH_SHORT).show();
                 }
                 /** If the user does not wish to get touch sounds */
                 if (!isChecked){
 
-                    Toast.makeText(SoundSettings.this, "Welcome message disabled!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SoundSettings.this, "Touch sounds disabled!", Toast.LENGTH_SHORT).show();
                 }
             }
         });

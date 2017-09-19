@@ -53,7 +53,7 @@ public class CategorySortingActivity extends AppCompatActivity {
                 if (isChecked){
 
                     Toast.makeText(CategorySortingActivity.this, "All categories have been sorted according" +
-                                    "their order of entry", Toast.LENGTH_SHORT).show();
+                                    " to their order of entry", Toast.LENGTH_SHORT).show();
                 }
                 /** If the user does not wish to sort alphabetically */
                 if (!isChecked){
