@@ -27,6 +27,7 @@ import com.github.eyers.R;
 import java.util.regex.Pattern;
 
 /**
+ * This class will handle the user registration activity process on first time use of the app
  * @see android.view.View.OnClickListener
  * @see android.support.v7.app.AppCompatActivity
  */

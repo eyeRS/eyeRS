@@ -21,6 +21,10 @@ import android.widget.Toast;
 import com.github.eyers.R;
 import com.miguelcatalan.materialsearchview.MaterialSearchView;
 
+/**
+ * This class includes a navigation drawer and will display the main home activity of the app
+ * once a user has successfully logged in
+ */
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener,
         LoaderManager.LoaderCallbacks<Cursor> {

@@ -113,13 +113,15 @@
             android:windowSoftInputMode="adjustPan">
 
         </activity>
-        <activity android:name=".activities.CategoryManagementSettings"
+        <activity
+            android:name=".activities.CategoryManagementSettings"
             android:label="@string/title_activity_category_mgmt_settings"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="adjustPan">
 
         </activity>
-        <activity android:name=".activities.ProfileSettings"
+        <activity
+            android:name=".activities.ProfileSettings"
             android:label="@string/title_activity_profile_settings"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="adjustPan">
@@ -132,12 +134,28 @@
             android:windowSoftInputMode="adjustPan">
 
         </activity>
+
         <provider
-            android:name="DbOperations"
+            android:name=".DbOperations"
             android:authorities="com.github.eyers.DbOperations"
             android:exported="false">
 
         </provider>
+
+        <activity
+            android:name=".activities.CategorySortingActivity"
+            android:label="title_activity_sorting"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustPan">
+
+        </activity>
+        <activity
+            android:name=".activities.ItemSortingActivity"
+            android:label="title_activity_sorting"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustPan">
+
+        </activity>
     </application>
 
 </manifest>

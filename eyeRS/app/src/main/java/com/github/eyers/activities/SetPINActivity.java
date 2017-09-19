@@ -23,6 +23,9 @@ import android.widget.Toast;
 import com.github.eyers.EyeRSDatabaseHelper;
 import com.github.eyers.R;
 
+/**
+ * This class will handle the PIN reset activity
+ */
 public class SetPINActivity extends AppCompatActivity implements View.OnClickListener,
     OnItemSelectedListener, LoaderManager.LoaderCallbacks<Cursor> {
 

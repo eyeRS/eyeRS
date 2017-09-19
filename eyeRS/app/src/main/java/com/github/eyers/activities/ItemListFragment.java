@@ -15,8 +15,6 @@ import java.util.ArrayList;
 
 /**
  * Created by Nathan Shava on 29-Aug-17.
- *
- * @author Nathan
  */
 public class ItemListFragment extends ListFragment {
 

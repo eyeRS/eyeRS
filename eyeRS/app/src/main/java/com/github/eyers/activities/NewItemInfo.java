@@ -1,7 +1,5 @@
 package com.github.eyers.activities;
 
-import java.sql.Blob;
-
 /**
  * Created by Nathan Shava on 04-Sep-17.
  * The class holds data about the database table and column names belonging to an Item in the database

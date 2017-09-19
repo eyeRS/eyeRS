@@ -36,27 +36,31 @@ public class EyeRSDatabaseHelper extends SQLiteOpenHelper {
                     + NewCategoryInfo.CategoryInfo.CATEGORY_NAME + " TEXT, "
                     + NewCategoryInfo.CategoryInfo.CATEGORY_DESC + " TEXT);";
 
-    //CREATE DEFAULT CATEGORIES
-    private static final String INSERT_CATEGORY_BOOKS = //BOOKS
+    //INSERT THE DEFAULT CATEGORY BOOKS
+    private static final String INSERT_CATEGORY_BOOKS =
             "INSERT INTO " + NewCategoryInfo.CategoryInfo.TABLE_NAME +
                     "(category_name, category_desc) VALUES "
                     + "('BOOKS', 'Educational/Sci-Fi/Comics')";
 
-    private static final String INSERT_CATEGORY_CLOTHES = //CLOTHES
+    //INSERT THE DEFAULT CATEGORY CLOTHES
+    private static final String INSERT_CATEGORY_CLOTHES =
             "INSERT INTO " + NewCategoryInfo.CategoryInfo.TABLE_NAME +
                     "(category_name, category_desc) VALUES "
                     + "('CLOTHES', 'Formal/Casual')";
 
-    private static final String INSERT_CATEGORY_ACCESSORIES = //ACCESSORIES
+    //INSERT THE DEFAULT CATEGORY ACCESSORIES
+    private static final String INSERT_CATEGORY_ACCESSORIES =
             "INSERT INTO " + NewCategoryInfo.CategoryInfo.TABLE_NAME +
                     "(category_name, category_desc) VALUES "
                     + "('ACCESSORIES', 'Collectibles')";
 
-    private static final String INSERT_CATEGORY_GAMES = //GAMES
+    //INSERT THE DEFAULT CATEGORY GAMES
+    private static final String INSERT_CATEGORY_GAMES =
             "INSERT INTO " + NewCategoryInfo.CategoryInfo.TABLE_NAME +
                     "(category_name, category_desc) VALUES "
                     + "('GAMES', 'Sport/Shooting/VR')";
 
+    //INSERT THE DEFAULT CATEGORY OTHER
     private static final String INSERT_CATEGORY_OTHER = //OTHER
             "INSERT INTO " + NewCategoryInfo.CategoryInfo.TABLE_NAME +
                     "(category_name, category_desc) VALUES "
@@ -65,12 +69,12 @@ public class EyeRSDatabaseHelper extends SQLiteOpenHelper {
     private static final String DB_NAME = "eyeRS.db"; //the name of the database
     private static final int DB_VERSION = 1; //the version of the database
 
-    //Constructor
+    /**
+     * We're calling the constructor of the SQLiteOpenHelper superclass,
+     * and passing it the database name and version
+     * @param context
+     */
     public EyeRSDatabaseHelper(Context context) {
-        /*
-            We're calling the constructor of the SQLiteOpenHelper superclass,
-            and passing it the database name and version
-         */
 
         //the null parameter is an advanced feature relating to CursorFactory
         super(context, DB_NAME, null, DB_VERSION);
@@ -79,13 +83,26 @@ public class EyeRSDatabaseHelper extends SQLiteOpenHelper {
 
     } //end constructor
 
-    //Creating the db
+    /**
+     * @param db
+     * Method is used to create the db
+     * It accepts a SQLite db object and sets the old version to 0 when the app is run
+     * for the first time.
+     */
     @Override
     public void onCreate(SQLiteDatabase db) {
         updateMyDatabase(db, 0, DB_VERSION);
     }
 
-    //Upgrading the db
+    /**
+     *
+     * @param db
+     * @param oldVersion
+     * @param newVersion
+     * Method is used to upgrade the db
+     * It accepts a SQLite db object the old and new versions of the db to validate whether an
+     * upgrade is due
+     */
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 

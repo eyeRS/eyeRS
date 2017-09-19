@@ -12,6 +12,9 @@ import com.github.eyers.EyeRS;
 import com.github.eyers.R;
 import com.github.eyers.test.CamTestActivity;
 
+/**
+ * This class will handle the Login event of the app
+ */
 public final class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
     //Fields

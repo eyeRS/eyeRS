@@ -11,7 +11,7 @@ import com.github.eyers.R;
 import java.util.Random;
 
 /**
- *
+ * This class will how items will be viewed in an image-based slideshow setup
  */
 public class SlideshowActivity extends AppCompatActivity {
 

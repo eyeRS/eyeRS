@@ -47,18 +47,18 @@
     <string name="title_activity_help">Help &amp; Tips</string>
     <string name="title_activity_register">My Registration</string>
     <string name="title_activity_set_pin">Reset my PIN</string>
-    <string name="title_activity_profile">My Profile</string>
     <string name="title_activity_about">About EyeRS</string>
     <string name="title_activity_slideshow">My Slideshow</string>
     <string name="title_activity_view_items">My Items</string>
     <string name="title_activity_item_detail">Item Details</string>
     <string name="title_activity_new_category">My new Category</string>
     <string name="title_activity_app_settings">My Settings</string>
-    <string name="title_activity_display_settings">Display settings</string>
-    <string name="title_activity_sound_settings">Sound settings</string>
-    <string name="title_activity_category_mgmt_settings">Category Management settings</string>
-    <string name="title_activity_profile_settings">Profile settings</string>
-    <string name="title_activity_item_mgmt_settings">Item management settings</string>
+    <string name="title_activity_display_settings">Display</string>
+    <string name="title_activity_sound_settings">Sound</string>
+    <string name="title_activity_category_mgmt_settings">Category Management</string>
+    <string name="title_activity_sorting">Select Sorting Preference</string>
+    <string name="title_activity_profile_settings">My Profile</string>
+    <string name="title_activity_item_mgmt_settings">Item Management</string>
 
     <!--Strings related to New Item activities -->
 
@@ -76,6 +76,7 @@
     <string name="lblSymbol">Symbol</string>
 
     <!-- This section defines strings relating to the AppSettings Activities -->
+
     <string-array name="settings_titles">
         <item>Security</item>
         <item>Display</item>
@@ -86,6 +87,10 @@
         <item>Help &amp; tips</item>
         <item>About</item>
     </string-array>
+
+    <!-- Sound Settings -->
+    <string name="WelcomeMsg">Welcome Message</string>
+    <string name="TouchMsg">Touch Sound</string>
 
     <!-- Display Settings -->
 
@@ -103,10 +108,27 @@
     <string name="saveBtn">Save changes</string>
 
     <!-- Category Settings -->
-    <string name="pref_header_category">Category Management</string>
+    <string-array name="category_mgmt_titles">
+        <item>Add Category</item>
+        <item>Edit Category</item>
+        <item>Delete Category</item>
+        <item>Change Sorting</item>
+
+    </string-array>
+
+    <!-- Category Sorting -->
+    <string name="asc_descMsg">Alphabetically</string>
+    <string name="recently_add_Msg">Recently Added</string>
 
     <!-- Item Management Settings -->
-    <string name="pref_header_item">Item Management</string>
+    <string-array name="item_titles">
+        <item>Add Item</item>
+        <item>Edit Item</item>
+        <item>Delete Item</item>
+        <item>Change Sorting</item>
+
+    </string-array>
+
 
     <!-- Help and Tips Settings -->
     <string name="pref_header_help">Help and Tips</string>

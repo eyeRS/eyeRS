@@ -6,6 +6,9 @@ import android.support.v7.widget.Toolbar;
 
 import com.github.eyers.R;
 
+/**
+ * This class will handle display settings events based on the user's preference
+ */
 public class DisplaySettingsActivity extends AppCompatActivity {
 
     @Override
@@ -14,5 +17,7 @@ public class DisplaySettingsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_display_settings);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+
     }
 }
