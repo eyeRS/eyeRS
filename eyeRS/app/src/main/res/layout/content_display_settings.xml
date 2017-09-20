@@ -24,7 +24,7 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <LinearLayout
+        <GridLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
@@ -38,9 +38,106 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent">
 
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Change Colour"
+                android:textSize="30dp"
+                android:textStyle="bold"
+                android:layout_marginBottom="450dp"
+                tools:layout_editor_absoluteX="16dp"
+                tools:layout_editor_absoluteY="230dp" />
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20dp"
+                android:layout_marginTop="-448dp"
+                android:text="Select Colour: " />
+            <LinearLayout>
+
+                <ImageButton
+                    android:id="@+id/imageButton7"
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@color/colorAccent"
+                    app:srcCompat="@drawable/color_cursor_white" />
+                <ImageButton
+                    android:id="@+id/imageButton8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    app:srcCompat="@drawable/color_cursor_white" />
+
+                <ImageButton
+                    android:id="@+id/imageButton9"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    app:srcCompat="@drawable/color_cursor_white" />
+                <ImageButton
+                    android:id="@+id/imageButton10"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    app:srcCompat="@drawable/color_cursor_white" />
 
             </LinearLayout>
 
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Change Colour"
+                android:textSize="30dp"
+                android:textStyle="bold"
+                android:layout_marginTop="100dp"
+                android:layout_marginBottom="350dp"
+                tools:layout_editor_absoluteX="16dp"
+                tools:layout_editor_absoluteY="230dp" />
+            <TextView
+                android:id="@+id/textView5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20dp"
+                android:layout_marginTop="-348dp"
+                android:text="Select Colour: " />
+
+
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Change Colour"
+                android:textSize="30dp"
+                android:textStyle="bold"
+                android:layout_marginTop="100dp"
+                android:layout_marginBottom="450dp"
+                tools:layout_editor_absoluteX="16dp"
+                tools:layout_editor_absoluteY="230dp" />
+
+            <TextView
+                android:id="@+id/textView7"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20dp"
+                android:layout_marginTop="-448dp"
+                android:text="Select Colour: " />
+
+        </GridLayout>
+
         </ScrollView>
 
-    </android.support.constraint.ConstraintLayout>
+
+
+</android.support.constraint.ConstraintLayout>
