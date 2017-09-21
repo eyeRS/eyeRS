@@ -20,9 +20,11 @@
         android:fillViewport="true"
         android:scrollbars="horizontal|vertical"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
 
         <GridLayout
             android:layout_width="match_parent"
@@ -39,105 +41,136 @@
             app:layout_constraintRight_toRightOf="parent">
 
             <TextView
-                android:id="@+id/textView2"
+                android:id="@+id/txtViewChangeTheme"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Change Colour"
+                android:layout_marginBottom="400dp"
+                android:text="@string/selectChangeTheme"
                 android:textSize="30dp"
                 android:textStyle="bold"
-                android:layout_marginBottom="450dp"
                 tools:layout_editor_absoluteX="16dp"
                 tools:layout_editor_absoluteY="230dp" />
+
             <TextView
-                android:id="@+id/textView3"
+                android:id="@+id/txtViewChangetheme"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="20dp"
-                android:layout_marginTop="-448dp"
-                android:text="Select Colour: " />
-            <LinearLayout>
+                android:layout_marginTop="-399dp"
+                android:text="@string/selectChangetheme"
+                android:textSize="20dp" />
+
+            <LinearLayout android:layout_width="309dp"
+                android:layout_height="57dp">
 
                 <ImageButton
-                    android:id="@+id/imageButton7"
-                    android:layout_width="15dp"
-                    android:layout_height="15dp"
+                    android:id="@+id/imgbtBlue"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:layout_marginBottom="8dp"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="8dp"
-                    android:background="@color/colorAccent"
+                    android:tint="@color/eyeRSBlue"
+                    android:backgroundTint="@color/eyeRSBlue"
                     app:srcCompat="@drawable/color_cursor_white" />
+
+
                 <ImageButton
-                    android:id="@+id/imageButton8"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:id="@+id/imgbtRed"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginBottom="8dp"
                     android:layout_marginLeft="30dp"
                     android:layout_marginTop="8dp"
-                    android:layout_marginBottom="8dp"
+                    android:backgroundTint="@color/eyeRSRed"
+                    android:tint="@color/eyeRSRed"
                     app:srcCompat="@drawable/color_cursor_white" />
 
                 <ImageButton
-                    android:id="@+id/imageButton9"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:id="@+id/imgbtYelow"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginBottom="8dp"
                     android:layout_marginLeft="30dp"
                     android:layout_marginTop="8dp"
-                    android:layout_marginBottom="8dp"
+                    android:backgroundTint="@color/eyeRSYelow"
+                    android:tint="@color/eyeRSYelow"
                     app:srcCompat="@drawable/color_cursor_white" />
+
                 <ImageButton
-                    android:id="@+id/imageButton10"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:id="@+id/imgbtGreen"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginBottom="8dp"
                     android:layout_marginLeft="30dp"
                     android:layout_marginTop="8dp"
-                    android:layout_marginBottom="8dp"
+                    android:backgroundTint="@color/eyeRSGreen"
+                    android:tint="@color/eyeRSGreen"
                     app:srcCompat="@drawable/color_cursor_white" />
 
             </LinearLayout>
 
             <TextView
-                android:id="@+id/textView4"
+                android:id="@+id/txtViewChangeFont"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Change Colour"
-                android:textSize="30dp"
-                android:textStyle="bold"
-                android:layout_marginTop="100dp"
                 android:layout_marginBottom="350dp"
-                tools:layout_editor_absoluteX="16dp"
-                tools:layout_editor_absoluteY="230dp" />
-            <TextView
-                android:id="@+id/textView5"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="20dp"
-                android:layout_marginTop="-348dp"
-                android:text="Select Colour: " />
-
-
-            <TextView
-                android:id="@+id/textView6"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Change Colour"
+                android:layout_marginTop="70dp"
+                android:text="@string/selectChangeFont"
                 android:textSize="30dp"
                 android:textStyle="bold"
-                android:layout_marginTop="100dp"
-                android:layout_marginBottom="450dp"
                 tools:layout_editor_absoluteX="16dp"
                 tools:layout_editor_absoluteY="230dp" />
 
             <TextView
-                android:id="@+id/textView7"
+                android:id="@+id/txtViewChagefont"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="20dp"
+                android:layout_marginTop="-348dp"
+                android:text="@string/selectChangefont"
+                android:textSize="20dp" />
+
+
+            <Spinner
+                android:id="@+id/spinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scrollbars="horizontal|vertical"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent" />
+
+            <TextView
+                android:id="@+id/txtViewChangeFontSize"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="450dp"
+                android:layout_marginTop="50dp"
+                android:text="@string/selectChangeFontSize"
+                android:textSize="30dp"
+                android:textStyle="bold"
+                tools:layout_editor_absoluteX="16dp"
+                tools:layout_editor_absoluteY="230dp" />
+
+            <TextView
+                android:id="@+id/txtViewChangefontsize"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="-448dp"
-                android:text="Select Colour: " />
+                android:text="@string/selectChangefontsize"
+                android:textSize="20dp" />
+
+            <Spinner
+                android:id="@+id/spinner2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scrollbars="horizontal|vertical"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"/>
 
         </GridLayout>
 
-        </ScrollView>
-
+    </ScrollView>
 
 
 </android.support.constraint.ConstraintLayout>
