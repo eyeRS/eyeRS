@@ -5,8 +5,9 @@ package com.github.eyers;
  * This class creates the SQLite database which is utilized across the app's activities to store & read data
  */
 
+import android.content.ContentResolver;
+import android.content.ContentValues;
 import android.content.Context;
-import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -15,56 +16,24 @@ import android.util.Log;
 import com.github.eyers.activities.NewCategoryInfo;
 import com.github.eyers.activities.NewItemInfo;
 
-import java.util.ArrayList;
-import java.util.List;
 
 public class EyeRSDatabaseHelper extends SQLiteOpenHelper {
 
-    private SQLiteDatabase db;
+    private ContentResolver eyeRSContentResolver;
 
     //CREATE ITEM TABLE QUERY
     private static final String CREATE_ITEM_TABLE_QUERY =
             "CREATE TABLE IF NOT EXISTS " + NewItemInfo.ItemInfo.TABLE_NAME
-                    + " (_id INTEGER PRIMARY KEY AUTOINCREMENT, "
+                    + NewItemInfo.ItemInfo.ITEM_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                     + NewItemInfo.ItemInfo.ITEM_NAME + " TEXT, "
                     + NewItemInfo.ItemInfo.ITEM_DESC + " TEXT);";
 
     //CREATE CATEGORY TABLE QUERY
     private static final String CREATE_CATEGORY_TABLE_QUERY =
             "CREATE TABLE IF NOT EXISTS " + NewCategoryInfo.CategoryInfo.TABLE_NAME
-                    + " (_id INTEGER PRIMARY KEY AUTOINCREMENT, "
+                    + NewCategoryInfo.CategoryInfo.CATEGORY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                     + NewCategoryInfo.CategoryInfo.CATEGORY_NAME + " TEXT, "
                     + NewCategoryInfo.CategoryInfo.CATEGORY_DESC + " TEXT);";
-
-    //INSERT THE DEFAULT CATEGORY BOOKS
-    private static final String INSERT_CATEGORY_BOOKS =
-            "INSERT INTO " + NewCategoryInfo.CategoryInfo.TABLE_NAME +
-                    "(category_name, category_desc) VALUES "
-                    + "('BOOKS', 'Educational/Sci-Fi/Comics')";
-
-    //INSERT THE DEFAULT CATEGORY CLOTHES
-    private static final String INSERT_CATEGORY_CLOTHES =
-            "INSERT INTO " + NewCategoryInfo.CategoryInfo.TABLE_NAME +
-                    "(category_name, category_desc) VALUES "
-                    + "('CLOTHES', 'Formal/Casual')";
-
-    //INSERT THE DEFAULT CATEGORY ACCESSORIES
-    private static final String INSERT_CATEGORY_ACCESSORIES =
-            "INSERT INTO " + NewCategoryInfo.CategoryInfo.TABLE_NAME +
-                    "(category_name, category_desc) VALUES "
-                    + "('ACCESSORIES', 'Collectibles')";
-
-    //INSERT THE DEFAULT CATEGORY GAMES
-    private static final String INSERT_CATEGORY_GAMES =
-            "INSERT INTO " + NewCategoryInfo.CategoryInfo.TABLE_NAME +
-                    "(category_name, category_desc) VALUES "
-                    + "('GAMES', 'Sport/Shooting/VR')";
-
-    //INSERT THE DEFAULT CATEGORY OTHER
-    private static final String INSERT_CATEGORY_OTHER = //OTHER
-            "INSERT INTO " + NewCategoryInfo.CategoryInfo.TABLE_NAME +
-                    "(category_name, category_desc) VALUES "
-                    + "('OTHER', 'Random stuff')";
 
     private static final String DB_NAME = "eyeRS.db"; //the name of the database
     private static final int DB_VERSION = 1; //the version of the database
@@ -72,36 +41,58 @@ public class EyeRSDatabaseHelper extends SQLiteOpenHelper {
     /**
      * We're calling the constructor of the SQLiteOpenHelper superclass,
      * and passing it the database name and version
+     *
      * @param context
      */
     public EyeRSDatabaseHelper(Context context) {
 
         //the null parameter is an advanced feature relating to CursorFactory
         super(context, DB_NAME, null, DB_VERSION);
-        //Display message in the logcat window after successful operation execution
-        Log.e("DATABASE OPERATIONS", "...Database created!");
+
+        eyeRSContentResolver = context.getContentResolver();
 
     } //end constructor
 
     /**
-     * @param db
-     * Method is used to create the db
-     * It accepts a SQLite db object and sets the old version to 0 when the app is run
-     * for the first time.
+     * @param db Method is used to create the db
+     *           It accepts a SQLite db object
      */
     @Override
     public void onCreate(SQLiteDatabase db) {
-        updateMyDatabase(db, 0, DB_VERSION);
+
+        try {
+
+            //Create the Item table
+            db.execSQL(CREATE_ITEM_TABLE_QUERY);
+            //Display message in the logcat window after successful operation execution
+            Log.e("DATABASE OPERATIONS", "...Item table created!");
+
+            //Create the Category table
+            db.execSQL(CREATE_CATEGORY_TABLE_QUERY);
+            //Display message in the logcat window after successful operation execution
+            Log.e("DATABASE OPERATIONS", "...Category table created!");
+
+            insertDefaultCategoryBooks();
+            insertDefaultCategoryClothes();
+            insertDefaultCategoryAccessories();
+            insertDefaultCategoryGames();
+            insertDefaultCategoryOther();
+
+            //Display message in the logcat window after successful operation execution
+            Log.e("DATABASE OPERATIONS", "...Default categories created successfully!");
+
+        } catch (SQLException ex) {
+
+            Log.e("DATABASE OPERATIONS", "...Unable to create categories!");
+        }
     }
 
     /**
-     *
      * @param db
      * @param oldVersion
-     * @param newVersion
-     * Method is used to upgrade the db
-     * It accepts a SQLite db object the old and new versions of the db to validate whether an
-     * upgrade is due
+     * @param newVersion Method is used to upgrade the db
+     *                   It accepts a SQLite db object the old and new versions of the db to validate whether an
+     *                   upgrade is due
      */
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
@@ -110,90 +101,109 @@ public class EyeRSDatabaseHelper extends SQLiteOpenHelper {
     }
 
     /**
-     *
      * @param db
      * @param oldVersion
-     * @param newVersion
-     * Method will handle any database updates that occur within the app after the user performs
-     * specific actions
+     * @param newVersion Method will handle any database updates that occur within the app after the user performs
+     *                   specific actions
      */
     public void updateMyDatabase(SQLiteDatabase db, int oldVersion, int newVersion) {
 
-        if (oldVersion < 1) { //if the app is run for the first time
-
-            try {
-
-                //Create the Item table
-                db.execSQL(CREATE_ITEM_TABLE_QUERY);
-                //Display message in the logcat window after successful operation execution
-                Log.e("DATABASE OPERATIONS", "...Item table created!");
-
-                //Create the Category table
-                db.execSQL(CREATE_CATEGORY_TABLE_QUERY);
-                //Display message in the logcat window after successful operation execution
-                Log.e("DATABASE OPERATIONS", "...Category table created!");
-
-                //Insert the default categories
-                db.execSQL(INSERT_CATEGORY_BOOKS); //Books default category
-                db.execSQL(INSERT_CATEGORY_CLOTHES); //Clothes default category
-                db.execSQL(INSERT_CATEGORY_ACCESSORIES); //Accessories default category
-                db.execSQL(INSERT_CATEGORY_GAMES); //Games default category
-                db.execSQL(INSERT_CATEGORY_OTHER); //Other default category
-
-                //Display message in the logcat window after successful operation execution
-                Log.e("DATABASE OPERATIONS", "...Default categories created successfully!");
-
-            } catch (SQLException ex) {
-                Log.e("DATABASE OPERATIONS", "...Unable to create categories!");
-            }
-        }
-        if (newVersion > 0){ //any updates that occur within the app are handled here
-
-        }
 
     } //end void updateMyDatabase()
 
     /**
-     * SQL-select query to retrieve the category names.
+     * Method to insert the BOOKS default category
      */
-    public final String GET_ALL_CATEGORIES =
-            "SELECT " + NewCategoryInfo.CategoryInfo.CATEGORY_NAME + " FROM "
-                    + NewCategoryInfo.CategoryInfo.TABLE_NAME + ";";
+    public void insertDefaultCategoryBooks() {
 
-    /** Returns all the customers in the table */
-    public Cursor getAllCategories(){
-        return db.rawQuery(GET_ALL_CATEGORIES, null);
+        // Defines an object to contain the new values to insert
+        ContentValues bookValues = new ContentValues();
+
+        /**
+         * Sets the values of each column and inserts the word. The arguments to the "put"
+         * method are "column name" and "value"
+         */
+        bookValues.put(NewCategoryInfo.CategoryInfo.CATEGORY_NAME, "BOOKS");
+        bookValues.put(NewCategoryInfo.CategoryInfo.CATEGORY_DESC, "Educational/Sci-Fi/Comics");
+
+        eyeRSContentResolver.insert(DbOperations.CONTENT_URI_CATEGORIES, bookValues);
+
     }
 
     /**
-     * @return
-     * Method returns the result set of the SQL query and adds elements into a list structure for the
-     * spinner
+     * Method to insert the CLOTHES default category
      */
-    public List<String> getCategoriesList() {
+    public void insertDefaultCategoryClothes() {
 
-        List<String> addCategories = new ArrayList<String>();
+        // Defines an object to contain the new values to insert
+        ContentValues clothesValues = new ContentValues();
 
-        db = getReadableDatabase();
+        /**
+         * Sets the values of each column and inserts the word. The arguments to the "put"
+         * method are "column name" and "value"
+         */
+        clothesValues.put(NewCategoryInfo.CategoryInfo.CATEGORY_NAME, "CLOTHES");
+        clothesValues.put(NewCategoryInfo.CategoryInfo.CATEGORY_DESC, "Formal/Casual");
 
-        //Create a cursor to get the data from the db
-        Cursor cursor = db.rawQuery(GET_ALL_CATEGORIES, null);
+        eyeRSContentResolver.insert(DbOperations.CONTENT_URI_CATEGORIES, clothesValues);
 
-        // looping through all rows in the CATEGORIES table and adding to the list
-        if (cursor.moveToFirst()) {
+    }
 
-            do {
+    /**
+     * Method to insert the ACCESSORIES default category
+     */
+    public void insertDefaultCategoryAccessories() {
 
-                addCategories.add(cursor.getString(0));
+        // Defines an object to contain the new values to insert
+        ContentValues accessoryValues = new ContentValues();
 
-            } while (cursor.moveToNext());
-        }
+        /**
+         * Sets the values of each column and inserts the word. The arguments to the "put"
+         * method are "column name" and "value"
+         */
+        accessoryValues.put(NewCategoryInfo.CategoryInfo.CATEGORY_NAME, "ACCESSORIES");
+        accessoryValues.put(NewCategoryInfo.CategoryInfo.CATEGORY_DESC, "Collectibles");
 
-        // close the db connections
-        cursor.close();
-        db.close();
+        eyeRSContentResolver.insert(DbOperations.CONTENT_URI_CATEGORIES, accessoryValues);
 
-        return addCategories; //return the categories
+    }
+
+    /**
+     * Method to insert the GAMES default category
+     */
+    public void insertDefaultCategoryGames() {
+
+        // Defines an object to contain the new values to insert
+        ContentValues gameValues = new ContentValues();
+
+        /**
+         * Sets the values of each column and inserts the word. The arguments to the "put"
+         * method are "column name" and "value"
+         */
+        gameValues.put(NewCategoryInfo.CategoryInfo.CATEGORY_NAME, "GAMES");
+        gameValues.put(NewCategoryInfo.CategoryInfo.CATEGORY_DESC, "Sport/Shooting/VR");
+
+        eyeRSContentResolver.insert(DbOperations.CONTENT_URI_CATEGORIES, gameValues);
+
+    }
+
+    /**
+     * Method to insert the OTHER default category
+     */
+    public void insertDefaultCategoryOther() {
+
+        // Defines an object to contain the new values to insert
+        ContentValues otherValues = new ContentValues();
+
+        /**
+         * Sets the values of each column and inserts the word. The arguments to the "put"
+         * method are "column name" and "value"
+         */
+        otherValues.put(NewCategoryInfo.CategoryInfo.CATEGORY_NAME, "OTHER");
+        otherValues.put(NewCategoryInfo.CategoryInfo.CATEGORY_DESC, "Random stuff");
+
+        eyeRSContentResolver.insert(DbOperations.CONTENT_URI_CATEGORIES, otherValues);
+
     }
 
 } //end class EyeRSDatabaseHelper

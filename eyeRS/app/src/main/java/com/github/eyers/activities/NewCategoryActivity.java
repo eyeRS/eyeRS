@@ -27,7 +27,6 @@ public class NewCategoryActivity extends AppCompatActivity implements View.OnCli
     //Declarations
     public String categoryName;
     public String categoryDesc;
-    NewItemActivity newItemActivity;
 
     //Fields
     private EditText txtTitle;
@@ -135,7 +134,13 @@ public class NewCategoryActivity extends AppCompatActivity implements View.OnCli
      */
     public void addNewCategory() {
 
+
+
+        /**
+         * Define an object to contain the new values to insert
+         */
         ContentValues categoryValues = new ContentValues();
+
         //Insert the category's name
         categoryValues.put(NewCategoryInfo.CategoryInfo.CATEGORY_NAME, categoryName);
         //Insert the category's description
@@ -149,7 +154,7 @@ public class NewCategoryActivity extends AppCompatActivity implements View.OnCli
             db.beginTransaction();
 
             //insert the category into the db (Category Desc column may be null)
-            db.insert(NewCategoryInfo.CategoryInfo.TABLE_NAME, categoryDesc, categoryValues);
+
 
             //Display a message to the user
             Toast.makeText(this, "Your new category has been created successfully ",
@@ -172,13 +177,17 @@ public class NewCategoryActivity extends AppCompatActivity implements View.OnCli
 
     } //end void addNewCategory()
 
-    /** A callback method invoked by the loader when initLoader() is called */
+    /**
+     * A callback method invoked by the loader when initLoader() is called
+     */
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
         return null;
     }
 
-    /** A callback method, invoked after the requested content provider returns all the data */
+    /**
+     * A callback method, invoked after the requested content provider returns all the data
+     */
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
 
@@ -188,5 +197,6 @@ public class NewCategoryActivity extends AppCompatActivity implements View.OnCli
     public void onLoaderReset(Loader<Cursor> loader) {
 
     }
-}
+
+} //end class NewCategoryActivity
 

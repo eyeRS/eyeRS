@@ -10,11 +10,12 @@ import java.sql.Blob;
 public class NewCategoryInfo {
 
     //This class will hold details of the new category to be inserted into the db
-    public static abstract class CategoryInfo {
+    public static class CategoryInfo {
 
         //Table name
         public static final String TABLE_NAME = "category_info";
         //Column names
+        public static final String CATEGORY_ID = "_id";
         public static final String CATEGORY_NAME = "category_name";
         public static final String CATEGORY_DESC = "category_desc";
     }
