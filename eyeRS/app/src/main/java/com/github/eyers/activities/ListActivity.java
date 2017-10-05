@@ -2,6 +2,7 @@ package com.github.eyers.activities;
 
 import android.app.FragmentTransaction;
 import android.app.LoaderManager;
+import android.content.ContentResolver;
 import android.content.Intent;
 import android.content.Loader;
 import android.database.Cursor;
@@ -16,12 +17,15 @@ import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.Toast;
 
+import com.github.eyers.DbOperations;
 import com.github.eyers.EyeRSDatabaseHelper;
 import com.github.eyers.ItemLabel;
 import com.github.eyers.LabelAdapter;
 import com.github.eyers.R;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.TreeSet;
 
 /**
  *
@@ -29,20 +33,17 @@ import java.util.ArrayList;
 public class ListActivity extends AppCompatActivity
         implements ItemListFragment.ItemListListener, LoaderManager.LoaderCallbacks<Cursor> {
 
-    //Declarations
+    /**
+     * Field declarations
+     */
     private LabelAdapter adapter;
     private ArrayList<ItemLabel> arrayOfUsers;
     private ListView listView;
 
-    //SQL-SELECT - Get all the items
-    private static String GET_ALL_ITEMS =
-            "SELECT " + NewItemInfo.ItemInfo.ITEM_NAME + ", "
-                    + NewItemInfo.ItemInfo.ITEM_DESC + ", FROM "
-                    + NewItemInfo.ItemInfo.TABLE_NAME + ";";
-
-    //db variables
-    private SQLiteDatabase db;
-    private EyeRSDatabaseHelper eyeRSDatabaseHelper;
+    /**
+     * Content Resolver declaration
+     */
+    private ContentResolver eyeRSContentResolver;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,82 +60,118 @@ public class ListActivity extends AppCompatActivity
     }
 
     /**
-     * Open the database connection.
+     * Method to retrieve the catalog items
      *
-     * @return <code>this</code> for chaining
+     * @return
      */
-    public ListActivity open() {
-        db = eyeRSDatabaseHelper.getReadableDatabase();
-        return this;
-    }
+    public ArrayList<ItemLabel> getAllItems() {
 
-    /**
-     * Close the connection.
-     */
-    public void close() {
-        this.eyeRSDatabaseHelper.close();
-    }
+        ArrayList<ItemLabel> addItems = new ArrayList<ItemLabel>();
 
-    /**
-     * Return all items in the db.
-     *
-     * @return all items in the database
-     */
-    public Cursor getAllItems() {
+        /**
+         * Content resolver object
+         */
+        eyeRSContentResolver = this.getContentResolver();
 
-        Cursor cursor = db.rawQuery(GET_ALL_ITEMS, null);
+        /**
+         * Array of columns to be included for each row retrieved
+         */
+        String[] projection = {NewItemInfo.ItemInfo.ITEM_ID,
+                NewItemInfo.ItemInfo.ITEM_NAME, NewItemInfo.ItemInfo.ITEM_DESC};
 
-        if (cursor != null) {
-            cursor.moveToFirst();
+        /**
+         * The criteria for selecting the rows
+         */
+        String selection = "item_name = \"" + NewItemInfo.ItemInfo.ITEM_NAME
+                + "\"";
+
+        /**
+         * Cursor object to retrieve query results
+         */
+        Cursor cursor = eyeRSContentResolver.query(DbOperations.CONTENT_URI_ITEMS,
+                projection, null, null,
+                null);
+
+        TreeSet<ItemLabel> data = new TreeSet<>();
+
+        if (cursor.moveToFirst()) {
+
+            do {
+
+                data.add(new ItemLabel(cursor.getString(1)));
+
+            } while (cursor.moveToNext());
+
         }
 
-        return cursor;
-    }
+        for (ItemLabel str : data) {
 
-    /**
-     * Get a specific item.
-     *
-     * @return a specfic item
-     */
-    public Cursor getItem() {
-        String query = "";
-        Cursor cursor = db.rawQuery(query, null);
-
-        if (cursor != null) {
-            cursor.moveToFirst();
+            addItems.add(str);
         }
 
-        return cursor;
+        return addItems;
     }
 
     /**
-     * Method to populate the ListView.
+     * Get a specific item
+     *
+     * @return
      */
+    public ItemLabel getItem() {
+
+        /**
+         * Array of columns to be included for each row retrieved
+         */
+        String[] projection = {NewItemInfo.ItemInfo.ITEM_ID,
+                NewItemInfo.ItemInfo.ITEM_NAME, NewItemInfo.ItemInfo.ITEM_DESC};
+
+        /**
+         * The criteria for selecting the rows
+         */
+        String selection = "item_name = \"" + NewItemInfo.ItemInfo.ITEM_NAME
+                + "\"";
+
+        /**
+         * Cursor object to retrieve query results
+         */
+        Cursor cursor = eyeRSContentResolver.query(DbOperations.CONTENT_URI_ITEMS,
+                projection, null, null,
+                null);
+
+        ItemLabel item = null;
+
+        if (cursor.moveToFirst()) {
+
+            do {
+                item = new ItemLabel(cursor.getString(1));
+
+            } while (cursor.moveToNext());
+
+        }
+
+        return item;
+    }
+
+    //Method to populate the ListView
     public void populateItems() {
 
-        //Database handler
-        eyeRSDatabaseHelper = new EyeRSDatabaseHelper(getApplicationContext());
+        /**
+         * Content resolver object
+         */
+        eyeRSContentResolver = this.getContentResolver();
 
-        open(); //open the db connection
-
-        //Create the cursor and retrieve the items from the db
         try {
 
-            //Create the cursor
-            Cursor cursor = getAllItems();
+            /**
+             * Create the cursor
+             */
+            ArrayList<ItemLabel> items = getAllItems();
 
-            //Item details to be displayed
-            String[] items = new String[]{NewItemInfo.ItemInfo.ITEM_NAME};
-
-            int[] viewIds = new int[]{R.id.lblName};
-
-            SimpleCursorAdapter cursorAdapter;
-
-            cursorAdapter = new SimpleCursorAdapter(getBaseContext(),
-                    R.layout.content_list, cursor, items, viewIds, 0);
+            adapter = new LabelAdapter(this, items);
 
             listView = (ListView) findViewById(R.id.listview);
-            listView.setAdapter(cursorAdapter);
+
+            listView.setAdapter(adapter);
 
         } catch (SQLiteException ex) {
 
@@ -143,12 +180,7 @@ public class ListActivity extends AppCompatActivity
 
             Log.e("ERROR", "Unable to view items", ex);
 
-        } finally {
-
-            db.endTransaction();
         }
-
-        close(); //close the db connection
     }
 
     //Method allows us to view recently inserted elements from the db
@@ -190,7 +222,7 @@ public class ListActivity extends AppCompatActivity
     }
 
     /**
-     * A callback method, invoked after the requested content provider returns all the data *
+     * A callback method, invoked after the requested content provider returns all the data
      */
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
@@ -201,5 +233,6 @@ public class ListActivity extends AppCompatActivity
     public void onLoaderReset(Loader<Cursor> loader) {
 
     }
-}
+
+} //end class ListActivity
 

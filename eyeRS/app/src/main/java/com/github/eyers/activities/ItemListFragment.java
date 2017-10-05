@@ -15,18 +15,19 @@ import java.util.ArrayList;
 
 /**
  * Created by Nathan Shava on 29-Aug-17.
- *
- * @author Nathan Shava
  */
 public class ItemListFragment extends ListFragment {
 
+    /**
+     * Field declarations
+     */
     private ItemListListener listener;
 
     /**
-     * Required empty public constructor.
+     * Required empty constructor
      */
     public ItemListFragment() {
-        super();
+
     }
 
     @Override
@@ -35,17 +36,21 @@ public class ItemListFragment extends ListFragment {
 
         ArrayList<ItemLabel> arrayOfUsers = new ArrayList<ItemLabel>();
 
-        //Create the LabelAdapter object
+        /**
+         * Create the LabelAdapter object
+         */
         LabelAdapter adapter = new LabelAdapter(inflater.getContext(), arrayOfUsers);
 
-        //Bind the adapter to the list view
+        /**
+         * Bind the adapter to the list view
+         */
         setListAdapter(adapter);
 
         return super.onCreateView(inflater, container, savedInstanceState);
     }
 
     /**
-     * Called when the fragment gets attached to the activity.
+     * Called when the fragment gets attached to the activity
      *
      * @param activity
      */
@@ -56,7 +61,7 @@ public class ItemListFragment extends ListFragment {
     }
 
     /**
-     * Tell the listener when an item in the ListView is clicked.
+     * Tell the listener when an item in the ListView is clicked
      *
      * @param listView
      * @param view
@@ -71,9 +76,10 @@ public class ItemListFragment extends ListFragment {
     }
 
     /**
-     * Handles events for items clicked in the list.
+     * Handles events for items clicked in the list
      */
     interface ItemListListener {
         void itemClicked(long id);
     }
-}
+
+} //end class ItemListFragment

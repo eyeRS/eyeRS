@@ -10,9 +10,11 @@ import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
+import android.widget.Toast;
 
 import com.github.eyers.activities.NewCategoryInfo;
 import com.github.eyers.activities.NewItemInfo;
+import com.github.eyers.activities.UserRegInfo;
 
 /**
  * Created by Nathan Shava on 15-Sep-17.
@@ -36,33 +38,51 @@ public class DbOperations extends ContentProvider {
      */
     public static final String CATEGORIES_TABLE = NewCategoryInfo.CategoryInfo.TABLE_NAME;
     public static final String ITEMS_TABLE = NewItemInfo.ItemInfo.TABLE_NAME;
+    public static final String USER_REGISTRATION_TABLE = UserRegInfo.RegInfo.TABLE_NAME;
 
+    /**
+     * Specify the table paths
+     */
     public static final String CATEGORIES_PATH = "/" + CATEGORIES_TABLE;
     public static final String ITEMS_PATH = "/" + ITEMS_TABLE;
+    public static final String REGISTRATION_PATH = "/" + USER_REGISTRATION_TABLE;
 
     /**
      * A uri to do operations on the Categories table.
      * A content provider is identified by its uri.
      */
     public static final Uri CONTENT_URI_CATEGORIES = Uri.parse("content://" + AUTHORITY + CATEGORIES_PATH);
-    public static final Uri CONTENT_URI_ITEMS = Uri.parse("content://" + AUTHORITY + "/" + ITEMS_PATH);
+    public static final Uri CONTENT_URI_ITEMS = Uri.parse("content://" + AUTHORITY + ITEMS_PATH);
+    public static final Uri CONTENT_URI_USER_REG = Uri.parse("content://" + AUTHORITY + REGISTRATION_PATH);
 
     /**
      * Constants to identify the requested operation
      */
     public static final int ALL_CATEGORIES = 1;
-    public static final int CATEGORIES_ID = 2;
-    public static final int CATEGORIES_SPECIFIC_NAME = 3;
-    public static final int ITEMS_SPECIFIC_NAME = 4;
-    public static final int COUNT_CATEGORIES = 5;
-    public static final int COUNT_ITEMS = 5;
+    public static final int ALL_ITEMS = 2;
+    public static final int REG_DETAILS = 3;
+    public static final int CATEGORIES_ID = 4;
+    public static final int CATEGORIES_SPECIFIC_NAME = 5;
+    public static final int ITEMS_SPECIFIC_NAME = 6;
+    public static final int COUNT_CATEGORIES = 7;
+    public static final int COUNT_ITEMS = 8;
 
+    /**
+     * The URI matcher maps to the specified table_name in the database
+     */
     private static final UriMatcher uriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
 
+    /**
+     * Add the URIs for the respective db tables
+     */
     static {
 
         uriMatcher.addURI(AUTHORITY, CATEGORIES_TABLE, ALL_CATEGORIES);
         uriMatcher.addURI(AUTHORITY, CATEGORIES_TABLE + "/#", CATEGORIES_ID);
+        uriMatcher.addURI(AUTHORITY, ITEMS_TABLE, ALL_ITEMS);
+        uriMatcher.addURI(AUTHORITY, ITEMS_TABLE, ITEMS_SPECIFIC_NAME);
+        uriMatcher.addURI(AUTHORITY, USER_REGISTRATION_TABLE, REG_DETAILS);
+
     }
 
     /**
@@ -166,14 +186,23 @@ public class DbOperations extends ContentProvider {
 
             case ALL_CATEGORIES:
                 id = db.insert(CATEGORIES_TABLE, null, values);
-                break;
+                getContext().getContentResolver().notifyChange(uri, null);
+                return Uri.parse(CATEGORIES_TABLE + "/" + id);
+
+            case REG_DETAILS:
+                id = db.insert(USER_REGISTRATION_TABLE, null, values);
+                getContext().getContentResolver().notifyChange(uri, null);
+                return Uri.parse(USER_REGISTRATION_TABLE + "/" + id);
+
+            case ALL_ITEMS:
+                id = db.insert(ITEMS_TABLE, null, values);
+                getContext().getContentResolver().notifyChange(uri, null);
+                return Uri.parse(ITEMS_TABLE + "/" + id);
 
             default:
-                throw new IllegalArgumentException("Unsupported URI:" + uri);
+                Toast.makeText(null, "Sorry could not perform add operation", Toast.LENGTH_SHORT).show();
+                return null;
         }
-
-        getContext().getContentResolver().notifyChange(uri, null);
-        return Uri.parse(CATEGORIES_TABLE + "/" + id);
 
     }
 
@@ -260,16 +289,33 @@ public class DbOperations extends ContentProvider {
 
                     updatedRows = db.update(CATEGORIES_TABLE,
                             values,
-                            NewCategoryInfo.CategoryInfo.CATEGORY_ID + "=" + id,
+                            NewCategoryInfo.CategoryInfo.CATEGORY_ID + " = " + id,
                             null);
                 } else {
 
                     updatedRows = db.update(CATEGORIES_TABLE,
                             values,
-                            NewCategoryInfo.CategoryInfo.CATEGORY_ID + "=" + id
+                            NewCategoryInfo.CategoryInfo.CATEGORY_ID + " = " + id
                                     + " and "
                                     + selection,
                             selectionArgs);
+                }
+                break;
+            case REG_DETAILS:
+                String username = uri.getLastPathSegment();
+
+                if (TextUtils.isEmpty(selection)) {
+
+                    updatedRows = db.update(USER_REGISTRATION_TABLE,
+                            values,
+                            UserRegInfo.RegInfo.USER_NAME + " = " + username,
+                            null);
+                } else {
+
+                    updatedRows = db.update(USER_REGISTRATION_TABLE,
+                            values,
+                            UserRegInfo.RegInfo.USER_NAME + " = " + username,
+                            null);
                 }
                 break;
 

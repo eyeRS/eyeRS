@@ -15,6 +15,9 @@ import java.util.Random;
  */
 public class SlideshowActivity extends AppCompatActivity {
 
+    /**
+     * Fields & other declarations
+     */
     private ImageView img;
 
     @Override
@@ -55,4 +58,5 @@ public class SlideshowActivity extends AppCompatActivity {
 
         return img[new Random().nextInt(img.length - 1)];
     }
-}
+
+} //end class SlideshowActivity

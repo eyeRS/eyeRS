@@ -6,7 +6,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 /**
- * Contain util methods and constants.
+ * Contains util methods and constants.
  * <p>
  * Created by Matthew on 2017/06/19.
  */
@@ -15,7 +15,6 @@ public final class EyeRS {
     /**
      *
      */
-
     public static final String PREFS_NAME = "EyeRS";
     /**
      *
@@ -36,6 +35,7 @@ public final class EyeRS {
      */
     public static String sha256(String password) throws RuntimeException {
         try {
+
             MessageDigest sha256 = MessageDigest.getInstance("SHA-256");
             byte[] passHash = sha256.digest((password + "0c@RFe-5G47|GTN").getBytes());
 
@@ -57,6 +57,7 @@ public final class EyeRS {
      */
     @Deprecated
     public EyeRS log() {
+
         return this;
     }
 }

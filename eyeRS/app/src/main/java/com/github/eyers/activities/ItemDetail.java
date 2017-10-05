@@ -8,11 +8,12 @@ import com.github.eyers.R;
 
 /**
  * Created by Nathan Shava on 29-Aug-17.
- *
- * @author Nathan Shava
  */
 public class ItemDetail extends Activity {
 
+    /**
+     * Field declarations
+     */
     public static final String EXTRA_ITEM_ID = "id";
 
     @Override

@@ -17,7 +17,9 @@ import com.github.eyers.test.CamTestActivity;
  */
 public final class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
-    //Fields
+    /**
+     * Field declarations
+     */
     private EditText txtPIN;
 
     @Override
@@ -43,6 +45,7 @@ public final class LoginActivity extends AppCompatActivity implements View.OnCli
      */
     @Override
     public void onClick(View v) {
+
         //super.startActivity(new Intent(this, CamTestActivity.class));
 
         switch (v.getId()) {

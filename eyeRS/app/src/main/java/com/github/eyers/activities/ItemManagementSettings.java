@@ -16,7 +16,9 @@ import com.github.eyers.R;
  */
 public class ItemManagementSettings extends AppCompatActivity implements OnItemClickListener {
 
-    //Declarations
+    /**
+     * Field declarations
+     */
     private ListView listView;
 
     @Override
@@ -57,5 +59,6 @@ public class ItemManagementSettings extends AppCompatActivity implements OnItemC
                 break;
         }
     }
-}
+
+} //end class ItemManagementSettings
 

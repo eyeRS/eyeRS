@@ -61,4 +61,5 @@ public class ItemSortingActivity extends AppCompatActivity {
             }
         });
     }
-}
+
+} //end class ItemSortingActivity

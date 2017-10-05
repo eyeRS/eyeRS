@@ -47,4 +47,4 @@ public final class LabelAdapter extends ArrayAdapter<ItemLabel> {
 
         TextView name;
     }
-}
+} //end class LabelAdapter

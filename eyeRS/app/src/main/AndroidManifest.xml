@@ -13,7 +13,10 @@
     <uses-permission android:name="android.permission.READ_CONTACTS" />
     <uses-permission android:name="android.permission.SEND_SMS" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <permission android:name="com.github.eyers.DbOperations" android:protectionLevel="normal" />
+
+    <permission
+        android:name="com.github.eyers.DbOperations"
+        android:protectionLevel="normal" />
 
     <application
         android:allowBackup="true"
@@ -147,9 +150,8 @@
             android:name="com.github.eyers.DbOperations"
             android:authorities="com.github.eyers.DbOperations"
             android:exported="true"
-            android:syncable="true" >
-
-        </provider>
+            android:syncable="true">
+            .</provider>
 
         <activity
             android:name=".activities.CategorySortingActivity"

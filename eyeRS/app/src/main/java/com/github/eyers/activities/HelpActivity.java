@@ -54,4 +54,5 @@ public final class HelpActivity extends AppCompatActivity implements View.OnClic
                 break;
         }
     }
-}
+
+} //end class HelpActivity

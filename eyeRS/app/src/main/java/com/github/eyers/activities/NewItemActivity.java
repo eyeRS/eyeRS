@@ -11,12 +11,12 @@ import android.content.Loader;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -31,7 +31,6 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.github.eyers.DbOperations;
-import com.github.eyers.EyeRSDatabaseHelper;
 import com.github.eyers.R;
 import com.github.eyers.test.CamTestActivity;
 
@@ -41,7 +40,6 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.TreeSet;
 
@@ -51,25 +49,43 @@ import java.util.TreeSet;
 public class NewItemActivity extends AppCompatActivity implements View.OnClickListener,
         OnItemSelectedListener, LoaderManager.LoaderCallbacks<Cursor> {
 
+    /**
+     * Fields & other declarations
+     */
     public static final int MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE = 123;
-
-    //db variables
     private static String itemName;
     private static String itemDesc;
     public String category;
+    /**
+     * Array adapter declaration
+     */
     public static ArrayAdapter<String> categoriesAdapter;
+    /**
+     * Content resolver declaration
+     */
     private ContentResolver eyeRSContentResolver;
+    /**
+     * List declaration for categories spinner
+     */
     public List<String> popCategories;
-
+    /**
+     * Image declaration
+     */
     private int REQUEST_CAMERA = 0, SELECT_FILE = 1;
     private ImageView ivImage;
-    private String userChoosenTask;
-
-    //Fields
+    private String userChosenTask;
+    /**
+     * Other field declarations
+     */
     private EditText txtTitle;
     private EditText txtDesc;
     private Spinner spinner;
 
+    /**
+     * The onCreate method
+     *
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -102,14 +118,20 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
      */
     public void populateSpinner() {
 
-        //Spinner categories
+        /**
+         * Populates list with categories
+         */
         popCategories = getCategoriesList();
 
-        //Create an adapter for the spinner
+        /**
+         * Spinner array adapter instantiation
+         */
         categoriesAdapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_spinner_item, popCategories);
 
-        //Set the adapter to the spinner
+        /**
+         * Set the spinner adapter
+         */
         this.spinner.setAdapter(categoriesAdapter);
 
     }
@@ -122,15 +144,26 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
 
         List<String> addCategories = new ArrayList<String>();
 
-        //Content resolver object
+        /**
+         * Content resolver instantiation
+         */
         eyeRSContentResolver = this.getContentResolver();
 
+        /**
+         * Array of columns to be included for each row retrieved
+         */
         String[] projection = {NewCategoryInfo.CategoryInfo.CATEGORY_ID,
                 NewCategoryInfo.CategoryInfo.CATEGORY_NAME, NewCategoryInfo.CategoryInfo.CATEGORY_DESC};
 
+        /**
+         * The criteria for selecting the rows
+         */
         String selection = "category_name = \"" + NewCategoryInfo.CategoryInfo.CATEGORY_NAME
                 + "\"";
 
+        /**
+         * Cursor object to retrieve query results
+         */
         Cursor cursor = eyeRSContentResolver.query(DbOperations.CONTENT_URI_CATEGORIES,
                 projection, null, null,
                 null);
@@ -140,19 +173,25 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
         if (cursor.moveToFirst()) {
 
             do {
-                // addCategories.add(cursor.getString(1));
+
                 data.add(cursor.getString(1));
+
             } while (cursor.moveToNext());
 
-            cursor.close();
+
         } else {
             addCategories = null; //empty categories list
         }
 
+
         for (String str : data) {
+
             addCategories.add(str);
+
         }
 
+
+        cursor.close();
         return addCategories; //return the list of categories
     }
 
@@ -163,7 +202,9 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
     public void onPause() {
         super.onPause();
 
-        //Save the spinner's selection
+        /**
+         * Save the spinner's selection
+         */
         spinner = (Spinner) findViewById(R.id.category_spinner);
         SharedPreferences category_prefs = getSharedPreferences("category_prefs", Context.MODE_PRIVATE);
         category_prefs.edit().putInt("spinner_indx", spinner.getSelectedItemPosition()).apply();
@@ -203,43 +244,65 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
             case R.id.btnAddItem: //user clicks add
                 selectImage();
                 if (txtTitle != null) {
-                    //if the user is adding a book item
+
+                    /**
+                     * If the user is adding a book item
+                     */
                     if (spinner.getSelectedItem() == "BOOKS") {
-                        addBook(); //call the method to add a book item to the db
+
+                        addBook(); //method to add a book item
                         return;
                     }
-                    //if the user is adding a clothing item
+                    /**
+                     * If the user is adding a clothing item
+                     */
                     if (spinner.getSelectedItem() == "CLOTHES") {
-                        addClothing(); //call the method to add a clothing item to the db
+
+                        addClothing(); //method to add a clothing item
                         return;
                     }
-                    //if the user is adding an accessory item
+                    /**
+                     * If the user is adding an accessory item
+                     */
                     if (spinner.getSelectedItem() == "ACCESSORIES") {
-                        addAccessory(); //call the method to add an accessory item to the db
+
+                        addAccessory(); //method to add an accessory
                         return;
                     }
-                    //if the user is adding a gaming item
+                    /**
+                     * If the user is adding a gaming item
+                     */
                     if (spinner.getSelectedItem() == "GAMES") {
-                        addGame(); //call the method to add a gaming item to the db
+
+                        addGame(); //method to add a game
                         return;
                     }
-                    //if the user is adding any other item
+                    /**
+                     * If the user is adding any other item
+                     */
                     if (spinner.getSelectedItem() == "OTHER") {
+
                         addOther(); //call the method to add another item to the db
                         return;
                     }
-                    //if the user is adding any item that doesn't correspond to the default categories
+                    /**
+                     * If the user is adding any item that doesn't correspond to the default categories
+                     */
                     if (spinner.getSelectedItem() == NewCategoryInfo.CategoryInfo.CATEGORY_NAME) {
+
                         addItemInfo(); //call the method to add a user specified-item to the db
+                        return;
                     }
 
                 }
                 break;
             case R.id.new_item_image:
+                /**
+                 * Invoke the method to handle image capturing process
+                 */
                 selectImage();
                 break;
         }
-
     }
 
     /**
@@ -252,19 +315,17 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
          */
         ContentValues bookValues = new ContentValues();
 
-        //Book name
-        bookValues.put("book_title", itemName);
-        //Book description
-        bookValues.put("book_desc", itemDesc);
+        bookValues.put("book_title", itemName); //Book name
+        bookValues.put("book_desc", itemDesc); //Book description
 
         try {
 
-            //Insert the Book item
+            /**
+             * Content resolver insert operation
+             */
             eyeRSContentResolver.insert(DbOperations.CONTENT_URI_ITEMS, bookValues);
 
-            //Display a message to the user
             Toast.makeText(this, "Your book item has been added successfully ", Toast.LENGTH_LONG).show();
-            //Display message in the logcat window after successful operation execution
             Log.e("DATABASE OPERATIONS", "...Book item added to DB!");
 
         } catch (SQLiteException ex) {
@@ -283,19 +344,17 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
          */
         ContentValues clothesValues = new ContentValues();
 
-        //Clothing name
-        clothesValues.put("clothing_type", itemName);
-        //Clothing description
-        clothesValues.put("clothing_desc", itemDesc);
+        clothesValues.put("clothing_type", itemName); //Clothing name
+        clothesValues.put("clothing_desc", itemDesc); //Clothing description
 
         try {
 
-            //Insert the Clothing item
+            /**
+             * Content resolver insert operation
+             */
             eyeRSContentResolver.insert(DbOperations.CONTENT_URI_ITEMS, clothesValues);
 
-            //Display a message to the user
             Toast.makeText(this, "Your clothing item has been added successfully ", Toast.LENGTH_LONG).show();
-            //Display message in the logcat window after successful operation execution
             Log.e("DATABASE OPERATIONS", "...Clothing item added to DB!");
 
         } catch (SQLiteException ex) {
@@ -314,19 +373,17 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
          */
         ContentValues accessoriesValues = new ContentValues();
 
-        //Accessory name
-        accessoriesValues.put("accessory_name", itemName);
-        //Accessory description
-        accessoriesValues.put("accessory_desc", itemDesc);
+        accessoriesValues.put("accessory_name", itemName); //Accessory name
+        accessoriesValues.put("accessory_desc", itemDesc); //Accessory description
 
         try {
 
-            //Insert the Accessory item
+            /**
+             * Content resolver insert operation
+             */
             eyeRSContentResolver.insert(DbOperations.CONTENT_URI_ITEMS, accessoriesValues);
 
-            //Display a message to the user
             Toast.makeText(this, "Your accessory item has been added successfully ", Toast.LENGTH_LONG).show();
-            //Display message in the logcat window after successful operation execution
             Log.e("DATABASE OPERATIONS", "...Accessory item added to DB!");
 
         } catch (SQLiteException ex) {
@@ -345,19 +402,17 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
          */
         ContentValues gamesValues = new ContentValues();
 
-        //Default name
-        gamesValues.put("game_title", itemName);
-        //Default description
-        gamesValues.put("game_desc", itemDesc);
+        gamesValues.put("game_title", itemName); //Game name
+        gamesValues.put("game_desc", itemDesc); //Game description
 
         try {
 
-            //Insert the Game item
+            /**
+             * Content resolver insert operation
+             */
             eyeRSContentResolver.insert(DbOperations.CONTENT_URI_ITEMS, gamesValues);
 
-            //Display a message to the user
             Toast.makeText(this, "Your gaming item has been added successfully ", Toast.LENGTH_LONG).show();
-            //Display message in the logcat window after successful operation execution
             Log.e("DATABASE OPERATIONS", "...Game item added to DB!");
 
         } catch (SQLiteException ex) {
@@ -376,19 +431,17 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
          */
         ContentValues otherValues = new ContentValues();
 
-        //Default name
-        otherValues.put("other_title", itemName);
-        //Default description
-        otherValues.put("other_desc", itemDesc);
+        otherValues.put("other_title", itemName); //Other name
+        otherValues.put("other_desc", itemDesc); //Other description
 
         try {
 
-            //Insert the Other item
+            /**
+             * Content resolver insert operation
+             */
             eyeRSContentResolver.insert(DbOperations.CONTENT_URI_ITEMS, otherValues);
 
-            //Display a message to the user
             Toast.makeText(this, "Your other item has been added successfully ", Toast.LENGTH_LONG).show();
-            //Display message in the logcat window after successful operation execution
             Log.e("DATABASE OPERATIONS", "...Other item added to DB!");
 
         } catch (SQLiteException ex) {
@@ -407,18 +460,17 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
          */
         ContentValues contentValues = new ContentValues();
 
-        //insert the item's name
-        contentValues.put(NewItemInfo.ItemInfo.ITEM_NAME, itemName);
-        //insert the item's description
-        contentValues.put(NewItemInfo.ItemInfo.ITEM_DESC, itemDesc);
+        contentValues.put(NewItemInfo.ItemInfo.ITEM_NAME, itemName); //Item's name
+        contentValues.put(NewItemInfo.ItemInfo.ITEM_DESC, itemDesc); //Item's description
 
         try {
 
+            /**
+             * Content resolver insert operation
+             */
             eyeRSContentResolver.insert(DbOperations.CONTENT_URI_ITEMS, contentValues);
 
-            //Display a message to the user
             Toast.makeText(this, "Your item has been added successfully ", Toast.LENGTH_LONG).show();
-            //Display message in the logcat window after successful operation execution
             Log.e("DATABASE OPERATIONS", "...New item added to DB!");
 
         } catch (SQLiteException ex) {
@@ -432,9 +484,9 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
         switch (requestCode) {
             case MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE:
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    if (userChoosenTask.equals("Take Photo"))
+                    if (userChosenTask.equals("Take Photo"))
                         cameraIntent();
-                    else if (userChoosenTask.equals("Choose from Library"))
+                    else if (userChosenTask.equals("Choose from Library"))
                         galleryIntent();
                 } else {
                     //code for deny
@@ -454,12 +506,12 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
                 boolean result = CamTestActivity.checkPermission(NewItemActivity.this);
 
                 if (items[item].equals("Take Photo")) {
-                    userChoosenTask = "Take Photo";
+                    userChosenTask = "Take Photo";
                     if (result)
                         cameraIntent();
 
                 } else if (items[item].equals("Choose from Library")) {
-                    userChoosenTask = "Choose from Library";
+                    userChosenTask = "Choose from Library";
                     if (result)
                         galleryIntent();
 

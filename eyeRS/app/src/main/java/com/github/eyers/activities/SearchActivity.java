@@ -57,4 +57,5 @@ public class SearchActivity extends AppCompatActivity {
         searchView.setMenuItem(item);
         return true;
     }
-}
+
+} //end class SearchActivity

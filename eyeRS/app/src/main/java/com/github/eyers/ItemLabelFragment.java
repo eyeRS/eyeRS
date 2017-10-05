@@ -26,9 +26,10 @@ public class ItemLabelFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
         if (savedInstanceState != null) {
-            name = savedInstanceState.getString("name"); //Retrieve the name of the item from the Bundle
-            symbol = savedInstanceState.getString("symbol"); //Retrieve the item's symbol from the Bundle
-            sector = savedInstanceState.getString("sector"); //Retrieve the item's sector from the Bundle
+
+            name = savedInstanceState.getString("name");
+            symbol = savedInstanceState.getString("symbol");
+            sector = savedInstanceState.getString("sector");
 
         }
     }

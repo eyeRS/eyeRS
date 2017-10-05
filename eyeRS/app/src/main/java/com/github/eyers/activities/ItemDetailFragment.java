@@ -17,32 +17,21 @@ import com.github.eyers.R;
 /**
  * Class will be used to display details of items based on users' selection.
  * Created by Nathan Shava on 29-Aug-17.
- *
- * @author Nathan Shava
  */
 public class ItemDetailFragment extends Fragment {
 
     /**
-     * The ID of the item the user will select.
+     * Field declarations
      */
-    private long itemID;
+    private long itemID; //The ID of the item the user will select
 
-    /**
-     * Required empty public constructor.
-     */
+    // Required empty public constructor
     public ItemDetailFragment() {
-        super();
+
     }
 
-    /**
-     * FragmentTransactions only work on this target API or better.
-     *
-     * @param inflater
-     * @param container
-     * @param savedInstanceState
-     * @return
-     */
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
+    //FragmentTransactions only work on this target API or better
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -87,11 +76,13 @@ public class ItemDetailFragment extends Fragment {
     }
 
     /**
-     * The activity will use this Setter to set the value of the itemID.
+     * The activity will use this Setter to set the value of the itemID
      *
      * @param id
      */
     public void setItem(long id) {
+
         this.itemID = id;
     }
-}
+
+} //end class ItemDetailFragment
