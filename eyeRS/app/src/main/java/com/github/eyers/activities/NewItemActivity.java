@@ -41,6 +41,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 /**
@@ -133,19 +134,22 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
                 projection, null, null,
                 null);
 
+        HashSet<String> data = new HashSet<>();
+
         if (cursor.moveToFirst()) {
 
             do {
-
-                addCategories.add(cursor.getString(1));
-
+                // addCategories.add(cursor.getString(1));
+                data.add(cursor.getString(1));
             } while (cursor.moveToNext());
 
             cursor.close();
-
         } else {
-
             addCategories = null; //empty categories list
+        }
+
+        for (String str : data) {
+            addCategories.add(str);
         }
 
         return addCategories; //return the list of categories
