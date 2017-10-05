@@ -43,6 +43,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.TreeSet;
 
 /**
  * This class enables a user to add a new item and inserts it into the SQLite database
@@ -134,7 +135,7 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
                 projection, null, null,
                 null);
 
-        HashSet<String> data = new HashSet<>();
+        TreeSet<String> data = new TreeSet<>();
 
         if (cursor.moveToFirst()) {
 
