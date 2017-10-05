@@ -126,7 +126,7 @@ public class NewCategoryActivity extends AppCompatActivity implements View.OnCli
         ContentValues categoryValues = new ContentValues();
 
         //Insert the category's name
-        categoryValues.put(NewCategoryInfo.CategoryInfo.CATEGORY_NAME, categoryName);
+        categoryValues.put(NewCategoryInfo.CategoryInfo.CATEGORY_NAME, categoryName.toUpperCase());
         //Insert the category's description
         categoryValues.put(NewCategoryInfo.CategoryInfo.CATEGORY_DESC, categoryDesc);
         //code to insert the category's icon to be inserted here
