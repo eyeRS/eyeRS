@@ -56,8 +56,6 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
     private static String itemName;
     private static String itemDesc;
     public String category;
-    private SQLiteDatabase db;
-    private EyeRSDatabaseHelper eyeRSDatabaseHelper;
     public static ArrayAdapter<String> categoriesAdapter;
     private ContentResolver eyeRSContentResolver;
     public List<String> popCategories;
@@ -122,6 +120,8 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
     public List<String> getCategoriesList() {
 
         List<String> addCategories = new ArrayList<String>();
+
+        //Content resolver object
         eyeRSContentResolver = this.getContentResolver();
 
         String[] projection = {NewCategoryInfo.CategoryInfo.CATEGORY_ID,
@@ -189,7 +189,6 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
 
     /**
      * Called when a view has been clicked.
-     *
      * @param view The view that was clicked.
      */
     @Override

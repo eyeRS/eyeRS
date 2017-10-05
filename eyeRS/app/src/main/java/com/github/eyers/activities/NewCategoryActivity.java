@@ -1,6 +1,7 @@
 package com.github.eyers.activities;
 
 import android.app.LoaderManager;
+import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.content.Loader;
@@ -15,6 +16,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.github.eyers.DbOperations;
 import com.github.eyers.EyeRSDatabaseHelper;
 import com.github.eyers.R;
 
@@ -33,8 +35,7 @@ public class NewCategoryActivity extends AppCompatActivity implements View.OnCli
     private EditText txtDesc;
 
     //db variables
-    public SQLiteDatabase db;
-    private EyeRSDatabaseHelper eyeRSDatabaseHelper;
+    private ContentResolver eyeRSContentResolver;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,27 +63,6 @@ public class NewCategoryActivity extends AppCompatActivity implements View.OnCli
     }
 
     /**
-     * Open the database connection.
-     *
-     * @return
-     */
-    public NewCategoryActivity open() {
-        db = eyeRSDatabaseHelper.getWritableDatabase();
-        return this;
-    }
-
-    /**
-     * Close the connection.
-     */
-    public void close() {
-        db.close();
-    }
-
-    public final String GET_ALL_CATEGORIES =
-            "SELECT " + NewCategoryInfo.CategoryInfo.CATEGORY_NAME + " FROM "
-                    + NewCategoryInfo.CategoryInfo.TABLE_NAME + ";";
-
-    /**
      * Method performs validation to ensure that the user cannot re-create an existing category
      */
     public void validateCategories() {
@@ -91,12 +71,19 @@ public class NewCategoryActivity extends AppCompatActivity implements View.OnCli
         categoryName = txtTitle.getText().toString();
         categoryDesc = txtDesc.getText().toString();
 
-        //Database handler
-        eyeRSDatabaseHelper = new EyeRSDatabaseHelper(getApplicationContext());
-        db = eyeRSDatabaseHelper.getReadableDatabase(); //db object
+        //Content resolver object
+        eyeRSContentResolver = this.getContentResolver();
+
+        String[] projection = {NewCategoryInfo.CategoryInfo.CATEGORY_ID,
+                NewCategoryInfo.CategoryInfo.CATEGORY_NAME, NewCategoryInfo.CategoryInfo.CATEGORY_DESC};
+
+        String selection = "category_name = \"" + NewCategoryInfo.CategoryInfo.CATEGORY_NAME
+                + "\"";
 
         //Create a cursor to get the data from the db
-        Cursor cursor = db.rawQuery(GET_ALL_CATEGORIES, null);
+        Cursor cursor = eyeRSContentResolver.query(DbOperations.CONTENT_URI_CATEGORIES,
+                projection, null, null,
+                null);
 
         if (cursor.moveToFirst()) {
 
@@ -125,7 +112,6 @@ public class NewCategoryActivity extends AppCompatActivity implements View.OnCli
         }
 
         cursor.close(); //close the cursor
-        close(); //close the db connection
 
     } //end void validateCategories()
 
@@ -133,8 +119,6 @@ public class NewCategoryActivity extends AppCompatActivity implements View.OnCli
      * Method adds the new category to the db only if it has passed the validation test
      */
     public void addNewCategory() {
-
-
 
         /**
          * Define an object to contain the new values to insert
@@ -149,11 +133,10 @@ public class NewCategoryActivity extends AppCompatActivity implements View.OnCli
 
         try {
 
-            open();
-
-            db.beginTransaction();
-
-            //insert the category into the db (Category Desc column may be null)
+            /**
+             * Inserts the new category via the content resolver
+             */
+            eyeRSContentResolver.insert(DbOperations.CONTENT_URI_CATEGORIES, categoryValues);
 
 
             //Display a message to the user
@@ -169,11 +152,7 @@ public class NewCategoryActivity extends AppCompatActivity implements View.OnCli
 
         } catch (SQLException ex) {
             Toast.makeText(this, "Unable to create category", Toast.LENGTH_SHORT).show();
-        } finally {
-            db.endTransaction();
         }
-
-        close(); //close the db connection
 
     } //end void addNewCategory()
 
