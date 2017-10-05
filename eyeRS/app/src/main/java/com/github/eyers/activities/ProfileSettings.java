@@ -7,7 +7,7 @@ import android.support.v7.widget.Toolbar;
 import com.github.eyers.R;
 
 /**
- * This class will handle the user's profile settings event
+ * This class will handle the user's profile settings event.
  */
 public class ProfileSettings extends AppCompatActivity {
 

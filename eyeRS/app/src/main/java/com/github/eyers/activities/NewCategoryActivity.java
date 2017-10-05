@@ -21,7 +21,7 @@ import com.github.eyers.EyeRSDatabaseHelper;
 import com.github.eyers.R;
 
 /**
- * This class creates a new category and inserts it into the SQLite database
+ * This class creates a new category and inserts it into the SQLite database.
  */
 public class NewCategoryActivity extends AppCompatActivity implements View.OnClickListener,
         LoaderManager.LoaderCallbacks<Cursor> {
@@ -116,7 +116,7 @@ public class NewCategoryActivity extends AppCompatActivity implements View.OnCli
     } //end void validateCategories()
 
     /**
-     * Method adds the new category to the db only if it has passed the validation test
+     * Method adds the new category to the db only if it has passed the validation test.
      */
     public void addNewCategory() {
 
@@ -157,7 +157,7 @@ public class NewCategoryActivity extends AppCompatActivity implements View.OnCli
     } //end void addNewCategory()
 
     /**
-     * A callback method invoked by the loader when initLoader() is called
+     * A callback method invoked by the loader when initLoader() is called.
      */
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
@@ -165,7 +165,7 @@ public class NewCategoryActivity extends AppCompatActivity implements View.OnCli
     }
 
     /**
-     * A callback method, invoked after the requested content provider returns all the data
+     * A callback method, invoked after the requested content provider returns all the data.
      */
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {

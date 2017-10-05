@@ -23,7 +23,7 @@ import com.miguelcatalan.materialsearchview.MaterialSearchView;
 
 /**
  * This class includes a navigation drawer and will display the main home activity of the app
- * once a user has successfully logged in
+ * once a user has successfully logged in.
  */
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener,
@@ -316,13 +316,17 @@ public class MainActivity extends AppCompatActivity
         Toast.makeText(this, "TODO Button: " + v.getId(), Toast.LENGTH_LONG).show();
     }
 
-    /** A callback method invoked by the loader when initLoader() is called */
+    /**
+     * A callback method invoked by the loader when initLoader() is called
+     */
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
         return null;
     }
 
-    /** A callback method, invoked after the requested content provider returns all the data */
+    /**
+     * A callback method, invoked after the requested content provider returns all the data
+     */
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
 

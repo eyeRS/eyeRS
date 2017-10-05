@@ -1,8 +1,10 @@
 package com.github.eyers.activities;
 
 /**
- * Created by Nathan Shava on 05-Sep-17.
- * The class holds data about the database table and column names belonging to the User Registration process in the database
+ * The class holds data about the database table and column names belonging to the User Registration
+ * process in the database. Created by Nathan Shava on 05-Sep-17.
+ *
+ * @author Nathan Shava
  */
 public class NewRegInfo {
 

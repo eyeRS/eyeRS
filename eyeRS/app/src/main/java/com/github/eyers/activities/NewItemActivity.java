@@ -46,7 +46,7 @@ import java.util.List;
 import java.util.TreeSet;
 
 /**
- * This class enables a user to add a new item and inserts it into the SQLite database
+ * This class enables a user to add a new item and inserts it into the SQLite database.
  */
 public class NewItemActivity extends AppCompatActivity implements View.OnClickListener,
         OnItemSelectedListener, LoaderManager.LoaderCallbacks<Cursor> {
@@ -158,10 +158,9 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
 
 
     /**
-     * Method allows us to save the activity's selections just before the app gets paused
+     * Method allows us to save the activity's selections just before the app gets paused.
      */
     public void onPause() {
-
         super.onPause();
 
         //Save the spinner's selection
@@ -172,7 +171,7 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
     }
 
     /**
-     * Method allows us to retrieve previous selection before the activity was paused
+     * Method allows us to retrieve previous selection before the activity was paused.
      */
     @Override
     protected void onResume() {
@@ -190,6 +189,7 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
 
     /**
      * Called when a view has been clicked.
+     *
      * @param view The view that was clicked.
      */
     @Override
@@ -243,7 +243,7 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
     }
 
     /**
-     * Adding a book item
+     * Adding a book item.
      */
     private void addBook() {
 
@@ -274,12 +274,12 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
     } //end void addBook()
 
     /**
-     * Adding a clothing item
+     * Adding a clothing item.
      */
     private void addClothing() {
 
         /**
-         * Define an object to contain the new values to insert
+         * Define an object to contain the new values to insert.
          */
         ContentValues clothesValues = new ContentValues();
 
@@ -305,7 +305,7 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
     } //end void addClothing()
 
     /**
-     * Adding an accessory item
+     * Adding an accessory item.
      */
     private void addAccessory() {
 
@@ -336,7 +336,7 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
     } //end void addAccessory()
 
     /**
-     * Adding a gaming item
+     * Adding a gaming item.
      */
     private void addGame() {
 
@@ -367,7 +367,7 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
     } //end void addGame()
 
     /**
-     * Adding a random item
+     * Adding a random item.
      */
     private void addOther() {
 
@@ -566,25 +566,18 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
     }
 
     /**
-     * This is called when a new Loader needs to be created
+     * This is called when a new Loader needs to be created.
      */
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
-
         return null;
     }
 
     /**
-     * A callback method, invoked after the requested content provider returns all the data
+     * A callback method, invoked after the requested content provider returns all the data.
      */
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
-
-        /**
-         * Swap the new cursor in. (The framework will take care of closing the old cursor once we
-         * return
-         */
-
     }
 
     /**

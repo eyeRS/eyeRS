@@ -15,14 +15,18 @@ import java.util.ArrayList;
 
 /**
  * Created by Nathan Shava on 29-Aug-17.
+ *
+ * @author Nathan Shava
  */
 public class ItemListFragment extends ListFragment {
 
     private ItemListListener listener;
 
-    //required empty public constructor
+    /**
+     * Required empty public constructor.
+     */
     public ItemListFragment() {
-
+        super();
     }
 
     @Override
@@ -40,14 +44,25 @@ public class ItemListFragment extends ListFragment {
         return super.onCreateView(inflater, container, savedInstanceState);
     }
 
-    //Called when the fragment gets attached to the activity
+    /**
+     * Called when the fragment gets attached to the activity.
+     *
+     * @param activity
+     */
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
         this.listener = (ItemListListener) activity;
     }
 
-    //Tell the listener when an item in the ListView is clicked
+    /**
+     * Tell the listener when an item in the ListView is clicked.
+     *
+     * @param listView
+     * @param view
+     * @param position
+     * @param id
+     */
     @Override
     public void onListItemClick(ListView listView, View view, int position, long id) {
         if (listener != null) {
@@ -55,7 +70,9 @@ public class ItemListFragment extends ListFragment {
         }
     }
 
-    //Handles events for items clicked in the list
+    /**
+     * Handles events for items clicked in the list.
+     */
     interface ItemListListener {
         void itemClicked(long id);
     }

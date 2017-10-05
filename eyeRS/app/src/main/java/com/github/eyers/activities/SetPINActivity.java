@@ -24,7 +24,7 @@ import com.github.eyers.EyeRSDatabaseHelper;
 import com.github.eyers.R;
 
 /**
- * This class will handle the PIN reset activity
+ * This class will handle the PIN reset activity.
  */
 public class SetPINActivity extends AppCompatActivity implements View.OnClickListener,
     OnItemSelectedListener, LoaderManager.LoaderCallbacks<Cursor> {
@@ -159,7 +159,9 @@ public class SetPINActivity extends AppCompatActivity implements View.OnClickLis
         }
     }
 
-    //Method to add the updates for the user's login credentials to the db
+    /**
+     * Method to add the updates for the user's login credentials to the db.
+     */
     public void updateLoginInfo() {
 
         //Database handler
@@ -201,9 +203,9 @@ public class SetPINActivity extends AppCompatActivity implements View.OnClickLis
     }
 
     /**
+     * Method handles what happens when nothing is selected from the spinner.
      *
      * @param parent
-     * Method handles what happens when nothing is selected from the spinner
      */
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
@@ -211,10 +213,9 @@ public class SetPINActivity extends AppCompatActivity implements View.OnClickLis
     }
 
     /**
-     * Method allows us to save the activity's selections just before the app gets paused
+     * Method allows us to save the activity's selections just before the app gets paused.
      */
     public void onPause() {
-
         super.onPause();
 
         //Save the spinner's selection
@@ -225,7 +226,7 @@ public class SetPINActivity extends AppCompatActivity implements View.OnClickLis
     }
 
     /**
-     * Method allows us to retrieve previous selection before the activity was paused
+     * Method allows us to retrieve previous selection before the activity was paused.
      */
     @Override
     protected void onResume() {
@@ -240,8 +241,9 @@ public class SetPINActivity extends AppCompatActivity implements View.OnClickLis
     }
 
     /**
+     * Save the state of the spinner if it's about to be destroyed.
+     *
      * @param savedInstanceState
-     * Save the state of the spinner if it's about to be destroyed
      */
     @Override
     public void onSaveInstanceState(Bundle savedInstanceState) {

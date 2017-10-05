@@ -58,18 +58,28 @@ public class ListActivity extends AppCompatActivity
 
     }
 
-    //Open the database connection
+    /**
+     * Open the database connection.
+     *
+     * @return <code>this</code> for chaining
+     */
     public ListActivity open() {
         db = eyeRSDatabaseHelper.getReadableDatabase();
         return this;
     }
 
-    //Close the connection
+    /**
+     * Close the connection.
+     */
     public void close() {
-        eyeRSDatabaseHelper.close();
+        this.eyeRSDatabaseHelper.close();
     }
 
-    //Return all items in the db
+    /**
+     * Return all items in the db.
+     *
+     * @return all items in the database
+     */
     public Cursor getAllItems() {
 
         Cursor cursor = db.rawQuery(GET_ALL_ITEMS, null);
@@ -81,7 +91,11 @@ public class ListActivity extends AppCompatActivity
         return cursor;
     }
 
-    //Get a specific item
+    /**
+     * Get a specific item.
+     *
+     * @return a specfic item
+     */
     public Cursor getItem() {
         String query = "";
         Cursor cursor = db.rawQuery(query, null);
@@ -93,7 +107,9 @@ public class ListActivity extends AppCompatActivity
         return cursor;
     }
 
-    //Method to populate the ListView
+    /**
+     * Method to populate the ListView.
+     */
     public void populateItems() {
 
         //Database handler
@@ -165,13 +181,17 @@ public class ListActivity extends AppCompatActivity
         }
     }
 
-    /** A callback method invoked by the loader when initLoader() is called */
+    /**
+     * A callback method invoked by the loader when initLoader() is called
+     */
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
         return null;
     }
 
-    /** A callback method, invoked after the requested content provider returns all the data */
+    /**
+     * A callback method, invoked after the requested content provider returns all the data *
+     */
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
 

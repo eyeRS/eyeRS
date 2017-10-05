@@ -1,13 +1,13 @@
 package com.github.eyers.activities;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ListView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ListView;
 
 import com.github.eyers.R;
 
@@ -32,47 +32,48 @@ public class AppSettingsActivity extends AppCompatActivity implements OnItemClic
     }
 
     /**
+     * Method handles what happens when an item is clicked from the list view.
      *
      * @param parent
      * @param view
      * @param position
      * @param id
-     * Method handles what happens when an item is clicked from the list view
      */
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-        if (position == 0) { //Security settings is the first item in the list view i.e. position 0
-            Intent intent = new Intent(this, SetPINActivity.class);
-            startActivity(intent);
-        }
-        if (position == 1) { //Display settings is the next item in the list view i.e. position 1
-            Intent intent = new Intent(this, DisplaySettingsActivity.class);
-            startActivity(intent);
-        }
-        if (position == 2) { //Profile settings is the next item in the list view i.e. position 2
-            Intent intent = new Intent(this, ProfileSettings.class);
-            startActivity(intent);
-        }
-        if (position == 3) { //Sound settings is the next item in the list view i.e. position 3
-            Intent intent = new Intent(this, SoundSettings.class);
-            startActivity(intent);
-        }
-        if (position == 4) { //Category management settings is the next item in the list view i.e. position 4
-            Intent intent = new Intent(this, CategoryManagementSettings.class);
-            startActivity(intent);
-        }
-        if (position == 5) { //Item management settings is the next item in the list view i.e. position 5
-            Intent intent = new Intent(this, ItemManagementSettings.class);
-            startActivity(intent);
-        }
-        if (position == 6){ //Help & tips is the next item in the list view i.e. position 6
-            Intent intent = new Intent(this, HelpActivity.class);
-            startActivity(intent);
-        }
-        if (position == 7){ //About is the next item in the list view i.e. position 7
-            Intent intent = new Intent(this, AboutActivity.class);
-            startActivity(intent);
+        switch (position) {
+            case 0:
+                // Security settings is the first item in the list view i.e. position 0
+                startActivity(new Intent(this, SetPINActivity.class));
+                break;
+            case 1:
+                // Display settings is the next item in the list view i.e. position 1
+                startActivity(new Intent(this, DisplaySettingsActivity.class));
+                break;
+            case 2:
+                // Profile settings is the next item in the list view i.e. position 2
+                startActivity(new Intent(this, ProfileSettings.class));
+                break;
+            case 3:
+                // Sound settings is the next item in the list view i.e. position 3
+                startActivity(new Intent(this, SoundSettings.class));
+                break;
+            case 4:
+                // Category management settings is the next item in the list view i.e. position 4
+                startActivity(new Intent(this, NewCategoryInfo.CategoryInfo.class));
+                break;
+            case 5:
+                // Item management settings is the next item in the list view i.e. position 5
+                startActivity(new Intent(this, ItemManagementSettings.class));
+                break;
+            case 6:
+                // Help & tips is the next item in the list view i.e. position 6
+                startActivity(new Intent(this, HelpActivity.class));
+                break;
+            case 7:
+                // About is the next item in the list view i.e. position 7
+                startActivity(new Intent(this, AboutActivity.class));
+                break;
         }
     }
 }

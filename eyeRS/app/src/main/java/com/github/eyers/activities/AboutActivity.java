@@ -7,7 +7,7 @@ import android.support.v7.widget.Toolbar;
 import com.github.eyers.R;
 
 /**
- *This class displays the information about the application
+ *This class displays the information about the application.
  */
 public class AboutActivity extends AppCompatActivity {
 
