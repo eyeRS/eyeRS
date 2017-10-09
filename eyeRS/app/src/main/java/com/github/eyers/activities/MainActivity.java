@@ -102,7 +102,7 @@ public class MainActivity extends AppCompatActivity
 
             @Override
             public boolean onQueryTextChange(String newText)    {
-                return false;
+                return false; // functions of the database should be entere in here. Once the text changes in the search bar The items should appear.
             }
         });
     }
