@@ -81,6 +81,30 @@ public class MainActivity extends AppCompatActivity
 
         drawer.setDrawerListener(toggle);
         this.searchView = (MaterialSearchView) findViewById(R.id.search_view);
+
+        searchView.setOnSearchViewListener(new MaterialSearchView.SearchViewListener() {
+            @Override
+            public void onSearchViewShown() {
+
+            }
+
+            @Override
+            public void onSearchViewClosed()    {
+
+            }
+        });
+
+        searchView.setOnQueryTextListener(new MaterialSearchView.OnQueryTextListener()  {
+            @Override
+            public boolean onQueryTextSubmit(String query)  {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText)    {
+                return false;
+            }
+        });
     }
 
     /**

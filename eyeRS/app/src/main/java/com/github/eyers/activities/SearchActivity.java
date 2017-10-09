@@ -35,6 +35,30 @@ public class SearchActivity extends AppCompatActivity {
 
         this.searchView = (MaterialSearchView) findViewById(R.id.search_view);
 
+        searchView.setOnSearchViewListener(new MaterialSearchView.SearchViewListener() {
+            @Override
+            public void onSearchViewShown() {
+
+            }
+
+            @Override
+            public void onSearchViewClosed()    {
+
+            }
+        });
+
+        searchView.setOnQueryTextListener(new MaterialSearchView.OnQueryTextListener()  {
+            @Override
+            public boolean onQueryTextSubmit(String query)  {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText)    {
+                return false;
+            }
+        });
+
         /**
 
          FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
