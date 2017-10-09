@@ -30,7 +30,8 @@ public class EyeRSDatabaseHelper extends SQLiteOpenHelper {
             "CREATE TABLE IF NOT EXISTS " + NewItemInfo.ItemInfo.TABLE_NAME
                     + NewItemInfo.ItemInfo.ITEM_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                     + NewItemInfo.ItemInfo.ITEM_NAME + " TEXT, "
-                    + NewItemInfo.ItemInfo.ITEM_DESC + " TEXT);";
+                    + NewItemInfo.ItemInfo.ITEM_DESC + " TEXT, "
+                    + NewItemInfo.ItemInfo.ITEM_IMAGE + " TEXT);";
 
     /**
      * CREATE CATEGORY TABLE QUERY
@@ -39,7 +40,8 @@ public class EyeRSDatabaseHelper extends SQLiteOpenHelper {
             "CREATE TABLE IF NOT EXISTS " + NewCategoryInfo.CategoryInfo.TABLE_NAME
                     + NewCategoryInfo.CategoryInfo.CATEGORY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                     + NewCategoryInfo.CategoryInfo.CATEGORY_NAME + " TEXT, "
-                    + NewCategoryInfo.CategoryInfo.CATEGORY_DESC + " TEXT);";
+                    + NewCategoryInfo.CategoryInfo.CATEGORY_DESC + " TEXT, "
+                    + NewCategoryInfo.CategoryInfo.CATEGORY_IMAGE + " TEXT);";
 
     /**
      * CREATE USER REGISTRATION TABLE QUERY
@@ -148,6 +150,7 @@ public class EyeRSDatabaseHelper extends SQLiteOpenHelper {
 
         bookValues.put(NewCategoryInfo.CategoryInfo.CATEGORY_NAME, "BOOKS");
         bookValues.put(NewCategoryInfo.CategoryInfo.CATEGORY_DESC, "Educational/Sci-Fi/Comics");
+        bookValues.put(NewCategoryInfo.CategoryInfo.CATEGORY_IMAGE, "insert_image_value_here");
 
         /**
          * Content resolver insert operation
@@ -168,6 +171,7 @@ public class EyeRSDatabaseHelper extends SQLiteOpenHelper {
 
         clothesValues.put(NewCategoryInfo.CategoryInfo.CATEGORY_NAME, "CLOTHES");
         clothesValues.put(NewCategoryInfo.CategoryInfo.CATEGORY_DESC, "Formal/Casual");
+        clothesValues.put(NewCategoryInfo.CategoryInfo.CATEGORY_IMAGE, "insert_image_value_here");
 
         /**
          * Content resolver insert operation
@@ -188,6 +192,7 @@ public class EyeRSDatabaseHelper extends SQLiteOpenHelper {
 
         accessoryValues.put(NewCategoryInfo.CategoryInfo.CATEGORY_NAME, "ACCESSORIES");
         accessoryValues.put(NewCategoryInfo.CategoryInfo.CATEGORY_DESC, "Collectibles");
+        accessoryValues.put(NewCategoryInfo.CategoryInfo.CATEGORY_IMAGE, "insert_image_value_here");
 
         /**
          * Content resolver insert operation
@@ -208,6 +213,7 @@ public class EyeRSDatabaseHelper extends SQLiteOpenHelper {
 
         gameValues.put(NewCategoryInfo.CategoryInfo.CATEGORY_NAME, "GAMES");
         gameValues.put(NewCategoryInfo.CategoryInfo.CATEGORY_DESC, "Sport/Shooting/VR");
+        gameValues.put(NewCategoryInfo.CategoryInfo.CATEGORY_IMAGE, "insert_image_value_here");
 
         /**
          * Content resolver insert operation
@@ -228,6 +234,7 @@ public class EyeRSDatabaseHelper extends SQLiteOpenHelper {
 
         otherValues.put(NewCategoryInfo.CategoryInfo.CATEGORY_NAME, "OTHER");
         otherValues.put(NewCategoryInfo.CategoryInfo.CATEGORY_DESC, "Random stuff");
+        otherValues.put(NewCategoryInfo.CategoryInfo.CATEGORY_IMAGE, "insert_image_value_here");
 
         /**
          * Content resolver insert operation

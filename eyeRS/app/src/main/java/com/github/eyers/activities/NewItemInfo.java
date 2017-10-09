@@ -19,6 +19,7 @@ public class NewItemInfo {
         public static final String ITEM_ID = "_id";
         public static final String ITEM_NAME = "item_name";
         public static final String ITEM_DESC = "item_desc";
+        public static final String ITEM_IMAGE = "item_image";
 
     }
 }

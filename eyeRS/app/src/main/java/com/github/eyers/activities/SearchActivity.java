@@ -26,7 +26,8 @@ public class SearchActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        /** From here on copy the code to the necessary activities for functionality of the search
+        /**
+         * From here on copy the code to the necessary activities for functionality of the search
          * function.
          */
 
@@ -59,19 +60,6 @@ public class SearchActivity extends AppCompatActivity {
             }
         });
 
-        /**
-
-         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-         fab.setOnClickListener(new View.OnClickListener() {
-        @Override public void onClick(View view) {
-        Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-        .setAction("Action", null).show();
-        }
-        });
-
-         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-         */
     }
 
     @Override

@@ -55,6 +55,7 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
     public static final int MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE = 123;
     private static String itemName;
     private static String itemDesc;
+    private static String itemImage;
     public String category;
     /**
      * Array adapter declaration
@@ -153,7 +154,8 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
          * Array of columns to be included for each row retrieved
          */
         String[] projection = {NewCategoryInfo.CategoryInfo.CATEGORY_ID,
-                NewCategoryInfo.CategoryInfo.CATEGORY_NAME, NewCategoryInfo.CategoryInfo.CATEGORY_DESC};
+                NewCategoryInfo.CategoryInfo.CATEGORY_NAME, NewCategoryInfo.CategoryInfo.CATEGORY_DESC,
+                NewCategoryInfo.CategoryInfo.CATEGORY_IMAGE};
 
         /**
          * The criteria for selecting the rows
@@ -317,6 +319,8 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
 
         bookValues.put("book_title", itemName); //Book name
         bookValues.put("book_desc", itemDesc); //Book description
+        bookValues.put("book_image", itemImage); //Icon
+
 
         try {
 
@@ -346,6 +350,7 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
 
         clothesValues.put("clothing_type", itemName); //Clothing name
         clothesValues.put("clothing_desc", itemDesc); //Clothing description
+        clothesValues.put("clothing_image", itemImage); //Icon
 
         try {
 
@@ -375,6 +380,7 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
 
         accessoriesValues.put("accessory_name", itemName); //Accessory name
         accessoriesValues.put("accessory_desc", itemDesc); //Accessory description
+        accessoriesValues.put("accessory_image", itemImage); //Icon
 
         try {
 
@@ -404,6 +410,7 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
 
         gamesValues.put("game_title", itemName); //Game name
         gamesValues.put("game_desc", itemDesc); //Game description
+        gamesValues.put("game_image", itemImage); //Icon
 
         try {
 
@@ -433,6 +440,7 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
 
         otherValues.put("other_title", itemName); //Other name
         otherValues.put("other_desc", itemDesc); //Other description
+        otherValues.put("other_image", itemImage); //Icon
 
         try {
 
@@ -458,17 +466,18 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
         /**
          * Define an object to contain the new values to insert
          */
-        ContentValues contentValues = new ContentValues();
+        ContentValues itemValues = new ContentValues();
 
-        contentValues.put(NewItemInfo.ItemInfo.ITEM_NAME, itemName); //Item's name
-        contentValues.put(NewItemInfo.ItemInfo.ITEM_DESC, itemDesc); //Item's description
+        itemValues.put(NewItemInfo.ItemInfo.ITEM_NAME, itemName); //Item's name
+        itemValues.put(NewItemInfo.ItemInfo.ITEM_DESC, itemDesc); //Item's description
+        itemValues.put(NewItemInfo.ItemInfo.ITEM_IMAGE, itemImage); //Image
 
         try {
 
             /**
              * Content resolver insert operation
              */
-            eyeRSContentResolver.insert(DbOperations.CONTENT_URI_ITEMS, contentValues);
+            eyeRSContentResolver.insert(DbOperations.CONTENT_URI_ITEMS, itemValues);
 
             Toast.makeText(this, "Your item has been added successfully ", Toast.LENGTH_LONG).show();
             Log.e("DATABASE OPERATIONS", "...New item added to DB!");

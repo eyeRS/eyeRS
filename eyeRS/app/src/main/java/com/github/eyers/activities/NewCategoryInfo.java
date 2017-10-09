@@ -19,6 +19,8 @@ public class NewCategoryInfo {
         public static final String CATEGORY_ID = "_id";
         public static final String CATEGORY_NAME = "category_name";
         public static final String CATEGORY_DESC = "category_desc";
+        public static final String CATEGORY_IMAGE = "category_image";
+
     }
 
 }

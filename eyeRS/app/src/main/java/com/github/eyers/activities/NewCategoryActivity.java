@@ -30,6 +30,7 @@ public class NewCategoryActivity extends AppCompatActivity implements View.OnCli
     private EditText txtDesc;
     public String categoryName;
     public String categoryDesc;
+    public String categoryIcon;
 
     /**
      * Content Resolver declaration
@@ -146,7 +147,7 @@ public class NewCategoryActivity extends AppCompatActivity implements View.OnCli
 
         categoryValues.put(NewCategoryInfo.CategoryInfo.CATEGORY_NAME, categoryName.toUpperCase()); //Category's name
         categoryValues.put(NewCategoryInfo.CategoryInfo.CATEGORY_DESC, categoryDesc); //Category's description
-        //code to insert the category's icon to be inserted here
+        categoryValues.put(NewCategoryInfo.CategoryInfo.CATEGORY_IMAGE, categoryIcon); //Icon
 
         try {
 
