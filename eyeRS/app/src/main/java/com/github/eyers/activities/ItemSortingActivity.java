@@ -1,7 +1,7 @@
 package com.github.eyers.activities;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.widget.CompoundButton;
 import android.widget.Switch;
@@ -18,8 +18,8 @@ public class ItemSortingActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        Switch asc_descSwitch = (Switch)findViewById(R.id.item_asc_descSwitch);
-        Switch recently_addSwitch = (Switch)findViewById(R.id.item_recently_add_Switch);
+        Switch asc_descSwitch = (Switch) findViewById(R.id.item_asc_descSwitch);
+        Switch recently_addSwitch = (Switch) findViewById(R.id.item_recently_add_Switch);
 
         asc_descSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 
@@ -27,13 +27,13 @@ public class ItemSortingActivity extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 
                 /** If the user wishes to sort alphabetically */
-                if (isChecked){
+                if (isChecked) {
 
                     Toast.makeText(ItemSortingActivity.this, "All items have been sorted alphabetically",
                             Toast.LENGTH_SHORT).show();
                 }
                 /** If the user does not wish to sort alphabetically */
-                if (!isChecked){
+                if (!isChecked) {
 
                     Toast.makeText(ItemSortingActivity.this, "All items will be displayed as normal",
                             Toast.LENGTH_SHORT).show();
@@ -47,13 +47,13 @@ public class ItemSortingActivity extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 
                 /** If the user wishes to sort by the most recently added items */
-                if (isChecked){
+                if (isChecked) {
 
                     Toast.makeText(ItemSortingActivity.this, "All items have been sorted according" +
                             " to their order of entry", Toast.LENGTH_SHORT).show();
                 }
                 /** If the user does not wish to sort alphabetically */
-                if (!isChecked){
+                if (!isChecked) {
 
                     Toast.makeText(ItemSortingActivity.this, "All items will be displayed as normal",
                             Toast.LENGTH_SHORT).show();
@@ -61,4 +61,5 @@ public class ItemSortingActivity extends AppCompatActivity {
             }
         });
     }
-}
+
+} //end class ItemSortingActivity

@@ -20,6 +20,9 @@ import com.github.eyers.R;
  */
 public class ItemDetailFragment extends Fragment {
 
+    /**
+     * Field declarations
+     */
     private long itemID; //The ID of the item the user will select
 
     // Required empty public constructor
@@ -72,9 +75,14 @@ public class ItemDetailFragment extends Fragment {
         savedInstanceState.putLong("itemID", itemID);
     }
 
-    //The activity will use this Setter to set the value of the itemID
+    /**
+     * The activity will use this Setter to set the value of the itemID
+     *
+     * @param id
+     */
     public void setItem(long id) {
 
         this.itemID = id;
     }
-}
+
+} //end class ItemDetailFragment

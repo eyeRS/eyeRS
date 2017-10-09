@@ -11,10 +11,13 @@ import com.github.eyers.R;
 import java.util.Random;
 
 /**
- * This class will how items will be viewed in an image-based slideshow setup
+ * This class will how items will be viewed in an image-based slideshow setup.
  */
 public class SlideshowActivity extends AppCompatActivity {
 
+    /**
+     * Fields & other declarations
+     */
     private ImageView img;
 
     @Override
@@ -55,4 +58,5 @@ public class SlideshowActivity extends AppCompatActivity {
 
         return img[new Random().nextInt(img.length - 1)];
     }
-}
+
+} //end class SlideshowActivity

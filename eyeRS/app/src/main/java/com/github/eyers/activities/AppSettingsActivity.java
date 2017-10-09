@@ -17,7 +17,9 @@ import com.github.eyers.R;
  */
 public class AppSettingsActivity extends AppCompatActivity implements OnItemClickListener {
 
-    //Declarations
+    /**
+     * Field declarations
+     */
     private ListView listView;
 
     @Override
@@ -32,12 +34,10 @@ public class AppSettingsActivity extends AppCompatActivity implements OnItemClic
     }
 
     /**
-     *
      * @param parent
      * @param view
      * @param position
-     * @param id
-     * Method handles what happens when an item is clicked from the list view
+     * @param id       Method handles what happens when an item is clicked from the list view
      */
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -66,13 +66,14 @@ public class AppSettingsActivity extends AppCompatActivity implements OnItemClic
             Intent intent = new Intent(this, ItemManagementSettings.class);
             startActivity(intent);
         }
-        if (position == 6){ //Help & tips is the next item in the list view i.e. position 6
+        if (position == 6) { //Help & tips is the next item in the list view i.e. position 6
             Intent intent = new Intent(this, HelpActivity.class);
             startActivity(intent);
         }
-        if (position == 7){ //About is the next item in the list view i.e. position 7
+        if (position == 7) { //About is the next item in the list view i.e. position 7
             Intent intent = new Intent(this, AboutActivity.class);
             startActivity(intent);
         }
     }
-}
+
+} //end class AppSettingsActivity

@@ -14,9 +14,11 @@ import com.github.eyers.R;
 /**
  * This class will handle category management settings events based on the user's selection
  */
-public class CategoryManagementSettings extends AppCompatActivity implements OnItemClickListener{
+public class CategoryManagementSettings extends AppCompatActivity implements OnItemClickListener {
 
-    //Declarations
+    /**
+     * Field declarations
+     */
     private ListView listView;
 
     @Override
@@ -31,12 +33,10 @@ public class CategoryManagementSettings extends AppCompatActivity implements OnI
     }
 
     /**
-     *
      * @param parent
      * @param view
      * @param position
-     * @param id
-     * Method handles what happens when an item is clicked from the list view
+     * @param id       Method handles what happens when an item is clicked from the list view
      */
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {

@@ -44,33 +44,36 @@
                 android:id="@+id/txtViewChangeTheme"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="400dp"
+                android:layout_marginTop="10dp"
                 android:text="@string/selectChangeTheme"
-                android:textSize="30dp"
+                android:textSize="30sp"
                 android:textStyle="bold"
                 tools:layout_editor_absoluteX="16dp"
                 tools:layout_editor_absoluteY="230dp" />
 
             <TextView
-                android:id="@+id/txtViewChangetheme"
+                android:id="@+id/txtViewChange_theme"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="-399dp"
+                android:layout_marginTop="8dp"
                 android:text="@string/selectChangetheme"
-                android:textSize="20dp" />
+                android:textSize="20sp"
+                app:layout_constraintTop_toBottomOf="@+id/txtViewChangeTheme" />
 
-            <LinearLayout android:layout_width="309dp"
-                android:layout_height="57dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
                 <ImageButton
-                    android:id="@+id/imgbtBlue"
+                    android:id="@+id/imgbtnBlue"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_marginBottom="8dp"
                     android:layout_marginLeft="10dp"
+                    android:layout_marginStart="10dp"
                     android:layout_marginTop="8dp"
-                    android:tint="@color/eyeRSBlue"
                     android:backgroundTint="@color/eyeRSBlue"
+                    android:tint="@color/eyeRSBlue"
                     app:srcCompat="@drawable/color_cursor_white" />
 
 
@@ -80,6 +83,7 @@
                     android:layout_height="50dp"
                     android:layout_marginBottom="8dp"
                     android:layout_marginLeft="30dp"
+                    android:layout_marginStart="30dp"
                     android:layout_marginTop="8dp"
                     android:backgroundTint="@color/eyeRSRed"
                     android:tint="@color/eyeRSRed"
@@ -91,6 +95,7 @@
                     android:layout_height="50dp"
                     android:layout_marginBottom="8dp"
                     android:layout_marginLeft="30dp"
+                    android:layout_marginStart="30dp"
                     android:layout_marginTop="8dp"
                     android:backgroundTint="@color/eyeRSYelow"
                     android:tint="@color/eyeRSYelow"
@@ -102,6 +107,7 @@
                     android:layout_height="50dp"
                     android:layout_marginBottom="8dp"
                     android:layout_marginLeft="30dp"
+                    android:layout_marginStart="30dp"
                     android:layout_marginTop="8dp"
                     android:backgroundTint="@color/eyeRSGreen"
                     android:tint="@color/eyeRSGreen"
@@ -113,64 +119,69 @@
                 android:id="@+id/txtViewChangeFont"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="350dp"
                 android:layout_marginTop="70dp"
                 android:text="@string/selectChangeFont"
-                android:textSize="30dp"
+                android:textSize="30sp"
                 android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@+id/txtViewChange_theme"
                 tools:layout_editor_absoluteX="16dp"
                 tools:layout_editor_absoluteY="230dp" />
 
             <TextView
-                android:id="@+id/txtViewChagefont"
+                android:id="@+id/txtViewChange_font"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="-348dp"
+                android:layout_marginTop="10dp"
                 android:text="@string/selectChangefont"
-                android:textSize="20dp" />
-
+                android:textSize="20sp"
+                app:layout_constraintTop_toBottomOf="@+id/txtViewChangeFont" />
 
             <Spinner
-                android:id="@+id/spinner"
+                android:id="@+id/fontTypeSpinner"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 android:scrollbars="horizontal|vertical"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent" />
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtViewChange_font" />
 
             <TextView
                 android:id="@+id/txtViewChangeFontSize"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="450dp"
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="70dp"
                 android:text="@string/selectChangeFontSize"
-                android:textSize="30dp"
+                android:textSize="30sp"
                 android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@+id/fontTypeSpinner"
                 tools:layout_editor_absoluteX="16dp"
                 tools:layout_editor_absoluteY="230dp" />
 
             <TextView
-                android:id="@+id/txtViewChangefontsize"
+                android:id="@+id/txtViewChange_fontSize"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="-448dp"
+                android:layout_marginTop="10dp"
                 android:text="@string/selectChangefontsize"
-                android:textSize="20dp" />
+                android:textSize="20sp"
+                app:layout_constraintTop_toBottomOf="@+id/txtViewChangeFontSize" />
 
             <Spinner
-                android:id="@+id/spinner2"
+                android:id="@+id/fontSizeSpinner"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="50dp"
+                android:layout_marginTop="10dp"
                 android:scrollbars="horizontal|vertical"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"/>
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtViewChange_fontSize" />
 
         </GridLayout>
 
     </ScrollView>
-
 
 </android.support.constraint.ConstraintLayout>

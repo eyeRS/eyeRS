@@ -12,7 +12,7 @@ import android.widget.VideoView;
 import com.github.eyers.R;
 
 /**
- *This class allows the user to view a video tutorial on how to use the app as well as have the ability
+ * This class allows the user to view a video tutorial on how to use the app as well as have the ability
  * to provide feedback to the developers
  */
 public final class HelpActivity extends AppCompatActivity implements View.OnClickListener {
@@ -54,4 +54,5 @@ public final class HelpActivity extends AppCompatActivity implements View.OnClic
                 break;
         }
     }
-}
+
+} //end class HelpActivity

@@ -1,6 +1,7 @@
 package com.github.eyers.activities;
 
 import android.app.LoaderManager;
+import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
@@ -21,6 +22,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.github.eyers.DbOperations;
 import com.github.eyers.EyeRSDatabaseHelper;
 import com.github.eyers.R;
 
@@ -28,11 +30,12 @@ import java.util.regex.Pattern;
 
 /**
  * This class will handle the user registration activity process on first time use of the app
+ *
  * @see android.view.View.OnClickListener
  * @see android.support.v7.app.AppCompatActivity
  */
 public class RegisterActivity extends AppCompatActivity implements View.OnClickListener,
-    OnItemSelectedListener, LoaderManager.LoaderCallbacks<Cursor> {
+        OnItemSelectedListener, LoaderManager.LoaderCallbacks<Cursor> {
 
     /**
      * The possible security questions.
@@ -48,32 +51,19 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             "What time of the day were you born (hh:mm)?"
     };
 
-    //Declarations
+    /**
+     * Field & other declarations
+     */
     private static String username;
     private static String email;
     private static String matchedPIN;
     private static String securityQuestion;
     private static String securityResponse;
-
-    //db variables
-    public SQLiteDatabase db;
-    /**
-     * CHECK: not used.
-     */
-    private EyeRSDatabaseHelper eyeRSDatabaseHelper;
-
-    //Fields
     private EditText txtUsername;
     private EditText txtEmail;
     private EditText txtPIN1;
     private EditText txtPIN2;
-    /**
-     * Retrieves the user's security response.
-     */
     private EditText txtResponse;
-    /**
-     * Contains the list of security questions.
-     */
     private Spinner spinner;
 
     @Override
@@ -114,53 +104,40 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     private Pattern regexPattern = Pattern.compile("^[(a-zA-Z-0-9-\\ \\+\\.)]+@[(a-z-A-z)]+\\.[(a-zA-z)]{2,3}$");
 
     /**
-     * Open the database connection.
-     */
-    public void open() {
-        db = eyeRSDatabaseHelper.getWritableDatabase();
-    }
-
-    /**
      * Method to add user's Registration details.
      */
     public void addRegInfo() {
-        open(); //open the db connection
 
+        /**
+         * Content Resolver declaration
+         */
+        ContentResolver eyeRSContentResolver = this.getContentResolver();
+
+        /**
+         * Define an object to contain the new values to insert
+         */
         ContentValues userRegValues = new ContentValues();
-        //Insert the user's name
-        userRegValues.put(NewRegInfo.UserRegistrationInfo.USER_NAME, username);
-        //Insert the user's email address
-        userRegValues.put(NewRegInfo.UserRegistrationInfo.EMAIL_ADD, email);
-        //Insert the user's pin
-        userRegValues.put(NewRegInfo.UserRegistrationInfo.USER_PIN, matchedPIN);
-        //Insert the user's security response
-        userRegValues.put(NewRegInfo.UserRegistrationInfo.SECURITY_RESPONSE, securityResponse);
+
+        userRegValues.put(NewRegInfo.UserRegistrationInfo.USER_NAME, username); //User's name
+        userRegValues.put(NewRegInfo.UserRegistrationInfo.EMAIL_ADD, email); //User's email address
+        userRegValues.put(NewRegInfo.UserRegistrationInfo.USER_PIN, matchedPIN); //User's pin
+        userRegValues.put(NewRegInfo.UserRegistrationInfo.SECURITY_QUESTION, securityQuestion); //User's security question
+        userRegValues.put(NewRegInfo.UserRegistrationInfo.SECURITY_RESPONSE, securityResponse); //User's security response
 
         try {
-            db.beginTransaction();
 
-            //Insert the user registration details into the db
-            db.insert(NewRegInfo.UserRegistrationInfo.TABLE_NAME, null,
-                    userRegValues);
+            /**
+             * Content resolver insert operation
+             */
+            eyeRSContentResolver.insert(DbOperations.CONTENT_URI_USER_REG, userRegValues);
 
             Toast.makeText(this, "Your details have been saved successfully ", Toast.LENGTH_LONG).show();
-
-            //Display message in the logcat window after successful operation execution
             Log.e("DATABASE OPERATIONS", "...New user added to DB!");
+
         } catch (SQLException ex) {
             Toast.makeText(this, "Unable to add item", Toast.LENGTH_SHORT).show();
-        } finally {
-            db.endTransaction();
         }
 
-        close(); //close the db connection
-    }
-
-    /**
-     * Close the connection.
-     */
-    public void close() {
-        eyeRSDatabaseHelper.close();
     }
 
     /**
@@ -173,7 +150,10 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
      */
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        // Question selected from Spinner:
+
+        /**
+         * Question selected from Spinner
+         */
         securityQuestion = parent.getItemAtPosition(position).toString();
     }
 
@@ -199,31 +179,33 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         String pinB = txtPIN2.getText().toString();
 
         switch (view.getId()) {
-            case R.id.btnRegister:
+            case R.id.btnRegister: //user clicks the register button
 
                 username = txtUsername.getText().toString();
                 email = txtEmail.getText().toString();
                 securityResponse = txtResponse.getText().toString();
 
-                if (!validateEmailAddress(email)) {
+                if (!validateEmailAddress(email)) { //email not validate
+
                     Toast.makeText(this, "Please enter a valid email address.", Toast.LENGTH_LONG).show();
                     return;
                 }
 
-                if (pinA.equals(pinB)) { //if the PINs match then get a copy for the db
-                    matchedPIN = txtPIN2.getText().toString();
+                if (pinA.equals(pinB)) { //if pins match
 
-                    open(); //open db
+                    matchedPIN = txtPIN2.getText().toString(); //get a copy
 
-                    addRegInfo(); //call the method to add details to the db
+                    addRegInfo(); //method to add registration info
 
-                    close(); //close db
-
-                    //Navigate to the Login screen once registration has been successful
+                    /**
+                     * Navigate to the Login screen once registration has been successful
+                     */
                     super.startActivity(new Intent(this, LoginActivity.class));
                 }
                 return;
-            case R.id.btnClearReg: //user clicks on the Clear button
+
+            case R.id.btnClearReg: //user clicks the clear button
+
                 this.txtUsername.setText("");
                 this.txtEmail.setText("");
                 this.txtPIN1.setText("");
@@ -234,21 +216,23 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     }
 
     /**
-     *
      * @param emailAddress
      * @return
      */
     public boolean validateEmailAddress(String emailAddress) {
+
         return regexPattern.matcher(emailAddress).matches();
     }
 
     /**
-     * @param savedInstanceState
-     * Save the state of the spinner if it's about to be destroyed
+     * @param savedInstanceState Save the state of the spinner if it's about to be destroyed
      */
     @Override
     public void onSaveInstanceState(Bundle savedInstanceState) {
-        //save the selection of the spinner
+
+        /**
+         * Save the selection of the spinner
+         */
         savedInstanceState.putInt("spinner", spinner.getSelectedItemPosition());
 
     }
@@ -260,8 +244,10 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
         super.onPause();
 
-        //Save the spinner's selection
-        spinner = (Spinner)findViewById(R.id.register_spinner);
+        /**
+         * Save the spinner's selection
+         */
+        spinner = (Spinner) findViewById(R.id.register_spinner);
         SharedPreferences category_prefs = getSharedPreferences("category_prefs", Context.MODE_PRIVATE);
         category_prefs.edit().putInt("spinner_indx", spinner.getSelectedItemPosition()).apply();
 
@@ -272,23 +258,31 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
      */
     @Override
     protected void onResume() {
+
         super.onResume();
 
-        //Retrieve the saved spinner selection
-        spinner = (Spinner)findViewById(R.id.register_spinner);
+        /**
+         * Retrieve the saved spinner selection
+         */
+        spinner = (Spinner) findViewById(R.id.register_spinner);
         SharedPreferences category_prefs = getSharedPreferences("category_prefs", Context.MODE_PRIVATE);
         int spinner_index = category_prefs.getInt("spinner_indx", 0);
         spinner.setSelection(spinner_index);
 
     }
 
-    /** A callback method invoked by the loader when initLoader() is called */
+    /**
+     * A callback method invoked by the loader when initLoader() is called
+     */
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
+
         return null;
     }
 
-    /** A callback method, invoked after the requested content provider returns all the data */
+    /**
+     * A callback method, invoked after the requested content provider returns all the data
+     */
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
 
@@ -298,4 +292,4 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     public void onLoaderReset(Loader<Cursor> loader) {
 
     }
-}
+} //end class RegisterActivity
