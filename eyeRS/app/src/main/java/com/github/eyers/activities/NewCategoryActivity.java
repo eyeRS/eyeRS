@@ -11,7 +11,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.github.eyers.DbOperations;
@@ -21,7 +23,7 @@ import com.github.eyers.R;
  * This class creates a new category and inserts it into the SQLite database.
  */
 public class NewCategoryActivity extends AppCompatActivity implements View.OnClickListener,
-        LoaderManager.LoaderCallbacks<Cursor> {
+        LoaderManager.LoaderCallbacks<Cursor>, AdapterView.OnItemSelectedListener {
 
     /**
      * Fields & other declarations
@@ -31,6 +33,7 @@ public class NewCategoryActivity extends AppCompatActivity implements View.OnCli
     public String categoryName;
     public String categoryDesc;
     public String categoryIcon;
+    public Spinner iconSpinner;
 
     /**
      * Content Resolver declaration
@@ -46,8 +49,11 @@ public class NewCategoryActivity extends AppCompatActivity implements View.OnCli
 
         this.txtTitle = (EditText) findViewById(R.id.edtTxtCatTitle);
         this.txtDesc = (EditText) findViewById(R.id.edtTxtCatDesc);
+        this.iconSpinner = (Spinner) findViewById(R.id.iconSpinner);
+        this.iconSpinner.setOnItemSelectedListener(this);
 
         findViewById(R.id.btnAddCategory).setOnClickListener(this);
+
     }
 
     @Override
@@ -194,5 +200,23 @@ public class NewCategoryActivity extends AppCompatActivity implements View.OnCli
 
     }
 
+    /**
+     * @param parent
+     * @param view
+     * @param position
+     * @param id Method handles what happens when an item is selected from the spinner
+     */
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+    }
+
+    /**
+     * @param parent Method handles what happens when nothing is selected from the spinner
+     */
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
+    }
 } //end class NewCategoryActivity
 

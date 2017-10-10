@@ -542,7 +542,7 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
      * @param parent
      * @param view
      * @param position
-     * @param id       Method handles what happens when an item is selected from the spinner
+     * @param id Method handles what happens when an item is selected from the spinner
      */
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
