@@ -183,22 +183,18 @@ public class DbOperations extends ContentProvider {
 
         long id = 0;
         switch (uriType) {
-
             case ALL_CATEGORIES:
                 id = db.insert(CATEGORIES_TABLE, null, values);
                 getContext().getContentResolver().notifyChange(uri, null);
                 return Uri.parse(CATEGORIES_TABLE + "/" + id);
-
             case REG_DETAILS:
                 id = db.insert(USER_REGISTRATION_TABLE, null, values);
                 getContext().getContentResolver().notifyChange(uri, null);
                 return Uri.parse(USER_REGISTRATION_TABLE + "/" + id);
-
             case ALL_ITEMS:
                 id = db.insert(ITEMS_TABLE, null, values);
                 getContext().getContentResolver().notifyChange(uri, null);
                 return Uri.parse(ITEMS_TABLE + "/" + id);
-
             default:
                 Toast.makeText(null, "Sorry could not perform add operation", Toast.LENGTH_SHORT).show();
                 return null;

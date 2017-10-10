@@ -81,7 +81,7 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
         this.spinner = (Spinner) findViewById(R.id.category_spinner);
         this.spinner.setOnItemSelectedListener(this); //spinner click listener
 
-        //populateSpinner();
+        populateSpinner();
 
         findViewById(R.id.btnAddItem).setOnClickListener(this);
 
@@ -211,39 +211,36 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
 
         switch (view.getId()) {
 
-            case R.id.btnAddItem: //user clicks add
+            case R.id.btnAddItem:
+                // user clicks add
                 selectImage();
                 if (txtTitle != null) {
-                    //if the user is adding a book item
-                    if (spinner.getSelectedItem() == "BOOKS") {
-                        addBook(); //call the method to add a book item to the db
+                    switch (spinner.getSelectedItem().toString().toLowerCase()) {
+                        case "books": { // if the user is adding a book item
+                            addBook(); // call the method to add a book item to the db
+                        }
+                        return;
+                        case "clothes": { // if the user is adding a clothing item
+                            addClothing(); // call the method to add a clothing item to the db
+                        }
+                        return;
+                        case "accessories": { // if the user is adding an accessory item
+                            addAccessory(); // call the method to add an accessory item to the db
+                        }
+                        return;
+                        case "games": { //if the user is adding a gaming item
+                            addGame();
+                        }
+                        return;
+                        case "other": { // call the method to add another item to the db
+                            addOther(); // call the method to add a gaming item to the db
+                        }
+                        return;
+                        case NewCategoryInfo.CategoryInfo.CATEGORY_NAME: {  // if the user is adding any item that doesn't correspond to the default categories
+                            addItemInfo(); // call the method to add a user specified-item to the db
+                        }
                         return;
                     }
-                    //if the user is adding a clothing item
-                    if (spinner.getSelectedItem() == "CLOTHES") {
-                        addClothing(); //call the method to add a clothing item to the db
-                        return;
-                    }
-                    //if the user is adding an accessory item
-                    if (spinner.getSelectedItem() == "ACCESSORIES") {
-                        addAccessory(); //call the method to add an accessory item to the db
-                        return;
-                    }
-                    //if the user is adding a gaming item
-                    if (spinner.getSelectedItem() == "GAMES") {
-                        addGame(); //call the method to add a gaming item to the db
-                        return;
-                    }
-                    //if the user is adding any other item
-                    if (spinner.getSelectedItem() == "OTHER") {
-                        addOther(); //call the method to add another item to the db
-                        return;
-                    }
-                    //if the user is adding any item that doesn't correspond to the default categories
-                    if (spinner.getSelectedItem() == NewCategoryInfo.CategoryInfo.CATEGORY_NAME) {
-                        addItemInfo(); //call the method to add a user specified-item to the db
-                    }
-
                 }
                 break;
             case R.id.new_item_image:
