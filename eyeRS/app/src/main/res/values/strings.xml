@@ -189,6 +189,12 @@
         <item>Crescent</item>
     </string-array>
 
+    <!-- Strings related to Change font type -->
+    <string-array name="font_size">
+        <item>7</item>
+        <item>9</item>
+        <item>11</item>
+    </string-array>
 
     <!-- Strings related to Help Activity -->
 

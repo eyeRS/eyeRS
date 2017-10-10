@@ -133,6 +133,7 @@
 
             <Spinner
                 android:id="@+id/spinnerFontType"
+                android:entries="@array/font_types"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:scrollbars="horizontal|vertical"
@@ -162,6 +163,7 @@
 
             <Spinner
                 android:id="@+id/spinnerFontSize"
+                android:entries="@array/font_size"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:scrollbars="horizontal|vertical"
