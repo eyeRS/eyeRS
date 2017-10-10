@@ -31,7 +31,7 @@ import java.util.HashMap;
 public class NewCategoryActivity extends AppCompatActivity implements View.OnClickListener,
         LoaderManager.LoaderCallbacks<Cursor>, AdapterView.OnItemSelectedListener {
 
-    private HashMap<String, Integer> data;
+
     // Fields & other declarations
     private EditText txtTitle;
     private String categoryName;
@@ -40,6 +40,7 @@ public class NewCategoryActivity extends AppCompatActivity implements View.OnCli
     private String categoryIcon;
     private Spinner iconSpinner;
     private ImageView imageView;
+    private HashMap<String, Integer> data;
     /**
      * Content Resolver declaration.
      */
@@ -155,7 +156,6 @@ public class NewCategoryActivity extends AppCompatActivity implements View.OnCli
                  */
                 if (!cursor.getString(cursor.getColumnIndex(NewCategoryInfo.
                         CategoryInfo.CATEGORY_NAME)).equals(categoryName)) {
-
                     addNewCategory(); //method to add the new category
                 }
 
@@ -197,7 +197,6 @@ public class NewCategoryActivity extends AppCompatActivity implements View.OnCli
             this.txtDesc.setText("");
 
             Log.e("DATABASE OPERATIONS", "...New category added to DB!");
-
         } catch (SQLException ex) {
             Toast.makeText(this, "Unable to create category", Toast.LENGTH_SHORT).show();
         }
@@ -260,7 +259,7 @@ public class NewCategoryActivity extends AppCompatActivity implements View.OnCli
                             }
                         }
 
-                        this.data.put(cap, field.getInt(null));
+                        this.data.put(cap.replaceAll(" 24dp", ""), field.getInt(null));
                     } catch (Exception ex) {
                     }
                 }
