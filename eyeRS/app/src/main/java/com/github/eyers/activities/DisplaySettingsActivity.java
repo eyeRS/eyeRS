@@ -1,5 +1,6 @@
 package com.github.eyers.activities;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -27,6 +28,7 @@ public class DisplaySettingsActivity extends AppCompatActivity implements OnClic
             super.onCreate(savedInstanceState);
             Utils.onActivityCreateSetTheme(this);
             setContentView(R.layout.content_display_settings);
+
 
 
             findViewById(R.id.imgbtBlue).setOnClickListener(this);
