@@ -29,7 +29,7 @@
     <string name="enterPinHint">Enter your new PIN here</string>
     <string name="validationMsg">*Enter your Security details from the registration process*</string>
 
-    <!-- Strings related to Login activity -->
+    <!-- Strings related to Login Activity -->
 
     <string name="btnLogin">Login</string>
     <string name="btnForgotPin">Forgot your PIN?</string>
@@ -60,22 +60,23 @@
     <string name="title_activity_profile_settings">My Profile</string>
     <string name="title_activity_item_mgmt_settings">Item Management</string>
 
-    <!--Strings related to New Item activities -->
+    <!--Strings related to New Activity -->
 
     <string name="txtItemTitle">Name of item</string>
     <string name="txtItemDesc">Item description</string>
     <string name="btnAddItem">Add</string>
 
-    <!-- Strings related to New Category activites -->
+    <!-- Strings related to New Category Activity -->
     <string name="txtCategoryName">Category Name</string>
     <string name="txtCategoryDesc">Description</string>
     <string name="btnAddCat">Add</string>
+    <string name="txtCategoryIcon">Choose an icon</string>
 
     <!-- Item stock label strings -->
     <string name="lblName">Name</string>
     <string name="lblSymbol">Symbol</string>
 
-    <!-- This section defines strings relating to the AppSettings Activities -->
+    <!-- This section defines strings relating to the AppSettings Activity -->
 
     <string-array name="settings_titles">
         <item>Security</item>

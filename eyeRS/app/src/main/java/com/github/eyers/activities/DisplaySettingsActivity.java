@@ -1,92 +1,93 @@
 package com.github.eyers.activities;
 
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.CompoundButton;
-import android.widget.ImageButton;
-import android.widget.LinearLayout;
+import android.widget.AdapterView;
 import android.view.View.OnClickListener;
 import android.widget.Spinner;
 
 import com.github.eyers.R;
-
-import java.util.List;
-
-import static com.github.eyers.R.layout.content_display_settings;
 
 /**
  * This class will handle display settings events based on the user's preference
  */
 public class DisplaySettingsActivity extends AppCompatActivity implements OnClickListener {
 
-    //private Spinner spinner1, spinner2;
+    private Spinner fontTypeSpinner, fontSizeSpinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-            super.onCreate(savedInstanceState);
-            Utils.onActivityCreateSetTheme(this);
-            setContentView(content_display_settings);
+        super.onCreate(savedInstanceState);
+        Utils.onActivityCreateSetTheme(this);
+        setContentView(R.layout.content_display_settings);
 
-        //adding items to the font type spinner
-        Spinner spinnerFontType=(Spinner)findViewById(R.id.spinnerFontType);
-        String[] fontType=getResources().getStringArray(R.array.font_types);
-        //addinf items to the font size spinner
-        Spinner spinnerFontSize=(Spinner)findViewById(R.id.spinnerFontSize);
-        String[] fontSize=getResources().getStringArray(R.array.font_size);
+        String[] fontTypes = getResources().getStringArray(R.array.font_types);
+        String[] fontSizes = getResources().getStringArray(R.array.font_size);
 
-        findViewById(R.id.imgbtBlue).setOnClickListener(this);
-            findViewById(R.id.imgbtRed).setOnClickListener(this);
-            findViewById(R.id.imgbtYellow).setOnClickListener(this);
-            findViewById(R.id.imgbtGreen).setOnClickListener(this);
+        findViewById(R.id.imgbtn_Blue).setOnClickListener(this);
+        findViewById(R.id.imgbtn_Red).setOnClickListener(this);
+        findViewById(R.id.imgbtn_Yellow).setOnClickListener(this);
+        findViewById(R.id.imgbtn_Green).setOnClickListener(this);
 
+        fontTypeSpinner = (Spinner) findViewById(R.id.spinnerFontType);
+        fontSizeSpinner = (Spinner) findViewById(R.id.spinnerFontSize);
 
+        /**
+         * Event handler for font type spinner
+         */
+        fontTypeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
-
-
-
-        }
-
-        public void onClick(View view)
-        {
-            // TODO Auto-generated method stub
-            switch (view.getId())
-            {
-
-                case R.id.imgbtBlue:
-                    Utils.changeToTheme(this, Utils.App_Theme);
-                    break;
-                case R.id.imgbtRed:
-                    Utils.changeToTheme(this, Utils.AppTheme_Red);
-                    break;
-                case R.id.imgbtYellow:
-                    Utils.changeToTheme(this, Utils.AppTheme_Yellow);
-                    break;
-                case R.id.imgbtGreen:
-                    Utils.changeToTheme(this, Utils.AppTheme_Green);
-                    break;
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
             }
 
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        /**
+         * Event handler for font size spinner
+         */
+        fontSizeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+    }
+
+    public void onClick(View view) {
+        // TODO Auto-generated method stub
+        switch (view.getId()) {
+
+            case R.id.imgbtn_Blue:
+                Utils.changeToTheme(this, Utils.App_Theme);
+                break;
+            case R.id.imgbtn_Red:
+                Utils.changeToTheme(this, Utils.AppTheme_Red);
+                break;
+            case R.id.imgbtn_Yellow:
+                Utils.changeToTheme(this, Utils.AppTheme_Yellow);
+                break;
+            case R.id.imgbtn_Green:
+                Utils.changeToTheme(this, Utils.AppTheme_Green);
+                break;
 
         }
-
-
-
     }
-/**
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_display_settings);
-/**
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+} //end class DisplaySettingsActivity
 
-*/
 
 
 
