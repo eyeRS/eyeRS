@@ -67,7 +67,7 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
     //Fields
     private EditText txtTitle;
     private EditText txtDesc;
-    private Spinner spinner;
+    private Spinner categorySpinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,8 +78,8 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
 
         this.txtTitle = (EditText) findViewById(R.id.edtTxtItemTitle);
         this.txtDesc = (EditText) findViewById(R.id.edtTxtItemDesc);
-        this.spinner = (Spinner) findViewById(R.id.category_spinner);
-        this.spinner.setOnItemSelectedListener(this); //spinner click listener
+        this.categorySpinner = (Spinner) findViewById(R.id.category_spinner);
+        this.categorySpinner.setOnItemSelectedListener(this); //spinner click listener
 
         populateSpinner();
 
@@ -92,7 +92,7 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
             /**
              * Retrieve the saved state of the spinner before the app was destroyed
              */
-            spinner.setSelection(savedInstanceState.getInt("spinner"));
+            categorySpinner.setSelection(savedInstanceState.getInt("spinner"));
         }
 
         if (ContextCompat.checkSelfPermission(NewItemActivity.this,
@@ -121,7 +121,7 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
                 android.R.layout.simple_spinner_item, popCategories);
 
         //Set the adapter to the spinner
-        this.spinner.setAdapter(categoriesAdapter);
+        this.categorySpinner.setAdapter(categoriesAdapter);
 
     }
 
@@ -175,9 +175,9 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
         super.onPause();
 
         //Save the spinner's selection
-        spinner = (Spinner) findViewById(R.id.category_spinner);
+        categorySpinner = (Spinner) findViewById(R.id.category_spinner);
         SharedPreferences category_prefs = getSharedPreferences("category_prefs", Context.MODE_PRIVATE);
-        category_prefs.edit().putInt("spinner_indx", spinner.getSelectedItemPosition()).apply();
+        category_prefs.edit().putInt("spinner_indx", categorySpinner.getSelectedItemPosition()).apply();
 
     }
 
@@ -191,10 +191,10 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
         /**
          * Retrieve the saved spinner selection
          */
-        spinner = (Spinner) findViewById(R.id.category_spinner);
+        categorySpinner = (Spinner) findViewById(R.id.category_spinner);
         SharedPreferences category_prefs = getSharedPreferences("category_prefs", Context.MODE_PRIVATE);
         int spinner_index = category_prefs.getInt("spinner_indx", 0);
-        spinner.setSelection(spinner_index);
+        categorySpinner.setSelection(spinner_index);
 
     }
 
@@ -211,11 +211,10 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
 
         switch (view.getId()) {
 
-            case R.id.btnAddItem:
-                // user clicks add
+            case R.id.btnAddItem: //user clicks add
                 selectImage();
                 if (txtTitle != null) {
-                    switch (spinner.getSelectedItem().toString().toLowerCase()) {
+                    switch (categorySpinner.getSelectedItem().toString().toLowerCase()) {
                         case "books": { // if the user is adding a book item
                             addBook(); // call the method to add a book item to the db
                         }
@@ -260,10 +259,9 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
          */
         ContentValues bookValues = new ContentValues();
 
-        //Book name
-        bookValues.put("book_title", itemName);
-        //Book description
-        bookValues.put("book_desc", itemDesc);
+        bookValues.put("book_title", itemName); //Book name
+        bookValues.put("book_desc", itemDesc); //Book description
+        bookValues.put("book_image", img); //Book image
 
         try {
 
@@ -291,10 +289,9 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
          */
         ContentValues clothesValues = new ContentValues();
 
-        //Clothing name
-        clothesValues.put("clothing_type", itemName);
-        //Clothing description
-        clothesValues.put("clothing_desc", itemDesc);
+        clothesValues.put("clothing_type", itemName); //Clothing name
+        clothesValues.put("clothing_desc", itemDesc); //Clothing description
+        clothesValues.put("clothing_image", img); //Clothing image
 
         try {
 
@@ -322,10 +319,9 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
          */
         ContentValues accessoriesValues = new ContentValues();
 
-        //Accessory name
-        accessoriesValues.put("accessory_name", itemName);
-        //Accessory description
-        accessoriesValues.put("accessory_desc", itemDesc);
+        accessoriesValues.put("accessory_name", itemName); //Accessory name
+        accessoriesValues.put("accessory_desc", itemDesc); //Accessory description
+        accessoriesValues.put("accessory_image", img); //Accessory image
 
         try {
 
@@ -353,10 +349,9 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
          */
         ContentValues gamesValues = new ContentValues();
 
-        //Default name
-        gamesValues.put("game_title", itemName);
-        //Default description
-        gamesValues.put("game_desc", itemDesc);
+        gamesValues.put("game_title", itemName); //Game name
+        gamesValues.put("game_desc", itemDesc); //Game description
+        gamesValues.put("game_image", img); //Game image
 
         try {
 
@@ -384,10 +379,9 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
          */
         ContentValues otherValues = new ContentValues();
 
-        //Default name
-        otherValues.put("other_title", itemName);
-        //Default description
-        otherValues.put("other_desc", itemDesc);
+        otherValues.put("other_title", itemName); //Other name
+        otherValues.put("other_desc", itemDesc); //Other description
+        otherValues.put("other_image", img); //Other image
 
         try {
 
@@ -413,16 +407,15 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
         /**
          * Define an object to contain the new values to insert.
          */
-        ContentValues contentValues = new ContentValues();
+        ContentValues itemsValues = new ContentValues();
 
-        //insert the item's name
-        contentValues.put(NewItemInfo.ItemInfo.ITEM_NAME, itemName);
-        //insert the item's description
-        contentValues.put(NewItemInfo.ItemInfo.ITEM_DESC, itemDesc);
+        itemsValues.put(NewItemInfo.ItemInfo.ITEM_NAME, itemName); //item's name
+        itemsValues.put(NewItemInfo.ItemInfo.ITEM_DESC, itemDesc); //item's description
+        itemsValues.put(NewItemInfo.ItemInfo.ITEM_IMAGE, img); //item's image
 
         try {
 
-            eyeRSContentResolver.insert(DbOperations.CONTENT_URI_ITEMS, contentValues);
+            eyeRSContentResolver.insert(DbOperations.CONTENT_URI_ITEMS, itemsValues);
 
             //Display a message to the user
             Toast.makeText(this, "Your item has been added successfully ", Toast.LENGTH_LONG).show();
@@ -573,7 +566,7 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
     @Override
     public void onSaveInstanceState(Bundle savedInstanceState) {
         //save the selection of the spinner
-        savedInstanceState.putInt("spinner", spinner.getSelectedItemPosition());
+        savedInstanceState.putInt("spinner", categorySpinner.getSelectedItemPosition());
 
     }
 
