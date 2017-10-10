@@ -34,8 +34,8 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.github.eyers.DbOperations;
+import com.github.eyers.EyeRS;
 import com.github.eyers.R;
-import com.github.eyers.test.CamTestActivity;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -45,6 +45,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.TreeSet;
+
+import static com.github.eyers.EyeRS.REQUEST_READ_EXTERNAL_STORAGE;
 
 /**
  * This class enables a user to add a new item and inserts it into the SQLite database.
@@ -103,7 +105,7 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
             } else {
                 ActivityCompat.requestPermissions(NewItemActivity.this,
                         new String[]{Manifest.permission.CAMERA},
-                        CamTestActivity.REQUEST_READ_EXTERNAL_STORAGE);
+                        REQUEST_READ_EXTERNAL_STORAGE);
             }
         }
     }
@@ -432,7 +434,7 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         Toast.makeText(this, requestCode + "", Toast.LENGTH_LONG).show();
         switch (requestCode) {
-            case CamTestActivity.REQUEST_READ_EXTERNAL_STORAGE:
+            case REQUEST_READ_EXTERNAL_STORAGE:
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     if (userChoosenTask.equals("Take Photo"))
                         cameraIntent();
@@ -453,7 +455,7 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
         builder.setItems(items, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int item) {
-                boolean result = CamTestActivity.checkPermission(NewItemActivity.this);
+                boolean result = EyeRS.checkPermission(NewItemActivity.this);
 
                 if (items[item].equals("Take Photo")) {
                     userChoosenTask = "Take Photo";

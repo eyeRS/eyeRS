@@ -13,18 +13,15 @@ import com.github.eyers.activities.NewItemInfo;
 import com.github.eyers.activities.UserRegInfo;
 
 /**
+ * The Database helper class performs the default DDL & DML operations for the app.
  * Created by Nathan Shava on 29-Jul-17
- * The Database helper class performs the default DDL & DML operations for the app
+ *
+ * @author Nathsn Shava
  */
 public class EyeRSDatabaseHelper extends SQLiteOpenHelper {
 
     /**
-     * Content resolver object
-     */
-    private ContentResolver eyeRSContentResolver;
-
-    /**
-     * CREATE ITEM TABLE QUERY
+     * CREATE ITEM TABLE QUERY.
      */
     private static final String CREATE_ITEM_TABLE_QUERY =
             "CREATE TABLE IF NOT EXISTS " + NewItemInfo.ItemInfo.TABLE_NAME
@@ -32,9 +29,8 @@ public class EyeRSDatabaseHelper extends SQLiteOpenHelper {
                     + NewItemInfo.ItemInfo.ITEM_NAME + " TEXT, "
                     + NewItemInfo.ItemInfo.ITEM_DESC + " TEXT, "
                     + NewItemInfo.ItemInfo.ITEM_IMAGE + " TEXT);";
-
     /**
-     * CREATE CATEGORY TABLE QUERY
+     * CREATE CATEGORY TABLE QUERY.
      */
     private static final String CREATE_CATEGORY_TABLE_QUERY =
             "CREATE TABLE IF NOT EXISTS " + NewCategoryInfo.CategoryInfo.TABLE_NAME
@@ -42,9 +38,8 @@ public class EyeRSDatabaseHelper extends SQLiteOpenHelper {
                     + NewCategoryInfo.CategoryInfo.CATEGORY_NAME + " TEXT, "
                     + NewCategoryInfo.CategoryInfo.CATEGORY_DESC + " TEXT, "
                     + NewCategoryInfo.CategoryInfo.CATEGORY_IMAGE + " TEXT);";
-
     /**
-     * CREATE USER REGISTRATION TABLE QUERY
+     * CREATE USER REGISTRATION TABLE QUERY.
      */
     private static final String CREATE_USER_REGISTRATION_TABLE_QUERY =
             "CREATE TABLE IF NOT EXISTS " + UserRegInfo.RegInfo.TABLE_NAME
@@ -54,13 +49,16 @@ public class EyeRSDatabaseHelper extends SQLiteOpenHelper {
                     + UserRegInfo.RegInfo.USER_PIN + " TEXT, "
                     + UserRegInfo.RegInfo.SECURITY_QUESTION + " TEXT, "
                     + UserRegInfo.RegInfo.SECURITY_RESPONSE + " TEXT);";
-
     private static final String DB_NAME = "eyeRS.db"; //db name
     private static final int DB_VERSION = 1; //db version
+    /**
+     * Content resolver object.
+     */
+    private ContentResolver eyeRSContentResolver;
 
     /**
      * We're calling the constructor of the SQLiteOpenHelper superclass,
-     * and passing it the database name and version
+     * and passing it the database name and version.
      *
      * @param context
      */
@@ -109,8 +107,7 @@ public class EyeRSDatabaseHelper extends SQLiteOpenHelper {
             Log.e("DATABASE OPERATIONS", "...Default categories created successfully!");
 
         } catch (SQLException ex) {
-
-            Log.e("DATABASE OPERATIONS", "Unable to perform default DDL & DML operations!");
+            Log.e("DATABASE OPERATIONS", "Unable to perform default DDL & DML operations!", ex);
         }
     }
 
@@ -123,7 +120,6 @@ public class EyeRSDatabaseHelper extends SQLiteOpenHelper {
      */
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
         updateMyDatabase(db, oldVersion, newVersion);
     }
 
@@ -139,7 +135,7 @@ public class EyeRSDatabaseHelper extends SQLiteOpenHelper {
     }
 
     /**
-     * Method to insert the BOOKS default category
+     * Method to insert the BOOKS default category.
      */
     public void insertDefaultCategoryBooks() {
 
@@ -156,11 +152,10 @@ public class EyeRSDatabaseHelper extends SQLiteOpenHelper {
          * Content resolver insert operation
          */
         eyeRSContentResolver.insert(DbOperations.CONTENT_URI_CATEGORIES, bookValues);
-
     }
 
     /**
-     * Method to insert the CLOTHES default category
+     * Method to insert the CLOTHES default category.
      */
     public void insertDefaultCategoryClothes() {
 
@@ -202,7 +197,7 @@ public class EyeRSDatabaseHelper extends SQLiteOpenHelper {
     }
 
     /**
-     * Method to insert the GAMES default category
+     * Method to insert the GAMES default category.
      */
     public void insertDefaultCategoryGames() {
 
@@ -223,7 +218,7 @@ public class EyeRSDatabaseHelper extends SQLiteOpenHelper {
     }
 
     /**
-     * Method to insert the OTHER default category
+     * Method to insert the OTHER default category.
      */
     public void insertDefaultCategoryOther() {
 

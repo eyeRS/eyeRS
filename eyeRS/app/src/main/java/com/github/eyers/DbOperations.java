@@ -17,36 +17,29 @@ import com.github.eyers.activities.NewItemInfo;
 import com.github.eyers.activities.UserRegInfo;
 
 /**
- * Created by Nathan Shava on 15-Sep-17.
- * A custom Content Provider to perform the database operations
+ * A custom Content Provider to perform the database operations. Created by Nathan Shava on 15-Sep-17.
+ *
+ * @author Nathan Shava
  */
 
 public class DbOperations extends ContentProvider {
 
     /**
-     * This content provider does the database operations by this object
-     */
-    private EyeRSDatabaseHelper eyeRSDatabaseHelper;
-
-    /**
-     * Specify the Authority of the URI which has to be the package name
+     * Specify the Authority of the URI which has to be the package name.
      */
     public static final String AUTHORITY = "com.github.eyers.DbOperations";
-
     /**
-     * Specify the table names to be used by the Content Provider
+     * Specify the table names to be used by the Content Provider.
      */
     public static final String CATEGORIES_TABLE = NewCategoryInfo.CategoryInfo.TABLE_NAME;
     public static final String ITEMS_TABLE = NewItemInfo.ItemInfo.TABLE_NAME;
     public static final String USER_REGISTRATION_TABLE = UserRegInfo.RegInfo.TABLE_NAME;
-
     /**
-     * Specify the table paths
+     * Specify the table paths.
      */
     public static final String CATEGORIES_PATH = "/" + CATEGORIES_TABLE;
     public static final String ITEMS_PATH = "/" + ITEMS_TABLE;
     public static final String REGISTRATION_PATH = "/" + USER_REGISTRATION_TABLE;
-
     /**
      * A uri to do operations on the Categories table.
      * A content provider is identified by its uri.
@@ -54,7 +47,6 @@ public class DbOperations extends ContentProvider {
     public static final Uri CONTENT_URI_CATEGORIES = Uri.parse("content://" + AUTHORITY + CATEGORIES_PATH);
     public static final Uri CONTENT_URI_ITEMS = Uri.parse("content://" + AUTHORITY + ITEMS_PATH);
     public static final Uri CONTENT_URI_USER_REG = Uri.parse("content://" + AUTHORITY + REGISTRATION_PATH);
-
     /**
      * Constants to identify the requested operation
      */
@@ -66,14 +58,13 @@ public class DbOperations extends ContentProvider {
     public static final int ITEMS_SPECIFIC_NAME = 6;
     public static final int COUNT_CATEGORIES = 7;
     public static final int COUNT_ITEMS = 8;
-
     /**
-     * The URI matcher maps to the specified table_name in the database
+     * The URI matcher maps to the specified table_name in the database.
      */
     private static final UriMatcher uriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
 
     /**
-     * Add the URIs for the respective db tables
+     * Add the URIs for the respective db tables.
      */
     static {
 
@@ -82,8 +73,12 @@ public class DbOperations extends ContentProvider {
         uriMatcher.addURI(AUTHORITY, ITEMS_TABLE, ALL_ITEMS);
         uriMatcher.addURI(AUTHORITY, ITEMS_TABLE, ITEMS_SPECIFIC_NAME);
         uriMatcher.addURI(AUTHORITY, USER_REGISTRATION_TABLE, REG_DETAILS);
-
     }
+
+    /**
+     * This content provider does the database operations by this object
+     */
+    private EyeRSDatabaseHelper eyeRSDatabaseHelper;
 
     /**
      * System calls onCreate() when it starts up the provider
@@ -119,7 +114,6 @@ public class DbOperations extends ContentProvider {
      */
     @Override
     public Cursor query(@NonNull Uri uri, String[] projection, String selection, String[] selectionArgs, String sortOrder) {
-
 
         SQLiteQueryBuilder queryBuilder = new SQLiteQueryBuilder();
 
@@ -254,7 +248,7 @@ public class DbOperations extends ContentProvider {
     /**
      * The update() method is similar to delete() where multiple rows are updated based on the selection
      * or a single row if the row ID is provided. The update method returns the number of updated
-     * rows
+     * rows.
      *
      * @param uri
      * @param values
@@ -264,7 +258,7 @@ public class DbOperations extends ContentProvider {
      */
     @Override
     public int update(Uri uri, ContentValues values, String selection,
-                      String[] selectionArgs) {
+                      String[] selectionArgs) throws IllegalArgumentException {
 
         int uriType = uriMatcher.match(uri);
         SQLiteDatabase db = eyeRSDatabaseHelper.getWritableDatabase();
