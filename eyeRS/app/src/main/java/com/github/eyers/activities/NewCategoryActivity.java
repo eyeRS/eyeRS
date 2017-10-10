@@ -12,12 +12,18 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.github.eyers.DbOperations;
 import com.github.eyers.R;
+
+import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * This class creates a new category and inserts it into the SQLite database.
@@ -25,20 +31,23 @@ import com.github.eyers.R;
 public class NewCategoryActivity extends AppCompatActivity implements View.OnClickListener,
         LoaderManager.LoaderCallbacks<Cursor>, AdapterView.OnItemSelectedListener {
 
-    /**
-     * Fields & other declarations
-     */
+    private HashMap<String, Integer> data;
+    // Fields & other declarations
     private EditText txtTitle;
+    private String categoryName;
     private EditText txtDesc;
-    public String categoryName;
-    public String categoryDesc;
-    public String categoryIcon;
-    public Spinner iconSpinner;
-
+    private String categoryDesc;
+    private String categoryIcon;
+    private Spinner iconSpinner;
+    private ImageView imageView;
     /**
-     * Content Resolver declaration
+     * Content Resolver declaration.
      */
     private ContentResolver eyeRSContentResolver;
+
+    public NewCategoryActivity() {
+       this. data = new HashMap<>();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,9 +60,11 @@ public class NewCategoryActivity extends AppCompatActivity implements View.OnCli
         this.txtDesc = (EditText) findViewById(R.id.edtTxtCatDesc);
         this.iconSpinner = (Spinner) findViewById(R.id.iconSpinner);
         this.iconSpinner.setOnItemSelectedListener(this);
+        this.imageView = (ImageView) findViewById(R.id.new_category_image);
 
         findViewById(R.id.btnAddCategory).setOnClickListener(this);
 
+        populateSpinner();
     }
 
     @Override
@@ -67,11 +78,25 @@ public class NewCategoryActivity extends AppCompatActivity implements View.OnCli
                  */
                 validateCategories();
 
+                break;
         }
     }
 
     /**
-     * Method performs validation to ensure that the user cannot re-create an existing category
+     * Method handles what happens when an item is selected from the spinner.
+     *
+     * @param parent
+     * @param view
+     * @param position
+     * @param id
+     */
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        this.imageView.setImageDrawable(getResources().getDrawable(data.get(iconSpinner.getSelectedItem())));
+    }
+
+    /**
+     * Method performs validation to ensure that the user cannot re-create an existing category.
      */
     public void validateCategories() {
 
@@ -201,22 +226,58 @@ public class NewCategoryActivity extends AppCompatActivity implements View.OnCli
     }
 
     /**
+     * Method handles what happens when nothing is selected from the spinner.
+     *
      * @param parent
-     * @param view
-     * @param position
-     * @param id Method handles what happens when an item is selected from the spinner
-     */
-    @Override
-    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
-    }
-
-    /**
-     * @param parent Method handles what happens when nothing is selected from the spinner
      */
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
 
+    }
+
+    /**
+     * Method to populate the spinner.
+     */
+    public void populateSpinner() {
+        for (Field field : R.drawable.class.getDeclaredFields()) {
+            String str = field.toString();
+            if (str.contains(" int ")) {
+                str = str.split(" int ")[1];
+                if (str.contains("drawable.ic_")) {
+                    try {
+                        str = str.split("drawable.")[1].replaceAll("ic_", " ").replaceAll("_", " ").trim();
+
+                        String cap = "";
+                        for (int i = 0; i < str.length(); i++) {
+                            char x = str.charAt(i);
+                            if (x == ' ') {
+                                cap = cap + " ";
+                                char y = str.charAt(i + 1);
+                                cap = cap + Character.toUpperCase(y);
+                                i++;
+                            } else {
+                                cap = cap + x;
+                            }
+                        }
+
+                        this.data.put(cap, field.getInt(null));
+                    } catch (Exception ex) {
+                    }
+                }
+            }
+        }
+
+        ArrayList<String> list = new ArrayList<>(data.keySet().size());
+        for (String str : data.keySet()) {
+            list.add(str);
+        }
+
+        //Create an adapter for the spinner
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, list);
+
+        //Set the adapter to the spinner
+        this.iconSpinner.setAdapter(adapter);
     }
 } //end class NewCategoryActivity
 
