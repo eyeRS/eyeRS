@@ -6,8 +6,15 @@
 
     <color name="eyeRSBlue">#4A90E2</color>
     <color name="eyeRSGreen">#3cf93c</color>
-    <color name="eyeRSRed">#ff0000</color>
-    <color name="eyeRSYelow">#fffb00</color>
+    <color name="eyeRSDarkGreen">#26b726</color>
+    <color name="eyeRSRed">#f10404</color>
+    <color name="eyeRSDarkRed">#de1616</color>
+    <color name="eyeRSYellow">#fffb00</color>
+    <color name="eyeRSDarkYellow">#e6e214</color>
+    <color name="eyeRSGrey">#b1b0b0</color>
+    <color name="eyeRSDarkGrey">#61615e</color>
+    <color name="eyeRSBlack">#000000</color>
+
 
     <!-- Array of colors to be used in Display settings-->
     <array name="theme_colors">

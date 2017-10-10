@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="AppThemeYellow" parent="AppThemeRed">
+        <item name="colorPrimary">@color/eyeRSYellow</item>
+        <item name="colorAccent">@color/eyeRSDarkYellow</item>
+        <item name="android:statusBarColor">@color/eyeRSBlack</item>
+        <item name="android:windowBackground">@color/eyeRSDarkGrey</item>
+    </style>
+</resources>
