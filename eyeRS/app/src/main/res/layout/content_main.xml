@@ -9,14 +9,14 @@
     tools:showIn="@layout/app_bar_main">
 
     <ScrollView
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="0dp"
+        android:layout_marginEnd="0dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginRight="0dp"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="0dp"
         android:fillViewport="true"
         android:scrollbars="horizontal|vertical"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -24,226 +24,18 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <LinearLayout
+        <ListView
+            android:id="@+id/listview"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:orientation="vertical"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="0dp"
+            android:layout_marginLeft="0dp"
+            android:layout_marginRight="0dp"
+            android:layout_marginTop="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/main_btn_buff_bot"
-                android:baselineAligned="false"
-                android:orientation="horizontal"
-                tools:layout_editor_absoluteX="8dp"
-                tools:layout_editor_absoluteY="8dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-
-                    <com.github.eyers.gui.SquareImageButton
-                        android:id="@+id/imageButton2"
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_marginLeft="@dimen/main_btn_buff_side"
-                        android:layout_marginRight="@dimen/main_btn_buff_side"
-                        android:layout_weight="1"
-                        android:padding="0dp"
-                        android:scaleType="centerCrop"
-                        app:srcCompat="@drawable/ic_white_book"
-                        tools:layout_editor_absoluteX="138dp"
-                        tools:layout_editor_absoluteY="155dp" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:ellipsize="none"
-                        android:gravity="center"
-                        android:text="@string/txtBooks"
-                        android:textSize="@dimen/main_btn_lbl" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-
-                    <com.github.eyers.gui.SquareImageButton
-                        android:id="@+id/imageButton5"
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_marginLeft="@dimen/main_btn_buff_side"
-                        android:layout_marginRight="@dimen/main_btn_buff_side"
-                        android:layout_weight="1"
-                        android:padding="0dp"
-                        android:scaleType="centerCrop"
-                        app:srcCompat="@drawable/ic_polo_shirt"
-                        tools:layout_editor_absoluteX="138dp"
-                        tools:layout_editor_absoluteY="266dp" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:ellipsize="none"
-                        android:gravity="center"
-                        android:text="@string/txtClothes"
-                        android:textSize="@dimen/main_btn_lbl" />
-                </LinearLayout>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/main_btn_buff_bot"
-                android:baselineAligned="false"
-                android:orientation="horizontal"
-                tools:layout_editor_absoluteX="8dp"
-                tools:layout_editor_absoluteY="8dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-
-                    <com.github.eyers.gui.SquareImageButton
-                        android:id="@+id/imageButton3"
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_marginLeft="@dimen/main_btn_buff_side"
-                        android:layout_marginRight="@dimen/main_btn_buff_side"
-                        android:layout_weight="1"
-                        android:padding="0dp"
-                        android:scaleType="centerCrop"
-                        app:srcCompat="@mipmap/ic_launcher"
-                        tools:layout_editor_absoluteX="247dp"
-                        tools:layout_editor_absoluteY="155dp" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:ellipsize="none"
-                        android:gravity="center"
-                        android:padding="0dp"
-                        android:scaleType="centerCrop"
-                        android:text="@string/txtAccessories"
-                        android:textSize="@dimen/main_btn_lbl" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-
-                    <com.github.eyers.gui.SquareImageButton
-                        android:id="@+id/imageButton"
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_marginLeft="@dimen/main_btn_buff_side"
-                        android:layout_marginRight="@dimen/main_btn_buff_side"
-                        android:layout_weight="1"
-                        android:padding="0dp"
-                        android:scaleType="centerCrop"
-                        app:srcCompat="@drawable/ic_retro_controller"
-                        tools:layout_editor_absoluteX="37dp"
-                        tools:layout_editor_absoluteY="155dp" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:ellipsize="none"
-                        android:gravity="center"
-                        android:text="@string/txtGames"
-                        android:textSize="@dimen/main_btn_lbl" />
-                </LinearLayout>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_marginBottom="@dimen/main_btn_buff_bot"
-                android:layout_weight="1"
-                android:baselineAligned="false"
-                android:orientation="horizontal"
-                tools:layout_editor_absoluteX="8dp"
-                tools:layout_editor_absoluteY="8dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-
-                    <com.github.eyers.gui.SquareImageButton
-                        android:id="@+id/imageButton6"
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_marginLeft="@dimen/main_btn_buff_side"
-                        android:layout_marginRight="@dimen/main_btn_buff_side"
-                        android:layout_weight="1"
-                        android:padding="0dp"
-                        android:scaleType="centerCrop"
-                        app:srcCompat="@drawable/ic_swap_bag"
-                        tools:layout_editor_absoluteX="240dp"
-                        tools:layout_editor_absoluteY="266dp" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:ellipsize="none"
-                        android:gravity="center"
-                        android:text="@string/txtOther"
-                        android:textSize="@dimen/main_btn_lbl" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-
-                    <com.github.eyers.gui.SquareImageButton
-                        android:id="@+id/imageButton4"
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_marginLeft="@dimen/main_btn_buff_side"
-                        android:layout_marginRight="@dimen/main_btn_buff_side"
-                        android:layout_weight="1"
-                        android:padding="0dp"
-                        android:scaleType="centerCrop"
-                        app:srcCompat="@mipmap/ic_launcher"
-                        tools:layout_editor_absoluteX="37dp"
-                        tools:layout_editor_absoluteY="266dp" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:ellipsize="none"
-                        android:gravity="center"
-                        android:text="@string/txtAddCat"
-                        android:textSize="@dimen/main_btn_lbl" />
-                </LinearLayout>
-
-            </LinearLayout>
-
-        </LinearLayout>
+            app:layout_constraintTop_toTopOf="parent" />
 
     </ScrollView>
 
@@ -251,7 +43,7 @@
         android:id="@+id/search_view"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        tools:layout_editor_absoluteY="0dp"
-        tools:layout_editor_absoluteX="8dp" />
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="0dp" />
 
 </android.support.constraint.ConstraintLayout>

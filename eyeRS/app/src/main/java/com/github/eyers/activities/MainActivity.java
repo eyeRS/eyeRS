@@ -1,10 +1,12 @@
 package com.github.eyers.activities;
 
 import android.app.LoaderManager;
+import android.content.ContentResolver;
 import android.content.Intent;
 import android.content.Loader;
 import android.content.res.Configuration;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteException;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -12,14 +14,22 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.github.eyers.DbOperations;
+import com.github.eyers.ItemLabel;
+import com.github.eyers.LabelAdapter;
 import com.github.eyers.R;
 import com.miguelcatalan.materialsearchview.MaterialSearchView;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.TreeSet;
 
 /**
  * This class includes a navigation drawer and will display the main home activity of the app
@@ -40,6 +50,7 @@ public class MainActivity extends AppCompatActivity
     private ActionBarDrawerToggle toggle;
     private DrawerLayout drawer;
     private NavigationView navigationView;
+    private ListView listView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -105,6 +116,24 @@ public class MainActivity extends AppCompatActivity
                 return false; // functions of the database should be entere in here. Once the text changes in the search bar The items should appear.
             }
         });
+
+        // populate items
+        try {
+            listView = (ListView) findViewById(R.id.listview);
+
+            ArrayList<ItemLabel> items = new ArrayList<>();
+            for (String category : getCategoriesList()) {
+                items.add(new ItemLabel(category));
+            }
+
+            LabelAdapter adapter = new LabelAdapter(this, items);
+            listView.setAdapter(adapter);
+        } catch (SQLiteException ex) {
+            Toast.makeText(this, "Unable to view items", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, ex.getMessage(), Toast.LENGTH_LONG).show();
+
+            Log.e("ERROR", "Unable to view items", ex);
+        }
     }
 
     /**
@@ -293,6 +322,44 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onLoaderReset(Loader<Cursor> loader) {
 
+    }
+
+    /**
+     * Method returns the categories result set of the SQL query and adds elements into a
+     * list structure for the spinner.
+     *
+     * @return returns the list of categories
+     */
+    public List<String> getCategoriesList() {
+        List<String> addCategories = new ArrayList<String>();
+
+        ContentResolver eyeRSContentResolver = this.getContentResolver(); // Content resolver object
+
+        String[] projection = {
+                NewCategoryInfo.CategoryInfo.CATEGORY_ID,
+                NewCategoryInfo.CategoryInfo.CATEGORY_NAME, NewCategoryInfo.CategoryInfo.CATEGORY_DESC
+        };
+
+        String selection = "category_name = \"" + NewCategoryInfo.CategoryInfo.CATEGORY_NAME + "\"";
+
+        Cursor cursor = eyeRSContentResolver.query(DbOperations.CONTENT_URI_CATEGORIES,
+                projection, null, null, null);
+
+        TreeSet<String> data = new TreeSet<>();
+        if (cursor.moveToFirst()) {
+            do {
+                data.add(cursor.getString(1));
+            } while (cursor.moveToNext());
+            cursor.close();
+        } else {
+            addCategories = null; //empty categories list
+        }
+
+        for (String str : data) {
+            addCategories.add(str);
+        }
+
+        return addCategories;
     }
 
 } //end class MainActivity
