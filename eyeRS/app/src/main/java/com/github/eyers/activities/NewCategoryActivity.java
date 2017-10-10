@@ -18,7 +18,7 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.github.eyers.DbOperations;
+import com.github.eyers.DBOperations;
 import com.github.eyers.R;
 
 import java.lang.reflect.Field;
@@ -134,7 +134,7 @@ public class NewCategoryActivity extends AppCompatActivity implements View.OnCli
         /**
          * Cursor object to retrieve query results
          */
-        Cursor cursor = eyeRSContentResolver.query(DbOperations.CONTENT_URI_CATEGORIES,
+        Cursor cursor = eyeRSContentResolver.query(DBOperations.CONTENT_URI_CATEGORIES,
                 projection, null, null,
                 null);
 
@@ -192,7 +192,7 @@ public class NewCategoryActivity extends AppCompatActivity implements View.OnCli
             /**
              * Content resolver insert operation
              */
-            eyeRSContentResolver.insert(DbOperations.CONTENT_URI_CATEGORIES, categoryValues);
+            eyeRSContentResolver.insert(DBOperations.CONTENT_URI_CATEGORIES, categoryValues);
 
             Toast.makeText(this, "Your new category has been created successfully ",
                     Toast.LENGTH_SHORT).show();

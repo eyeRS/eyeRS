@@ -6,7 +6,6 @@ import android.content.ContentResolver;
 import android.content.Intent;
 import android.content.Loader;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -14,17 +13,14 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
-import android.widget.SimpleCursorAdapter;
 import android.widget.Toast;
 
-import com.github.eyers.DbOperations;
-import com.github.eyers.EyeRSDatabaseHelper;
+import com.github.eyers.DBOperations;
 import com.github.eyers.ItemLabel;
 import com.github.eyers.LabelAdapter;
 import com.github.eyers.R;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.TreeSet;
 
 /**
@@ -88,7 +84,7 @@ public class ListActivity extends AppCompatActivity
         /**
          * Cursor object to retrieve query results
          */
-        Cursor cursor = eyeRSContentResolver.query(DbOperations.CONTENT_URI_ITEMS,
+        Cursor cursor = eyeRSContentResolver.query(DBOperations.CONTENT_URI_ITEMS,
                 projection, null, null,
                 null);
 
@@ -98,7 +94,7 @@ public class ListActivity extends AppCompatActivity
 
             do {
 
-                data.add(new ItemLabel(cursor.getString(1)));
+//                data.add(new ItemLabel(cursor.getString(1)));
 
             } while (cursor.moveToNext());
 
@@ -134,7 +130,7 @@ public class ListActivity extends AppCompatActivity
         /**
          * Cursor object to retrieve query results
          */
-        Cursor cursor = eyeRSContentResolver.query(DbOperations.CONTENT_URI_ITEMS,
+        Cursor cursor = eyeRSContentResolver.query(DBOperations.CONTENT_URI_ITEMS,
                 projection, null, null,
                 null);
 
@@ -143,7 +139,7 @@ public class ListActivity extends AppCompatActivity
         if (cursor.moveToFirst()) {
 
             do {
-                item = new ItemLabel(cursor.getString(1));
+//                item = new ItemLabel(cursor.getString(1));
 
             } while (cursor.moveToNext());
 

@@ -33,7 +33,7 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.github.eyers.DbOperations;
+import com.github.eyers.DBOperations;
 import com.github.eyers.EyeRS;
 import com.github.eyers.R;
 
@@ -144,7 +144,7 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
         String selection = "category_name = \"" + NewCategoryInfo.CategoryInfo.CATEGORY_NAME
                 + "\"";
 
-        Cursor cursor = eyeRSContentResolver.query(DbOperations.CONTENT_URI_CATEGORIES,
+        Cursor cursor = eyeRSContentResolver.query(DBOperations.CONTENT_URI_CATEGORIES,
                 projection, null, null,
                 null);
 
@@ -269,7 +269,7 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
         try {
 
             //Insert the Book item
-            eyeRSContentResolver.insert(DbOperations.CONTENT_URI_ITEMS, bookValues);
+            eyeRSContentResolver.insert(DBOperations.CONTENT_URI_ITEMS, bookValues);
 
             //Display a message to the user
             Toast.makeText(this, "Your book item has been added successfully ", Toast.LENGTH_LONG).show();
@@ -300,7 +300,7 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
         try {
 
             //Insert the Clothing item
-            eyeRSContentResolver.insert(DbOperations.CONTENT_URI_ITEMS, clothesValues);
+            eyeRSContentResolver.insert(DBOperations.CONTENT_URI_ITEMS, clothesValues);
 
             //Display a message to the user
             Toast.makeText(this, "Your clothing item has been added successfully ", Toast.LENGTH_LONG).show();
@@ -331,7 +331,7 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
         try {
 
             //Insert the Accessory item
-            eyeRSContentResolver.insert(DbOperations.CONTENT_URI_ITEMS, accessoriesValues);
+            eyeRSContentResolver.insert(DBOperations.CONTENT_URI_ITEMS, accessoriesValues);
 
             //Display a message to the user
             Toast.makeText(this, "Your accessory item has been added successfully ", Toast.LENGTH_LONG).show();
@@ -362,7 +362,7 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
         try {
 
             //Insert the Game item
-            eyeRSContentResolver.insert(DbOperations.CONTENT_URI_ITEMS, gamesValues);
+            eyeRSContentResolver.insert(DBOperations.CONTENT_URI_ITEMS, gamesValues);
 
             //Display a message to the user
             Toast.makeText(this, "Your gaming item has been added successfully ", Toast.LENGTH_LONG).show();
@@ -393,7 +393,7 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
         try {
 
             //Insert the Other item
-            eyeRSContentResolver.insert(DbOperations.CONTENT_URI_ITEMS, otherValues);
+            eyeRSContentResolver.insert(DBOperations.CONTENT_URI_ITEMS, otherValues);
 
             //Display a message to the user
             Toast.makeText(this, "Your other item has been added successfully ", Toast.LENGTH_LONG).show();
@@ -423,7 +423,7 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
 
         try {
 
-            eyeRSContentResolver.insert(DbOperations.CONTENT_URI_ITEMS, itemsValues);
+            eyeRSContentResolver.insert(DBOperations.CONTENT_URI_ITEMS, itemsValues);
 
             //Display a message to the user
             Toast.makeText(this, "Your item has been added successfully ", Toast.LENGTH_LONG).show();

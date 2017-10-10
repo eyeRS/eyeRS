@@ -154,7 +154,7 @@ public class EyeRSDatabaseHelper extends SQLiteOpenHelper {
         /**
          * Content resolver insert operation
          */
-        eyeRSContentResolver.insert(DbOperations.CONTENT_URI_CATEGORIES, bookValues);
+        eyeRSContentResolver.insert(DBOperations.CONTENT_URI_CATEGORIES, bookValues);
     }
 
     /**
@@ -173,7 +173,7 @@ public class EyeRSDatabaseHelper extends SQLiteOpenHelper {
         /**
          * Content resolver insert operation
          */
-        eyeRSContentResolver.insert(DbOperations.CONTENT_URI_CATEGORIES, clothesValues);
+        eyeRSContentResolver.insert(DBOperations.CONTENT_URI_CATEGORIES, clothesValues);
 
     }
 
@@ -193,7 +193,7 @@ public class EyeRSDatabaseHelper extends SQLiteOpenHelper {
         /**
          * Content resolver insert operation
          */
-        eyeRSContentResolver.insert(DbOperations.CONTENT_URI_CATEGORIES, accessoryValues);
+        eyeRSContentResolver.insert(DBOperations.CONTENT_URI_CATEGORIES, accessoryValues);
 
     }
 
@@ -213,7 +213,7 @@ public class EyeRSDatabaseHelper extends SQLiteOpenHelper {
         /**
          * Content resolver insert operation
          */
-        eyeRSContentResolver.insert(DbOperations.CONTENT_URI_CATEGORIES, gameValues);
+        eyeRSContentResolver.insert(DBOperations.CONTENT_URI_CATEGORIES, gameValues);
 
     }
 
@@ -233,7 +233,7 @@ public class EyeRSDatabaseHelper extends SQLiteOpenHelper {
         /**
          * Content resolver insert operation
          */
-        eyeRSContentResolver.insert(DbOperations.CONTENT_URI_CATEGORIES, otherValues);
+        eyeRSContentResolver.insert(DBOperations.CONTENT_URI_CATEGORIES, otherValues);
 
     }
 

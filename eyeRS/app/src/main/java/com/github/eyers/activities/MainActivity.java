@@ -7,6 +7,7 @@ import android.content.Loader;
 import android.content.res.Configuration;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteException;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -21,7 +22,7 @@ import android.view.View;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.github.eyers.DbOperations;
+import com.github.eyers.DBOperations;
 import com.github.eyers.ItemLabel;
 import com.github.eyers.LabelAdapter;
 import com.github.eyers.R;
@@ -38,6 +39,8 @@ import java.util.TreeSet;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener,
         LoaderManager.LoaderCallbacks<Cursor> {
+
+    private static String STATE = "main";
 
     /**
      * Used to declare the search view bar.
@@ -120,16 +123,24 @@ public class MainActivity extends AppCompatActivity
         // populate items
         try {
             listView = (ListView) findViewById(R.id.listview);
-
             ArrayList<ItemLabel> items = new ArrayList<>();
-            for (String category : getCategoriesList()) {
-                items.add(new ItemLabel(category));
+
+            if (STATE.equals("main")) {
+                for (String category : getCategoriesList()) {
+                    items.add(new ItemLabel(category, BitmapFactory.decodeResource(
+                            getResources(), R.drawable.ic_action_help))); // TODO
+                }
+            } else {
+                for (String category : getItems(STATE)) {
+                    items.add(new ItemLabel(category, BitmapFactory.decodeResource(
+                            getResources(), R.drawable.ic_action_help))); // TODO
+                }
             }
 
             LabelAdapter adapter = new LabelAdapter(this, items);
             listView.setAdapter(adapter);
         } catch (SQLiteException ex) {
-            Toast.makeText(this, "Unable to view items", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Unable to view items.", Toast.LENGTH_SHORT).show();
             Toast.makeText(this, ex.getMessage(), Toast.LENGTH_LONG).show();
 
             Log.e("ERROR", "Unable to view items", ex);
@@ -159,7 +170,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     /**
-     * Called when we call invalidateOptionsMenu()
+     * Called when we call invalidateOptionsMenu().
      *
      * @param menu
      * @return
@@ -340,9 +351,7 @@ public class MainActivity extends AppCompatActivity
                 NewCategoryInfo.CategoryInfo.CATEGORY_NAME, NewCategoryInfo.CategoryInfo.CATEGORY_DESC
         };
 
-        String selection = "category_name = \"" + NewCategoryInfo.CategoryInfo.CATEGORY_NAME + "\"";
-
-        Cursor cursor = eyeRSContentResolver.query(DbOperations.CONTENT_URI_CATEGORIES,
+        Cursor cursor = eyeRSContentResolver.query(DBOperations.CONTENT_URI_CATEGORIES,
                 projection, null, null, null);
 
         TreeSet<String> data = new TreeSet<>();
@@ -361,5 +370,12 @@ public class MainActivity extends AppCompatActivity
 
         return addCategories;
     }
+
+    public List<String> getItems(String category) {
+        List<String> items = new ArrayList<String>();
+
+        return items;
+    }
+
 
 } //end class MainActivity

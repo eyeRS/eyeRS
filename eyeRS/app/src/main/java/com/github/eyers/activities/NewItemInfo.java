@@ -10,11 +10,11 @@ public class NewItemInfo {
     public static class ItemInfo {
 
         /**
-         * Entity name
+         * Entity name.
          */
         public static final String TABLE_NAME = "item_info";
         /**
-         * Attributes
+         * Attributes.
          */
         public static final String ITEM_ID = "_id";
         public static final String CATEGORY_NAME = "category_name";

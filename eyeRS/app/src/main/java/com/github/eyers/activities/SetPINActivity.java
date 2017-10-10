@@ -9,7 +9,6 @@ import android.content.Loader;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.SQLException;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -22,8 +21,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.github.eyers.DbOperations;
-import com.github.eyers.EyeRSDatabaseHelper;
+import com.github.eyers.DBOperations;
 import com.github.eyers.R;
 
 /**
@@ -45,7 +43,10 @@ public class SetPINActivity extends AppCompatActivity implements View.OnClickLis
             "What are the last 5 digits of your ID number?",
             "What time of the day were you born (hh:mm)?"
     };
-
+    private static String username; //retrieves the username
+    private static String matchedPIN; // retrieves the matched pins
+    private static String securityQuestion; //retrieves the security question
+    private static String securityResponse; //retrieves the security response
     /**
      * Field & other declarations
      */
@@ -54,11 +55,6 @@ public class SetPINActivity extends AppCompatActivity implements View.OnClickLis
     private EditText txtUsername;
     private EditText txtResponse; //retrieves the user's security response
     private Spinner spinner; //contains the list of security questions
-    private static String username; //retrieves the username
-    private static String matchedPIN; // retrieves the matched pins
-    private static String securityQuestion; //retrieves the security question
-    private static String securityResponse; //retrieves the security response
-
     /**
      * Content Resolver and db declarations
      */
@@ -173,7 +169,7 @@ public class SetPINActivity extends AppCompatActivity implements View.OnClickLis
         /**
          * Cursor object to retrieve query results
          */
-        Cursor cursor = eyeRSContentResolver.query(DbOperations.CONTENT_URI_USER_REG,
+        Cursor cursor = eyeRSContentResolver.query(DBOperations.CONTENT_URI_USER_REG,
                 projection, null, null,
                 null);
 
@@ -191,7 +187,7 @@ public class SetPINActivity extends AppCompatActivity implements View.OnClickLis
 
         try {
 
-            eyeRSContentResolver.update(DbOperations.CONTENT_URI_USER_REG, userRegValues,
+            eyeRSContentResolver.update(DBOperations.CONTENT_URI_USER_REG, userRegValues,
                     where, null);
 
             Toast.makeText(this, "Your credentials have been updated successfully ",

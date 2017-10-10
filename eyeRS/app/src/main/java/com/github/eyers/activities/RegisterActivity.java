@@ -9,7 +9,6 @@ import android.content.Loader;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.SQLException;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -22,8 +21,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.github.eyers.DbOperations;
-import com.github.eyers.EyeRSDatabaseHelper;
+import com.github.eyers.DBOperations;
 import com.github.eyers.R;
 
 import java.util.regex.Pattern;
@@ -65,6 +63,10 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     private EditText txtPIN2;
     private EditText txtResponse;
     private Spinner spinner;
+    /**
+     *
+     */
+    private Pattern regexPattern = Pattern.compile("^[(a-zA-Z-0-9-\\ \\+\\.)]+@[(a-z-A-z)]+\\.[(a-zA-z)]{2,3}$");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,11 +101,6 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     }
 
     /**
-     *
-     */
-    private Pattern regexPattern = Pattern.compile("^[(a-zA-Z-0-9-\\ \\+\\.)]+@[(a-z-A-z)]+\\.[(a-zA-z)]{2,3}$");
-
-    /**
      * Method to add user's Registration details.
      */
     public void addRegInfo() {
@@ -129,7 +126,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             /**
              * Content resolver insert operation
              */
-            eyeRSContentResolver.insert(DbOperations.CONTENT_URI_USER_REG, userRegValues);
+            eyeRSContentResolver.insert(DBOperations.CONTENT_URI_USER_REG, userRegValues);
 
             Toast.makeText(this, "Your details have been saved successfully ", Toast.LENGTH_LONG).show();
             Log.e("DATABASE OPERATIONS", "...New user added to DB!");

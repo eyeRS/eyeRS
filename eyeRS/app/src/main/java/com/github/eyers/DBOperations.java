@@ -22,12 +22,12 @@ import com.github.eyers.activities.UserRegInfo;
  * @author Nathan Shava
  */
 
-public class DbOperations extends ContentProvider {
+public class DBOperations extends ContentProvider {
 
     /**
      * Specify the Authority of the URI which has to be the package name.
      */
-    public static final String AUTHORITY = "com.github.eyers.DbOperations";
+    public static final String AUTHORITY = "com.github.eyers.DBOperations";
     /**
      * Specify the table names to be used by the Content Provider.
      */

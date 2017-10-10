@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -22,7 +23,7 @@ public final class LabelAdapter extends ArrayAdapter<ItemLabel> {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        final ItemLabel stock = getItem(position);
+        final ItemLabel label = getItem(position);
         final ViewHolder viewHolder;
 
         if (convertView == null) {
@@ -30,12 +31,14 @@ public final class LabelAdapter extends ArrayAdapter<ItemLabel> {
             LayoutInflater inflater = LayoutInflater.from(getContext());
             convertView = inflater.inflate(R.layout.item_label, parent, false);
             viewHolder.name = (TextView) convertView.findViewById(R.id.lblName);
+            viewHolder.image = (ImageView) convertView.findViewById(R.id.img);
 
             convertView.setTag(viewHolder);
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
         }
-        viewHolder.name.setText(stock.getName());
+        viewHolder.name.setText(label.getName());
+        viewHolder.image.setImageBitmap(label.getImage());
 
         return convertView;
     }
@@ -46,5 +49,6 @@ public final class LabelAdapter extends ArrayAdapter<ItemLabel> {
     private class ViewHolder {
 
         TextView name;
+        ImageView image;
     }
 } //end class LabelAdapter
