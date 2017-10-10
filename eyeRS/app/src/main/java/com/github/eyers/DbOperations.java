@@ -310,7 +310,7 @@ public class DbOperations extends ContentProvider {
                 break;
 
             default:
-                throw new IllegalArgumentException("Unkown URI: " + uri);
+                throw new IllegalArgumentException("Unknown URI: " + uri);
         }
 
         getContext().getContentResolver().notifyChange(uri, null);

@@ -261,6 +261,7 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
          */
         ContentValues bookValues = new ContentValues();
 
+        bookValues.put("book_category", category); //Book category
         bookValues.put("book_title", itemName); //Book name
         bookValues.put("book_desc", itemDesc); //Book description
         bookValues.put("book_image", img); //Book image
@@ -291,6 +292,7 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
          */
         ContentValues clothesValues = new ContentValues();
 
+        clothesValues.put("clothing_category", category); //Clothing category
         clothesValues.put("clothing_type", itemName); //Clothing name
         clothesValues.put("clothing_desc", itemDesc); //Clothing description
         clothesValues.put("clothing_image", img); //Clothing image
@@ -321,6 +323,7 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
          */
         ContentValues accessoriesValues = new ContentValues();
 
+        accessoriesValues.put("accessory_category", category); //Accessory category
         accessoriesValues.put("accessory_name", itemName); //Accessory name
         accessoriesValues.put("accessory_desc", itemDesc); //Accessory description
         accessoriesValues.put("accessory_image", img); //Accessory image
@@ -351,6 +354,7 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
          */
         ContentValues gamesValues = new ContentValues();
 
+        gamesValues.put("game_category", category); //Game category
         gamesValues.put("game_title", itemName); //Game name
         gamesValues.put("game_desc", itemDesc); //Game description
         gamesValues.put("game_image", img); //Game image
@@ -381,6 +385,7 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
          */
         ContentValues otherValues = new ContentValues();
 
+        otherValues.put("other_category", category); //Other category
         otherValues.put("other_title", itemName); //Other name
         otherValues.put("other_desc", itemDesc); //Other description
         otherValues.put("other_image", img); //Other image
@@ -411,6 +416,7 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
          */
         ContentValues itemsValues = new ContentValues();
 
+        itemsValues.put(NewItemInfo.ItemInfo.CATEGORY_NAME, category); //user specified category
         itemsValues.put(NewItemInfo.ItemInfo.ITEM_NAME, itemName); //item's name
         itemsValues.put(NewItemInfo.ItemInfo.ITEM_DESC, itemDesc); //item's description
         itemsValues.put(NewItemInfo.ItemInfo.ITEM_IMAGE, img); //item's image
@@ -544,7 +550,7 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
      * @param parent
      * @param view
      * @param position
-     * @param id Method handles what happens when an item is selected from the spinner
+     * @param id       Method handles what happens when an item is selected from the spinner
      */
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {

@@ -46,6 +46,9 @@ public class NewCategoryActivity extends AppCompatActivity implements View.OnCli
      */
     private ContentResolver eyeRSContentResolver;
 
+    /**
+     * Constructor
+     */
     public NewCategoryActivity() {
        this. data = new HashMap<>();
     }
@@ -78,7 +81,6 @@ public class NewCategoryActivity extends AppCompatActivity implements View.OnCli
                  * User cannot add a new category without a title & description
                  */
                 validateCategories();
-
                 break;
         }
     }
@@ -93,7 +95,11 @@ public class NewCategoryActivity extends AppCompatActivity implements View.OnCli
      */
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        //Display the icon selected for the new category
         this.imageView.setImageDrawable(getResources().getDrawable(data.get(iconSpinner.getSelectedItem())));
+        //Get a string reference to store into the db
+        categoryIcon = parent.getItemAtPosition(position).toString();
+
     }
 
     /**
@@ -116,7 +122,8 @@ public class NewCategoryActivity extends AppCompatActivity implements View.OnCli
          * Array of columns to be included for each row retrieved
          */
         String[] projection = {NewCategoryInfo.CategoryInfo.CATEGORY_ID,
-                NewCategoryInfo.CategoryInfo.CATEGORY_NAME, NewCategoryInfo.CategoryInfo.CATEGORY_DESC};
+                NewCategoryInfo.CategoryInfo.CATEGORY_NAME, NewCategoryInfo.CategoryInfo.CATEGORY_DESC,
+                NewCategoryInfo.CategoryInfo.CATEGORY_ICON};
 
         /**
          * The criteria for selecting the rows
@@ -178,7 +185,7 @@ public class NewCategoryActivity extends AppCompatActivity implements View.OnCli
 
         categoryValues.put(NewCategoryInfo.CategoryInfo.CATEGORY_NAME, categoryName.toUpperCase()); //Category's name
         categoryValues.put(NewCategoryInfo.CategoryInfo.CATEGORY_DESC, categoryDesc); //Category's description
-        categoryValues.put(NewCategoryInfo.CategoryInfo.CATEGORY_IMAGE, categoryIcon); //Icon
+        categoryValues.put(NewCategoryInfo.CategoryInfo.CATEGORY_ICON, categoryIcon); //Icon
 
         try {
 
