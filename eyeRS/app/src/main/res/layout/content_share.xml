@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.github.eyers.activities.ShareActivity"
+    tools:context="com.github.eyers.activities.todo.ShareActivity"
     tools:showIn="@layout/activity_share">
 
     <ScrollView
@@ -251,7 +251,7 @@
         android:id="@+id/search_view"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        tools:layout_editor_absoluteY="0dp"
-        tools:layout_editor_absoluteX="8dp" />
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="0dp" />
 
 </android.support.constraint.ConstraintLayout>

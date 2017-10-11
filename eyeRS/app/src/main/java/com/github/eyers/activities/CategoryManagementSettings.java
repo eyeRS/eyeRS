@@ -1,8 +1,8 @@
 package com.github.eyers.activities;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
@@ -12,13 +12,11 @@ import android.widget.ListView;
 import com.github.eyers.R;
 
 /**
- * This class will handle category management settings events based on the user's selection
+ * This class will handle category management settings events based on the user's selection.
  */
 public class CategoryManagementSettings extends AppCompatActivity implements OnItemClickListener {
 
-    /**
-     * Field declarations
-     */
+    // Field declarations
     private ListView listView;
 
     @Override
@@ -33,10 +31,12 @@ public class CategoryManagementSettings extends AppCompatActivity implements OnI
     }
 
     /**
+     * Method handles what happens when an item is clicked from the list view.
+     *
      * @param parent
      * @param view
      * @param position
-     * @param id       Method handles what happens when an item is clicked from the list view
+     * @param id
      */
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {

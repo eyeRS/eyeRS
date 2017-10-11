@@ -12,13 +12,11 @@ import android.widget.ListView;
 import com.github.eyers.R;
 
 /**
- * This class will handle item management settings based on the user's preference
+ * This class will handle item management settings based on the user's preference.
  */
 public class ItemManagementSettings extends AppCompatActivity implements OnItemClickListener {
 
-    /**
-     * Field declarations
-     */
+    // Field declarations
     private ListView listView;
 
     @Override

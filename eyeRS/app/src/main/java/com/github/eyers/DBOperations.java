@@ -12,9 +12,9 @@ import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.widget.Toast;
 
-import com.github.eyers.activities.NewCategoryInfo;
-import com.github.eyers.activities.NewItemInfo;
-import com.github.eyers.activities.UserRegInfo;
+import com.github.eyers.info.NewCategoryInfo;
+import com.github.eyers.info.NewItemInfo;
+import com.github.eyers.info.UserRegInfo;
 
 /**
  * A custom Content Provider to perform the database operations. Created by Nathan Shava on 15-Sep-17.

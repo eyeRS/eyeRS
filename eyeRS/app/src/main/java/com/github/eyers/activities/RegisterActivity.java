@@ -23,6 +23,7 @@ import android.widget.Toast;
 
 import com.github.eyers.DBOperations;
 import com.github.eyers.R;
+import com.github.eyers.info.NewRegInfo;
 
 import java.util.regex.Pattern;
 
@@ -222,7 +223,9 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     }
 
     /**
-     * @param savedInstanceState Save the state of the spinner if it's about to be destroyed
+     * Save the state of the spinner if it's about to be destroyed.
+     *
+     * @param savedInstanceState
      */
     @Override
     public void onSaveInstanceState(Bundle savedInstanceState) {
@@ -235,7 +238,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     }
 
     /**
-     * Method allows us to save the activity's selections just before the app gets paused
+     * Method allows us to save the activity's selections just before the app gets paused.
      */
     public void onPause() {
 
@@ -251,7 +254,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     }
 
     /**
-     * Method allows us to retrieve previous selection before the activity was paused
+     * Method allows us to retrieve previous selection before the activity was paused.
      */
     @Override
     protected void onResume() {
@@ -269,7 +272,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     }
 
     /**
-     * A callback method invoked by the loader when initLoader() is called
+     * A callback method invoked by the loader when initLoader() is called.
      */
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
@@ -278,7 +281,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     }
 
     /**
-     * A callback method, invoked after the requested content provider returns all the data
+     * A callback method, invoked after the requested content provider returns all the data.
      */
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {

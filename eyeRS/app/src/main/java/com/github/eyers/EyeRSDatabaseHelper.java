@@ -8,9 +8,9 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-import com.github.eyers.activities.NewCategoryInfo;
-import com.github.eyers.activities.NewItemInfo;
-import com.github.eyers.activities.UserRegInfo;
+import com.github.eyers.info.NewCategoryInfo;
+import com.github.eyers.info.NewItemInfo;
+import com.github.eyers.info.UserRegInfo;
 
 /**
  * The Database helper class performs the default DDL & DML operations for the app.

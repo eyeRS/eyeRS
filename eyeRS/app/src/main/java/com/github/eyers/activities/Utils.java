@@ -10,19 +10,21 @@ import android.content.Intent;
 import com.github.eyers.R;
 
 public class Utils {
+
     public final static int App_Theme = 0;
     public final static int AppTheme_Red = 1;
     public final static int AppTheme_Yellow = 2;
     public final static int AppTheme_Green = 3;
-    private static int sTheme;
+
+    public static int sTheme = App_Theme;
 
     /**
      * Set the theme of the Activity, and restart it by creating a new Activity of the same type.
      */
     public static void changeToTheme(Activity activity, int theme) {
         sTheme = theme;
+//        activity.setTheme(theme);
         activity.finish();
-
         activity.startActivity(new Intent(activity, activity.getClass()));
     }
 
@@ -31,7 +33,6 @@ public class Utils {
      */
     public static void onActivityCreateSetTheme(Activity activity) {
         switch (sTheme) {
-            default:
             case App_Theme:
                 activity.setTheme(R.style.AppTheme);
                 break;
@@ -43,6 +44,22 @@ public class Utils {
                 break;
             case AppTheme_Green:
                 activity.setTheme(R.style.AppThemeGreen);
+                break;
+        }
+    }
+
+    public static int getTheme() {
+        switch (sTheme) {
+            case App_Theme:
+                return (R.style.AppTheme);
+            case AppTheme_Red:
+                return (R.style.AppThemeRed);
+            case AppTheme_Yellow:
+                return (R.style.AppThemeYellow);
+            case AppTheme_Green:
+                return (R.style.AppThemeGreen);
+            default:
+                return -1;
         }
     }
 }

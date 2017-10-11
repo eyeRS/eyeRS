@@ -23,9 +23,11 @@ import android.widget.Toast;
 
 import com.github.eyers.DBOperations;
 import com.github.eyers.R;
+import com.github.eyers.info.NewRegInfo;
+import com.github.eyers.info.UserRegInfo;
 
 /**
- * This class will handle the PIN reset activity
+ * This class will handle the PIN reset activity.
  */
 public class SetPINActivity extends AppCompatActivity implements View.OnClickListener,
         OnItemSelectedListener, LoaderManager.LoaderCallbacks<Cursor> {
@@ -43,20 +45,36 @@ public class SetPINActivity extends AppCompatActivity implements View.OnClickLis
             "What are the last 5 digits of your ID number?",
             "What time of the day were you born (hh:mm)?"
     };
-    private static String username; //retrieves the username
-    private static String matchedPIN; // retrieves the matched pins
-    private static String securityQuestion; //retrieves the security question
-    private static String securityResponse; //retrieves the security response
     /**
-     * Field & other declarations
+     * Retrieves the username.
      */
+    private static String username;
+    /**
+     * Retrieves the matched pins.
+     */
+    private static String matchedPIN;
+    /**
+     * Retrieves the security question.
+     */
+    private static String securityQuestion;
+    /**
+     * Retrieves the security response
+     */
+    private static String securityResponse;
+    // Field & other declarations
     private EditText txtPIN1;
     private EditText txtPIN2;
     private EditText txtUsername;
-    private EditText txtResponse; //retrieves the user's security response
-    private Spinner spinner; //contains the list of security questions
     /**
-     * Content Resolver and db declarations
+     * Retrieves the user's security response.
+     */
+    private EditText txtResponse;
+    /**
+     * Contains the list of security questions.
+     */
+    private Spinner spinner;
+    /**
+     * Content Resolver and db declarations.
      */
     private ContentResolver eyeRSContentResolver;
 
@@ -200,10 +218,12 @@ public class SetPINActivity extends AppCompatActivity implements View.OnClickLis
     }
 
     /**
+     * Method handles what happens when an item is selected from the spinner.
+     *
      * @param parent
      * @param view
      * @param position
-     * @param id       Method handles what happens when an item is selected from the spinner
+     * @param id
      */
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -215,7 +235,9 @@ public class SetPINActivity extends AppCompatActivity implements View.OnClickLis
     }
 
     /**
-     * @param parent Method handles what happens when nothing is selected from the spinner
+     * Method handles what happens when nothing is selected from the spinner.
+     *
+     * @param parent
      */
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
@@ -256,7 +278,9 @@ public class SetPINActivity extends AppCompatActivity implements View.OnClickLis
     }
 
     /**
-     * @param savedInstanceState Save the state of the spinner if it's about to be destroyed
+     * Save the state of the spinner if it's about to be destroyed.
+     *
+     * @param savedInstanceState
      */
     @Override
     public void onSaveInstanceState(Bundle savedInstanceState) {
@@ -268,7 +292,7 @@ public class SetPINActivity extends AppCompatActivity implements View.OnClickLis
     }
 
     /**
-     * A callback method invoked by the loader when initLoader() is called
+     * A callback method invoked by the loader when initLoader() is called.
      */
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
@@ -276,7 +300,7 @@ public class SetPINActivity extends AppCompatActivity implements View.OnClickLis
     }
 
     /**
-     * A callback method, invoked after the requested content provider returns all the data
+     * A callback method, invoked after the requested content provider returns all the data.
      */
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {

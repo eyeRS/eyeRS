@@ -1,15 +1,16 @@
 package com.github.eyers.activities;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ListView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ListView;
 
 import com.github.eyers.R;
+import com.github.eyers.activities.todo.ProfileSettings;
 
 /**
  * This class will contain a list of settings in which the user can
@@ -17,20 +18,23 @@ import com.github.eyers.R;
  */
 public class AppSettingsActivity extends AppCompatActivity implements OnItemClickListener {
 
-    /**
-     * Field declarations
-     */
+    static boolean hasRun = false;
+
+    // Field declarations
     private ListView listView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_app_settings);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         listView = (ListView) findViewById(R.id.list_settings);
         listView.setOnItemClickListener(this);
+
+        // Utils.changeToTheme(this, Utils.AppTheme_Red);
     }
 
     /**

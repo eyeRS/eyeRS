@@ -15,9 +15,9 @@ import com.miguelcatalan.materialsearchview.MaterialSearchView;
  */
 public class SearchActivity extends AppCompatActivity {
     /**
-     * Declare MaterialSearchView when used in activities
+     * Declare MaterialSearchView when used in activities.
      */
-    MaterialSearchView searchView;
+    private MaterialSearchView searchView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +30,6 @@ public class SearchActivity extends AppCompatActivity {
          * From here on copy the code to the necessary activities for functionality of the search
          * function.
          */
-
         getSupportActionBar().setTitle("Search Bar"); // Sets the name of the menu bar
         toolbar.setTitleTextColor(Color.parseColor("#FFFFFF")); // sets the color of the menu bar
 

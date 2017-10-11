@@ -1,4 +1,4 @@
-package com.github.eyers.activities;
+package com.github.eyers.info;
 
 /**
  * Created by Nathan Shava on 04-Sep-17.

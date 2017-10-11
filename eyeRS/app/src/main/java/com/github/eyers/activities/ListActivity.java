@@ -19,6 +19,7 @@ import com.github.eyers.DBOperations;
 import com.github.eyers.ItemLabel;
 import com.github.eyers.LabelAdapter;
 import com.github.eyers.R;
+import com.github.eyers.info.NewItemInfo;
 
 import java.util.ArrayList;
 import java.util.TreeSet;

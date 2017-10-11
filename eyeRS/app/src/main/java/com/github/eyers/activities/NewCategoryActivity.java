@@ -20,6 +20,7 @@ import android.widget.Toast;
 
 import com.github.eyers.DBOperations;
 import com.github.eyers.R;
+import com.github.eyers.info.NewCategoryInfo;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
