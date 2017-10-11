@@ -137,14 +137,14 @@
 
             <Spinner
                 android:id="@+id/spinnerFontType"
-                android:entries="@array/font_types"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginLeft="8dp"
                 android:layout_marginRight="8dp"
                 android:layout_marginStart="8dp"
+                android:layout_marginTop="20dp"
+                android:entries="@array/font_types"
                 android:scrollbars="horizontal|vertical"
                 app:layout_constraintHorizontal_bias="0.501"
                 app:layout_constraintLeft_toLeftOf="parent"
@@ -172,7 +172,6 @@
 
             <Spinner
                 android:id="@+id/spinnerFontSize"
-                android:entries="@array/font_size"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
@@ -180,6 +179,7 @@
                 android:layout_marginRight="8dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="20dp"
+                android:entries="@array/font_size"
                 android:scrollbars="horizontal|vertical"
                 app:layout_constraintHorizontal_bias="0.501"
                 app:layout_constraintLeft_toLeftOf="parent"

@@ -135,11 +135,13 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
 
         List<String> addCategories = new ArrayList<String>();
 
-        //Content resolver object
-        eyeRSContentResolver = this.getContentResolver();
+        eyeRSContentResolver = this.getContentResolver(); //Content resolver object
 
-        String[] projection = {NewCategoryInfo.CategoryInfo.CATEGORY_ID,
-                NewCategoryInfo.CategoryInfo.CATEGORY_NAME, NewCategoryInfo.CategoryInfo.CATEGORY_DESC};
+        String[] projection = {
+                NewCategoryInfo.CategoryInfo.CATEGORY_ID,
+                NewCategoryInfo.CategoryInfo.CATEGORY_NAME,
+                NewCategoryInfo.CategoryInfo.CATEGORY_DESC,
+                NewCategoryInfo.CategoryInfo.CATEGORY_ICON};
 
         String selection = "category_name = \"" + NewCategoryInfo.CategoryInfo.CATEGORY_NAME
                 + "\"";
@@ -153,17 +155,22 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
         if (cursor.moveToFirst()) {
 
             do {
-                // addCategories.add(cursor.getString(1));
+
                 data.add(cursor.getString(1));
+
             } while (cursor.moveToNext());
 
             cursor.close();
+
         } else {
+
             addCategories = null; //empty categories list
         }
 
         for (String str : data) {
+
             addCategories.add(str);
+
         }
 
         return addCategories; //return the list of categories
@@ -426,7 +433,7 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
             eyeRSContentResolver.insert(DBOperations.CONTENT_URI_ITEMS, itemsValues);
 
             //Display a message to the user
-            Toast.makeText(this, "Your item has been added successfully ", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Your item has been added successfully", Toast.LENGTH_LONG).show();
             //Display message in the logcat window after successful operation execution
             Log.e("DATABASE OPERATIONS", "...New item added to DB!");
 

@@ -2,14 +2,13 @@ package com.github.eyers.activities;
 
 /**
  * The class holds data about the database table and column names belonging to the User Registration
- * process in the database. Created by Nathan Shava on 05-Sep-17.
+ * process in the database. Created 05-Sep-17.
  *
  * @author Nathan Shava
  */
 public class NewRegInfo {
 
     public static abstract class UserRegistrationInfo {
-
         /**
          * Entity name
          */
@@ -17,6 +16,7 @@ public class NewRegInfo {
         /**
          * Attributes
          */
+        public static final String REG_ID = "_id";
         public static final String USER_NAME = "user_name";
         public static final String EMAIL_ADD = "user_email";
         public static final String USER_PIN = "user_pin";

@@ -103,26 +103,31 @@ public class MainActivity extends AppCompatActivity
             }
 
             @Override
-            public void onSearchViewClosed()    {
+            public void onSearchViewClosed() {
 
             }
         });
 
-        searchView.setOnQueryTextListener(new MaterialSearchView.OnQueryTextListener()  {
+        searchView.setOnQueryTextListener(new MaterialSearchView.OnQueryTextListener() {
             @Override
-            public boolean onQueryTextSubmit(String query)  {
+            public boolean onQueryTextSubmit(String query) {
                 return false;
             }
 
             @Override
-            public boolean onQueryTextChange(String newText)    {
-                return false; // functions of the database should be entere in here. Once the text changes in the search bar The items should appear.
+            public boolean onQueryTextChange(String newText) {
+                /**
+                 * Database functions should be entered in here
+                 * Once the text changes in the search bar the items should appear
+                 */
+                return false;
             }
         });
 
         // populate items
         try {
-            listView = (ListView) findViewById(R.id.listview);
+
+            listView = (ListView) findViewById(R.id.main_listView);
             ArrayList<ItemLabel> items = new ArrayList<>();
 
             if (STATE.equals("main")) {
@@ -139,6 +144,7 @@ public class MainActivity extends AppCompatActivity
 
             LabelAdapter adapter = new LabelAdapter(this, items);
             listView.setAdapter(adapter);
+
         } catch (SQLiteException ex) {
             Toast.makeText(this, "Unable to view items.", Toast.LENGTH_SHORT).show();
             Toast.makeText(this, ex.getMessage(), Toast.LENGTH_LONG).show();
@@ -342,29 +348,40 @@ public class MainActivity extends AppCompatActivity
      * @return returns the list of categories
      */
     public List<String> getCategoriesList() {
+
         List<String> addCategories = new ArrayList<String>();
 
         ContentResolver eyeRSContentResolver = this.getContentResolver(); // Content resolver object
 
         String[] projection = {
                 NewCategoryInfo.CategoryInfo.CATEGORY_ID,
-                NewCategoryInfo.CategoryInfo.CATEGORY_NAME, NewCategoryInfo.CategoryInfo.CATEGORY_DESC
-        };
+                NewCategoryInfo.CategoryInfo.CATEGORY_NAME,
+                NewCategoryInfo.CategoryInfo.CATEGORY_DESC,
+                NewCategoryInfo.CategoryInfo.CATEGORY_ICON};
 
         Cursor cursor = eyeRSContentResolver.query(DBOperations.CONTENT_URI_CATEGORIES,
                 projection, null, null, null);
 
         TreeSet<String> data = new TreeSet<>();
+
         if (cursor.moveToFirst()) {
+
             do {
+
                 data.add(cursor.getString(1));
+
             } while (cursor.moveToNext());
+
             cursor.close();
+
         } else {
+
             addCategories = null; //empty categories list
+
         }
 
         for (String str : data) {
+
             addCategories.add(str);
         }
 
@@ -372,10 +389,45 @@ public class MainActivity extends AppCompatActivity
     }
 
     public List<String> getItems(String category) {
+
         List<String> items = new ArrayList<String>();
 
-        return items;
-    }
+        ContentResolver eyeRSContentResolver = this.getContentResolver(); // Content resolver object
 
+        String[] projection = {
+                NewItemInfo.ItemInfo.ITEM_ID,
+                NewItemInfo.ItemInfo.CATEGORY_NAME,
+                NewItemInfo.ItemInfo.ITEM_NAME,
+                NewItemInfo.ItemInfo.ITEM_DESC,
+                NewItemInfo.ItemInfo.ITEM_IMAGE};
+
+        String where = NewItemInfo.ItemInfo.CATEGORY_NAME + " = "
+                + category;
+
+        Cursor cursor = eyeRSContentResolver.query(DBOperations.CONTENT_URI_ITEMS,
+                projection, where, null, null);
+
+        if (cursor.moveToFirst()) {
+
+            for (int i = 0; i < cursor.getCount(); i++) {
+
+                do {
+
+                    items.add(cursor.getString(i));
+
+                } while (cursor.moveToNext());
+            }
+
+            cursor.close();
+
+        } else {
+
+            items = null;
+
+        }
+
+        return items;
+
+    }
 
 } //end class MainActivity

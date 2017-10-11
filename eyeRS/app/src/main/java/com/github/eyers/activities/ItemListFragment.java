@@ -14,7 +14,7 @@ import com.github.eyers.LabelAdapter;
 import java.util.ArrayList;
 
 /**
- * Created by Nathan Shava on 29-Aug-17.
+ * Created on 29-Aug-17.
  */
 public class ItemListFragment extends ListFragment {
 

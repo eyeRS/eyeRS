@@ -1,8 +1,10 @@
 package com.github.eyers.activities;
 
 /**
- * Created by Nathan Shava on 04-Sep-17.
+ * Created on 04-Sep-17.
  * The class holds data for the database table and column names belonging to a NewCategoryActivity
+ *
+ * @author Nathan Shava
  */
 
 public class NewCategoryInfo {

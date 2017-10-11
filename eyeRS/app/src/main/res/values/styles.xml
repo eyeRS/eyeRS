@@ -16,21 +16,21 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
-    <style name="AppThemeRed" parent="AppTheme" >
+    <style name="AppThemeRed" parent="AppTheme">
         <item name="colorPrimary">@color/eyeRSRed</item>
         <item name="colorPrimaryDark">@color/eyeRSGrey</item>
         <item name="colorAccent">@color/eyeRSDarkRed</item>
         <item name="android:textColorPrimary">@color/eyeRSBlack</item>
     </style>
 
-    <style name="AppThemeYellow" parent="AppThemeYellow" >
+    <style name="AppThemeYellow" parent="AppThemeYellow">
         <item name="colorPrimary">@color/eyeRSYellow</item>
         <item name="colorAccent">@color/eyeRSDarkYellow</item>
         <item name="android:windowBackground">@color/eyeRSDarkGrey</item>
         <item name="android:textColorPrimary">@android:color/white</item>
     </style>
 
-    <style name="AppThemeGreen" parent="AppThemeGreen" >
+    <style name="AppThemeGreen" parent="AppThemeGreen">
         <item name="colorPrimary">@color/eyeRSGreen</item>
         <item name="colorPrimaryDark">@color/eyeRSDarkGrey</item>
         <item name="colorAccent">@color/eyeRSDarkGreen</item>

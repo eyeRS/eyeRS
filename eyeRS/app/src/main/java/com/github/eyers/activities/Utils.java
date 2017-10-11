@@ -10,6 +10,7 @@ import android.content.Intent;
 import com.github.eyers.R;
 
 public class Utils {
+
     public final static int App_Theme = 0;
     public final static int AppTheme_Red = 1;
     public final static int AppTheme_Yellow = 2;

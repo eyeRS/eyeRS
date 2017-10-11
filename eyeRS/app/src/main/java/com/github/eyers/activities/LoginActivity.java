@@ -1,6 +1,8 @@
 package com.github.eyers.activities;
 
+import android.content.ContentResolver;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -8,6 +10,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.github.eyers.DBOperations;
 import com.github.eyers.EyeRS;
 import com.github.eyers.R;
 
@@ -20,6 +23,10 @@ public final class LoginActivity extends AppCompatActivity implements View.OnCli
      * Field declarations
      */
     private EditText txtPIN;
+    /**
+     * Content Resolver declaration.
+     */
+    private ContentResolver eyeRSContentResolver;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,8 +52,6 @@ public final class LoginActivity extends AppCompatActivity implements View.OnCli
     @Override
     public void onClick(View v) {
 
-        //super.startActivity(new Intent(this, CamTestActivity.class));
-
         switch (v.getId()) {
             case R.id.txtForgotPin:
                 super.startActivity(new Intent(this, SetPINActivity.class));
@@ -55,21 +60,49 @@ public final class LoginActivity extends AppCompatActivity implements View.OnCli
                 super.startActivity(new Intent(this, RegisterActivity.class));
                 return;
             case R.id.btnLogin:
-                final String pin = txtPIN.getText().toString();
+                verifyLoginPIN(); //method to validate Login PIN
+        }
+    }
 
-                if (pin == null || pin.equals("")) {
-                    Toast.makeText(this, "Please enter your PIN code.", Toast.LENGTH_SHORT).show();
-                    return;
+    public void verifyLoginPIN(){
+
+        eyeRSContentResolver = this.getContentResolver(); //Content resolver object
+
+        String[] projection = {
+                NewRegInfo.UserRegistrationInfo.REG_ID,
+                NewRegInfo.UserRegistrationInfo.USER_NAME,
+                NewRegInfo.UserRegistrationInfo.EMAIL_ADD,
+                NewRegInfo.UserRegistrationInfo.USER_PIN,
+                NewRegInfo.UserRegistrationInfo.SECURITY_QUESTION,
+                NewRegInfo.UserRegistrationInfo.SECURITY_RESPONSE};
+
+        Cursor cursor = eyeRSContentResolver.query(DBOperations.CONTENT_URI_USER_REG,
+                projection, null, null,
+                null);
+
+        if (cursor.moveToFirst()) {
+
+            do {
+
+                /**
+                 * We need to retrieve the pin used during the Register Activity
+                 * to validate the Login process
+                 */
+                if (cursor.getString(cursor.getColumnIndex(NewRegInfo.UserRegistrationInfo.USER_PIN)
+                ).equals(txtPIN.getText().toString())) {
+
+                    super.startActivity(new Intent(this, MainActivity.class)); //Grant access
+
+                }
+                else{
+
+                    Toast.makeText(this, "Login failed. Please enter the correct PIN", Toast.LENGTH_SHORT).show();
                 }
 
-                final String hash = EyeRS.sha256(pin);
-                if (hash.equals(EyeRS.sha256("1234"))) { // Matthew: check against the hashed password stored
-                    super.startActivity(new Intent(this, MainActivity.class));
-                    return;
-                } else {
-                    Toast.makeText(this, "Incorrect PIN code. Please try again.", Toast.LENGTH_SHORT).show();
-                    return;
-                }
+            } while (cursor.moveToNext());
+
+            cursor.close();
+
         }
     }
 }
