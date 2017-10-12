@@ -66,7 +66,7 @@ public final class LoginActivity extends AppCompatActivity implements View.OnCli
 
     public void verifyLoginPIN(){
 
-        eyeRSContentResolver = this.getContentResolver(); //Content resolver object
+        eyeRSContentResolver = getApplicationContext().getContentResolver(); //Content resolver object
 
         String[] projection = {
                 NewRegInfo.UserRegistrationInfo.REG_ID,
@@ -91,7 +91,7 @@ public final class LoginActivity extends AppCompatActivity implements View.OnCli
                 if (cursor.getString(cursor.getColumnIndex(NewRegInfo.UserRegistrationInfo.USER_PIN)
                 ).equals(txtPIN.getText().toString())) {
 
-                    super.startActivity(new Intent(this, MainActivity.class)); //Grant access
+                    super.startActivity(new Intent(getApplicationContext(), MainActivity.class)); //Grant access
 
                 }
                 else{

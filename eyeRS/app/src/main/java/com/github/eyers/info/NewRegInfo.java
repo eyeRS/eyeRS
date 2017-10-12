@@ -8,7 +8,7 @@ package com.github.eyers.info;
  */
 public class NewRegInfo {
 
-    public static abstract class UserRegistrationInfo {
+    public static class UserRegistrationInfo {
         /**
          * Entity name
          */

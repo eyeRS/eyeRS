@@ -290,5 +290,6 @@ public class NewCategoryActivity extends AppCompatActivity implements View.OnCli
         //Set the adapter to the spinner
         this.iconSpinner.setAdapter(adapter);
     }
+
 } //end class NewCategoryActivity
 

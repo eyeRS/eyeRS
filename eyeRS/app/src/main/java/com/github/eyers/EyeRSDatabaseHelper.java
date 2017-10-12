@@ -27,7 +27,7 @@ public class EyeRSDatabaseHelper extends SQLiteOpenHelper {
      * CREATE ITEM TABLE QUERY.
      */
     private static final String CREATE_ITEM_TABLE_QUERY =
-            "CREATE TABLE IF NOT EXISTS " + NewItemInfo.ItemInfo.TABLE_NAME
+            "CREATE TABLE IF NOT EXISTS " + NewItemInfo.ItemInfo.TABLE_NAME + " ( "
                     + NewItemInfo.ItemInfo.ITEM_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                     + NewItemInfo.ItemInfo.CATEGORY_NAME + " TEXT, "
                     + NewItemInfo.ItemInfo.ITEM_NAME + " TEXT, "
@@ -37,7 +37,7 @@ public class EyeRSDatabaseHelper extends SQLiteOpenHelper {
      * CREATE CATEGORY TABLE QUERY.
      */
     private static final String CREATE_CATEGORY_TABLE_QUERY =
-            "CREATE TABLE IF NOT EXISTS " + NewCategoryInfo.CategoryInfo.TABLE_NAME
+            "CREATE TABLE IF NOT EXISTS " + NewCategoryInfo.CategoryInfo.TABLE_NAME + " ( "
                     + NewCategoryInfo.CategoryInfo.CATEGORY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                     + NewCategoryInfo.CategoryInfo.CATEGORY_NAME + " TEXT, "
                     + NewCategoryInfo.CategoryInfo.CATEGORY_DESC + " TEXT, "
@@ -46,7 +46,7 @@ public class EyeRSDatabaseHelper extends SQLiteOpenHelper {
      * CREATE USER REGISTRATION TABLE QUERY.
      */
     private static final String CREATE_USER_REGISTRATION_TABLE_QUERY =
-            "CREATE TABLE IF NOT EXISTS " + NewRegInfo.UserRegistrationInfo.TABLE_NAME
+            "CREATE TABLE IF NOT EXISTS " + NewRegInfo.UserRegistrationInfo.TABLE_NAME + " ( "
                     + NewRegInfo.UserRegistrationInfo.REG_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                     + NewRegInfo.UserRegistrationInfo.USER_NAME + " TEXT, "
                     + NewRegInfo.UserRegistrationInfo.EMAIL_ADD + " TEXT, "
@@ -57,7 +57,7 @@ public class EyeRSDatabaseHelper extends SQLiteOpenHelper {
      * CREATE USER PROFILE TABLE QUERY.
      */
     private static final String CREATE_USER_PROFILE_TABLE_QUERY =
-            "CREATE TABLE IF NOT EXISTS " + UserProfileInfo.ProfileInfo.TABLE_NAME
+            "CREATE TABLE IF NOT EXISTS " + UserProfileInfo.ProfileInfo.TABLE_NAME + " ( "
                     + UserProfileInfo.ProfileInfo.PROFILE_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                     + UserProfileInfo.ProfileInfo.USER_NAME + " TEXT, "
                     + UserProfileInfo.ProfileInfo.USER_AVATAR + " TEXT);";
@@ -96,39 +96,36 @@ public class EyeRSDatabaseHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
 
         try {
-
             /**
              * Creates the Item table
              */
             db.execSQL(CREATE_ITEM_TABLE_QUERY);
             Log.e("DATABASE OPERATIONS", "...Item table created!");
-
             /**
              * Creates the Category table
              */
             db.execSQL(CREATE_CATEGORY_TABLE_QUERY);
             Log.e("DATABASE OPERATIONS", "...Category table created!");
-
             /**
              * Creates the User Registration table
              */
             db.execSQL(CREATE_USER_REGISTRATION_TABLE_QUERY);
             Log.e("DATABASE OPERATIONS", "...User Registration table created!");
-
             /**
              * Creates the Profile Settings table
              */
             db.execSQL(CREATE_USER_PROFILE_TABLE_QUERY);
             Log.e("DATABASE OPERATIONS", "...Profile Settings table created!");
 
-            insertDefaultCategoryBooks();
-            insertDefaultCategoryClothes();
-            insertDefaultCategoryAccessories();
-            insertDefaultCategoryGames();
-            insertDefaultCategoryOther();
+            insertDefaultCategoryBooks(db);
+            insertDefaultCategoryClothes(db);
+            insertDefaultCategoryAccessories(db);
+            insertDefaultCategoryGames(db);
+            insertDefaultCategoryOther(db);
+
             Log.e("DATABASE OPERATIONS", "...Default categories created successfully!");
 
-        } catch (SQLException | NoSuchFieldException ex) {
+        } catch (SQLException ex) {
             Log.e("DATABASE OPERATIONS", "Unable to perform default DDL & DML operations!", ex);
         }
     }
@@ -142,7 +139,7 @@ public class EyeRSDatabaseHelper extends SQLiteOpenHelper {
      */
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        updateMyDatabase(db, oldVersion, newVersion);
+
     }
 
     /**
@@ -159,15 +156,23 @@ public class EyeRSDatabaseHelper extends SQLiteOpenHelper {
     /**
      * Method to insert the BOOKS default category.
      */
-    public void insertDefaultCategoryBooks() throws NoSuchFieldException {
+    public void insertDefaultCategoryBooks(SQLiteDatabase db) {
 
         /**
          * Define an object to contain the new values to insert
          */
         ContentValues bookValues = new ContentValues();
 
-        Field field = R.drawable.class.getField("ic_white_book");
-        String bookIcon = field.toString();
+        String bookIcon = "";
+        Field field;
+
+        try {
+
+            field = R.drawable.class.getField("ic_white_book");
+            bookIcon = field.toString();
+        } catch (NoSuchFieldException e) {
+            e.printStackTrace();
+        }
 
         bookValues.put(NewCategoryInfo.CategoryInfo.CATEGORY_NAME, "BOOKS");
         bookValues.put(NewCategoryInfo.CategoryInfo.CATEGORY_DESC, "Educational/Sci-Fi/Comics");
@@ -177,21 +182,29 @@ public class EyeRSDatabaseHelper extends SQLiteOpenHelper {
         /**
          * Content resolver insert operation
          */
-        eyeRSContentResolver.insert(DBOperations.CONTENT_URI_CATEGORIES, bookValues);
+        db.insert(NewCategoryInfo.CategoryInfo.TABLE_NAME, null, bookValues);
     }
 
     /**
      * Method to insert the CLOTHES default category.
      */
-    public void insertDefaultCategoryClothes() throws NoSuchFieldException {
+    public void insertDefaultCategoryClothes(SQLiteDatabase db) {
 
         /**
          * Define an object to contain the new values to insert
          */
         ContentValues clothesValues = new ContentValues();
 
-        Field field = R.drawable.class.getField("ic_polo_shirt");
-        String clothingIcon = field.toString();
+        String clothingIcon = "";
+        Field field;
+
+        try {
+
+            field = R.drawable.class.getField("ic_polo_shirt");
+            clothingIcon = field.toString();
+        } catch (Exception ex) {
+            Log.e("Insert Error", ex.getMessage());
+        }
 
         clothesValues.put(NewCategoryInfo.CategoryInfo.CATEGORY_NAME, "CLOTHES");
         clothesValues.put(NewCategoryInfo.CategoryInfo.CATEGORY_DESC, "Formal/Casual");
@@ -200,22 +213,29 @@ public class EyeRSDatabaseHelper extends SQLiteOpenHelper {
         /**
          * Content resolver insert operation
          */
-        eyeRSContentResolver.insert(DBOperations.CONTENT_URI_CATEGORIES, clothesValues);
+        db.insert(NewCategoryInfo.CategoryInfo.TABLE_NAME, null, clothesValues);
 
     }
 
     /**
      * Method to insert the ACCESSORIES default category
      */
-    public void insertDefaultCategoryAccessories() throws NoSuchFieldException {
+    public void insertDefaultCategoryAccessories(SQLiteDatabase db) {
 
         /**
          * Define an object to contain the new values to insert
          */
         ContentValues accessoryValues = new ContentValues();
 
-        Field field = R.drawable.class.getField("ic_swap_bag");
-        String accessoryIcon = field.toString();
+        String accessoryIcon = "";
+        Field field;
+
+        try {
+            field = R.drawable.class.getField("ic_swap_bag");
+            accessoryIcon = field.toString();
+        } catch (Exception ex) {
+            Log.e("Insert Error", ex.getMessage());
+        }
 
         accessoryValues.put(NewCategoryInfo.CategoryInfo.CATEGORY_NAME, "ACCESSORIES");
         accessoryValues.put(NewCategoryInfo.CategoryInfo.CATEGORY_DESC, "Collectibles");
@@ -224,22 +244,30 @@ public class EyeRSDatabaseHelper extends SQLiteOpenHelper {
         /**
          * Content resolver insert operation
          */
-        eyeRSContentResolver.insert(DBOperations.CONTENT_URI_CATEGORIES, accessoryValues);
+        db.insert(NewCategoryInfo.CategoryInfo.TABLE_NAME, null, accessoryValues);
 
     }
 
     /**
      * Method to insert the GAMES default category.
      */
-    public void insertDefaultCategoryGames() throws NoSuchFieldException {
+    public void insertDefaultCategoryGames(SQLiteDatabase db) {
 
         /**
          * Define an object to contain the new values to insert
          */
         ContentValues gameValues = new ContentValues();
 
-        Field field = R.drawable.class.getField("ic_retro_controller");
-        String gameIcon = field.toString();
+        String gameIcon = "";
+        Field field;
+
+        try {
+            field = R.drawable.class.getField("ic_retro_controller");
+            gameIcon = field.toString();
+        } catch (Exception ex) {
+            Log.e("Insert Error", ex.getMessage());
+        }
+
 
         gameValues.put(NewCategoryInfo.CategoryInfo.CATEGORY_NAME, "GAMES");
         gameValues.put(NewCategoryInfo.CategoryInfo.CATEGORY_DESC, "Sport/Shooting/VR");
@@ -248,22 +276,29 @@ public class EyeRSDatabaseHelper extends SQLiteOpenHelper {
         /**
          * Content resolver insert operation
          */
-        eyeRSContentResolver.insert(DBOperations.CONTENT_URI_CATEGORIES, gameValues);
+        db.insert(NewCategoryInfo.CategoryInfo.TABLE_NAME, null, gameValues);
 
     }
 
     /**
      * Method to insert the OTHER default category.
      */
-    public void insertDefaultCategoryOther() throws NoSuchFieldException {
+    public void insertDefaultCategoryOther(SQLiteDatabase db) {
 
         /**
          * Define an object to contain the new values to insert
          */
         ContentValues otherValues = new ContentValues();
 
-        Field field = R.drawable.class.getField("ic_add_black_24dp");
-        String otherIcon = field.toString();
+        String otherIcon = "";
+        Field field;
+        try {
+            field = R.drawable.class.getField("ic_add_black_24dp");
+            otherIcon = field.toString();
+        } catch (Exception ex) {
+            Log.e("Insert Error", ex.getMessage());
+        }
+
 
         otherValues.put(NewCategoryInfo.CategoryInfo.CATEGORY_NAME, "OTHER");
         otherValues.put(NewCategoryInfo.CategoryInfo.CATEGORY_DESC, "Random stuff");
@@ -272,7 +307,7 @@ public class EyeRSDatabaseHelper extends SQLiteOpenHelper {
         /**
          * Content resolver insert operation
          */
-        eyeRSContentResolver.insert(DBOperations.CONTENT_URI_CATEGORIES, otherValues);
+        db.insert(NewCategoryInfo.CategoryInfo.TABLE_NAME, null, otherValues);
 
     }
 

@@ -10,6 +10,7 @@ import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.github.eyers.activities.UserProfileInfo;
@@ -185,30 +186,30 @@ public class DBOperations extends ContentProvider {
 
         int uriType = uriMatcher.match(uri);
 
-        SQLiteDatabase db = eyeRSDatabaseHelper.getWritableDatabase();
+            SQLiteDatabase db = eyeRSDatabaseHelper.getWritableDatabase();
 
-        long id = 0;
-        switch (uriType) {
-            case ALL_CATEGORIES:
-                id = db.insert(CATEGORIES_TABLE, null, values);
-                getContext().getContentResolver().notifyChange(uri, null);
-                return Uri.parse(CATEGORIES_TABLE + "/" + id);
-            case REG_DETAILS:
-                id = db.insert(USER_REGISTRATION_TABLE, null, values);
-                getContext().getContentResolver().notifyChange(uri, null);
-                return Uri.parse(USER_REGISTRATION_TABLE + "/" + id);
-            case ALL_ITEMS:
-                id = db.insert(ITEMS_TABLE, null, values);
-                getContext().getContentResolver().notifyChange(uri, null);
-                return Uri.parse(ITEMS_TABLE + "/" + id);
-            case PROFILE_DETAILS:
-                id = db.insert(USER_PROFILE_TABLE, null, values);
-                getContext().getContentResolver().notifyChange(uri, null);
-                return Uri.parse(USER_PROFILE_TABLE + "/" + id);
-            default:
-                Toast.makeText(null, "Sorry. That operation could not be performed", Toast.LENGTH_SHORT).show();
-                return null;
-        }
+            long id;
+            switch (uriType) {
+                case ALL_CATEGORIES:
+                    id = db.insert(CATEGORIES_TABLE, null, values);
+                    getContext().getContentResolver().notifyChange(uri, null);
+                    return Uri.parse(CATEGORIES_TABLE + "/" + id);
+                case REG_DETAILS:
+                    id = db.insert(USER_REGISTRATION_TABLE, null, values);
+                    getContext().getContentResolver().notifyChange(uri, null);
+                    return Uri.parse(USER_REGISTRATION_TABLE + "/" + id);
+                case ALL_ITEMS:
+                    id = db.insert(ITEMS_TABLE, null, values);
+                    getContext().getContentResolver().notifyChange(uri, null);
+                    return Uri.parse(ITEMS_TABLE + "/" + id);
+                case PROFILE_DETAILS:
+                    id = db.insert(USER_PROFILE_TABLE, null, values);
+                    getContext().getContentResolver().notifyChange(uri, null);
+                    return Uri.parse(USER_PROFILE_TABLE + "/" + id);
+                default:
+                    Toast.makeText(null, "Sorry. That operation could not be performed", Toast.LENGTH_SHORT).show();
+                    return null;
+            }
 
     }
 

@@ -65,6 +65,10 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     private EditText txtResponse;
     private Spinner spinner;
     /**
+     * Content resolver declaration
+     */
+    private ContentResolver eyeRSContentResolver;
+    /**
      *
      */
     private Pattern regexPattern = Pattern.compile("^[(a-zA-Z-0-9-\\ \\+\\.)]+@[(a-z-A-z)]+\\.[(a-zA-z)]{2,3}$");
@@ -109,7 +113,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         /**
          * Content Resolver declaration
          */
-        ContentResolver eyeRSContentResolver = this.getContentResolver();
+        eyeRSContentResolver = this.getContentResolver();
 
         /**
          * Define an object to contain the new values to insert
@@ -133,7 +137,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             Log.e("DATABASE OPERATIONS", "...New user added to DB!");
 
         } catch (SQLException ex) {
-            Toast.makeText(this, "Unable to add item", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Unable to add details", Toast.LENGTH_SHORT).show();
         }
 
     }

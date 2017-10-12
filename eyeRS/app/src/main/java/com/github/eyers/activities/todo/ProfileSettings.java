@@ -1,4 +1,4 @@
-package com.github.eyers.activities;
+package com.github.eyers.activities.todo;
 
 import android.Manifest;
 import android.app.Activity;
@@ -27,6 +27,7 @@ import android.widget.Toast;
 import com.github.eyers.DBOperations;
 import com.github.eyers.EyeRS;
 import com.github.eyers.R;
+import com.github.eyers.activities.UserProfileInfo;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
