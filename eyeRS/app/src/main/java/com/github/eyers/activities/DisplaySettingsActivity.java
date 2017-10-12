@@ -64,7 +64,7 @@ public class DisplaySettingsActivity extends AppCompatActivity implements OnClic
             }
         });
     }
-    /**
+
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.imgbtn_Blue:
@@ -81,7 +81,6 @@ public class DisplaySettingsActivity extends AppCompatActivity implements OnClic
                 break;
         }
     }
-     */
 } //end class DisplaySettingsActivity
 
 

@@ -31,8 +31,6 @@ public class Utils {
     /**
      * Set the theme of the activity, according to the configuration.
      */
-
-    /**
     public static void onActivityCreateSetTheme(Activity activity) {
         switch (sTheme) {
             case App_Theme:
@@ -64,5 +62,4 @@ public class Utils {
                 return -1;
         }
     }
-     */
 }
