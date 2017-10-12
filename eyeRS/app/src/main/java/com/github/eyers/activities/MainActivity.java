@@ -98,7 +98,7 @@ public class MainActivity extends AppCompatActivity
         };
 
         drawer.setDrawerListener(toggle);
-        this.searchView = (MaterialSearchView) findViewById(R.id.search_view);
+        //this.searchView = (MaterialSearchView) findViewById(R.id.search_view);
 
         searchView.setOnSearchViewListener(new MaterialSearchView.SearchViewListener() {
             @Override
