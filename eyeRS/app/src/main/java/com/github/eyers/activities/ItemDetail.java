@@ -7,9 +7,7 @@ import android.support.v7.widget.Toolbar;
 import com.github.eyers.R;
 
 /**
- * Created by Nathan Shava on 29-Aug-17.
- *
- * @author Nathan Shava
+ * Created on 29-Aug-17.
  */
 public class ItemDetail extends Activity {
 

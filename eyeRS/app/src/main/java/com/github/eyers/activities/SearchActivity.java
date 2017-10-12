@@ -10,9 +10,6 @@ import android.view.MenuItem;
 import com.github.eyers.R;
 import com.miguelcatalan.materialsearchview.MaterialSearchView;
 
-/**
- *
- */
 public class SearchActivity extends AppCompatActivity {
     /**
      * Declare MaterialSearchView when used in activities.

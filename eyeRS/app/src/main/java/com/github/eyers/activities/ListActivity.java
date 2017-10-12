@@ -73,8 +73,9 @@ public class ListActivity extends AppCompatActivity
         /**
          * Array of columns to be included for each row retrieved
          */
-        String[] projection = {NewItemInfo.ItemInfo.ITEM_ID,
-                NewItemInfo.ItemInfo.ITEM_NAME, NewItemInfo.ItemInfo.ITEM_DESC};
+        String[] projection = {NewItemInfo.ItemInfo.ITEM_ID, NewItemInfo.ItemInfo.CATEGORY_NAME,
+                NewItemInfo.ItemInfo.ITEM_NAME, NewItemInfo.ItemInfo.ITEM_DESC,
+                NewItemInfo.ItemInfo.ITEM_IMAGE};
 
         /**
          * The criteria for selecting the rows
@@ -95,7 +96,7 @@ public class ListActivity extends AppCompatActivity
 
             do {
 
-//                data.add(new ItemLabel(cursor.getString(1)));
+
 
             } while (cursor.moveToNext());
 

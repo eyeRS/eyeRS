@@ -129,7 +129,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
              */
             eyeRSContentResolver.insert(DBOperations.CONTENT_URI_USER_REG, userRegValues);
 
-            Toast.makeText(this, "Your details have been saved successfully ", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Your details have been saved successfully", Toast.LENGTH_LONG).show();
             Log.e("DATABASE OPERATIONS", "...New user added to DB!");
 
         } catch (SQLException ex) {

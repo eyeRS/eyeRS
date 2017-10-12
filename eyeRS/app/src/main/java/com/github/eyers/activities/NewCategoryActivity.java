@@ -122,8 +122,10 @@ public class NewCategoryActivity extends AppCompatActivity implements View.OnCli
         /**
          * Array of columns to be included for each row retrieved
          */
-        String[] projection = {NewCategoryInfo.CategoryInfo.CATEGORY_ID,
-                NewCategoryInfo.CategoryInfo.CATEGORY_NAME, NewCategoryInfo.CategoryInfo.CATEGORY_DESC,
+        String[] projection = {
+                NewCategoryInfo.CategoryInfo.CATEGORY_ID,
+                NewCategoryInfo.CategoryInfo.CATEGORY_NAME,
+                NewCategoryInfo.CategoryInfo.CATEGORY_DESC,
                 NewCategoryInfo.CategoryInfo.CATEGORY_ICON};
 
         /**
@@ -164,6 +166,7 @@ public class NewCategoryActivity extends AppCompatActivity implements View.OnCli
                  */
                 if (!cursor.getString(cursor.getColumnIndex(NewCategoryInfo.
                         CategoryInfo.CATEGORY_NAME)).equals(categoryName)) {
+
                     addNewCategory(); //method to add the new category
                 }
 
@@ -246,6 +249,7 @@ public class NewCategoryActivity extends AppCompatActivity implements View.OnCli
      * Method to populate the spinner.
      */
     public void populateSpinner() {
+
         for (Field field : R.drawable.class.getDeclaredFields()) {
             String str = field.toString();
             if (str.contains(" int ")) {

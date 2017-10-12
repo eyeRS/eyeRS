@@ -1,8 +1,10 @@
 package com.github.eyers.info;
 
 /**
- * Created by Nathan Shava on 04-Sep-17.
+ * Created on 04-Sep-17
  * The class holds data about the database table and column names belonging to the NewItemActivity
+ *
+ * @author Nathan Shava
  */
 
 public class NewItemInfo {
@@ -23,4 +25,5 @@ public class NewItemInfo {
         public static final String ITEM_IMAGE = "item_image";
 
     }
+
 }

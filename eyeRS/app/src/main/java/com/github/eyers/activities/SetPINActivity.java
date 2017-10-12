@@ -175,12 +175,12 @@ public class SetPINActivity extends AppCompatActivity implements View.OnClickLis
         /**
          * Array of columns to be included for each row retrieved
          */
-        String[] projection = {UserRegInfo.RegInfo.REG_ID,
-                UserRegInfo.RegInfo.USER_NAME,
-                UserRegInfo.RegInfo.USER_EMAIL,
-                UserRegInfo.RegInfo.USER_PIN,
-                UserRegInfo.RegInfo.SECURITY_QUESTION,
-                UserRegInfo.RegInfo.SECURITY_RESPONSE};
+        String[] projection = {NewRegInfo.UserRegistrationInfo.REG_ID,
+                NewRegInfo.UserRegistrationInfo.USER_NAME,
+                NewRegInfo.UserRegistrationInfo.EMAIL_ADD,
+                NewRegInfo.UserRegistrationInfo.USER_PIN,
+                NewRegInfo.UserRegistrationInfo.SECURITY_QUESTION,
+                NewRegInfo.UserRegistrationInfo.SECURITY_RESPONSE};
 
         String where = null;
 
