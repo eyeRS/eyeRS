@@ -2,6 +2,7 @@ package com.github.eyers.activities;
 
 import android.app.LoaderManager;
 import android.content.ContentResolver;
+import android.content.ContentValues;
 import android.content.Intent;
 import android.content.Loader;
 import android.content.res.Configuration;
@@ -27,8 +28,10 @@ import com.github.eyers.ItemLabel;
 import com.github.eyers.LabelAdapter;
 import com.github.eyers.R;
 import com.github.eyers.info.NewCategoryInfo;
+import com.github.eyers.info.NewItemInfo;
 import com.miguelcatalan.materialsearchview.MaterialSearchView;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.TreeSet;
@@ -137,10 +140,10 @@ public class MainActivity extends AppCompatActivity
                             getResources(), R.drawable.ic_action_help))); // TODO
                 }
             } else {
-                for (String category : getItems(STATE)) {
-                    items.add(new ItemLabel(category, BitmapFactory.decodeResource(
-                            getResources(), R.drawable.ic_action_help))); // TODO
-                }
+//                for (String category : getItems(STATE)) {
+//                    items.add(new ItemLabel(category, BitmapFactory.decodeResource(
+//                            getResources(), R.drawable.ic_action_help))); // TODO
+//                }
             }
 
             LabelAdapter adapter = new LabelAdapter(this, items);
@@ -391,7 +394,7 @@ public class MainActivity extends AppCompatActivity
 
         } else {
 
-            addCategories = null; //empty categories list
+//            addCategories = null; //empty categories list
 
         }
 

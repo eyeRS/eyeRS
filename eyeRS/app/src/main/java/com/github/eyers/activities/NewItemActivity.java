@@ -281,7 +281,7 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
             eyeRSContentResolver.insert(DBOperations.CONTENT_URI_ITEMS, bookValues);
 
             //Display a message to the user
-            Toast.makeText(this, "Your book item has been added successfully ", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Your book item has been added successfully ", Toast.LENGTH_SHORT).show();
             //Display message in the logcat window after successful operation execution
             Log.e("DATABASE OPERATIONS", "...Book item added to DB!");
 
@@ -312,7 +312,7 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
             eyeRSContentResolver.insert(DBOperations.CONTENT_URI_ITEMS, clothesValues);
 
             //Display a message to the user
-            Toast.makeText(this, "Your clothing item has been added successfully ", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Your clothing item has been added successfully ", Toast.LENGTH_SHORT).show();
             //Display message in the logcat window after successful operation execution
             Log.e("DATABASE OPERATIONS", "...Clothing item added to DB!");
 
@@ -343,7 +343,7 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
             eyeRSContentResolver.insert(DBOperations.CONTENT_URI_ITEMS, accessoriesValues);
 
             //Display a message to the user
-            Toast.makeText(this, "Your accessory item has been added successfully ", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Your accessory item has been added successfully ", Toast.LENGTH_SHORT).show();
             //Display message in the logcat window after successful operation execution
             Log.e("DATABASE OPERATIONS", "...Accessory item added to DB!");
 
@@ -374,7 +374,7 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
             eyeRSContentResolver.insert(DBOperations.CONTENT_URI_ITEMS, gamesValues);
 
             //Display a message to the user
-            Toast.makeText(this, "Your gaming item has been added successfully ", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Your gaming item has been added successfully ", Toast.LENGTH_SHORT).show();
             //Display message in the logcat window after successful operation execution
             Log.e("DATABASE OPERATIONS", "...Game item added to DB!");
 
@@ -405,7 +405,7 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
             eyeRSContentResolver.insert(DBOperations.CONTENT_URI_ITEMS, otherValues);
 
             //Display a message to the user
-            Toast.makeText(this, "Your other item has been added successfully ", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Your other item has been added successfully ", Toast.LENGTH_SHORT).show();
             //Display message in the logcat window after successful operation execution
             Log.e("DATABASE OPERATIONS", "...Other item added to DB!");
 
@@ -435,7 +435,7 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
             eyeRSContentResolver.insert(DBOperations.CONTENT_URI_ITEMS, itemsValues);
 
             //Display a message to the user
-            Toast.makeText(this, "Your item has been added successfully", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Your item has been added successfully", Toast.LENGTH_SHORT).show();
             //Display message in the logcat window after successful operation execution
             Log.e("DATABASE OPERATIONS", "...New item added to DB!");
 

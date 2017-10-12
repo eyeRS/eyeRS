@@ -14,24 +14,25 @@ import com.github.eyers.LabelAdapter;
 import java.util.ArrayList;
 
 /**
- * ItemListFragment. Created by Nathan Shava on 29-Aug-17.
- *
- * @author Nathan Shava
+ * Created on 29-Aug-17.
  */
 public class ItemListFragment extends ListFragment {
 
-    // Field declarations
+    /**
+     * Field declarations
+     */
     private ItemListListener listener;
 
     /**
      * Required empty constructor
      */
     public ItemListFragment() {
-        super();
+
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
 
         ArrayList<ItemLabel> arrayOfUsers = new ArrayList<ItemLabel>();
 
@@ -49,7 +50,7 @@ public class ItemListFragment extends ListFragment {
     }
 
     /**
-     * Called when the fragment gets attached to the activity.
+     * Called when the fragment gets attached to the activity
      *
      * @param activity
      */
@@ -60,7 +61,7 @@ public class ItemListFragment extends ListFragment {
     }
 
     /**
-     * Tell the listener when an item in the ListView is clicked.
+     * Tell the listener when an item in the ListView is clicked
      *
      * @param listView
      * @param view
@@ -75,7 +76,7 @@ public class ItemListFragment extends ListFragment {
     }
 
     /**
-     * Handles events for items clicked in the list.
+     * Handles events for items clicked in the list
      */
     interface ItemListListener {
         void itemClicked(long id);

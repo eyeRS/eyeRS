@@ -10,7 +10,6 @@ package com.github.eyers.info;
 public class NewItemInfo {
 
     public static class ItemInfo {
-
         /**
          * Entity name.
          */

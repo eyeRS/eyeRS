@@ -8,11 +8,11 @@ package com.github.eyers.info;
  */
 public class NewRegInfo {
 
-    public static abstract class UserRegistrationInfo {
+    public static class UserRegistrationInfo {
         /**
          * Entity name
          */
-        public static final String TABLE_NAME = "user_reg";
+        public static final String TABLE_NAME = "user_registration";
         /**
          * Attributes
          */

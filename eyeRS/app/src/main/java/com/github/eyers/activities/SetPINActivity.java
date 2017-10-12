@@ -24,7 +24,6 @@ import android.widget.Toast;
 import com.github.eyers.DBOperations;
 import com.github.eyers.R;
 import com.github.eyers.info.NewRegInfo;
-import com.github.eyers.info.UserRegInfo;
 
 /**
  * This class will handle the PIN reset activity.

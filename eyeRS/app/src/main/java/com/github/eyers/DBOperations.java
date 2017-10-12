@@ -10,14 +10,17 @@ import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
+import android.util.Log;
 import android.widget.Toast;
 
+import com.github.eyers.activities.UserProfileInfo;
 import com.github.eyers.info.NewCategoryInfo;
 import com.github.eyers.info.NewItemInfo;
-import com.github.eyers.info.UserRegInfo;
+import com.github.eyers.info.NewRegInfo;
 
 /**
- * A custom Content Provider to perform the database operations. Created by Nathan Shava on 15-Sep-17.
+ * A custom Content Provider to perform the database operations.
+ * Created on 15-Sep-17
  *
  * @author Nathan Shava
  */
@@ -33,13 +36,15 @@ public class DBOperations extends ContentProvider {
      */
     public static final String CATEGORIES_TABLE = NewCategoryInfo.CategoryInfo.TABLE_NAME;
     public static final String ITEMS_TABLE = NewItemInfo.ItemInfo.TABLE_NAME;
-    public static final String USER_REGISTRATION_TABLE = UserRegInfo.RegInfo.TABLE_NAME;
+    public static final String USER_REGISTRATION_TABLE = NewRegInfo.UserRegistrationInfo.TABLE_NAME;
+    public static final String USER_PROFILE_TABLE = UserProfileInfo.ProfileInfo.TABLE_NAME;
     /**
      * Specify the table paths.
      */
     public static final String CATEGORIES_PATH = "/" + CATEGORIES_TABLE;
     public static final String ITEMS_PATH = "/" + ITEMS_TABLE;
     public static final String REGISTRATION_PATH = "/" + USER_REGISTRATION_TABLE;
+    public static final String PROFILE_PATH = "/" + USER_PROFILE_TABLE;
     /**
      * A uri to do operations on the Categories table.
      * A content provider is identified by its uri.
@@ -47,6 +52,7 @@ public class DBOperations extends ContentProvider {
     public static final Uri CONTENT_URI_CATEGORIES = Uri.parse("content://" + AUTHORITY + CATEGORIES_PATH);
     public static final Uri CONTENT_URI_ITEMS = Uri.parse("content://" + AUTHORITY + ITEMS_PATH);
     public static final Uri CONTENT_URI_USER_REG = Uri.parse("content://" + AUTHORITY + REGISTRATION_PATH);
+    public static final Uri CONTENT_URI_USER_PROFILE = Uri.parse("content://" + AUTHORITY + PROFILE_PATH);
     /**
      * Constants to identify the requested operation
      */
@@ -54,10 +60,11 @@ public class DBOperations extends ContentProvider {
     public static final int ALL_ITEMS = 2;
     public static final int REG_DETAILS = 3;
     public static final int CATEGORIES_ID = 4;
-    public static final int CATEGORIES_SPECIFIC_NAME = 5;
-    public static final int ITEMS_SPECIFIC_NAME = 6;
-    public static final int COUNT_CATEGORIES = 7;
-    public static final int COUNT_ITEMS = 8;
+    public static final int PROFILE_DETAILS = 5;
+    public static final int CATEGORIES_SPECIFIC_NAME = 6;
+    public static final int ITEMS_SPECIFIC_CATEGORY = 7;
+    public static final int COUNT_CATEGORIES = 8;
+    public static final int COUNT_ITEMS = 9;
     /**
      * The URI matcher maps to the specified table_name in the database.
      */
@@ -71,8 +78,9 @@ public class DBOperations extends ContentProvider {
         uriMatcher.addURI(AUTHORITY, CATEGORIES_TABLE, ALL_CATEGORIES);
         uriMatcher.addURI(AUTHORITY, CATEGORIES_TABLE + "/#", CATEGORIES_ID);
         uriMatcher.addURI(AUTHORITY, ITEMS_TABLE, ALL_ITEMS);
-        uriMatcher.addURI(AUTHORITY, ITEMS_TABLE, ITEMS_SPECIFIC_NAME);
+        uriMatcher.addURI(AUTHORITY, ITEMS_TABLE, ITEMS_SPECIFIC_CATEGORY);
         uriMatcher.addURI(AUTHORITY, USER_REGISTRATION_TABLE, REG_DETAILS);
+        uriMatcher.addURI(AUTHORITY, USER_PROFILE_TABLE, PROFILE_DETAILS);
     }
 
     /**
@@ -118,7 +126,6 @@ public class DBOperations extends ContentProvider {
         SQLiteQueryBuilder queryBuilder = new SQLiteQueryBuilder();
 
         int uriType = uriMatcher.match(uri);
-        boolean useAuthorityUri = false;
 
         switch (uriType) {
 
@@ -130,7 +137,20 @@ public class DBOperations extends ContentProvider {
             case ALL_CATEGORIES:
                 queryBuilder.setTables(CATEGORIES_TABLE);
                 break;
-
+            case ALL_ITEMS:
+                queryBuilder.setTables(ITEMS_TABLE);
+                break;
+            case ITEMS_SPECIFIC_CATEGORY:
+                queryBuilder.setTables(ITEMS_TABLE);
+                queryBuilder.appendWhere(NewItemInfo.ItemInfo.CATEGORY_NAME + " = "
+                        + uri.getLastPathSegment());
+                break;
+            case PROFILE_DETAILS:
+                queryBuilder.setTables(USER_PROFILE_TABLE);
+                break;
+            case REG_DETAILS:
+                queryBuilder.setTables(USER_REGISTRATION_TABLE);
+                break;
             default:
                 throw new IllegalArgumentException("Unsupported URI: " + uri);
         }
@@ -146,15 +166,8 @@ public class DBOperations extends ContentProvider {
         /**
          * If we want to be notified of any changes
          */
-        if (useAuthorityUri) {
-
-            cursor.setNotificationUri(getContext().getContentResolver(),
-                    CONTENT_URI_CATEGORIES);
-        } else {
-            cursor.setNotificationUri(getContext().getContentResolver(),
-                    uri);
-        }
-
+        cursor.setNotificationUri(getContext().getContentResolver(),
+                uri);
         return cursor;
 
     }
@@ -173,26 +186,30 @@ public class DBOperations extends ContentProvider {
 
         int uriType = uriMatcher.match(uri);
 
-        SQLiteDatabase db = eyeRSDatabaseHelper.getWritableDatabase();
+            SQLiteDatabase db = eyeRSDatabaseHelper.getWritableDatabase();
 
-        long id = 0;
-        switch (uriType) {
-            case ALL_CATEGORIES:
-                id = db.insert(CATEGORIES_TABLE, null, values);
-                getContext().getContentResolver().notifyChange(uri, null);
-                return Uri.parse(CATEGORIES_TABLE + "/" + id);
-            case REG_DETAILS:
-                id = db.insert(USER_REGISTRATION_TABLE, null, values);
-                getContext().getContentResolver().notifyChange(uri, null);
-                return Uri.parse(USER_REGISTRATION_TABLE + "/" + id);
-            case ALL_ITEMS:
-                id = db.insert(ITEMS_TABLE, null, values);
-                getContext().getContentResolver().notifyChange(uri, null);
-                return Uri.parse(ITEMS_TABLE + "/" + id);
-            default:
-                Toast.makeText(null, "Sorry could not perform add operation", Toast.LENGTH_SHORT).show();
-                return null;
-        }
+            long id;
+            switch (uriType) {
+                case ALL_CATEGORIES:
+                    id = db.insert(CATEGORIES_TABLE, null, values);
+                    getContext().getContentResolver().notifyChange(uri, null);
+                    return Uri.parse(CATEGORIES_TABLE + "/" + id);
+                case REG_DETAILS:
+                    id = db.insert(USER_REGISTRATION_TABLE, null, values);
+                    getContext().getContentResolver().notifyChange(uri, null);
+                    return Uri.parse(USER_REGISTRATION_TABLE + "/" + id);
+                case ALL_ITEMS:
+                    id = db.insert(ITEMS_TABLE, null, values);
+                    getContext().getContentResolver().notifyChange(uri, null);
+                    return Uri.parse(ITEMS_TABLE + "/" + id);
+                case PROFILE_DETAILS:
+                    id = db.insert(USER_PROFILE_TABLE, null, values);
+                    getContext().getContentResolver().notifyChange(uri, null);
+                    return Uri.parse(USER_PROFILE_TABLE + "/" + id);
+                default:
+                    Toast.makeText(null, "Sorry. That operation could not be performed", Toast.LENGTH_SHORT).show();
+                    return null;
+            }
 
     }
 
@@ -298,13 +315,13 @@ public class DBOperations extends ContentProvider {
 
                     updatedRows = db.update(USER_REGISTRATION_TABLE,
                             values,
-                            UserRegInfo.RegInfo.USER_NAME + " = " + username,
+                            NewRegInfo.UserRegistrationInfo.USER_NAME + " = " + username,
                             null);
                 } else {
 
                     updatedRows = db.update(USER_REGISTRATION_TABLE,
                             values,
-                            UserRegInfo.RegInfo.USER_NAME + " = " + username,
+                            NewRegInfo.UserRegistrationInfo.USER_NAME + " = " + username,
                             null);
                 }
                 break;
@@ -317,5 +334,5 @@ public class DBOperations extends ContentProvider {
         return updatedRows;
     }
 
-}
+} //end class DBOperations
 

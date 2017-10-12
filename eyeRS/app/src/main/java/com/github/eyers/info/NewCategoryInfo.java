@@ -10,7 +10,6 @@ package com.github.eyers.info;
 public class NewCategoryInfo {
 
     public static class CategoryInfo {
-
         /**
          * Entity name
          */
