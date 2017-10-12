@@ -1,4 +1,4 @@
-package com.github.eyers.activities;
+package com.github.eyers.activities.todo;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;

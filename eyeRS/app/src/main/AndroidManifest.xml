@@ -128,7 +128,7 @@
 
         </activity>
         <activity
-            android:name=".activities.ProfileSettings"
+            android:name=".activities.todo.ProfileSettings"
             android:label="@string/title_activity_profile_settings"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="adjustPan">

@@ -40,11 +40,11 @@
         <menu>
             <item
                 android:id="@+id/nav_help"
-                android:icon="@drawable/ic_perspective_dice_six_faces_random"
+                android:icon="@drawable/ic_help_outline_black_24dp"
                 android:title="@string/nav_help" />
             <item
                 android:id="@+id/nav_about"
-                android:icon="@drawable/ic_info"
+                android:icon="@drawable/ic_help_outline_black_24dp"
                 android:title="@string/nav_about" />
             <item
                 android:id="@+id/nav_exit"

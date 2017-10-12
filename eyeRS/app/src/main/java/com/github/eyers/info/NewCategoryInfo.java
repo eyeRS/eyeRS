@@ -1,4 +1,4 @@
-package com.github.eyers.activities;
+package com.github.eyers.info;
 
 /**
  * Created on 04-Sep-17.

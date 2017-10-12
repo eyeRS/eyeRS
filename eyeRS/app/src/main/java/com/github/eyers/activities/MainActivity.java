@@ -26,6 +26,7 @@ import com.github.eyers.DBOperations;
 import com.github.eyers.ItemLabel;
 import com.github.eyers.LabelAdapter;
 import com.github.eyers.R;
+import com.github.eyers.info.NewCategoryInfo;
 import com.miguelcatalan.materialsearchview.MaterialSearchView;
 
 import java.util.ArrayList;
@@ -287,10 +288,24 @@ public class MainActivity extends AppCompatActivity
             case R.id.nav_slideshow:
                 super.startActivity(new Intent(this, SlideshowActivity.class)); //starts the Slideshow activity
                 break;
-            case R.id.nav_share:
-            case R.id.nav_trade:
-                Toast.makeText(this, "TODO", Toast.LENGTH_LONG).show();
-                break;
+            case R.id.nav_share: {
+                // todo: in method
+                Intent sendIntent = new Intent();
+                sendIntent.setAction(Intent.ACTION_SEND);
+                sendIntent.putExtra(Intent.EXTRA_TEXT, "This is my text to send.");
+                sendIntent.setType("text/plain");
+                startActivity(sendIntent);
+            }
+            break;
+            case R.id.nav_trade: {
+                // todo: in method
+                Intent sendIntent = new Intent();
+                sendIntent.setAction(Intent.ACTION_SEND);
+                sendIntent.putExtra(Intent.EXTRA_TEXT, "This is my text to send.");
+                sendIntent.setType("text/plain");
+                startActivity(sendIntent);
+            }
+            break;
             case R.id.nav_exit:
                 exit();
                 break;
@@ -388,6 +403,12 @@ public class MainActivity extends AppCompatActivity
         return addCategories;
     }
 
+    /**
+     * TODO.
+     *
+     * @param category
+     * @return
+     */
     public List<String> getItems(String category) {
 
         List<String> items = new ArrayList<String>();

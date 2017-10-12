@@ -1,4 +1,4 @@
-package com.github.eyers.activities;
+package com.github.eyers.info;
 
 /**
  * The class holds data about the database table and column names belonging to the User Registration

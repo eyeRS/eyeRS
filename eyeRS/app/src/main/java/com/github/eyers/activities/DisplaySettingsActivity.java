@@ -1,10 +1,10 @@
 package com.github.eyers.activities;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.AdapterView;
 import android.view.View.OnClickListener;
+import android.widget.AdapterView;
 import android.widget.Spinner;
 
 import com.github.eyers.R;
@@ -18,9 +18,7 @@ public class DisplaySettingsActivity extends AppCompatActivity implements OnClic
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
-        Utils.onActivityCreateSetTheme(this);
         setContentView(R.layout.content_display_settings);
 
         String[] fontTypes = getResources().getStringArray(R.array.font_types);
@@ -68,9 +66,7 @@ public class DisplaySettingsActivity extends AppCompatActivity implements OnClic
     }
 
     public void onClick(View view) {
-        // TODO Auto-generated method stub
         switch (view.getId()) {
-
             case R.id.imgbtn_Blue:
                 Utils.changeToTheme(this, Utils.App_Theme);
                 break;
@@ -83,7 +79,6 @@ public class DisplaySettingsActivity extends AppCompatActivity implements OnClic
             case R.id.imgbtn_Green:
                 Utils.changeToTheme(this, Utils.AppTheme_Green);
                 break;
-
         }
     }
 } //end class DisplaySettingsActivity

@@ -15,9 +15,7 @@ import java.util.Random;
  */
 public class SlideshowActivity extends AppCompatActivity {
 
-    /**
-     * Fields & other declarations
-     */
+    // Fields & other declarations
     private ImageView img;
 
     @Override

@@ -1,7 +1,7 @@
 package com.github.eyers.activities;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.widget.CompoundButton;
 import android.widget.Switch;
@@ -10,8 +10,10 @@ import android.widget.Toast;
 import com.github.eyers.R;
 
 /**
- * Created by Nathan Shava on 19-Sep-17.
- * This class will handle sound settings events based on the user's selection
+ * This class will handle sound settings events based on the user's selection. Created by Nathan Shava
+ * on 19-Sep-17.
+ *
+ * @author Nathan Shava
  */
 public class SoundSettings extends AppCompatActivity {
 

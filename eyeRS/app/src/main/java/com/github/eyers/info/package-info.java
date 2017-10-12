@@ -21,4 +21,4 @@
  * @author ​Andrea ​Cloete
  * @author Sajaad Ishmail
  */
-package com.github.eyers.gui;
+package com.github.eyers.info;

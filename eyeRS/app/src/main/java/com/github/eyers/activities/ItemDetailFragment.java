@@ -16,18 +16,20 @@ import com.github.eyers.R;
 
 /**
  * Class will be used to display details of items based on users' selection.
- * Created on 29-Aug-17
+ * Created by Nathan Shava on 29-Aug-17.
  *
  * @author Nathan Shava
  */
 public class ItemDetailFragment extends Fragment {
 
     /**
-     * Field declarations
+     * The ID of the item the user will select.
      */
-    private long itemID; //The ID of the item the user will select
+    private long itemID;
 
-    // Required empty public constructor
+    /**
+     * Required empty public constructor.
+     */
     public ItemDetailFragment() {
 
     }
