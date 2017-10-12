@@ -12,10 +12,10 @@ import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.widget.Toast;
 
-import com.github.eyers.activities.NewCategoryInfo;
-import com.github.eyers.activities.NewItemInfo;
-import com.github.eyers.activities.NewRegInfo;
 import com.github.eyers.activities.UserProfileInfo;
+import com.github.eyers.info.NewCategoryInfo;
+import com.github.eyers.info.NewItemInfo;
+import com.github.eyers.info.NewRegInfo;
 
 /**
  * A custom Content Provider to perform the database operations.
@@ -146,6 +146,9 @@ public class DBOperations extends ContentProvider {
                 break;
             case PROFILE_DETAILS:
                 queryBuilder.setTables(USER_PROFILE_TABLE);
+                break;
+            case REG_DETAILS:
+                queryBuilder.setTables(USER_REGISTRATION_TABLE);
                 break;
             default:
                 throw new IllegalArgumentException("Unsupported URI: " + uri);

@@ -11,8 +11,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.github.eyers.DBOperations;
-import com.github.eyers.EyeRS;
 import com.github.eyers.R;
+import com.github.eyers.info.NewRegInfo;
 
 /**
  * This class will handle the Login event of the app.

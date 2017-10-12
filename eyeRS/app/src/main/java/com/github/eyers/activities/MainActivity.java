@@ -27,6 +27,7 @@ import com.github.eyers.ItemLabel;
 import com.github.eyers.LabelAdapter;
 import com.github.eyers.R;
 import com.github.eyers.info.NewCategoryInfo;
+import com.github.eyers.info.NewItemInfo;
 import com.miguelcatalan.materialsearchview.MaterialSearchView;
 
 import java.util.ArrayList;

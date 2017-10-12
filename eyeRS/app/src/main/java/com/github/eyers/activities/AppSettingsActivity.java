@@ -10,7 +10,6 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
 import com.github.eyers.R;
-import com.github.eyers.activities.todo.ProfileSettings;
 
 /**
  * This class will contain a list of settings in which the user can
@@ -55,7 +54,7 @@ public class AppSettingsActivity extends AppCompatActivity implements OnItemClic
             startActivity(intent);
         }
         if (position == 2) { //Profile settings is the next item in the list view i.e. position 2
-            Intent intent = new Intent(this, ProfileSettings.class);
+            Intent intent = new Intent(this, com.github.eyers.activities.ProfileSettings.class);
             startActivity(intent);
         }
         if (position == 3) { //Sound settings is the next item in the list view i.e. position 3

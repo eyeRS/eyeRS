@@ -8,10 +8,10 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-import com.github.eyers.activities.NewCategoryInfo;
-import com.github.eyers.activities.NewItemInfo;
-import com.github.eyers.activities.NewRegInfo;
 import com.github.eyers.activities.UserProfileInfo;
+import com.github.eyers.info.NewCategoryInfo;
+import com.github.eyers.info.NewItemInfo;
+import com.github.eyers.info.NewRegInfo;
 
 import java.lang.reflect.Field;
 
@@ -54,7 +54,7 @@ public class EyeRSDatabaseHelper extends SQLiteOpenHelper {
                     + NewRegInfo.UserRegistrationInfo.SECURITY_QUESTION + " TEXT, "
                     + NewRegInfo.UserRegistrationInfo.SECURITY_RESPONSE + " TEXT);";
     /**
-     * CREATE USER REGISTRATION TABLE QUERY.
+     * CREATE USER PROFILE TABLE QUERY.
      */
     private static final String CREATE_USER_PROFILE_TABLE_QUERY =
             "CREATE TABLE IF NOT EXISTS " + UserProfileInfo.ProfileInfo.TABLE_NAME

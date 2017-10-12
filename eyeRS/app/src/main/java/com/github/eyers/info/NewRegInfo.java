@@ -12,7 +12,7 @@ public class NewRegInfo {
         /**
          * Entity name
          */
-        public static final String TABLE_NAME = "user_reg";
+        public static final String TABLE_NAME = "user_registration";
         /**
          * Attributes
          */
