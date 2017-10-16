@@ -1,0 +1,1 @@
+git --no-pager log > log.txt
