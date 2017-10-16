@@ -2,7 +2,6 @@ package com.github.eyers.activities;
 
 import android.app.LoaderManager;
 import android.content.ContentResolver;
-import android.content.ContentValues;
 import android.content.Intent;
 import android.content.Loader;
 import android.content.res.Configuration;
@@ -20,6 +19,8 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -31,7 +32,6 @@ import com.github.eyers.info.NewCategoryInfo;
 import com.github.eyers.info.NewItemInfo;
 import com.miguelcatalan.materialsearchview.MaterialSearchView;
 
-import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.TreeSet;
@@ -42,9 +42,13 @@ import java.util.TreeSet;
  */
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener,
-        LoaderManager.LoaderCallbacks<Cursor> {
+        LoaderManager.LoaderCallbacks<Cursor>, OnItemClickListener {
 
+    /**
+     * Declarations
+     */
     private static String STATE = "main";
+    private static String getSelectedCategory;
 
     /**
      * Used to declare the search view bar.
@@ -155,6 +159,8 @@ public class MainActivity extends AppCompatActivity
 
             Log.e("ERROR", "Unable to view items", ex);
         }
+
+        listView.setOnItemClickListener(this);
     }
 
     /**
@@ -407,12 +413,11 @@ public class MainActivity extends AppCompatActivity
     }
 
     /**
-     * TODO.
+     * Method to retrieve items from the db
      *
-     * @param category
-     * @return
+     * @return the items based on the selected category
      */
-    public List<String> getItems(String category) {
+    public List<String> getItems() {
 
         List<String> items = new ArrayList<String>();
 
@@ -425,22 +430,25 @@ public class MainActivity extends AppCompatActivity
                 NewItemInfo.ItemInfo.ITEM_DESC,
                 NewItemInfo.ItemInfo.ITEM_IMAGE};
 
-        String where = NewItemInfo.ItemInfo.CATEGORY_NAME + " = "
-                + category;
+        String[] selectionArgs = {getSelectedCategory};
+
+        String whereClause = NewItemInfo.ItemInfo.CATEGORY_NAME + " LIKE '" + getSelectedCategory + "'";
+
+        String sortOrder = NewItemInfo.ItemInfo.ITEM_NAME;
 
         Cursor cursor = eyeRSContentResolver.query(DBOperations.CONTENT_URI_ITEMS,
-                projection, where, null, null);
+                projection, whereClause, selectionArgs, sortOrder);
 
         if (cursor.moveToFirst()) {
 
-            for (int i = 0; i < cursor.getCount(); i++) {
+            do {
 
-                do {
+                for (int i = 0; i < cursor.getCount(); i++) {
 
                     items.add(cursor.getString(i));
+                }
 
-                } while (cursor.moveToNext());
-            }
+            } while (cursor.moveToNext());
 
             cursor.close();
 
@@ -452,6 +460,12 @@ public class MainActivity extends AppCompatActivity
 
         return items;
 
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+        getSelectedCategory = listView.getItemAtPosition(position).toString(); //Retrieves the selected category
     }
 
 } //end class MainActivity

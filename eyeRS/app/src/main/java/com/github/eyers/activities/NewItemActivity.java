@@ -60,7 +60,7 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
     //db variables
     private static String itemName;
     private static String itemDesc;
-    public String category;
+    private static String category;
     public List<String> popCategories;
     String img;
     private ContentResolver eyeRSContentResolver;
@@ -270,10 +270,10 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
          */
         ContentValues bookValues = new ContentValues();
 
-        bookValues.put("book_category", category); //Book category
-        bookValues.put("book_title", itemName); //Book name
-        bookValues.put("book_desc", itemDesc); //Book description
-        bookValues.put("book_image", img); //Book image
+        bookValues.put(NewItemInfo.ItemInfo.CATEGORY_NAME, category); //Book category
+        bookValues.put(NewItemInfo.ItemInfo.ITEM_NAME, itemName); //Book name
+        bookValues.put(NewItemInfo.ItemInfo.ITEM_DESC, itemDesc); //Book description
+        bookValues.put(NewItemInfo.ItemInfo.ITEM_IMAGE, img); //Book image
 
         try {
 
@@ -301,10 +301,10 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
          */
         ContentValues clothesValues = new ContentValues();
 
-        clothesValues.put("clothing_category", category); //Clothing category
-        clothesValues.put("clothing_type", itemName); //Clothing name
-        clothesValues.put("clothing_desc", itemDesc); //Clothing description
-        clothesValues.put("clothing_image", img); //Clothing image
+        clothesValues.put(NewItemInfo.ItemInfo.CATEGORY_NAME, category); //Clothing category
+        clothesValues.put(NewItemInfo.ItemInfo.ITEM_NAME, itemName); //Clothing name
+        clothesValues.put(NewItemInfo.ItemInfo.ITEM_DESC, itemDesc); //Clothing description
+        clothesValues.put(NewItemInfo.ItemInfo.ITEM_IMAGE, img); //Clothing image
 
         try {
 
@@ -332,10 +332,10 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
          */
         ContentValues accessoriesValues = new ContentValues();
 
-        accessoriesValues.put("accessory_category", category); //Accessory category
-        accessoriesValues.put("accessory_name", itemName); //Accessory name
-        accessoriesValues.put("accessory_desc", itemDesc); //Accessory description
-        accessoriesValues.put("accessory_image", img); //Accessory image
+        accessoriesValues.put(NewItemInfo.ItemInfo.CATEGORY_NAME, category); //Accessory category
+        accessoriesValues.put(NewItemInfo.ItemInfo.ITEM_NAME, itemName); //Accessory name
+        accessoriesValues.put(NewItemInfo.ItemInfo.ITEM_DESC, itemDesc); //Accessory description
+        accessoriesValues.put(NewItemInfo.ItemInfo.ITEM_IMAGE, img); //Accessory image
 
         try {
 
@@ -363,10 +363,10 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
          */
         ContentValues gamesValues = new ContentValues();
 
-        gamesValues.put("game_category", category); //Game category
-        gamesValues.put("game_title", itemName); //Game name
-        gamesValues.put("game_desc", itemDesc); //Game description
-        gamesValues.put("game_image", img); //Game image
+        gamesValues.put(NewItemInfo.ItemInfo.CATEGORY_NAME, category); //Game category
+        gamesValues.put(NewItemInfo.ItemInfo.ITEM_NAME, itemName); //Game name
+        gamesValues.put(NewItemInfo.ItemInfo.ITEM_DESC, itemDesc); //Game description
+        gamesValues.put(NewItemInfo.ItemInfo.ITEM_IMAGE, img); //Game image
 
         try {
 
@@ -394,10 +394,10 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
          */
         ContentValues otherValues = new ContentValues();
 
-        otherValues.put("other_category", category); //Other category
-        otherValues.put("other_title", itemName); //Other name
-        otherValues.put("other_desc", itemDesc); //Other description
-        otherValues.put("other_image", img); //Other image
+        otherValues.put(NewItemInfo.ItemInfo.CATEGORY_NAME, category); //Other category
+        otherValues.put(NewItemInfo.ItemInfo.ITEM_NAME, itemName); //Other name
+        otherValues.put(NewItemInfo.ItemInfo.ITEM_DESC, itemDesc); //Other description
+        otherValues.put(NewItemInfo.ItemInfo.ITEM_IMAGE, img); //Other image
 
         try {
 
@@ -523,7 +523,6 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
                 System.currentTimeMillis() + ".jpg");
 
         img = "data:image/jpg;base64," + Base64.encodeToString(bytes.toByteArray(), 16);
-        Toast.makeText(this, img, Toast.LENGTH_LONG).show();
 
         FileOutputStream fo;
         try {

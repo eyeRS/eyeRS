@@ -213,7 +213,6 @@ public class ProfileSettings extends AppCompatActivity implements View.OnClickLi
                 System.currentTimeMillis() + ".jpg");
 
         img = "data:image/jpg;base64," + Base64.encodeToString(bytes.toByteArray(), 16);
-        Toast.makeText(this, img, Toast.LENGTH_LONG).show();
 
         FileOutputStream fo;
         try {

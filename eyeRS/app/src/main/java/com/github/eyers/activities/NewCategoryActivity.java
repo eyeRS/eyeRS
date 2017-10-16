@@ -129,12 +129,6 @@ public class NewCategoryActivity extends AppCompatActivity implements View.OnCli
                 NewCategoryInfo.CategoryInfo.CATEGORY_ICON};
 
         /**
-         * The criteria for selecting the rows
-         */
-        String selection = "category_name = \"" + NewCategoryInfo.CategoryInfo.CATEGORY_NAME
-                + "\"";
-
-        /**
          * Cursor object to retrieve query results
          */
         Cursor cursor = eyeRSContentResolver.query(DBOperations.CONTENT_URI_CATEGORIES,
