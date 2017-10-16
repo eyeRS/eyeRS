@@ -380,6 +380,7 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
 
         } catch (SQLiteException ex) {
             Toast.makeText(this, "Unable to add item", Toast.LENGTH_SHORT).show();
+            Log.e(getClass().getSimpleName(), "Unable to add item", ex);
         }
 
     } //end void addGame()

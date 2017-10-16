@@ -23,7 +23,9 @@ public class ItemLabel {
         return this.image;
     }
 
-public String toString(){return name;}
+    public String toString() {
+        return name;
+    }
 }
 
 
