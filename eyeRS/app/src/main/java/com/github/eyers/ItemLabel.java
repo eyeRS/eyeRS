@@ -22,4 +22,8 @@ public class ItemLabel {
     public Bitmap getImage() {
         return this.image;
     }
+
+public String toString(){return name;}
 }
+
+

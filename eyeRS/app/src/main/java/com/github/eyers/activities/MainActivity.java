@@ -144,10 +144,10 @@ public class MainActivity extends AppCompatActivity
                             getResources(), R.drawable.ic_action_help))); // TODO
                 }
             } else {
-//                for (String category : getItems(STATE)) {
-//                    items.add(new ItemLabel(category, BitmapFactory.decodeResource(
-//                            getResources(), R.drawable.ic_action_help))); // TODO
-//                }
+                for (String category : getItems()) {
+                    items.add(new ItemLabel(category, BitmapFactory.decodeResource(
+                            getResources(), R.drawable.ic_action_help))); // TODO
+                }
             }
 
             LabelAdapter adapter = new LabelAdapter(this, items);
@@ -454,7 +454,7 @@ public class MainActivity extends AppCompatActivity
 
         } else {
 
-            items = null;
+//            items = null;
 
         }
 
@@ -464,8 +464,9 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
+        STATE = "asd";
         getSelectedCategory = listView.getItemAtPosition(position).toString(); //Retrieves the selected category
+        startActivity(new Intent(this, MainActivity.class));
     }
 
 } //end class MainActivity
