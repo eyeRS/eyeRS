@@ -430,9 +430,9 @@ public class MainActivity extends AppCompatActivity
                 NewItemInfo.ItemInfo.ITEM_DESC,
                 NewItemInfo.ItemInfo.ITEM_IMAGE};
 
-        String[] selectionArgs = {getSelectedCategory};
+        String[] selectionArgs = null;
 
-        String whereClause = NewItemInfo.ItemInfo.CATEGORY_NAME + " LIKE '" + getSelectedCategory + "'";
+        String whereClause = getSelectedCategory + " = ?";
 
         String sortOrder = NewItemInfo.ItemInfo.ITEM_NAME;
 
