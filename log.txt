@@ -1,0 +1,1624 @@
+commit 4a53ed57f575ad3be74590a841fb1d379e58cf86
+Author: Blunderchips <matthewvdbijl@gmail.com>
+Date:   Mon Oct 16 11:48:24 2017 +0200
+
+    created make-log
+
+commit 162f13be629fd0bc6e1423a68c66255e44198a5c
+Author: Blunderchips <matthewvdbijl@gmail.com>
+Date:   Mon Oct 16 11:42:32 2017 +0200
+
+    removed unused files
+
+commit 93c3df2a1a25bba74a704e10c68f36acaf5f4788
+Author: Nathan Shava <nathantendai.shava@gmail.com>
+Date:   Mon Oct 16 11:05:26 2017 +0200
+
+    Display Settings
+    
+    # Conflicts:
+    #       eyeRS/app/src/main/java/com/github/eyers/MainActivity.java
+    #       eyeRS/app/src/main/res/layout/activity_main.xml
+    #       eyeRS/app/src/main/res/values/strings.xml
+
+commit 2252aa8c2ad8e8cb91115f48c55cde106d699ead
+Author: Nathan Shava <nathantendai.shava@gmail.com>
+Date:   Mon Oct 16 09:49:57 2017 +0200
+
+    Retrieves items query
+    
+    # Conflicts:
+    #       eyeRS/app/src/main/java/com/github/eyers/MainActivity.java
+    #       eyeRS/app/src/main/res/layout/activity_main.xml
+    #       eyeRS/app/src/main/res/values/strings.xml
+
+commit 8d2de834a163ac67cf94eb0908c1cf185f5dbbe6
+Author: sajjaadishmail3 <sajjaadishmail@gmail.com>
+Date:   Fri Oct 13 12:08:22 2017 +0200
+
+    Assisting with share function. Let me know if there is a better way to implement the share.
+
+commit 6cd8678861eb59ee25e8955901237a908ba7c1d7
+Author: sajjaadishmail3 <sajjaadishmail@gmail.com>
+Date:   Thu Oct 12 15:03:12 2017 +0200
+
+    updated searchView
+
+commit f2158cd821a452bc48c589950bb1d361d220d93b
+Author: sajjaadishmail3 <sajjaadishmail@gmail.com>
+Date:   Thu Oct 12 15:00:36 2017 +0200
+
+    updated searchView
+
+commit dddb9d577461f9959b0af3904b55e586733dd9c0
+Author: sajjaadishmail3 <sajjaadishmail@gmail.com>
+Date:   Thu Oct 12 14:58:42 2017 +0200
+
+    updated searchView
+
+commit 2d485ee31e4f1dd91abc425e26c66550569cdbd9
+Author: sajjaadishmail3 <sajjaadishmail@gmail.com>
+Date:   Thu Oct 12 14:57:51 2017 +0200
+
+    updated searchView
+
+commit 9a832fbbe1ac6d3d9fc9b05b804eff81b9939b9d
+Author: sajjaadishmail3 <sajjaadishmail@gmail.com>
+Date:   Thu Oct 12 14:55:13 2017 +0200
+
+    updated searchView
+
+commit 55d449cbc1c7f2e6cc419943c1bb7cbddc293612
+Merge: 1b4e026 cb694e9
+Author: sajjaadishmail3 <sajjaadishmail@gmail.com>
+Date:   Thu Oct 12 11:43:54 2017 +0200
+
+    Merge remote-tracking branch 'origin/master'
+    
+    # Conflicts:
+    #       eyeRS/app/src/main/java/com/github/eyers/DBOperations.java
+    #       eyeRS/app/src/main/java/com/github/eyers/EyeRSDatabaseHelper.java
+    #       eyeRS/app/src/main/java/com/github/eyers/activities/ItemDetail.java
+    #       eyeRS/app/src/main/java/com/github/eyers/activities/ItemDetailFragment.java
+    #       eyeRS/app/src/main/java/com/github/eyers/activities/ItemListFragment.java
+    #       eyeRS/app/src/main/java/com/github/eyers/activities/todo/ProfileSettings.java
+    #       eyeRS/app/src/main/java/com/github/eyers/info/UserRegInfo.java
+    #       eyeRS/app/src/main/res/values/styles.xml
+
+commit cb694e9895b29a24412c92776310d541a83f3949
+Author: Andrea Cloete <andreacloetekaap@outlook.com>
+Date:   Thu Oct 12 11:30:04 2017 +0200
+
+    Add new category button spacing
+
+commit d75a4297e1ab744d1bb7b115965cef0409474323
+Author: Nathan Shava <nathantendai.shava@gmail.com>
+Date:   Thu Oct 12 11:18:02 2017 +0200
+
+    DB & Layout fixes
+    
+    # Conflicts:
+    #       eyeRS/app/src/main/java/com/github/eyers/MainActivity.java
+    #       eyeRS/app/src/main/res/layout/activity_main.xml
+    #       eyeRS/app/src/main/res/values/strings.xml
+
+commit 1b4e0265c054b6ceeb0de6ee510d41ec7fe241c2
+Merge: 89e0e26 1502632
+Author: sajjaadishmail3 <sajjaadishmail@gmail.com>
+Date:   Thu Oct 12 10:04:55 2017 +0200
+
+    Merge remote-tracking branch 'origin/master'
+    
+    # Conflicts:
+    #       eyeRS/app/src/main/java/com/github/eyers/DBOperations.java
+    #       eyeRS/app/src/main/java/com/github/eyers/EyeRSDatabaseHelper.java
+    #       eyeRS/app/src/main/java/com/github/eyers/activities/ItemDetail.java
+    #       eyeRS/app/src/main/java/com/github/eyers/activities/ItemDetailFragment.java
+    #       eyeRS/app/src/main/java/com/github/eyers/activities/ItemListFragment.java
+    #       eyeRS/app/src/main/java/com/github/eyers/activities/todo/ProfileSettings.java
+    #       eyeRS/app/src/main/java/com/github/eyers/info/UserRegInfo.java
+    #       eyeRS/app/src/main/res/values/styles.xml
+
+commit c834bb89be567c181c1f27bcb2c7037154e2e482
+Author: Blunderchips <matthewvdbijl@gmail.com>
+Date:   Thu Oct 12 08:57:45 2017 +0200
+
+    not sure
+
+commit 2601df94a385fd5bea129d5c6e8531668a59d5fd
+Author: Blunderchips <matthewvdbijl@gmail.com>
+Date:   Thu Oct 12 08:56:21 2017 +0200
+
+    someone broke something
+
+commit 5ef25eb72ebc1e4b8f6533426d9c80fb0b51fc63
+Merge: 1502632 89e0e26
+Author: Blunderchips <matthewvdbijl@gmail.com>
+Date:   Thu Oct 12 08:18:15 2017 +0200
+
+    Merge remote-tracking branch 'origin/master'
+    
+    # Conflicts:
+    #       eyeRS/app/src/main/java/com/github/eyers/DBOperations.java
+    #       eyeRS/app/src/main/java/com/github/eyers/EyeRSDatabaseHelper.java
+    #       eyeRS/app/src/main/java/com/github/eyers/activities/ItemDetail.java
+    #       eyeRS/app/src/main/java/com/github/eyers/activities/ItemDetailFragment.java
+    #       eyeRS/app/src/main/java/com/github/eyers/activities/ItemListFragment.java
+    #       eyeRS/app/src/main/java/com/github/eyers/activities/todo/ProfileSettings.java
+    #       eyeRS/app/src/main/java/com/github/eyers/info/UserRegInfo.java
+    #       eyeRS/app/src/main/res/values/styles.xml
+
+commit 89e0e2641fdc1e0e0472bc88486c7070057a24a3
+Author: Nathan Shava <nathantendai.shava@gmail.com>
+Date:   Thu Oct 12 01:49:29 2017 +0200
+
+    Profile, Register, Login & DB updates
+    
+    # Conflicts:
+    #       eyeRS/app/src/main/java/com/github/eyers/MainActivity.java
+    #       eyeRS/app/src/main/res/layout/activity_main.xml
+    #       eyeRS/app/src/main/res/values/strings.xml
+
+commit 1502632b9cf945fc37daeac427e2b6c492ecd9a5
+Author: Blunderchips <matthewvdbijl@gmail.com>
+Date:   Wed Oct 11 16:41:58 2017 +0200
+
+    Reformated some stuff
+
+commit fb002ab5acf7290a5dbebe9bfdaf898f68af811f
+Author: Blunderchips <matthewvdbijl@gmail.com>
+Date:   Tue Oct 10 23:22:08 2017 +0200
+
+    added new video
+
+commit 5b310f5e03a55ce9c3ce623cfa43d83caa3e9f7b
+Author: Blunderchips <matthewvdbijl@gmail.com>
+Date:   Tue Oct 10 23:13:32 2017 +0200
+
+    .
+
+commit bbe93e708cb94e9cdeddfd799483a1196e12707e
+Author: Blunderchips <matthewvdbijl@gmail.com>
+Date:   Tue Oct 10 22:56:57 2017 +0200
+
+    Listview in main activity
+
+commit cbc385b6714794d0d5b77257da8793513ba506da
+Merge: f76738c 470ea7e
+Author: Blunderchips <matthewvdbijl@gmail.com>
+Date:   Tue Oct 10 22:15:27 2017 +0200
+
+    Merge remote-tracking branch 'origin/master'
+
+commit 470ea7e7312cf7400029c35e0b577e1afbcfa6a0
+Author: Nathan Shava <nathantendai.shava@gmail.com>
+Date:   Tue Oct 10 15:09:51 2017 +0200
+
+    DB update and hot fixes
+    
+    # Conflicts:
+    #       eyeRS/app/src/main/java/com/github/eyers/MainActivity.java
+    #       eyeRS/app/src/main/res/layout/activity_main.xml
+    #       eyeRS/app/src/main/res/values/strings.xml
+
+commit 6b62e7bf09ecedf4f697027af5652e58421c2a66
+Author: Emilde-Arsenio <emilde46@gmail.com>
+Date:   Tue Oct 10 14:13:04 2017 +0200
+
+    Merge remote-tracking branch 'origin/master'
+    
+    Busy with the display settings activities.
+    
+    # Conflicts:
+    #       eyeRS/app/src/main/AndroidManifest.xml
+
+commit 9d7b7dde308e953876223440bb21acc9b244e769
+Author: Emilde-Arsenio <emilde46@gmail.com>
+Date:   Tue Oct 10 13:07:44 2017 +0200
+
+    Merge remote-tracking branch 'origin/master'
+    
+    Busy with the display settings activities.
+    
+    # Conflicts:
+    #       eyeRS/app/src/main/AndroidManifest.xml
+
+commit 14f50677a1469b674328ca888e4dfa5f54bf62cf
+Author: Emilde <emilde46@gmail.com>
+Date:   Tue Oct 10 12:36:05 2017 +0200
+
+    Merge branch 'master' of C:\Users\Drena\eyeRS with conflicts.
+
+commit f76738c1a7d8493ea1e6201f80e49988ad9aea0f
+Author: Blunderchips <matthewvdbijl@gmail.com>
+Date:   Tue Oct 10 10:39:33 2017 +0200
+
+    javadoc update
+
+commit 2dabaee721e75b789fb1b4fe0f96dcab77e17b99
+Author: Blunderchips <matthewvdbijl@gmail.com>
+Date:   Tue Oct 10 10:26:44 2017 +0200
+
+    button hack
+
+commit 1a40b64787bf9c75011ae676576c26f1a2766f42
+Author: Blunderchips <matthewvdbijl@gmail.com>
+Date:   Tue Oct 10 09:28:13 2017 +0200
+
+    .
+
+commit 01e09b46db77775e2f174c99ffa33e5d87eb5ab8
+Author: Nathan Shava <nathantendai.shava@gmail.com>
+Date:   Tue Oct 10 09:27:25 2017 +0200
+
+    Category icon spinner
+    
+    # Conflicts:
+    #       eyeRS/app/src/main/java/com/github/eyers/MainActivity.java
+    #       eyeRS/app/src/main/res/layout/activity_main.xml
+    #       eyeRS/app/src/main/res/values/strings.xml
+
+commit ff0d7b0514910c2de0427bd52aaf620133d6d11a
+Author: Nathan Shava <nathantendai.shava@gmail.com>
+Date:   Tue Oct 10 09:22:50 2017 +0200
+
+    DB update
+    
+    # Conflicts:
+    #       eyeRS/app/src/main/java/com/github/eyers/MainActivity.java
+    #       eyeRS/app/src/main/res/layout/activity_main.xml
+    #       eyeRS/app/src/main/res/values/strings.xml
+
+commit 3680bec2c879c790240a28799f98945f29d5bc03
+Author: Blunderchips <matthewvdbijl@gmail.com>
+Date:   Tue Oct 10 09:16:22 2017 +0200
+
+    cam fix
+
+commit 436ffecdf58097aecb6f48530603c6fc0fcdc565
+Author: Blunderchips <matthewvdbijl@gmail.com>
+Date:   Tue Oct 10 09:16:08 2017 +0200
+
+    cam fix
+
+commit c15b9b79cebc5e951031756e5ea01613d928e9a9
+Author: Blunderchips <matthewvdbijl@gmail.com>
+Date:   Mon Oct 9 17:17:40 2017 +0200
+
+    .
+
+commit 6520db5ee1e0f4ec9f01ad678ac21f34c1460047
+Author: Nathan Shava <nathantendai.shava@gmail.com>
+Date:   Mon Oct 9 14:59:18 2017 +0200
+
+    DB structure update
+    
+    # Conflicts:
+    #       eyeRS/app/src/main/java/com/github/eyers/MainActivity.java
+    #       eyeRS/app/src/main/res/layout/activity_main.xml
+    #       eyeRS/app/src/main/res/values/strings.xml
+
+commit 7403427a595c0012bda4f81a741cfc3ce7d641de
+Author: sajjaadishmail3 <sajjaadishmail@gmail.com>
+Date:   Mon Oct 9 14:11:56 2017 +0200
+
+    updated searchView
+
+commit 7862ea46052c70f69bba1365fd0ed3476e7c8ad0
+Author: sajjaadishmail3 <sajjaadishmail@gmail.com>
+Date:   Mon Oct 9 12:10:58 2017 +0200
+
+    updated searchView
+
+commit 9dc50e59accf2bc6591482e44c5ddba8813ea1f4
+Merge: 5db9e61 86102b1
+Author: sajjaadishmail3 <sajjaadishmail@gmail.com>
+Date:   Mon Oct 9 09:40:51 2017 +0200
+
+    Merge remote-tracking branch 'origin/master'
+    
+    # Conflicts:
+    #       eyeRS/app/src/main/res/layout/content_main.xml
+    #       eyeRS/app/src/main/res/layout/content_search.xml
+
+commit 86102b13c335a0ffce27659e095222281718c2ad
+Author: Nathan Shava <nathantendai.shava@gmail.com>
+Date:   Thu Oct 5 22:58:25 2017 +0200
+
+    Register, SetPIN & other Activity updates
+    
+    # Conflicts:
+    #       eyeRS/app/src/main/java/com/github/eyers/MainActivity.java
+    #       eyeRS/app/src/main/res/layout/activity_main.xml
+    #       eyeRS/app/src/main/res/values/strings.xml
+
+commit a234cc8decb5f699031154db1eeef6175650d089
+Author: Blunderchips <matthewvdbijl@gmail.com>
+Date:   Thu Oct 5 15:55:55 2017 +0200
+
+    clean code
+
+commit adf0b545fb21dc62839c0e3e031f5d80817f3080
+Author: Nathan Shava <nathantendai.shava@gmail.com>
+Date:   Thu Oct 5 09:32:02 2017 +0200
+
+    Hot fix
+    
+    # Conflicts:
+    #       eyeRS/app/src/main/java/com/github/eyers/MainActivity.java
+    #       eyeRS/app/src/main/res/layout/activity_main.xml
+    #       eyeRS/app/src/main/res/values/strings.xml
+
+commit f9bfe71a0e22bfa9e0f8a170693913cbaca11a60
+Author: Blunderchips <matthewvdbijl@gmail.com>
+Date:   Thu Oct 5 09:24:55 2017 +0200
+
+    used tree set
+
+commit dd8a69c6a0dcc3e4da86e605833dc4818a530346
+Author: Nathan Shava <nathantendai.shava@gmail.com>
+Date:   Thu Oct 5 09:19:45 2017 +0200
+
+    Category Activity updates
+    
+    # Conflicts:
+    #       eyeRS/app/src/main/java/com/github/eyers/MainActivity.java
+    #       eyeRS/app/src/main/res/layout/activity_main.xml
+    #       eyeRS/app/src/main/res/values/strings.xml
+
+commit cd5aeb05233c7564769f79d58ed0cc93d5e24787
+Author: Blunderchips <matthewvdbijl@gmail.com>
+Date:   Thu Oct 5 09:04:44 2017 +0200
+
+    hot fix
+
+commit 7a9e14da45a2c3280a916f90d9ccce843063e80e
+Author: Nathan Shava <nathantendai.shava@gmail.com>
+Date:   Wed Oct 4 19:07:11 2017 +0200
+
+    Custom Content Provider & DB revamp
+    
+    # Conflicts:
+    #       eyeRS/app/src/main/java/com/github/eyers/MainActivity.java
+    #       eyeRS/app/src/main/res/layout/activity_main.xml
+    #       eyeRS/app/src/main/res/values/strings.xml
+
+commit 5db9e6108bc153a244a0411ea9944d28ba8a3cab
+Merge: e4dd062 1a5a3af
+Author: sajjaadishmail3 <sajjaadishmail@gmail.com>
+Date:   Thu Sep 21 18:31:28 2017 +0200
+
+    Merge remote-tracking branch 'origin/master'
+    
+    # Conflicts:
+    #       eyeRS/app/src/main/res/layout/content_display_settings.xml
+
+commit 1a5a3af10570f659ef9b698b5871e39ede791022
+Author: Emilde-Arsenio <emilde46@gmail.com>
+Date:   Thu Sep 21 11:17:12 2017 +0200
+
+    Merge remote-tracking branch 'origin/master'
+    
+    # Conflicts:
+    #       eyeRS/app/src/main/AndroidManifest.xml
+
+commit 4b84782b859fa25d8bfbb793efdae31d78ef3052
+Author: Emilde-Arsenio <emilde46@gmail.com>
+Date:   Wed Sep 20 09:28:31 2017 +0200
+
+    Merge remote-tracking branch 'origin/master'
+    
+    # Conflicts:
+    #       eyeRS/app/src/main/AndroidManifest.xml
+
+commit e4dd06273692c517a56b44dd93bd8c7c87acde9a
+Author: sajjaadishmail3 <sajjaadishmail@gmail.com>
+Date:   Tue Sep 19 19:37:41 2017 +0200
+
+    Started on the display
+
+commit fc7ffd647b7d8cc697f0ef4161790aef0e0f42db
+Author: Nathan Shava <nathantendai.shava@gmail.com>
+Date:   Tue Sep 19 17:53:14 2017 +0200
+
+    Settings layouts & Activities updates
+    
+    # Conflicts:
+    #       eyeRS/app/src/main/java/com/github/eyers/MainActivity.java
+    #       eyeRS/app/src/main/res/layout/activity_main.xml
+    #       eyeRS/app/src/main/res/values/strings.xml
+
+commit 51f7d3ebdec351b8f0acc8e2304dce6cec9591ec
+Merge: 465f685 3d656d8
+Author: Nathan Shava <nathantendai.shava@gmail.com>
+Date:   Tue Sep 19 17:34:16 2017 +0200
+
+    Merge remote-tracking branch 'origin/master'
+
+commit 465f685ec300a682a8d1d3d13ef35609c612e019
+Author: Nathan Shava <nathantendai.shava@gmail.com>
+Date:   Tue Sep 19 17:33:49 2017 +0200
+
+    Settings layouts & Activities updates
+    
+    # Conflicts:
+    #       eyeRS/app/src/main/java/com/github/eyers/MainActivity.java
+    #       eyeRS/app/src/main/res/layout/activity_main.xml
+    #       eyeRS/app/src/main/res/values/strings.xml
+
+commit 3d656d814ec58e08ac2098ae93498b57b83c66a9
+Author: Andrea Cloete <andreacloetekaap@outlook.com>
+Date:   Tue Sep 19 17:10:11 2017 +0200
+
+    The about screen-Spacing
+
+commit 8f9c823260bf844132dc566f850c7c8bb861fb00
+Author: Andrea Cloete <andreacloetekaap@outlook.com>
+Date:   Tue Sep 19 17:05:39 2017 +0200
+
+    The about screen-Spacing
+
+commit 75263df3d9345245c3ebb85d22f72880e19f1486
+Merge: b3fe835 a50e49b
+Author: Andrea <andreacloetekaap@outlook.com>
+Date:   Sat Sep 16 11:24:42 2017 +0200
+
+    Merge remote-tracking branch 'origin/master'
+
+commit a50e49bf3c0263a8e00f9cc93ccfb9a68286d851
+Author: Nathan Shava <nathantendai.shava@gmail.com>
+Date:   Fri Sep 15 03:54:23 2017 +0200
+
+    DB Operations
+    
+    # Conflicts:
+    #       eyeRS/app/src/main/java/com/github/eyers/MainActivity.java
+    #       eyeRS/app/src/main/res/layout/activity_main.xml
+    #       eyeRS/app/src/main/res/values/strings.xml
+
+commit b3fe83514ad21d006b50dc62780a884adeb2f572
+Merge: 16f435c 08d5833
+Author: Andrea <andreacloetekaap@outlook.com>
+Date:   Thu Sep 14 13:15:08 2017 +0200
+
+    Merge remote-tracking branch 'origin/master'
+
+commit 08d5833ae01da92fe76a9e79c81f9f62b5b10e5d
+Author: Blunderchips <matthewvdbijl@gmail.com>
+Date:   Thu Sep 14 09:20:43 2017 +0200
+
+    hotfix
+
+commit 16f435cea092c03868846a9cf4a96c6d518437ea
+Merge: 75887f6 5ce67ec
+Author: Andrea <andreacloetekaap@outlook.com>
+Date:   Thu Sep 14 08:46:59 2017 +0200
+
+    Merge remote-tracking branch 'origin/master'
+
+commit 5ce67eca8c225f559dc7e80ab4c628cefe7bfc1f
+Author: Blunderchips <matthewvdbijl@gmail.com>
+Date:   Thu Sep 14 08:42:09 2017 +0200
+
+    fixed clear button & javadoc update
+
+commit 75887f64054d850fc0d6d2b255c17d59c89e7630
+Merge: d7910c8 5c1c0b6
+Author: Andrea <andreacloetekaap@outlook.com>
+Date:   Thu Sep 14 08:40:43 2017 +0200
+
+    Merge remote-tracking branch 'origin/master'
+    
+    # Conflicts:
+    #       eyeRS/app/src/main/java/com/github/eyers/activities/MainActivity.java
+
+commit 5c1c0b69be6027faac076001ab7d3cb03389be28
+Author: Blunderchips <matthewvdbijl@gmail.com>
+Date:   Thu Sep 14 08:30:33 2017 +0200
+
+    nightly
+
+commit d7910c8a311bba0a25e334969440afd48ada037c
+Merge: a5ff961 40405f7
+Author: Andrea <andreacloetekaap@outlook.com>
+Date:   Thu Sep 14 00:59:50 2017 +0200
+
+    Merge remote-tracking branch 'origin/master'
+    
+    # Conflicts:
+    #       eyeRS/app/src/main/java/com/github/eyers/activities/MainActivity.java
+
+commit 40405f7811fa767d2ea7f7f60225f6f267248778
+Author: Nathan Shava <nathantendai.shava@gmail.com>
+Date:   Wed Sep 13 17:44:47 2017 +0200
+
+    Settings skeleton & DB updates
+    
+    # Conflicts:
+    #       eyeRS/app/src/main/java/com/github/eyers/MainActivity.java
+    #       eyeRS/app/src/main/res/layout/activity_main.xml
+    #       eyeRS/app/src/main/res/values/strings.xml
+
+commit 61872cba646d61d42af99b26d0d9ee11b396da5e
+Author: Nathan Shava <nathantendai.shava@gmail.com>
+Date:   Wed Sep 13 09:17:33 2017 +0200
+
+    Profile layout update
+    
+    # Conflicts:
+    #       eyeRS/app/src/main/java/com/github/eyers/MainActivity.java
+    #       eyeRS/app/src/main/res/layout/activity_main.xml
+    #       eyeRS/app/src/main/res/values/strings.xml
+
+commit 158e771fdc430debcb72b9f98e2ab10a6e51a7b9
+Author: Blunderchips <matthewvdbijl@gmail.com>
+Date:   Wed Sep 13 09:03:50 2017 +0200
+
+    exit button work
+
+commit 9b4de1c506181f3555e908193d44640b80004f15
+Author: Blunderchips <matthewvdbijl@gmail.com>
+Date:   Wed Sep 13 08:58:49 2017 +0200
+
+    javadoc update
+
+commit cbbab6ab67ea256711623015e5e6e16535e0acf8
+Author: Blunderchips <matthewvdbijl@gmail.com>
+Date:   Wed Sep 13 08:50:03 2017 +0200
+
+    changes made in class
+
+commit a5ff96172f5ba2bdc331c923e0aeaa4c0f9963b8
+Merge: 7a257d9 68b7c2e
+Author: Andrea <andreacloetekaap@outlook.com>
+Date:   Wed Sep 13 00:58:53 2017 +0200
+
+    Merge remote-tracking branch 'origin/master'
+    
+    # Conflicts:
+    #       eyeRS/app/src/main/res/layout/content_about.xml
+
+commit 68b7c2eb6ffde11c28a79257119491d130bf96db
+Author: Nathan Shava <nathantendai.shava@gmail.com>
+Date:   Wed Sep 13 00:57:37 2017 +0200
+
+    New Settings Activity & other commits
+    
+    # Conflicts:
+    #       eyeRS/app/src/main/java/com/github/eyers/MainActivity.java
+    #       eyeRS/app/src/main/res/layout/activity_main.xml
+    #       eyeRS/app/src/main/res/values/strings.xml
+
+commit 85c2761aa3c5a6eda718e47723fdcbd9ef32bc94
+Author: Nathan Shava <nathantendai.shava@gmail.com>
+Date:   Tue Sep 12 17:04:28 2017 +0200
+
+    Login layout update
+    
+    # Conflicts:
+    #       eyeRS/app/src/main/java/com/github/eyers/MainActivity.java
+    #       eyeRS/app/src/main/res/layout/activity_main.xml
+    #       eyeRS/app/src/main/res/values/strings.xml
+
+commit 579ae6987434cf26415fc1a4620804d040c58623
+Author: Nathan Shava <nathantendai.shava@gmail.com>
+Date:   Tue Sep 12 16:55:29 2017 +0200
+
+    DB connection updates
+    
+    # Conflicts:
+    #       eyeRS/app/src/main/java/com/github/eyers/MainActivity.java
+    #       eyeRS/app/src/main/res/layout/activity_main.xml
+    #       eyeRS/app/src/main/res/values/strings.xml
+
+commit 7a257d97a0ff855a6799acff70994ed1ef8bc812
+Merge: 0866197 b3a1591
+Author: Andrea <andreacloetekaap@outlook.com>
+Date:   Tue Sep 12 12:27:01 2017 +0200
+
+    Merge remote-tracking branch 'origin/master'
+
+commit b3a15910cb0c87c52dd8481d88abe66ad683bc0b
+Author: Blunderchips <matthewvdbijl@gmail.com>
+Date:   Tue Sep 12 12:26:09 2017 +0200
+
+    javadoc update
+
+commit 086619737d8e3ee879787072a3411411c5e3cf82
+Merge: 03fc107 f966d50
+Author: Andrea <andreacloetekaap@outlook.com>
+Date:   Tue Sep 12 12:25:53 2017 +0200
+
+    Merge remote-tracking branch 'origin/master'
+
+commit f966d504546fa9e1accb21de600eedcff988c1a2
+Author: Blunderchips <matthewvdbijl@gmail.com>
+Date:   Tue Sep 12 12:23:45 2017 +0200
+
+    fixed search bar
+
+commit 03fc10775206da59a23674c6cb87722842fdc825
+Merge: babab77 f5308fe
+Author: Andrea <andreacloetekaap@outlook.com>
+Date:   Tue Sep 12 12:23:06 2017 +0200
+
+    Merge remote-tracking branch 'origin/master'
+
+commit f5308fead6c07fe15b70a9727f59a3cacda1bbcb
+Merge: bb5d118 0bde295
+Author: Blunderchips <matthewvdbijl@gmail.com>
+Date:   Tue Sep 12 11:54:52 2017 +0200
+
+    Merge branch 'master' of http://www.github.com/eyers/eyers
+
+commit bb5d118b68552f9f308979a8b9cd304b29e01345
+Author: Blunderchips <matthewvdbijl@gmail.com>
+Date:   Tue Sep 12 11:53:58 2017 +0200
+
+    .
+
+commit babab778743a4825e62d100a0c5e399d52d5bd0d
+Author: Andrea <andreacloetekaap@outlook.com>
+Date:   Mon Sep 11 23:39:40 2017 +0200
+
+    Merge branch 'master' of C:\MyAndroidStudio\eyeRS with conflicts.
+
+commit 0bde295d75b360524d8ac661b2a34113e219e825
+Author: sajjaadishmail3 <sajjaadishmail@gmail.com>
+Date:   Mon Sep 11 20:09:40 2017 +0200
+
+    Search added to activities
+
+commit 291e47b04497775ed89e75efb0aa2fc9a5ed5191
+Author: Blunderchips <matthewvdbijl@gmail.com>
+Date:   Mon Sep 11 17:34:58 2017 +0200
+
+    cam test (new item)
+
+commit 039b3818c43a4ff351a830529dae14ca6df85221
+Author: Blunderchips <matthewvdbijl@gmail.com>
+Date:   Mon Sep 11 16:56:26 2017 +0200
+
+    cam test
+
+commit 551abc11a3ffc19e9f107aa1efeca753b542c3d2
+Author: Blunderchips <matthewvdbijl@gmail.com>
+Date:   Mon Sep 11 16:56:17 2017 +0200
+
+    cam test
+
+commit 21ed07ea0f1697591c8aba481f37cbb1cef35ea1
+Author: Nathan Shava <nathantendai.shava@gmail.com>
+Date:   Fri Sep 8 03:18:47 2017 +0200
+
+    DB query updates
+    
+    # Conflicts:
+    #       eyeRS/app/src/main/java/com/github/eyers/MainActivity.java
+    #       eyeRS/app/src/main/res/layout/activity_main.xml
+    #       eyeRS/app/src/main/res/values/strings.xml
+
+commit e04f896fd1c5d052d78ed529ebf3d755cbcfc26b
+Author: Nathan Shava <nathantendai.shava@gmail.com>
+Date:   Thu Sep 7 01:08:19 2017 +0200
+
+    DB commits
+    
+    # Conflicts:
+    #       eyeRS/app/src/main/java/com/github/eyers/MainActivity.java
+    #       eyeRS/app/src/main/res/layout/activity_main.xml
+    #       eyeRS/app/src/main/res/values/strings.xml
+
+commit 5aa81033a71d4a88522e4e474542f94e9db0d553
+Author: Blunderchips <matthewvdbijl@gmail.com>
+Date:   Wed Sep 6 11:29:31 2017 +0200
+
+    list db test
+
+commit 3220d021dea83c2458e7e8e24c845d4316f95cb1
+Author: Nathan Shava <nathantendai.shava@gmail.com>
+Date:   Wed Sep 6 11:13:22 2017 +0200
+
+    DB updates
+    
+    # Conflicts:
+    #       eyeRS/app/src/main/java/com/github/eyers/MainActivity.java
+    #       eyeRS/app/src/main/res/layout/activity_main.xml
+    #       eyeRS/app/src/main/res/values/strings.xml
+
+commit 1ebe1f26e27cc4eca572f3ba6f115bdd9028c93f
+Author: Blunderchips <matthewvdbijl@gmail.com>
+Date:   Wed Sep 6 09:35:23 2017 +0200
+
+    changes made in class
+
+commit e28fe12c77853049b68ef5fdafb10f2a13fc45f1
+Author: Andrea Cloete <andreacloetekaap@outlook.com>
+Date:   Wed Sep 6 08:34:23 2017 +0200
+
+    The about screen-Spacing
+
+commit b26ec933cf4e041fe1d9b68fb06ac32c6ee48af1
+Author: Nathan Shava <nathantendai.shava@gmail.com>
+Date:   Tue Sep 5 21:27:26 2017 +0200
+
+    DB & Layout updates
+    
+    # Conflicts:
+    #       eyeRS/app/src/main/java/com/github/eyers/MainActivity.java
+    #       eyeRS/app/src/main/res/layout/activity_main.xml
+    #       eyeRS/app/src/main/res/values/strings.xml
+
+commit e62743cd90832be93f64a570703cdc7de250a504
+Author: Blunderchips <matthewvdbijl@gmail.com>
+Date:   Tue Sep 5 10:32:36 2017 +0200
+
+    removed label test
+
+commit 305f0eb1b418cc3ea785dbc1ba91e98f80ff46b0
+Author: Nathan Shava <nathantendai.shava@gmail.com>
+Date:   Mon Sep 4 23:39:21 2017 +0200
+
+    Database Updates
+    
+    # Conflicts:
+    #       eyeRS/app/src/main/java/com/github/eyers/MainActivity.java
+    #       eyeRS/app/src/main/res/layout/activity_main.xml
+    #       eyeRS/app/src/main/res/values/strings.xml
+
+commit 4112f6ebfcdcac20eb275169e4a1d50def4596d7
+Author: Nathan Shava <nathantendai.shava@gmail.com>
+Date:   Mon Sep 4 17:46:53 2017 +0200
+
+    New Category layout & updates
+    
+    # Conflicts:
+    #       eyeRS/app/src/main/java/com/github/eyers/MainActivity.java
+    #       eyeRS/app/src/main/res/layout/activity_main.xml
+    #       eyeRS/app/src/main/res/values/strings.xml
+
+commit 2401e43951293849b88650e52cb811b8d66cb05c
+Author: Nathan Shava <nathantendai.shava@gmail.com>
+Date:   Sun Sep 3 21:23:31 2017 +0200
+
+    Layout updates
+    
+    # Conflicts:
+    #       eyeRS/app/src/main/java/com/github/eyers/MainActivity.java
+    #       eyeRS/app/src/main/res/layout/activity_main.xml
+    #       eyeRS/app/src/main/res/values/strings.xml
+
+commit b12a7ae8650c624e789800196991405c29f495d4
+Author: Andrea Cloete <andreacloetekaap@outlook.com>
+Date:   Thu Aug 31 19:06:47 2017 +0200
+
+    The about screen
+
+commit 10a356c21d1e3bb0689a70ff07108619a3f7810c
+Author: Andrea Cloete <andreacloetekaap@outlook.com>
+Date:   Thu Aug 31 16:39:08 2017 +0200
+
+    The about screen
+
+commit bf64162982b99e8155a4f15186cc6f55c8cf9c2c
+Merge: c2a849a 7ab05e2
+Author: Andrea <andreacloetekaap@outlook.com>
+Date:   Thu Aug 31 16:20:07 2017 +0200
+
+    Merge remote-tracking branch 'origin/master'
+    
+    # Conflicts:
+    #       eyeRS/app/src/main/res/layout/content_about.xml
+
+commit c2a849a48f4b55bc47d5cb59b902820ec3f998e1
+Author: Andrea Cloete <andreacloetekaap@outlook.com>
+Date:   Thu Aug 31 16:17:28 2017 +0200
+
+    The about screen
+
+commit 7ab05e29517eddbfafa10364ec119f5f49116e7f
+Author: sajjaadishmail3 <sajjaadishmail@gmail.com>
+Date:   Thu Aug 31 16:09:56 2017 +0200
+
+    Updated
+
+commit 9c83fbab2a1e27c374fa5ceaca2f025ddb37e25a
+Author: Blunderchips <matthewvdbijl@gmail.com>
+Date:   Thu Aug 31 09:48:57 2017 +0200
+
+    item list fix
+
+commit 046e07f9a546290d3e3ed59fa1cb2dffcc085ba5
+Author: sajjaadishmail3 <sajjaadishmail@gmail.com>
+Date:   Wed Aug 30 17:23:27 2017 +0200
+
+    Updates
+
+commit 12c45d9c3927a5a586aec9bb7b7ba92915247d0e
+Author: sajjaadishmail3 <sajjaadishmail@gmail.com>
+Date:   Wed Aug 30 17:09:56 2017 +0200
+
+    I am currently working on the search bar
+
+commit 8418118314cb0b7252771fcf1abc674ecc6f5d50
+Author: Blunderchips <matthewvdbijl@gmail.com>
+Date:   Wed Aug 30 13:11:52 2017 +0200
+
+    test commit
+
+commit 8ea15bb239144f204a34866f54a4c9ab9c665079
+Author: Nathan Shava <nathantendai.shava@gmail.com>
+Date:   Tue Aug 29 23:06:22 2017 +0200
+
+    Create Fragments
+    
+    # Conflicts:
+    #       eyeRS/app/src/main/java/com/github/eyers/MainActivity.java
+    #       eyeRS/app/src/main/res/layout/activity_main.xml
+    #       eyeRS/app/src/main/res/values/strings.xml
+
+commit 197bc56ac671e3cb02410bfa78c43ce237037324
+Author: Blunderchips <matthewvdbijl@gmail.com>
+Date:   Mon Aug 28 16:42:12 2017 +0200
+
+    list update
+
+commit de7b1720368010266d0065a36957404a25609cf9
+Author: Nathan Shava <nathantendai.shava@gmail.com>
+Date:   Mon Aug 28 13:21:52 2017 +0200
+
+    Profile layout commits
+    
+    # Conflicts:
+    #       eyeRS/app/src/main/java/com/github/eyers/MainActivity.java
+    #       eyeRS/app/src/main/res/layout/activity_main.xml
+    #       eyeRS/app/src/main/res/values/strings.xml
+
+commit 1f9b631aca2f75ca7cb1b9aa017487a6a635d0a3
+Merge: a7c7716 eb8a612
+Author: Emilde <emilde46@gmail.com>
+Date:   Mon Aug 28 12:37:30 2017 +0200
+
+    Merge remote-tracking branch 'origin/master'
+
+commit a7c7716f7b3c0a751348551276ba30f545aa8f53
+Merge: a58a94b 8ddf977
+Author: Emilde <emilde46@gmail.com>
+Date:   Mon Aug 28 12:37:20 2017 +0200
+
+    Merge remote-tracking branch 'origin/master'
+    
+    # Conflicts:
+    #       eyeRS/app/src/main/AndroidManifest.xml
+
+commit eb8a6124a12cdde63626bdd2e2891cf5ba543ef2
+Author: Nathan Shava <nathantendai.shava@gmail.com>
+Date:   Mon Aug 28 01:58:30 2017 +0200
+
+    MinSDKUpdate
+    
+    # Conflicts:
+    #       eyeRS/app/src/main/java/com/github/eyers/MainActivity.java
+    #       eyeRS/app/src/main/res/layout/activity_main.xml
+    #       eyeRS/app/src/main/res/values/strings.xml
+
+commit 385da41bf9fd767cdf4d454bb20f85a59196dd2c
+Author: Nathan Shava <nathantendai.shava@gmail.com>
+Date:   Sun Aug 27 23:43:30 2017 +0200
+
+    Settings icons
+    
+    # Conflicts:
+    #       eyeRS/app/src/main/java/com/github/eyers/MainActivity.java
+    #       eyeRS/app/src/main/res/layout/activity_main.xml
+    #       eyeRS/app/src/main/res/values/strings.xml
+
+commit 5300ae5150bc4ce1664e226ee93c48e3e11acf62
+Merge: e085bc8 8ddf977
+Author: Nathan Shava <nathantendai.shava@gmail.com>
+Date:   Sun Aug 27 23:19:32 2017 +0200
+
+    Merge remote-tracking branch 'origin/master'
+
+commit e085bc8dbcd2660415a60c225c44cd4fcf59486f
+Author: Nathan Shava <nathantendai.shava@gmail.com>
+Date:   Sun Aug 27 23:18:22 2017 +0200
+
+    Settings Fragments
+    
+    # Conflicts:
+    #       eyeRS/app/src/main/java/com/github/eyers/MainActivity.java
+    #       eyeRS/app/src/main/res/layout/activity_main.xml
+    #       eyeRS/app/src/main/res/values/strings.xml
+
+commit a58a94ba260d8afff2e2da14cffd44dfb56bc5f7
+Author: Emilde-Arsenio <emilde46@gmail.com>
+Date:   Fri Aug 25 18:45:58 2017 +0200
+
+    ProfileActivity created
+
+commit 8ddf9777445ffdad4cd594dd77b5c348f7e7e850
+Author: Nathan Tendai <nathantendai.shava@gmail.com>
+Date:   Wed Aug 23 09:29:17 2017 +0200
+
+    Search Bar link
+
+commit b87ae8c4a13d793ffd0ee93689166b33628a8fe0
+Author: Matthew 'siD' Van der Bijl <matthewvdbijl@gmail.com>
+Date:   Wed Aug 23 09:24:32 2017 +0200
+
+    Update TODO List.txt
+    
+    added search activity
+
+commit dbdae563b2a733435862213634f9193b22f8cfe7
+Author: Nathan Shava <nathantendai.shava@gmail.com>
+Date:   Wed Aug 23 09:04:24 2017 +0200
+
+    Minor commit
+    
+    # Conflicts:
+    #       eyeRS/app/src/main/java/com/github/eyers/MainActivity.java
+    #       eyeRS/app/src/main/res/layout/activity_main.xml
+    #       eyeRS/app/src/main/res/values/strings.xml
+
+commit bef3785997de8f270715f9166d19e912ebf90024
+Merge: b2c849a 7ebfef3
+Author: Nathan Shava <nathantendai.shava@gmail.com>
+Date:   Wed Aug 23 08:56:14 2017 +0200
+
+    Merge remote-tracking branch 'origin/master'
+
+commit b2c849afce9fa2c1a5e2a8af9890bb3dee3f1bab
+Author: Nathan Shava <nathantendai.shava@gmail.com>
+Date:   Wed Aug 23 08:55:10 2017 +0200
+
+    Remove ForgotPIN activity
+    
+    # Conflicts:
+    #       eyeRS/app/src/main/java/com/github/eyers/MainActivity.java
+    #       eyeRS/app/src/main/res/layout/activity_main.xml
+    #       eyeRS/app/src/main/res/values/strings.xml
+
+commit 7ebfef3a9980763d1067bd1ac3d3c8db25a2de71
+Author: Matthew 'siD' Van der Bijl <matthewvdbijl@gmail.com>
+Date:   Wed Aug 23 08:52:25 2017 +0200
+
+    Create TODO List.txt
+    
+    activity still to do
+
+commit 819d7c103d63d42bda22261d70d08db451816e56
+Author: Nathan Shava <nathantendai.shava@gmail.com>
+Date:   Wed Aug 23 08:47:28 2017 +0200
+
+    Create SettingsActivity
+    
+    # Conflicts:
+    #       eyeRS/app/src/main/java/com/github/eyers/MainActivity.java
+    #       eyeRS/app/src/main/res/layout/activity_main.xml
+    #       eyeRS/app/src/main/res/values/strings.xml
+
+commit 7201040d7b3bcc09e2786b7798e8221b3c8252d3
+Author: Matthew 'siD' Van der Bijl <matthewvdbijl@gmail.com>
+Date:   Wed Aug 23 08:36:15 2017 +0200
+
+    Add files via upload
+    
+    deliverable 3
+
+commit 7f35124b395362b4b28171e409f9b82d6d067c44
+Author: Blunderchips <matthewvdbijl@gmail.com>
+Date:   Thu Aug 17 09:47:17 2017 +0200
+
+    updated javadoc
+
+commit 9edd4df55512347e910ba5b8bd4bf04936024a58
+Author: Blunderchips <matthewvdbijl@gmail.com>
+Date:   Thu Aug 17 09:44:59 2017 +0200
+
+    added stock label adapter
+
+commit 5e57ce30a85eb76764a47634936f52d19ff0f2cd
+Author: Blunderchips <matthewvdbijl@gmail.com>
+Date:   Thu Aug 17 09:42:06 2017 +0200
+
+    fixed what i broke
+
+commit 97519c23b0c8779f183670469000c583232e8ca6
+Merge: abc97bf 23550dd
+Author: Blunderchips <matthewvdbijl@gmail.com>
+Date:   Thu Aug 17 09:34:42 2017 +0200
+
+    Merge branch 'master' of https://github.com/eyers/eyers
+
+commit abc97bf58616514e3a00b739d523de4d91dbc08c
+Merge: 738cd11 1ca6b55
+Author: Blunderchips <matthewvdbijl@gmail.com>
+Date:   Thu Aug 17 09:34:19 2017 +0200
+
+    .
+
+commit 23550dd2e9ca10193d0c486d4e9a012f79498264
+Author: Nathan Shava <nathantendai.shava@gmail.com>
+Date:   Thu Aug 17 09:34:12 2017 +0200
+
+    Scroll view updates
+    
+    # Conflicts:
+    #       eyeRS/app/src/main/java/com/github/eyers/MainActivity.java
+    #       eyeRS/app/src/main/res/layout/activity_main.xml
+    #       eyeRS/app/src/main/res/values/strings.xml
+
+commit 738cd11cbb05241eedd20d7f7ac648b631048f7b
+Author: Blunderchips <matthewvdbijl@gmail.com>
+Date:   Thu Aug 17 09:32:55 2017 +0200
+
+    added list view test
+
+commit 1ca6b55c90c0c0c6814bdbe1a92d55b88ef521b2
+Merge: 8243d1a 4964f49
+Author: Nathan Shava <nathantendai.shava@gmail.com>
+Date:   Thu Aug 17 08:55:42 2017 +0200
+
+    Merge remote-tracking branch 'origin/master'
+
+commit 8243d1abe9415843c202270785be1294d1e1884b
+Author: Nathan Shava <nathantendai.shava@gmail.com>
+Date:   Thu Aug 17 08:53:38 2017 +0200
+
+    Scroll view updates
+    
+    # Conflicts:
+    #       eyeRS/app/src/main/java/com/github/eyers/MainActivity.java
+    #       eyeRS/app/src/main/res/layout/activity_main.xml
+    #       eyeRS/app/src/main/res/values/strings.xml
+
+commit 4964f49a1ae18be866cf0e249b3ab4dca9149ec6
+Author: Blunderchips <matthewvdbijl@gmail.com>
+Date:   Thu Aug 17 08:24:12 2017 +0200
+
+    .
+
+commit ffb4f3b76867802c1ad32c63d5e9bab28e2c3c6e
+Author: Blunderchips <matthewvdbijl@gmail.com>
+Date:   Wed Aug 16 08:59:48 2017 +0200
+
+    added help video template
+
+commit d1f2657d419b11ca6b361c78a3df1dc70a1d7de0
+Author: Nathan Shava <nathantendai.shava@gmail.com>
+Date:   Wed Aug 9 04:30:23 2017 +0200
+
+    Layout updates and planned drawer code
+    
+    # Conflicts:
+    #       eyeRS/app/src/main/java/com/github/eyers/MainActivity.java
+    #       eyeRS/app/src/main/res/layout/activity_main.xml
+    #       eyeRS/app/src/main/res/values/strings.xml
+
+commit 6951a99e647062378c0e000481c9420f905b0b12
+Author: Nathan Shava <nathantendai.shava@gmail.com>
+Date:   Fri Aug 4 04:34:09 2017 +0200
+
+    Create NewItemActivity layout
+    
+    # Conflicts:
+    #       eyeRS/app/src/main/java/com/github/eyers/MainActivity.java
+    #       eyeRS/app/src/main/res/layout/activity_main.xml
+    #       eyeRS/app/src/main/res/values/strings.xml
+
+commit a1fafad5f963d06817b2acf428c764091bdd2b19
+Author: Nathan Shava <nathantendai.shava@gmail.com>
+Date:   Thu Aug 3 10:31:04 2017 +0200
+
+    Layout & drawer commits
+    
+    # Conflicts:
+    #       eyeRS/app/src/main/java/com/github/eyers/MainActivity.java
+    #       eyeRS/app/src/main/res/layout/activity_main.xml
+    #       eyeRS/app/src/main/res/values/strings.xml
+
+commit d035b2e5bc1f7e7e38e841a18701fd9f04fab9b0
+Author: Nathan Shava <nathantendai.shava@gmail.com>
+Date:   Wed Aug 2 14:58:18 2017 +0200
+
+    Minor commits
+
+commit dfecd3fca358e642ef0ff3764cf7764b309502f7
+Author: Nathan Shava <nathantendai.shava@gmail.com>
+Date:   Wed Aug 2 14:57:45 2017 +0200
+
+    Minor commits
+
+commit 1c424d94efc17b631c6c7556523b7155c20b9341
+Author: Nathan Shava <nathantendai.shava@gmail.com>
+Date:   Wed Aug 2 14:56:49 2017 +0200
+
+    Layout updates
+    
+    # Conflicts:
+    #       eyeRS/app/src/main/java/com/github/eyers/MainActivity.java
+    #       eyeRS/app/src/main/res/layout/activity_main.xml
+    #       eyeRS/app/src/main/res/values/strings.xml
+
+commit 2d6743406fdfcaaedd028811e799acc9e99bd4a3
+Author: Nathan Shava <nathantendai.shava@gmail.com>
+Date:   Wed Aug 2 11:45:46 2017 +0200
+
+    Minor commits
+    
+    # Conflicts:
+    #       eyeRS/app/src/main/java/com/github/eyers/MainActivity.java
+    #       eyeRS/app/src/main/res/layout/activity_main.xml
+    #       eyeRS/app/src/main/res/values/strings.xml
+
+commit 4f805078fdb128d460bd0936bbb0cfc9a957f654
+Author: Nathan Shava <nathantendai.shava@gmail.com>
+Date:   Wed Aug 2 11:41:32 2017 +0200
+
+    Minor commits
+    
+    # Conflicts:
+    #       eyeRS/app/src/main/java/com/github/eyers/MainActivity.java
+    #       eyeRS/app/src/main/res/layout/activity_main.xml
+    #       eyeRS/app/src/main/res/values/strings.xml
+
+commit 1a40d398218f51e0ef2af1d1245e93654556425e
+Author: Matthew 'siD' Van der Bijl <matthewvdbijl@gmail.com>
+Date:   Thu Jul 27 09:09:18 2017 +0200
+
+    Rename EyeRSDatabaseHelper to EyeRSDatabaseHelper.java
+
+commit 51f1e736bf98ecab3df0a15512e30395f2e2ec04
+Author: Nathan Tendai <nathantendai.shava@gmail.com>
+Date:   Thu Jul 27 09:05:45 2017 +0200
+
+    Create db
+    
+    Creates db for the default catalog categories in the app
+
+commit 1b591296b9f661df7e54ca26779d814f8c5e44c4
+Author: Nathan Tendai <nathantendai.shava@gmail.com>
+Date:   Thu Jul 27 09:02:52 2017 +0200
+
+    Minor commits
+
+commit 341350439148212e88b716c0ce6041535d038135
+Author: Nathan Tendai <nathantendai.shava@gmail.com>
+Date:   Thu Jul 27 09:01:42 2017 +0200
+
+    SQLiteDatabase for items
+    
+    Used to query the db to get the item's data. To be added to the ViewItemsActivity.java class
+
+commit dd622a03e1f8b1d05263f250f66320c47ccdcc26
+Author: Nathan Tendai <nathantendai.shava@gmail.com>
+Date:   Thu Jul 27 08:50:51 2017 +0200
+
+    Add to MainActivity
+    
+    Code to be added to MainActivity which uses a ListView display the various categories
+
+commit a9f40e5997441d628680b7557ead7b4d32cb10b8
+Author: Nathan Shava <nathantendai.shava@gmail.com>
+Date:   Tue Jul 11 10:59:16 2017 +0200
+
+    Drawer commits
+    
+    # Conflicts:
+    #       eyeRS/app/src/main/java/com/github/eyers/MainActivity.java
+    #       eyeRS/app/src/main/res/layout/activity_main.xml
+    #       eyeRS/app/src/main/res/values/strings.xml
+
+commit 1076912c8c1687fd1c2dea2e8f8d5f6f5ea0f007
+Merge: cc090bc 1bb9c8e
+Author: Nathan Shava <nathantendai.shava@gmail.com>
+Date:   Fri Jul 7 11:43:58 2017 +0200
+
+    Merge remote-tracking branch 'origin/master'
+
+commit cc090bc04c82100a4d6ece044ffda75f9be122f9
+Author: Nathan Shava <nathantendai.shava@gmail.com>
+Date:   Fri Jul 7 11:43:20 2017 +0200
+
+    Send intent action & minor commits
+    
+    # Conflicts:
+    #       eyeRS/app/src/main/java/com/github/eyers/MainActivity.java
+    #       eyeRS/app/src/main/res/layout/activity_main.xml
+    #       eyeRS/app/src/main/res/values/strings.xml
+
+commit 1bb9c8ea051324214aa1c1c0fe888ae6da8ab59e
+Author: Nathan Tendai <nathantendai.shava@gmail.com>
+Date:   Wed Jul 5 16:42:02 2017 +0200
+
+    More material design icons
+    
+    To be used in the UI design
+
+commit 8e749baee71df8a7641a1a0d4059de2cb7f0e6b0
+Merge: 68ef1f1 a596456
+Author: Nathan Shava <nathantendai.shava@gmail.com>
+Date:   Thu Jun 29 17:41:43 2017 +0200
+
+    Merge remote-tracking branch 'origin/master'
+
+commit a5964564a315bbe6fd480520c33aef69f5cecba7
+Author: Nathan Tendai <c0de-nat0r@users.noreply.github.com>
+Date:   Thu Jun 29 17:40:44 2017 +0200
+
+    Minor commits
+
+commit 68ef1f14f38de4770aa05ed1a82bbf327bd50cda
+Author: Nathan Shava <nathantendai.shava@gmail.com>
+Date:   Thu Jun 29 17:32:15 2017 +0200
+
+    Minor file commits
+    
+    # Conflicts:
+    #       eyeRS/app/src/main/java/com/github/eyers/MainActivity.java
+    #       eyeRS/app/src/main/res/layout/activity_main.xml
+    #       eyeRS/app/src/main/res/values/strings.xml
+
+commit 20ac73145a9a627f031b628526cf211824a40569
+Author: Nathan Shava <nathantendai.shava@gmail.com>
+Date:   Thu Jun 29 17:30:09 2017 +0200
+
+    Minor file commits
+    
+    # Conflicts:
+    #       eyeRS/app/src/main/java/com/github/eyers/MainActivity.java
+    #       eyeRS/app/src/main/res/layout/activity_main.xml
+    #       eyeRS/app/src/main/res/values/strings.xml
+
+commit 4316daa89746e52c6cf61da0dcf8c9f51c79ca41
+Author: Nathan Shava <nathantendai.shava@gmail.com>
+Date:   Thu Jun 29 16:41:55 2017 +0200
+
+    Minor commit
+    
+    # Conflicts:
+    #       eyeRS/app/src/main/java/com/github/eyers/MainActivity.java
+    #       eyeRS/app/src/main/res/layout/activity_main.xml
+    #       eyeRS/app/src/main/res/values/strings.xml
+
+commit f9e59820163448f6b53afb141dc3885b710e43d7
+Author: Nathan Shava <nathantendai.shava@gmail.com>
+Date:   Thu Jun 29 16:39:38 2017 +0200
+
+    Minor commit
+    
+    # Conflicts:
+    #       eyeRS/app/src/main/java/com/github/eyers/MainActivity.java
+    #       eyeRS/app/src/main/res/layout/activity_main.xml
+    #       eyeRS/app/src/main/res/values/strings.xml
+
+commit 2431453d8fee0e6ea14277161623e09d96615dc7
+Author: Nathan Shava <nathantendai.shava@gmail.com>
+Date:   Thu Jun 29 16:35:35 2017 +0200
+
+    Minor commits
+
+commit 3ca0105943944c326d86346e30d6e5ba7c818931
+Author: Nathan Shava <nathantendai.shava@gmail.com>
+Date:   Thu Jun 29 16:31:40 2017 +0200
+
+    Strings update and minor file commits
+    
+    # Conflicts:
+    #       eyeRS/app/src/main/java/com/github/eyers/MainActivity.java
+    #       eyeRS/app/src/main/res/layout/activity_main.xml
+    #       eyeRS/app/src/main/res/values/strings.xml
+
+commit e8ea5569c875536a0f4e1c1f8f4a5243ca140cb3
+Author: Nathan Shava <nathantendai.shava@gmail.com>
+Date:   Wed Jun 21 21:06:38 2017 +0200
+
+    Merge remote-tracking branch 'refs/remotes/origin/master'
+    
+    # Conflicts:
+    #       eyeRS/app/src/main/java/com/github/eyers/MainActivity.java
+    #       eyeRS/app/src/main/res/layout/activity_main.xml
+    #       eyeRS/app/src/main/res/values/strings.xml
+
+commit bb3562551c6152c92e5b8307cf573bd3b246b452
+Merge: 19e9f68 7414f23
+Author: Nathan Shava <nathantendai.shava@gmail.com>
+Date:   Wed Jun 21 20:59:21 2017 +0200
+
+    Merge remote-tracking branch 'origin/master'
+    
+    # Conflicts:
+    #       eyeRS/app/src/main/res/values/strings.xml
+
+commit 7414f23e6dd8416bace1c56d1c19613d4da93c23
+Author: Nathan Tendai <nathantendai.shava@gmail.com>
+Date:   Wed Jun 21 19:04:27 2017 +0200
+
+    Strings update
+
+commit 19e9f685a7a2f018673fdf45021f67594df28132
+Merge: 5bef501 3e142f7
+Author: Nathan Shava <nathantendai.shava@gmail.com>
+Date:   Tue Jun 20 21:33:48 2017 +0200
+
+    Merge remote-tracking branch 'origin/master'
+    
+    # Conflicts:
+    #       eyeRS/app/src/main/AndroidManifest.xml
+    #       eyeRS/app/src/main/res/layout/activity_login.xml
+    #       eyeRS/app/src/main/res/layout/activity_new_item.xml
+    #       eyeRS/app/src/main/res/layout/content_about.xml
+    #       eyeRS/app/src/main/res/layout/content_main.xml
+    #       eyeRS/app/src/main/res/layout/content_set_pin.xml
+    #       eyeRS/app/src/main/res/layout/content_settings.xml
+    #       eyeRS/app/src/main/res/layout/content_slideshow.xml
+    #       eyeRS/app/src/main/res/menu/activity_main_drawer.xml
+    #       eyeRS/app/src/main/res/values/strings.xml
+
+commit 5bef501a870c7523022075e83c3fecedd4230079
+Author: Nathan Shava <nathantendai.shava@gmail.com>
+Date:   Tue Jun 20 21:29:15 2017 +0200
+
+    Merge remote-tracking branch 'refs/remotes/origin/master'
+    
+    # Conflicts:
+    #       eyeRS/app/src/main/java/com/github/eyers/MainActivity.java
+    #       eyeRS/app/src/main/res/layout/activity_main.xml
+    #       eyeRS/app/src/main/res/values/strings.xml
+
+commit 3e142f7f17c143a1955091dfa2cbb4222b90ce4b
+Author: Nathan Tendai <nathantendai.shava@gmail.com>
+Date:   Tue Jun 20 21:26:05 2017 +0200
+
+    String resources update
+
+commit de6b0bf5bb1f0d7a3e9080afc2e9e4cae69d7611
+Author: Nathan Tendai <nathantendai.shava@gmail.com>
+Date:   Tue Jun 20 21:24:56 2017 +0200
+
+    Minor commits
+
+commit 5ef729fea91e8a491675eb8f792ec57903bfb686
+Author: Nathan Tendai <nathantendai.shava@gmail.com>
+Date:   Tue Jun 20 21:24:02 2017 +0200
+
+    Minor commits
+
+commit 42dcdcf7abe17ecfa7bb8d34a510eb94814d732c
+Author: Blunderchips <matthewvdbijl@gmail.com>
+Date:   Tue Jun 20 21:14:30 2017 +0200
+
+    nightly
+
+commit 70ba9b36073c8584add4fb473299e914503ec4f0
+Merge: acd9f44 61c1e87
+Author: Nathan Shava <Nathan Shava>
+Date:   Tue Jun 20 20:38:15 2017 +0200
+
+    Merge remote-tracking branch 'origin/master'
+
+commit 61c1e8715b54e5eb5917c7ec1b0e0c38df979c11
+Author: Blunderchips <matthewvdbijl@gmail.com>
+Date:   Tue Jun 20 11:51:40 2017 +0200
+
+    javadoc added
+
+commit b7e229b88d3d069648dd7d392d4d2e1912ae59a4
+Author: Matthew 'siD' Van der Bijl <matthewvdbijl@gmail.com>
+Date:   Tue Jun 20 11:41:10 2017 +0200
+
+    Delete RAW
+
+commit 0594cf5e6bb58e2a3110fcb4d649093bf3d9754e
+Author: Matthew 'siD' Van der Bijl <matthewvdbijl@gmail.com>
+Date:   Tue Jun 20 11:40:59 2017 +0200
+
+    create raw res folder
+
+commit c817d7de7fe55ace16bfad5a3cea37f47b13dc40
+Author: Blunderchips <matthewvdbijl@gmail.com>
+Date:   Mon Jun 19 23:58:27 2017 +0200
+
+    nightly
+
+commit 1c7fea05efee202cff020193fe8a24d0312cc1f1
+Author: Blunderchips <matthewvdbijl@gmail.com>
+Date:   Mon Jun 19 23:57:52 2017 +0200
+
+    nightly
+
+commit acd9f4450d3b0fdf7bba3e54f8f9014dff177912
+Merge: 77e6b35 dcd06c2
+Author: Nathan Shava <Nathan Shava>
+Date:   Mon Jun 19 20:07:05 2017 +0200
+
+    Merge remote-tracking branch 'origin/master'
+    
+    # Conflicts:
+    #       eyeRS/app/src/main/AndroidManifest.xml
+    #       eyeRS/app/src/main/java/com/github/eyers/MainActivity.java
+    #       eyeRS/app/src/main/res/layout/activity_login.xml
+    #       eyeRS/app/src/main/res/layout/activity_main.xml
+    #       eyeRS/app/src/main/res/values/strings.xml
+
+commit dcd06c215780126ad23532ac55cd9f777bb392d4
+Merge: 2026c53 7a1162e
+Author: Blunderchips <matthewvdbijl@gmail.com>
+Date:   Mon Jun 19 19:46:20 2017 +0200
+
+    Merge branch 'master' of https://github.com/eyeRS/eyeRS
+
+commit 2026c532f83c46119c96cabf83713630028b5987
+Author: Blunderchips <matthewvdbijl@gmail.com>
+Date:   Mon Jun 19 19:46:02 2017 +0200
+
+    Added permissions for writing to external storage
+
+commit 7a1162ecda225ce1e4c394a31586569fcbf6f041
+Author: Matthew 'siD' Van der Bijl <matthewvdbijl@gmail.com>
+Date:   Mon Jun 19 19:42:20 2017 +0200
+
+    Update stuff.txt
+    
+    Added a link to game-icons.net (http://game-icons.net/)
+
+commit 527ca2ce248a78084a4e6c57ec74c56dc5c05fef
+Author: Matthew 'siD' Van der Bijl <matthewvdbijl@gmail.com>
+Date:   Mon Jun 19 19:40:40 2017 +0200
+
+    Update README.md
+    
+    First change of the README.md. All text taken from the first two deliverable.
+
+commit fb3cce241df7dcac8e1b1d5fb1a6bfe6be52fae5
+Author: Matthew 'siD' Van der Bijl <matthewvdbijl@gmail.com>
+Date:   Mon Jun 19 19:30:58 2017 +0200
+
+    Create notes.txt
+    
+    Create this notes text file so that we may easily keep track our progress though out the development of the project.
+
+commit e8c9b825b9f86b23271251e13e81dcc11a92f4fd
+Author: Blunderchips <matthewvdbijl@gmail.com>
+Date:   Mon Jun 19 19:26:51 2017 +0200
+
+    added 2 new icons and a few place holder activities
+
+commit e802f28e536b15283ba4aa3eda83bf0c224e564c
+Author: Blunderchips <matthewvdbijl@gmail.com>
+Date:   Mon Jun 19 17:26:45 2017 +0200
+
+    Added login screen
+
+commit 77e6b35f445388c7d2f01a23c8b400be92bcdff6
+Author: Nathan Shava <Nathan Shava>
+Date:   Mon Jun 19 14:52:44 2017 +0200
+
+    Layout activity files
+
+commit 56031915f5fcf0f6d9d02a2f4d249767af4bdc2d
+Author: Blunderchips <matthewvdbijl@gmail.com>
+Date:   Mon Jun 19 14:34:27 2017 +0200
+
+    been prototyping
+
+commit 716081ac92d147477a408659bd63997dc79d1bbb
+Merge: 741748b 5076676
+Author: Blunderchips <matthewvdbijl@gmail.com>
+Date:   Mon Jun 19 14:33:26 2017 +0200
+
+    Merge branch 'master' of https://github.com/eyeRS/eyeRS
+
+commit 741748beb14e6924217f36140b0d3ad6e7a8b781
+Author: Blunderchips <matthewvdbijl@gmail.com>
+Date:   Mon Jun 19 14:32:30 2017 +0200
+
+    added some icons
+
+commit 507667627a6b2a98013df5dc3bcdee12e0d52739
+Merge: 88183e8 0c1d651
+Author: Nathan Tendai <nathantendai.shava@gmail.com>
+Date:   Mon Jun 19 14:31:30 2017 +0200
+
+    Merge pull request #2 from c0de-nat0r/master
+    
+    Login activity
+
+commit 0c1d651d0d48dd695144c867a95605aee9c0dd3c
+Merge: aa900aa 5f3b385
+Author: Nathan Tendai <nathantendai.shava@gmail.com>
+Date:   Mon Jun 19 14:15:48 2017 +0200
+
+    Merge pull request #2 from c0de-nat0r/eyeRS-UI-v2
+    
+    Login layout
+
+commit 5f3b3853dd6e61ef9363bf438c02365d1a2ce2c1
+Author: Nathan Tendai <nathantendai.shava@gmail.com>
+Date:   Mon Jun 19 14:14:17 2017 +0200
+
+    Login layout
+    
+    Login will only request user to authenticate via the PIN they created from the Welcome screen
+
+commit 88183e893e6dc5ccb88cb677e00b0ba39eb6cbaa
+Author: Blunderchips <matthewvdbijl@gmail.com>
+Date:   Mon Jun 19 12:33:29 2017 +0200
+
+    added support for AutoResizeTextView
+
+commit 5a9658b0133eae70c2d4304f8de36ce8c401723b
+Author: Blunderchips <matthewvdbijl@gmail.com>
+Date:   Mon Jun 19 11:57:24 2017 +0200
+
+    created stuff.txt, for random ideas and links
+
+commit e78f760409fa80c6a4208426719b127e6ac176e2
+Merge: 5c3ae00 aa900aa
+Author: Matthew 'siD' Van der Bijl <matthewvdbijl@gmail.com>
+Date:   Thu Jun 15 11:47:47 2017 +0200
+
+    Merge pull request #1 from c0de-nat0r/master
+    
+    eyeRS UI v1
+
+commit aa900aa9614d995118d8d2c57a9b11747f32956f
+Merge: 5c3ae00 b54e4ac
+Author: Nathan Tendai <nathantendai.shava@gmail.com>
+Date:   Thu Jun 15 11:05:49 2017 +0200
+
+    Merge pull request #1 from c0de-nat0r/eyeRS-UI-v1
+
+commit b54e4ac8e7d87b89049f1c71c603977008ed0d70
+Author: Nathan Tendai <nathantendai.shava@gmail.com>
+Date:   Thu Jun 15 11:03:10 2017 +0200
+
+    Add files via upload
+    
+    Initial welcome screen including all the components required to make it functional. Limited functionality available.
+
+commit 1a62bb2adbc67b57a16f0deffd1c04ca77e1e4b9
+Author: Nathan Shava <Nathan Shava>
+Date:   Tue Jun 13 23:56:00 2017 +0200
+
+    Created the Welcome screen activity and added the UI components. No functionality available as yet. Use of a Linear Layout on the Welcome Screen. More work required to finalize screen.
+
+commit 5c3ae00b291fc9359f2eb2098e444f1f023f07ad
+Author: Blunderchips <matthewvdbijl@gmail.com>
+Date:   Mon Jun 12 15:54:19 2017 +0200
+
+    changed sdk version
+
+commit a0f04069e7e79e2bf6b69ef726caa50a17785a91
+Author: Blunderchips <matthewvdbijl@gmail.com>
+Date:   Mon Jun 12 15:27:29 2017 +0200
+
+    create android project
+
+commit f520518ffd63898583c703fa48f6298b912c6436
+Author: Blunderchips <matthewvdbijl@gmail.com>
+Date:   Mon Jun 12 12:58:43 2017 +0200
+
+    create file fir eliverables
+
+commit 6ff20c543ca675ad68264965d443453affe24ed5
+Author: Blunderchips <matthewvdbijl@gmail.com>
+Date:   Mon Jun 12 12:57:52 2017 +0200
+
+    create file fir eliverables
+
+commit 5c6117eb0b87c770cbd66aaffd5380372cdb4418
+Author: Matthew 'siD' Van der Bijl <matthewvdbijl@gmail.com>
+Date:   Mon Jun 12 12:55:45 2017 +0200
+
+    Add files via upload
+    
+    Create repo and uploaded the first two deliverable.
+
+commit d5f1b6b993022412022760d1a8e395aabf2eb05f
+Author: Matthew 'siD' Van der Bijl <matthewvdbijl@gmail.com>
+Date:   Mon Jun 12 12:54:30 2017 +0200
+
+    Initial commit
