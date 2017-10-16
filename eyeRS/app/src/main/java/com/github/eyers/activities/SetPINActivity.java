@@ -32,7 +32,7 @@ public class SetPINActivity extends AppCompatActivity implements View.OnClickLis
         OnItemSelectedListener, LoaderManager.LoaderCallbacks<Cursor> {
 
     /**
-     * Possible security questions
+     * The possible security questions.
      */
     private static final String[] QUESTIONS = {
 
@@ -44,6 +44,7 @@ public class SetPINActivity extends AppCompatActivity implements View.OnClickLis
             "What are the last 5 digits of your ID number?",
             "What time of the day were you born (hh:mm)?"
     };
+
     /**
      * Retrieves the username.
      */
@@ -60,7 +61,9 @@ public class SetPINActivity extends AppCompatActivity implements View.OnClickLis
      * Retrieves the security response
      */
     private static String securityResponse;
-    // Field & other declarations
+    /**
+     * Field declarations
+     */
     private EditText txtPIN1;
     private EditText txtPIN2;
     private EditText txtUsername;
@@ -127,30 +130,19 @@ public class SetPINActivity extends AppCompatActivity implements View.OnClickLis
             case R.id.btnResetPIN:
                 String pinA = txtPIN1.getText().toString();
                 String pinB = txtPIN2.getText().toString();
-                String answer = txtResponse.getText().toString();
-
-                //Retrieve the other EditText values for the SQLite update
-                securityResponse = txtResponse.getText().toString();
 
                 if (pinA == null || pinA.equals("")) {
                     Toast.makeText(this, "Please enter a PIN.", Toast.LENGTH_LONG).show();
-                    return;
                 } else if (pinA == null || pinA.equals("")) {
                     Toast.makeText(this, "Please confirm you PIN.", Toast.LENGTH_LONG).show();
-                    return;
                 } else if (!pinA.equals(pinB)) {
                     Toast.makeText(this, "Your PINs do not match.", Toast.LENGTH_LONG).show();
-                    return;
-                } else if (answer == null || answer.equals("")) {
-                    Toast.makeText(this, "Please enter a security question.", Toast.LENGTH_LONG).show();
-                    return;
                 } else if (pinA.equals(pinB)) { //pins match
-                    matchedPIN = txtPIN2.getText().toString();
 
+                    matchedPIN = txtPIN2.getText().toString();
                     updateLoginInfo(); //method to update details
                 }
 
-                super.startActivity(new Intent(this, MainActivity.class));
         }
     }
 
@@ -170,6 +162,7 @@ public class SetPINActivity extends AppCompatActivity implements View.OnClickLis
         ContentValues userRegValues = new ContentValues();
 
         username = txtUsername.getText().toString();
+        securityResponse = txtResponse.getText().toString();
 
         /**
          * Array of columns to be included for each row retrieved
@@ -181,39 +174,71 @@ public class SetPINActivity extends AppCompatActivity implements View.OnClickLis
                 NewRegInfo.UserRegistrationInfo.SECURITY_QUESTION,
                 NewRegInfo.UserRegistrationInfo.SECURITY_RESPONSE};
 
-        String where = null;
+        String whereClauseQuery = NewRegInfo.UserRegistrationInfo.SECURITY_QUESTION + " = " + securityQuestion
+                + " AND " + NewRegInfo.UserRegistrationInfo.SECURITY_RESPONSE + " = " + securityResponse;
+
+        String[] selectionArgs = null;
+
+        String sortOrder = null;
 
         /**
          * Cursor object to retrieve query results
          */
         Cursor cursor = eyeRSContentResolver.query(DBOperations.CONTENT_URI_USER_REG,
-                projection, null, null,
-                null);
+                projection, whereClauseQuery, selectionArgs,
+                sortOrder);
 
         if (cursor != null) {
 
-            if (cursor.getString(1).equals(username)) {
+            /**
+             * The username, security question & security response used during
+             * the Registration process will be used to validate PIN resetting.
+             * User can only change a PIN if a matching record exists from the
+             * Register table in the db.
+             */
+            if ((cursor.getString(1).equals(username))
+                    && (cursor.getString(4).equals(securityQuestion))
+                    && (cursor.getString(5).equals(securityResponse))) {
 
-                where = username;
+                /**
+                 *
+                 */
+                String whereClauseUpdate = NewRegInfo.UserRegistrationInfo.USER_NAME + " = "
+                        + username;
+
+                /**
+                 * Get the new values to be updated
+                 */
+                userRegValues.put(NewRegInfo.UserRegistrationInfo.USER_PIN, matchedPIN); //new matched pin
+                userRegValues.put(NewRegInfo.UserRegistrationInfo.SECURITY_QUESTION, securityQuestion); //new security question
+                userRegValues.put(NewRegInfo.UserRegistrationInfo.SECURITY_RESPONSE, securityResponse); //new security response
+
+                try {
+
+                    eyeRSContentResolver.update(DBOperations.CONTENT_URI_USER_REG, userRegValues,
+                            whereClauseUpdate, null);
+
+                    Toast.makeText(this, "Your credentials have been updated successfully ",
+                            Toast.LENGTH_SHORT).show();
+                    Log.e("DATABASE OPERATIONS", "...Credentials updated successfully!");
+
+                    /**
+                     * Once credentials are successfully updated,
+                     * navigate user back to the Login screen
+                     */
+                    super.startActivity(new Intent(this, LoginActivity.class));
+
+                } catch (SQLException ex) {
+                    Toast.makeText(this, "Unable to add item", Toast.LENGTH_SHORT).show();
+                }
+            } else {
+
+                Toast.makeText(this, "PIN reset failed. Please ensure you enter the correct details", Toast.LENGTH_SHORT).show();
             }
+
+            cursor.close();
         }
 
-        userRegValues.put(NewRegInfo.UserRegistrationInfo.USER_PIN, matchedPIN); //new matched pin
-        userRegValues.put(NewRegInfo.UserRegistrationInfo.SECURITY_QUESTION, securityQuestion); //new security question
-        userRegValues.put(NewRegInfo.UserRegistrationInfo.SECURITY_RESPONSE, securityResponse); //new security response
-
-        try {
-
-            eyeRSContentResolver.update(DBOperations.CONTENT_URI_USER_REG, userRegValues,
-                    where, null);
-
-            Toast.makeText(this, "Your credentials have been updated successfully ",
-                    Toast.LENGTH_SHORT).show();
-            Log.e("DATABASE OPERATIONS", "...Credentials updated successfully!");
-
-        } catch (SQLException ex) {
-            Toast.makeText(this, "Unable to add item", Toast.LENGTH_SHORT).show();
-        }
     }
 
     /**
@@ -246,6 +271,7 @@ public class SetPINActivity extends AppCompatActivity implements View.OnClickLis
     /**
      * Method allows us to save the activity's selections just before the app gets paused
      */
+
     public void onPause() {
 
         super.onPause();
