@@ -432,7 +432,7 @@ public class MainActivity extends AppCompatActivity
 
         String[] selectionArgs = null;
 
-        String whereClause = getSelectedCategory + " = ?";
+        String whereClause = NewItemInfo.ItemInfo.CATEGORY_NAME + " = " + getSelectedCategory;
 
         String sortOrder = NewItemInfo.ItemInfo.ITEM_NAME;
 

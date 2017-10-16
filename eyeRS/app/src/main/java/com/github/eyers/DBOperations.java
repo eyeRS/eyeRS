@@ -142,8 +142,6 @@ public class DBOperations extends ContentProvider {
                 break;
             case ITEMS_SPECIFIC_CATEGORY:
                 queryBuilder.setTables(ITEMS_TABLE);
-                queryBuilder.appendWhere(NewItemInfo.ItemInfo.CATEGORY_NAME + " = "
-                        + uri.getLastPathSegment());
                 break;
             case PROFILE_DETAILS:
                 queryBuilder.setTables(USER_PROFILE_TABLE);
