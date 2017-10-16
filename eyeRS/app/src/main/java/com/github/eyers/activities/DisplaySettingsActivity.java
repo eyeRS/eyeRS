@@ -19,7 +19,7 @@ public class DisplaySettingsActivity extends AppCompatActivity implements OnClic
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.content_display_settings);
+        setContentView(R.layout.activity_display_settings);
 
         String[] fontTypes = getResources().getStringArray(R.array.font_types);
         String[] fontSizes = getResources().getStringArray(R.array.font_size);
