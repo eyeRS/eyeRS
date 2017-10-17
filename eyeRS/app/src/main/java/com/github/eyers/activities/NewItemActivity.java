@@ -56,22 +56,32 @@ import static com.github.eyers.EyeRS.REQUEST_READ_EXTERNAL_STORAGE;
 public class NewItemActivity extends AppCompatActivity implements View.OnClickListener,
         OnItemSelectedListener, LoaderManager.LoaderCallbacks<Cursor> {
 
-    public static ArrayAdapter<String> categoriesAdapter;
-    //db variables
+    /**
+     * Fields & other declarations
+     */
     private static String itemName;
     private static String itemDesc;
     private static String category;
-    public List<String> popCategories;
-    String img;
-    private ContentResolver eyeRSContentResolver;
-    private int REQUEST_CAMERA = 0, SELECT_FILE = 1;
-    private ImageView ivImage;
-    private String userChoosenTask;
-
-    //Fields
     private EditText txtTitle;
     private EditText txtDesc;
     private Spinner categorySpinner;
+    /**
+     * Categories list declaration
+     */
+    public List<String> popCategories;
+    public static ArrayAdapter<String> categoriesAdapter;
+    /**
+     * Camera declarations
+     */
+    String img;
+    private int REQUEST_CAMERA = 0, SELECT_FILE = 1;
+    private ImageView ivImage;
+    private String userChoosenTask;
+    private Bitmap thumbnail;
+    /**
+     * Content resolver object
+     */
+    private ContentResolver eyeRSContentResolver;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,11 +102,15 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
         this.ivImage = (ImageView) findViewById(R.id.new_item_image);
         this.ivImage.setOnClickListener(this);
 
+        /**
+         * Retrieve the saved state values before the activity was destroyed
+         */
         if (savedInstanceState != null) {
-            /**
-             * Retrieve the saved state of the spinner before the app was destroyed
-             */
-            categorySpinner.setSelection(savedInstanceState.getInt("spinner"));
+
+            categorySpinner.setSelection(savedInstanceState.getInt("category_spinner"));
+            txtTitle.setText(savedInstanceState.getString("item_name"));
+            txtDesc.setText(savedInstanceState.getString("item_desc"));
+
         }
 
         if (ContextCompat.checkSelfPermission(NewItemActivity.this,
@@ -223,7 +237,6 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
         switch (view.getId()) {
 
             case R.id.btnAddItem: //user clicks add
-                selectImage();
                 if (txtTitle != null) {
                     switch (categorySpinner.getSelectedItem().toString().toLowerCase()) {
                         case "books": { // if the user is adding a book item
@@ -249,8 +262,12 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
                         case NewCategoryInfo.CategoryInfo.CATEGORY_NAME: {  // if the user is adding any item that doesn't correspond to the default categories
                             addItemInfo(); // call the method to add a user specified-item to the db
                         }
-                        return;
+
                     }
+                }
+                else{
+                    Toast.makeText(this, "Sorry but your item was not added successfully",
+                            Toast.LENGTH_SHORT).show();
                 }
                 break;
             case R.id.new_item_image:
@@ -280,10 +297,17 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
             //Insert the Book item
             eyeRSContentResolver.insert(DBOperations.CONTENT_URI_ITEMS, bookValues);
 
-            //Display a message to the user
             Toast.makeText(this, "Your book item has been added successfully ", Toast.LENGTH_SHORT).show();
             //Display message in the logcat window after successful operation execution
             Log.e("DATABASE OPERATIONS", "...Book item added to DB!");
+
+            /**
+             * Then clear the fields after successfully inserting the data
+             */
+            txtTitle.setText("");
+            txtDesc.setText("");
+            img = "";
+            ivImage.setImageBitmap(null);
 
         } catch (SQLiteException ex) {
             Toast.makeText(this, "Unable to add item", Toast.LENGTH_SHORT).show();
@@ -311,10 +335,17 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
             //Insert the Clothing item
             eyeRSContentResolver.insert(DBOperations.CONTENT_URI_ITEMS, clothesValues);
 
-            //Display a message to the user
             Toast.makeText(this, "Your clothing item has been added successfully ", Toast.LENGTH_SHORT).show();
             //Display message in the logcat window after successful operation execution
             Log.e("DATABASE OPERATIONS", "...Clothing item added to DB!");
+
+            /**
+             * Then clear the fields after successfully inserting the data
+             */
+            txtTitle.setText("");
+            txtDesc.setText("");
+            img = "";
+            ivImage.setImageBitmap(null);
 
         } catch (SQLiteException ex) {
             Toast.makeText(this, "Unable to add item", Toast.LENGTH_SHORT).show();
@@ -342,10 +373,17 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
             //Insert the Accessory item
             eyeRSContentResolver.insert(DBOperations.CONTENT_URI_ITEMS, accessoriesValues);
 
-            //Display a message to the user
             Toast.makeText(this, "Your accessory item has been added successfully ", Toast.LENGTH_SHORT).show();
             //Display message in the logcat window after successful operation execution
             Log.e("DATABASE OPERATIONS", "...Accessory item added to DB!");
+
+            /**
+             * Then clear the fields after successfully inserting the data
+             */
+            txtTitle.setText("");
+            txtDesc.setText("");
+            img = "";
+            ivImage.setImageBitmap(null);
 
         } catch (SQLiteException ex) {
             Toast.makeText(this, "Unable to add item", Toast.LENGTH_SHORT).show();
@@ -373,10 +411,17 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
             //Insert the Game item
             eyeRSContentResolver.insert(DBOperations.CONTENT_URI_ITEMS, gamesValues);
 
-            //Display a message to the user
             Toast.makeText(this, "Your gaming item has been added successfully ", Toast.LENGTH_SHORT).show();
             //Display message in the logcat window after successful operation execution
             Log.e("DATABASE OPERATIONS", "...Game item added to DB!");
+
+            /**
+             * Then clear the fields after successfully inserting the data
+             */
+            txtTitle.setText("");
+            txtDesc.setText("");
+            img = "";
+            ivImage.setImageBitmap(null);
 
         } catch (SQLiteException ex) {
             Toast.makeText(this, "Unable to add item", Toast.LENGTH_SHORT).show();
@@ -405,10 +450,17 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
             //Insert the Other item
             eyeRSContentResolver.insert(DBOperations.CONTENT_URI_ITEMS, otherValues);
 
-            //Display a message to the user
             Toast.makeText(this, "Your other item has been added successfully ", Toast.LENGTH_SHORT).show();
             //Display message in the logcat window after successful operation execution
             Log.e("DATABASE OPERATIONS", "...Other item added to DB!");
+
+            /**
+             * Then clear the fields after successfully inserting the data
+             */
+            txtTitle.setText("");
+            txtDesc.setText("");
+            img = "";
+            ivImage.setImageBitmap(null);
 
         } catch (SQLiteException ex) {
             Toast.makeText(this, "Unable to add item", Toast.LENGTH_SHORT).show();
@@ -435,10 +487,18 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
 
             eyeRSContentResolver.insert(DBOperations.CONTENT_URI_ITEMS, itemsValues);
 
-            //Display a message to the user
             Toast.makeText(this, "Your item has been added successfully", Toast.LENGTH_SHORT).show();
             //Display message in the logcat window after successful operation execution
             Log.e("DATABASE OPERATIONS", "...New item added to DB!");
+
+            /**
+             * Then clear the fields after successfully inserting the data
+             */
+            txtTitle.setText("");
+            txtDesc.setText("");
+            img = "";
+            ivImage.setImageBitmap(null);
+
 
         } catch (SQLiteException ex) {
             Toast.makeText(this, "Unable to add item", Toast.LENGTH_SHORT).show();
@@ -516,7 +576,7 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
     }
 
     private void onCaptureImageResult(Intent data) {
-        Bitmap thumbnail = (Bitmap) data.getExtras().get("data");
+        thumbnail = (Bitmap) data.getExtras().get("data");
         ByteArrayOutputStream bytes = new ByteArrayOutputStream();
         thumbnail.compress(Bitmap.CompressFormat.JPEG, 90, bytes);
 
@@ -578,12 +638,14 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
     }
 
     /**
-     * @param savedInstanceState Save the state of the spinner if it's about to be destroyed
+     * @param savedInstanceState Save the state of the activity if it's about to be destroyed
      */
     @Override
     public void onSaveInstanceState(Bundle savedInstanceState) {
-        //save the selection of the spinner
-        savedInstanceState.putInt("spinner", categorySpinner.getSelectedItemPosition());
+
+        savedInstanceState.putInt("category_spinner", categorySpinner.getSelectedItemPosition());
+        savedInstanceState.putString("item_name", txtTitle.getText().toString());
+        savedInstanceState.putString("item_desc", txtDesc.getText().toString());
 
     }
 

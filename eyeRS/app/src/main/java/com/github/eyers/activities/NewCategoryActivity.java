@@ -71,6 +71,16 @@ public class NewCategoryActivity extends AppCompatActivity implements View.OnCli
         findViewById(R.id.btnAddCategory).setOnClickListener(this);
 
         populateSpinner();
+
+        /**
+         * Retrieve the saved state values before the activity was destroyed
+         */
+        if (savedInstanceState != null) {
+
+            iconSpinner.setSelection(savedInstanceState.getInt("icon_spinner"));
+            txtTitle.setText(savedInstanceState.getString("category_name"));
+            txtDesc.setText(savedInstanceState.getString("category_desc"));
+        }
     }
 
     @Override
@@ -285,6 +295,17 @@ public class NewCategoryActivity extends AppCompatActivity implements View.OnCli
 
         //Set the adapter to the spinner
         this.iconSpinner.setAdapter(adapter);
+    }
+
+    /**
+     * @param savedInstanceState Save the state of the activity if it's about to be destroyed
+     */
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+
+        savedInstanceState.putInt("icon_spinner", iconSpinner.getSelectedItemPosition());
+        savedInstanceState.putString("category_name", txtTitle.getText().toString());
+        savedInstanceState.putString("category_desc", txtDesc.getText().toString());
     }
 
 } //end class NewCategoryActivity

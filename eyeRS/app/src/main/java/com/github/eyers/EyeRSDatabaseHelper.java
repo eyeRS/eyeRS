@@ -143,17 +143,6 @@ public class EyeRSDatabaseHelper extends SQLiteOpenHelper {
     }
 
     /**
-     * @param db
-     * @param oldVersion
-     * @param newVersion Method will handle any database updates that occur within the app after the user performs
-     *                   specific actions
-     */
-    public void updateMyDatabase(SQLiteDatabase db, int oldVersion, int newVersion) {
-
-
-    }
-
-    /**
      * Method to insert the BOOKS default category.
      */
     public void insertDefaultCategoryBooks(SQLiteDatabase db) {

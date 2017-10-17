@@ -115,7 +115,8 @@
                     android:id="@+id/edtTxtItemDesc"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/txtItemDesc" />
+                    android:hint="@string/txtItemDesc"
+                    android:textAlignment="center" />
 
             </android.support.design.widget.TextInputLayout>
 
