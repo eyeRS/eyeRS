@@ -144,6 +144,7 @@ public class MainActivity extends AppCompatActivity
                             getResources(), R.drawable.ic_action_help))); // TODO
                 }
             } else {
+                Toast.makeText(this, "heere", Toast.LENGTH_LONG).show();
                 for (String category : getItems()) {
                     items.add(new ItemLabel(category, BitmapFactory.decodeResource(
                             getResources(), R.drawable.ic_action_help))); // TODO
@@ -439,14 +440,15 @@ public class MainActivity extends AppCompatActivity
         Cursor cursor = eyeRSContentResolver.query(DBOperations.CONTENT_URI_ITEMS,
                 projection, whereClause, selectionArgs, sortOrder);
 
+        Toast.makeText(this, "asdasd".toString(), Toast.LENGTH_LONG).show();
         if (cursor.moveToFirst()) {
-
+            Toast.makeText(this, "bang".toString(), Toast.LENGTH_LONG).show();
             do {
 
-                for (int i = 0; i < cursor.getCount(); i++) {
-
-                    items.add(cursor.getString(i));
-                }
+//                for (int i = 0; i < cursor.getCount(); i++) {
+                    Toast.makeText(this, cursor.toString(), Toast.LENGTH_LONG).show();
+                    items.add(cursor.getString(2));
+//                }
 
             } while (cursor.moveToNext());
 
