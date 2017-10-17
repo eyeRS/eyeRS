@@ -3,6 +3,7 @@ package com.github.eyers.activities;
 import android.app.LoaderManager;
 import android.content.ContentResolver;
 import android.content.ContentValues;
+import android.content.Intent;
 import android.content.Loader;
 import android.database.Cursor;
 import android.database.SQLException;
@@ -82,6 +83,7 @@ public class NewCategoryActivity extends AppCompatActivity implements View.OnCli
                  * User cannot add a new category without a title & description
                  */
                 validateCategories();
+                startActivity(new Intent(this, MainActivity.class));
                 break;
         }
     }
