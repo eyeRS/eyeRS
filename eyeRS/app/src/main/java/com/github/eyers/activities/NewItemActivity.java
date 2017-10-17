@@ -295,7 +295,11 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
         try {
 
             //Insert the Book item
-            eyeRSContentResolver.insert(DBOperations.CONTENT_URI_ITEMS, bookValues);
+            try {
+                eyeRSContentResolver.insert(DBOperations.CONTENT_URI_ITEMS, bookValues);
+            } catch (Exception ex) {
+                Log.e(getClass().getSimpleName(), "Not added.", ex);
+            }
 
             Toast.makeText(this, "Your book item has been added successfully ", Toast.LENGTH_SHORT).show();
             //Display message in the logcat window after successful operation execution

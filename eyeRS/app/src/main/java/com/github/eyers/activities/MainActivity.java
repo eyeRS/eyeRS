@@ -445,10 +445,10 @@ public class MainActivity extends AppCompatActivity
             Toast.makeText(this, "bang".toString(), Toast.LENGTH_LONG).show();
             do {
 
-//                for (int i = 0; i < cursor.getCount(); i++) {
+                for (int i = 0; i < cursor.getCount(); i++) {
                     Toast.makeText(this, cursor.toString(), Toast.LENGTH_LONG).show();
-                    items.add(cursor.getString(2));
-//                }
+                    items.add(cursor.getString(i));
+                }
 
             } while (cursor.moveToNext());
 
