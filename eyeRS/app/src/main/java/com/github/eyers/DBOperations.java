@@ -59,7 +59,6 @@ public class DBOperations extends ContentProvider {
     public static final int ALL_ITEMS = 2;
     public static final int REG_DETAILS = 3;
     public static final int PROFILE_DETAILS = 4;
-    public static final int ITEMS_SPECIFIC_CATEGORY = 5;
     /**
      * The URI matcher maps to the specified table_name in the database.
      */
@@ -74,7 +73,6 @@ public class DBOperations extends ContentProvider {
         uriMatcher.addURI(AUTHORITY, ITEMS_TABLE, ALL_ITEMS);
         uriMatcher.addURI(AUTHORITY, USER_REGISTRATION_TABLE, REG_DETAILS);
         uriMatcher.addURI(AUTHORITY, USER_PROFILE_TABLE, PROFILE_DETAILS);
-        uriMatcher.addURI(AUTHORITY, ITEMS_TABLE, ITEMS_SPECIFIC_CATEGORY);
 
     }
 
@@ -113,7 +111,7 @@ public class DBOperations extends ContentProvider {
      *
      * @return
      */
-    public String getTableName(Uri uri) {
+    public static String getTableName(Uri uri) {
 
         if (uri.equals(CONTENT_URI_CATEGORIES)) {
             return CATEGORIES_TABLE;
@@ -190,31 +188,33 @@ public class DBOperations extends ContentProvider {
     public Uri insert(Uri uri, ContentValues values) {
 
         int uriType = uriMatcher.match(uri);
-
+        String table = getTableName(uri);
         SQLiteDatabase db = eyeRSDatabaseHelper.getWritableDatabase();
 
-        long id;
-        switch (uriType) {
-            case ALL_CATEGORIES:
-                id = db.insert(CATEGORIES_TABLE, null, values);
-                getContext().getContentResolver().notifyChange(uri, null);
-                return Uri.parse(CATEGORIES_TABLE + "/" + id);
-            case ALL_ITEMS:
-                id = db.insert(ITEMS_TABLE, null, values);
-                getContext().getContentResolver().notifyChange(uri, null);
-                return Uri.parse(ITEMS_TABLE + "/" + id);
-            case REG_DETAILS:
-                id = db.insert(USER_REGISTRATION_TABLE, null, values);
-                getContext().getContentResolver().notifyChange(uri, null);
-                return Uri.parse(USER_REGISTRATION_TABLE + "/" + id);
-            case PROFILE_DETAILS:
-                id = db.insert(USER_PROFILE_TABLE, null, values);
-                getContext().getContentResolver().notifyChange(uri, null);
-                return Uri.parse(USER_PROFILE_TABLE + "/" + id);
-            default:
-                return Uri.parse(null);
+        if (uriType == ALL_CATEGORIES){
+            long categoryID = db.insert(table, null, values);
+            getContext().getContentResolver().notifyChange(uri, null);
+            return Uri.parse(table + "/" + categoryID);
         }
-
+        if (uriType == ALL_ITEMS){
+            long itemID = db.insert(table, null, values);
+            getContext().getContentResolver().notifyChange(uri, null);
+            return Uri.parse(table + "/" + itemID);
+        }
+        if (uriType == REG_DETAILS){
+            long regID = db.insert(table, null, values);
+            getContext().getContentResolver().notifyChange(uri, null);
+            return Uri.parse(table + "/" + regID);
+        }
+        if (uriType == PROFILE_DETAILS){
+            long profileID = db.insert(table, null, values);
+            getContext().getContentResolver().notifyChange(uri, null);
+            return Uri.parse(table + "/" + profileID);
+        }
+        else{
+            Log.e("Insert operation", "Could not determine uri: " + uri);
+            throw new UnsupportedOperationException("Unsupported URI: " + uri);
+        }
     }
 
     /**

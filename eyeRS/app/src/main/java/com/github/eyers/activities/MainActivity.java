@@ -438,7 +438,7 @@ public class MainActivity extends AppCompatActivity
         String sortOrder = NewItemInfo.ItemInfo.ITEM_NAME;
 
         Cursor cursor = eyeRSContentResolver.query(DBOperations.CONTENT_URI_ITEMS,
-                projection, null, null, sortOrder);
+                projection, whereClause, null, sortOrder);
 
         Toast.makeText(this, "asdasd " + cursor.getCount(), Toast.LENGTH_LONG).show();
 

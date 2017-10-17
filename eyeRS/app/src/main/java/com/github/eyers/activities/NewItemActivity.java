@@ -73,7 +73,7 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
     /**
      * Camera declarations
      */
-    String img;
+    private String img;
     private int REQUEST_CAMERA = 0, SELECT_FILE = 1;
     private ImageView ivImage;
     private String userChoosenTask;
@@ -264,8 +264,7 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
                         }
 
                     }
-                }
-                else{
+                } else {
                     Toast.makeText(this, "Sorry but your item was not added successfully",
                             Toast.LENGTH_SHORT).show();
                 }
@@ -296,30 +295,33 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
 
             //Insert the Book item
             try {
+
                 eyeRSContentResolver.insert(DBOperations.CONTENT_URI_ITEMS, bookValues);
-            } catch (Exception ex) {
-                Log.e(getClass().getSimpleName(), "Not added.", ex);
+
+                Toast.makeText(this, "Your book item has been added successfully ", Toast.LENGTH_SHORT).show();
+                //Display message in the logcat window after successful operation execution
+                Log.e("DATABASE OPERATIONS", "...Book item added to DB!");
+
+                /**
+                 * Then clear the fields after successfully inserting the data
+                 */
                 txtTitle.setText("");
                 txtDesc.setText("");
                 img = "";
                 ivImage.setImageBitmap(null);
-                return;
+
+            } catch (Exception ex) {
+
+                Log.e(getClass().getSimpleName(), "Book item not added.", ex);
+                txtTitle.setText("");
+                txtDesc.setText("");
+                img = "";
+                ivImage.setImageBitmap(null);
+
             }
 
-            Toast.makeText(this, "Your book item has been added successfully ", Toast.LENGTH_SHORT).show();
-            //Display message in the logcat window after successful operation execution
-            Log.e("DATABASE OPERATIONS", "...Book item added to DB!");
-
-            /**
-             * Then clear the fields after successfully inserting the data
-             */
-            txtTitle.setText("");
-            txtDesc.setText("");
-            img = "";
-            ivImage.setImageBitmap(null);
-
         } catch (SQLiteException ex) {
-            Toast.makeText(this, "Unable to add item", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Unable to add item the book", Toast.LENGTH_SHORT).show();
         }
 
     } //end void addBook()
@@ -341,20 +343,31 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
 
         try {
 
-            //Insert the Clothing item
-            eyeRSContentResolver.insert(DBOperations.CONTENT_URI_ITEMS, clothesValues);
+            try {
+                //Insert the Clothing item
+                eyeRSContentResolver.insert(DBOperations.CONTENT_URI_ITEMS, clothesValues);
 
-            Toast.makeText(this, "Your clothing item has been added successfully ", Toast.LENGTH_SHORT).show();
-            //Display message in the logcat window after successful operation execution
-            Log.e("DATABASE OPERATIONS", "...Clothing item added to DB!");
+                Toast.makeText(this, "Your clothing item has been added successfully ", Toast.LENGTH_SHORT).show();
+                //Display message in the logcat window after successful operation execution
+                Log.e("DATABASE OPERATIONS", "...Clothing item added to DB!");
 
-            /**
-             * Then clear the fields after successfully inserting the data
-             */
-            txtTitle.setText("");
-            txtDesc.setText("");
-            img = "";
-            ivImage.setImageBitmap(null);
+                /**
+                 * Then clear the fields after successfully inserting the data
+                 */
+                txtTitle.setText("");
+                txtDesc.setText("");
+                img = "";
+                ivImage.setImageBitmap(null);
+
+            } catch (Exception ex) {
+
+                Log.e(getClass().getSimpleName(), "Clothing item not added.", ex);
+                txtTitle.setText("");
+                txtDesc.setText("");
+                img = "";
+                ivImage.setImageBitmap(null);
+
+            }
 
         } catch (SQLiteException ex) {
             Toast.makeText(this, "Unable to add item", Toast.LENGTH_SHORT).show();
@@ -379,20 +392,31 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
 
         try {
 
-            //Insert the Accessory item
-            eyeRSContentResolver.insert(DBOperations.CONTENT_URI_ITEMS, accessoriesValues);
+            try {
+                //Insert the Accessory item
+                eyeRSContentResolver.insert(DBOperations.CONTENT_URI_ITEMS, accessoriesValues);
 
-            Toast.makeText(this, "Your accessory item has been added successfully ", Toast.LENGTH_SHORT).show();
-            //Display message in the logcat window after successful operation execution
-            Log.e("DATABASE OPERATIONS", "...Accessory item added to DB!");
+                Toast.makeText(this, "Your accessory item has been added successfully ", Toast.LENGTH_SHORT).show();
+                //Display message in the logcat window after successful operation execution
+                Log.e("DATABASE OPERATIONS", "...Accessory item added to DB!");
 
-            /**
-             * Then clear the fields after successfully inserting the data
-             */
-            txtTitle.setText("");
-            txtDesc.setText("");
-            img = "";
-            ivImage.setImageBitmap(null);
+                /**
+                 * Then clear the fields after successfully inserting the data
+                 */
+                txtTitle.setText("");
+                txtDesc.setText("");
+                img = "";
+                ivImage.setImageBitmap(null);
+
+            } catch (Exception ex) {
+
+                Log.e(getClass().getSimpleName(), "Accessory item not added.", ex);
+                txtTitle.setText("");
+                txtDesc.setText("");
+                img = "";
+                ivImage.setImageBitmap(null);
+
+            }
 
         } catch (SQLiteException ex) {
             Toast.makeText(this, "Unable to add item", Toast.LENGTH_SHORT).show();
@@ -417,20 +441,31 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
 
         try {
 
-            //Insert the Game item
-            eyeRSContentResolver.insert(DBOperations.CONTENT_URI_ITEMS, gamesValues);
+            try {
+                //Insert the Game item
+                eyeRSContentResolver.insert(DBOperations.CONTENT_URI_ITEMS, gamesValues);
 
-            Toast.makeText(this, "Your gaming item has been added successfully ", Toast.LENGTH_SHORT).show();
-            //Display message in the logcat window after successful operation execution
-            Log.e("DATABASE OPERATIONS", "...Game item added to DB!");
+                Toast.makeText(this, "Your gaming item has been added successfully ", Toast.LENGTH_SHORT).show();
+                //Display message in the logcat window after successful operation execution
+                Log.e("DATABASE OPERATIONS", "...Game item added to DB!");
 
-            /**
-             * Then clear the fields after successfully inserting the data
-             */
-            txtTitle.setText("");
-            txtDesc.setText("");
-            img = "";
-            ivImage.setImageBitmap(null);
+                /**
+                 * Then clear the fields after successfully inserting the data
+                 */
+                txtTitle.setText("");
+                txtDesc.setText("");
+                img = "";
+                ivImage.setImageBitmap(null);
+
+            } catch (Exception ex) {
+
+                Log.e(getClass().getSimpleName(), "Gaming item not added.", ex);
+                txtTitle.setText("");
+                txtDesc.setText("");
+                img = "";
+                ivImage.setImageBitmap(null);
+
+            }
 
         } catch (SQLiteException ex) {
             Toast.makeText(this, "Unable to add item", Toast.LENGTH_SHORT).show();
@@ -456,20 +491,31 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
 
         try {
 
-            //Insert the Other item
-            eyeRSContentResolver.insert(DBOperations.CONTENT_URI_ITEMS, otherValues);
+            try {
+                //Insert the Other item
+                eyeRSContentResolver.insert(DBOperations.CONTENT_URI_ITEMS, otherValues);
 
-            Toast.makeText(this, "Your other item has been added successfully ", Toast.LENGTH_SHORT).show();
-            //Display message in the logcat window after successful operation execution
-            Log.e("DATABASE OPERATIONS", "...Other item added to DB!");
+                Toast.makeText(this, "Your other item has been added successfully ", Toast.LENGTH_SHORT).show();
+                //Display message in the logcat window after successful operation execution
+                Log.e("DATABASE OPERATIONS", "...Other item added to DB!");
 
-            /**
-             * Then clear the fields after successfully inserting the data
-             */
-            txtTitle.setText("");
-            txtDesc.setText("");
-            img = "";
-            ivImage.setImageBitmap(null);
+                /**
+                 * Then clear the fields after successfully inserting the data
+                 */
+                txtTitle.setText("");
+                txtDesc.setText("");
+                img = "";
+                ivImage.setImageBitmap(null);
+
+            } catch (Exception ex) {
+
+                Log.e(getClass().getSimpleName(), "Other item not added.", ex);
+                txtTitle.setText("");
+                txtDesc.setText("");
+                img = "";
+                ivImage.setImageBitmap(null);
+
+            }
 
         } catch (SQLiteException ex) {
             Toast.makeText(this, "Unable to add item", Toast.LENGTH_SHORT).show();
@@ -494,20 +540,30 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
 
         try {
 
-            eyeRSContentResolver.insert(DBOperations.CONTENT_URI_ITEMS, itemsValues);
+            try {
+                eyeRSContentResolver.insert(DBOperations.CONTENT_URI_ITEMS, itemsValues);
 
-            Toast.makeText(this, "Your item has been added successfully", Toast.LENGTH_SHORT).show();
-            //Display message in the logcat window after successful operation execution
-            Log.e("DATABASE OPERATIONS", "...New item added to DB!");
+                Toast.makeText(this, "Your item has been added successfully", Toast.LENGTH_SHORT).show();
+                //Display message in the logcat window after successful operation execution
+                Log.e("DATABASE OPERATIONS", "...New item added to DB!");
 
-            /**
-             * Then clear the fields after successfully inserting the data
-             */
-            txtTitle.setText("");
-            txtDesc.setText("");
-            img = "";
-            ivImage.setImageBitmap(null);
+                /**
+                 * Then clear the fields after successfully inserting the data
+                 */
+                txtTitle.setText("");
+                txtDesc.setText("");
+                img = "";
+                ivImage.setImageBitmap(null);
 
+            } catch (Exception ex) {
+
+                Log.e(getClass().getSimpleName(), "User specified item not added.", ex);
+                txtTitle.setText("");
+                txtDesc.setText("");
+                img = "";
+                ivImage.setImageBitmap(null);
+
+            }
 
         } catch (SQLiteException ex) {
             Toast.makeText(this, "Unable to add item", Toast.LENGTH_SHORT).show();
