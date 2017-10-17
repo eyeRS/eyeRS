@@ -438,18 +438,18 @@ public class MainActivity extends AppCompatActivity
         String sortOrder = NewItemInfo.ItemInfo.ITEM_NAME;
 
         Cursor cursor = eyeRSContentResolver.query(DBOperations.CONTENT_URI_ITEMS,
-                projection, null, selectionArgs, sortOrder);
+                projection, null, null, sortOrder);
 
-        Toast.makeText(this, "asdasd".toString(), Toast.LENGTH_LONG).show();
+        Toast.makeText(this, "asdasd " + cursor.getCount(), Toast.LENGTH_LONG).show();
 
         if (cursor.moveToFirst()) {
             Toast.makeText(this, "bang".toString(), Toast.LENGTH_LONG).show();
             do {
 
-                for (int i = 0; i < cursor.getCount(); i++) {
+//                for (int i = 0; i < cursor.getCount(); i++) {
                     Toast.makeText(this, cursor.toString(), Toast.LENGTH_LONG).show();
-                    items.add(cursor.getString(i));
-                }
+                items.add(cursor.getString(1));
+//                }
 
             } while (cursor.moveToNext());
 

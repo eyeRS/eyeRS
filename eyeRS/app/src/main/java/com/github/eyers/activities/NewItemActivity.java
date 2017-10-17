@@ -299,6 +299,11 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
                 eyeRSContentResolver.insert(DBOperations.CONTENT_URI_ITEMS, bookValues);
             } catch (Exception ex) {
                 Log.e(getClass().getSimpleName(), "Not added.", ex);
+                txtTitle.setText("");
+                txtDesc.setText("");
+                img = "";
+                ivImage.setImageBitmap(null);
+                return;
             }
 
             Toast.makeText(this, "Your book item has been added successfully ", Toast.LENGTH_SHORT).show();
