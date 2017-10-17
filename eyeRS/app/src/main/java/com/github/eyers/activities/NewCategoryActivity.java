@@ -33,7 +33,6 @@ import java.util.HashMap;
 public class NewCategoryActivity extends AppCompatActivity implements View.OnClickListener,
         LoaderManager.LoaderCallbacks<Cursor>, AdapterView.OnItemSelectedListener {
 
-
     // Fields & other declarations
     private EditText txtTitle;
     private String categoryName;
