@@ -431,16 +431,17 @@ public class MainActivity extends AppCompatActivity
                 NewItemInfo.ItemInfo.ITEM_DESC,
                 NewItemInfo.ItemInfo.ITEM_IMAGE};
 
-        String[] selectionArgs = null;
+        String[] selectionArgs = {};
 
         String whereClause = NewItemInfo.ItemInfo.CATEGORY_NAME + " = '" + getSelectedCategory + "'";
 
         String sortOrder = NewItemInfo.ItemInfo.ITEM_NAME;
 
         Cursor cursor = eyeRSContentResolver.query(DBOperations.CONTENT_URI_ITEMS,
-                projection, whereClause, selectionArgs, sortOrder);
+                projection, null, selectionArgs, sortOrder);
 
         Toast.makeText(this, "asdasd".toString(), Toast.LENGTH_LONG).show();
+
         if (cursor.moveToFirst()) {
             Toast.makeText(this, "bang".toString(), Toast.LENGTH_LONG).show();
             do {
@@ -456,7 +457,7 @@ public class MainActivity extends AppCompatActivity
 
         } else {
 
-//            items = null;
+            Toast.makeText(this, "Nothing to display!", Toast.LENGTH_SHORT).show();
 
         }
 

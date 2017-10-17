@@ -109,6 +109,29 @@ public class DBOperations extends ContentProvider {
     }
 
     /**
+     * Retrieve the table name to query based on the Content URI selected
+     *
+     * @return
+     */
+    public String getTableName(Uri uri) {
+
+        if (uri.equals(CONTENT_URI_CATEGORIES)) {
+            return CATEGORIES_TABLE;
+        }
+        if (uri.equals(CONTENT_URI_ITEMS)) {
+            return ITEMS_TABLE;
+        }
+        if (uri.equals(CONTENT_URI_USER_REG)) {
+            return USER_REGISTRATION_TABLE;
+        }
+        if (uri.equals(CONTENT_URI_USER_PROFILE)) {
+            return USER_PROFILE_TABLE;
+        } else {
+            return ("Table does not exist!");
+        }
+    }
+
+    /**
      * The query() method must return a Cursor object, or if it fails, throw an Exception.
      * Using the SQLite database as the proposed data storage means we can simply return the Cursor returned
      * by one of the query() methods of the SQLite database class. If the query does not match any
@@ -121,26 +144,20 @@ public class DBOperations extends ContentProvider {
         SQLiteQueryBuilder queryBuilder = new SQLiteQueryBuilder();
 
         int uriType = uriMatcher.match(uri);
+        queryBuilder.setTables(getTableName(uri));
 
         switch (uriType) {
 
             case ALL_CATEGORIES:
-                queryBuilder.setTables(CATEGORIES_TABLE);
                 break;
             case ALL_ITEMS:
-                queryBuilder.setTables(ITEMS_TABLE);
-                break;
-            case ITEMS_SPECIFIC_CATEGORY:
-                queryBuilder.setTables(ITEMS_TABLE);
-                break;
-            case PROFILE_DETAILS:
-                queryBuilder.setTables(USER_PROFILE_TABLE);
                 break;
             case REG_DETAILS:
-                queryBuilder.setTables(USER_REGISTRATION_TABLE);
+                break;
+            case PROFILE_DETAILS:
                 break;
             default:
-                throw new IllegalArgumentException("Unsupported URI: " + uri);
+                Log.e("Query Operation", "Unable to retrieve data");
         }
 
         Cursor cursor = queryBuilder.query(eyeRSDatabaseHelper.getReadableDatabase(),
@@ -195,7 +212,7 @@ public class DBOperations extends ContentProvider {
                 getContext().getContentResolver().notifyChange(uri, null);
                 return Uri.parse(USER_PROFILE_TABLE + "/" + id);
             default:
-                return Uri.parse("Nothing to insert");
+                return Uri.parse(null);
         }
 
     }
