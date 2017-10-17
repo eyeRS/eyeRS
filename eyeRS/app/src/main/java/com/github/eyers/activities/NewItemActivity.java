@@ -14,6 +14,7 @@ import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteException;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
@@ -157,14 +158,13 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
                 NewCategoryInfo.CategoryInfo.CATEGORY_ID,
                 NewCategoryInfo.CategoryInfo.CATEGORY_NAME,
                 NewCategoryInfo.CategoryInfo.CATEGORY_DESC,
-                NewCategoryInfo.CategoryInfo.CATEGORY_ICON};
+                NewCategoryInfo.CategoryInfo.CATEGORY_ICON
+        };
 
-        String selection = "category_name = \"" + NewCategoryInfo.CategoryInfo.CATEGORY_NAME
-                + "\"";
+        String selection = "category_name = \"" + NewCategoryInfo.CategoryInfo.CATEGORY_NAME + "\"";
 
         Cursor cursor = eyeRSContentResolver.query(DBOperations.CONTENT_URI_CATEGORIES,
-                projection, null, null,
-                null);
+                projection, null, null, null);
 
         TreeSet<String> data = new TreeSet<>();
 
@@ -265,8 +265,7 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
 
                     }
                 } else {
-                    Toast.makeText(this, "Sorry but your item was not added successfully",
-                            Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "Sorry but your item was not added successfully", Toast.LENGTH_SHORT).show();
                 }
                 break;
             case R.id.new_item_image:
@@ -536,6 +535,7 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
         itemsValues.put(NewItemInfo.ItemInfo.CATEGORY_NAME, category); //user specified category
         itemsValues.put(NewItemInfo.ItemInfo.ITEM_NAME, itemName); //item's name
         itemsValues.put(NewItemInfo.ItemInfo.ITEM_DESC, itemDesc); //item's description
+        Toast.makeText(this, img, Toast.LENGTH_LONG).show();
         itemsValues.put(NewItemInfo.ItemInfo.ITEM_IMAGE, img); //item's image
 
         try {
@@ -633,10 +633,11 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
         super.onActivityResult(requestCode, resultCode, data);
 
         if (resultCode == Activity.RESULT_OK) {
-            if (requestCode == SELECT_FILE)
+            if (requestCode == SELECT_FILE) {
                 onSelectFromGalleryResult(data);
-            else if (requestCode == REQUEST_CAMERA)
+            } else if (requestCode == REQUEST_CAMERA) {
                 onCaptureImageResult(data);
+            }
         }
     }
 
@@ -648,19 +649,19 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
         File destination = new File(Environment.getExternalStorageDirectory(),
                 System.currentTimeMillis() + ".jpg");
 
-        img = "data:image/jpg;base64," + Base64.encodeToString(bytes.toByteArray(), 16);
+        img = /* "data:image/jpg;base64," +*/ Base64.encodeToString(bytes.toByteArray(), Base64.DEFAULT);
 
-        FileOutputStream fo;
-        try {
-            destination.createNewFile();
-            fo = new FileOutputStream(destination);
-            fo.write(bytes.toByteArray());
-            fo.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+//        FileOutputStream fo;
+//        try {
+//            destination.createNewFile();
+//            fo = new FileOutputStream(destination);
+//            fo.write(bytes.toByteArray());
+//            fo.close();
+//        } catch (FileNotFoundException e) {
+//            e.printStackTrace();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
 
         ivImage.setImageBitmap(thumbnail);
     }
@@ -681,10 +682,12 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
     }
 
     /**
+     * Method handles what happens when an item is selected from the spinner.
+     *
      * @param parent
      * @param view
      * @param position
-     * @param id       Method handles what happens when an item is selected from the spinner
+     * @param id
      */
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {

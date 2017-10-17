@@ -7,6 +7,7 @@ import android.content.Loader;
 import android.content.res.Configuration;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteException;
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -15,6 +16,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Base64;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -141,14 +143,11 @@ public class MainActivity extends AppCompatActivity
             if (STATE.equals("main")) {
                 for (String category : getCategoriesList()) {
                     items.add(new ItemLabel(category, BitmapFactory.decodeResource(
-                            getResources(), R.drawable.ic_action_help))); // TODO
+                            getResources(), R.drawable.ic_action_help)
+                    )); // TODO
                 }
             } else {
-                Toast.makeText(this, "heere", Toast.LENGTH_LONG).show();
-                for (String category : getItems()) {
-                    items.add(new ItemLabel(category, BitmapFactory.decodeResource(
-                            getResources(), R.drawable.ic_action_help))); // TODO
-                }
+                items = getItems();
             }
 
             LabelAdapter adapter = new LabelAdapter(this, items);
@@ -208,11 +207,9 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onBackPressed() {
-
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
 
         if (drawer.isDrawerOpen(GravityCompat.START)) {
-
             drawer.closeDrawer(GravityCompat.START);
         } else {
 
@@ -418,9 +415,9 @@ public class MainActivity extends AppCompatActivity
      *
      * @return the items based on the selected category
      */
-    public List<String> getItems() {
+    public ArrayList<ItemLabel> getItems() {
 
-        List<String> items = new ArrayList<String>();
+        ArrayList<ItemLabel> items = new ArrayList<ItemLabel>();
 
         ContentResolver eyeRSContentResolver = this.getContentResolver(); // Content resolver object
 
@@ -429,7 +426,8 @@ public class MainActivity extends AppCompatActivity
                 NewItemInfo.ItemInfo.CATEGORY_NAME,
                 NewItemInfo.ItemInfo.ITEM_NAME,
                 NewItemInfo.ItemInfo.ITEM_DESC,
-                NewItemInfo.ItemInfo.ITEM_IMAGE};
+                NewItemInfo.ItemInfo.ITEM_IMAGE
+        };
 
         String[] selectionArgs = {};
 
@@ -447,8 +445,11 @@ public class MainActivity extends AppCompatActivity
             do {
 
 //                for (int i = 0; i < cursor.getCount(); i++) {
-                    Toast.makeText(this, cursor.toString(), Toast.LENGTH_LONG).show();
-                items.add(cursor.getString(1));
+                byte[] decodedString = Base64.decode(cursor.getString(4), Base64.DEFAULT);
+                Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+
+                Toast.makeText(this, cursor.toString(), Toast.LENGTH_LONG).show();
+                items.add(new ItemLabel(cursor.getString(2), decodedByte));
 //                }
 
             } while (cursor.moveToNext());
@@ -467,6 +468,9 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//        if (!STATE.equals("main")) {
+//            return;
+//        }
         STATE = "asd";
         getSelectedCategory = listView.getItemAtPosition(position).toString(); //Retrieves the selected category
         startActivity(new Intent(this, MainActivity.class));
