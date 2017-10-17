@@ -221,9 +221,8 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
         itemDesc = txtDesc.getText().toString();
 
         switch (view.getId()) {
-
             case R.id.btnAddItem: //user clicks add
-                selectImage();
+//                selectImage();
                 if (txtTitle != null) {
                     switch (categorySpinner.getSelectedItem().toString().toLowerCase()) {
                         case "books": { // if the user is adding a book item
@@ -257,7 +256,6 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
                 selectImage();
                 break;
         }
-
     }
 
     /**
