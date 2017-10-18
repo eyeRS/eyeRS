@@ -45,7 +45,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             "What is the name of your first pet?",
             "In what year was your father born?",
             "What city does your nearest sibling stay?",
-            "What city or town was your first full time job?",
+            "What city was your first full time job?",
             "What are the last 5 digits of your ID number?",
             "What time of the day were you born (hh:mm)?"
     };
@@ -136,7 +136,9 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             Toast.makeText(this, "Your details have been saved successfully", Toast.LENGTH_LONG).show();
             Log.e("DATABASE OPERATIONS", "...New user added to DB!");
 
-        } catch (SQLException ex) {
+        } catch (Exception ex) {
+
+            Log.e("Registration insert", ex.getMessage(), ex);
             Toast.makeText(this, "Unable to add details", Toast.LENGTH_SHORT).show();
         }
 
@@ -180,40 +182,48 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         String pinA = txtPIN1.getText().toString();
         String pinB = txtPIN2.getText().toString();
 
-        switch (view.getId()) {
-            case R.id.btnRegister: //user clicks the register button
+        try {
 
-                username = txtUsername.getText().toString();
-                email = txtEmail.getText().toString();
-                securityResponse = txtResponse.getText().toString();
+            switch (view.getId()) {
+                case R.id.btnRegister: //user clicks the register button
 
-                if (!validateEmailAddress(email)) { //email not validate
+                    username = txtUsername.getText().toString();
+                    email = txtEmail.getText().toString();
+                    securityResponse = txtResponse.getText().toString();
 
-                    Toast.makeText(this, "Please enter a valid email address.", Toast.LENGTH_LONG).show();
+                    if (!validateEmailAddress(email)) { //email not validate
+
+                        Toast.makeText(this, "Please enter a valid email address.", Toast.LENGTH_LONG).show();
+                        return;
+                    }
+
+                    if (pinA.equals(pinB)) { //if pins match
+
+                        matchedPIN = txtPIN2.getText().toString(); //get a copy
+
+                        addRegInfo(); //method to add registration info
+
+                        /**
+                         * Navigate to the Login screen once registration has been successful
+                         */
+                        super.startActivity(new Intent(this, LoginActivity.class));
+                    }
                     return;
-                }
 
-                if (pinA.equals(pinB)) { //if pins match
+                case R.id.btnClearReg: //user clicks the clear button
 
-                    matchedPIN = txtPIN2.getText().toString(); //get a copy
+                    this.txtUsername.setText("");
+                    this.txtEmail.setText("");
+                    this.txtPIN1.setText("");
+                    this.txtPIN2.setText("");
+                    this.txtResponse.setText("");
 
-                    addRegInfo(); //method to add registration info
+            }
 
-                    /**
-                     * Navigate to the Login screen once registration has been successful
-                     */
-                    super.startActivity(new Intent(this, LoginActivity.class));
-                }
-                return;
+        }
+        catch (Exception ex){
 
-            case R.id.btnClearReg: //user clicks the clear button
-
-                this.txtUsername.setText("");
-                this.txtEmail.setText("");
-                this.txtPIN1.setText("");
-                this.txtPIN2.setText("");
-                this.txtResponse.setText("");
-
+            Log.e("Registration validation", ex.getMessage(), ex);
         }
     }
 
@@ -248,12 +258,20 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
         super.onPause();
 
-        /**
-         * Save the spinner's selection
-         */
-        spinner = (Spinner) findViewById(R.id.register_spinner);
-        SharedPreferences category_prefs = getSharedPreferences("category_prefs", Context.MODE_PRIVATE);
-        category_prefs.edit().putInt("spinner_indx", spinner.getSelectedItemPosition()).apply();
+        try {
+
+            /**
+             * Save the spinner's selection
+             */
+            spinner = (Spinner) findViewById(R.id.register_spinner);
+            SharedPreferences category_prefs = getSharedPreferences("category_prefs", Context.MODE_PRIVATE);
+            category_prefs.edit().putInt("spinner_indx", spinner.getSelectedItemPosition()).apply();
+
+        }
+        catch (Exception ex){
+
+            Log.e("Spinner onPause", ex.getMessage(), ex);
+        }
 
     }
 
@@ -265,13 +283,21 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
         super.onResume();
 
-        /**
-         * Retrieve the saved spinner selection
-         */
-        spinner = (Spinner) findViewById(R.id.register_spinner);
-        SharedPreferences category_prefs = getSharedPreferences("category_prefs", Context.MODE_PRIVATE);
-        int spinner_index = category_prefs.getInt("spinner_indx", 0);
-        spinner.setSelection(spinner_index);
+        try {
+
+            /**
+             * Retrieve the saved spinner selection
+             */
+            spinner = (Spinner) findViewById(R.id.register_spinner);
+            SharedPreferences category_prefs = getSharedPreferences("category_prefs", Context.MODE_PRIVATE);
+            int spinner_index = category_prefs.getInt("spinner_indx", 0);
+            spinner.setSelection(spinner_index);
+
+        }
+        catch (Exception ex){
+
+            Log.e("Spinner onResume", ex.getMessage(), ex);
+        }
 
     }
 

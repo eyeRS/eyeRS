@@ -3,6 +3,7 @@ package com.github.eyers.activities;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.widget.CompoundButton;
 import android.widget.Switch;
 import android.widget.Toast;
@@ -32,14 +33,26 @@ public class CategorySortingActivity extends AppCompatActivity {
                 /** If the user wishes to sort alphabetically */
                 if (isChecked) {
 
-                    Toast.makeText(CategorySortingActivity.this, "All categories have been sorted alphabetically",
-                            Toast.LENGTH_SHORT).show();
+                    try {
+                        Toast.makeText(CategorySortingActivity.this, "All categories have been sorted alphabetically",
+                                Toast.LENGTH_SHORT).show();
+
+                    } catch (Exception ex) {
+
+                        Log.e("CategorySort switch", ex.getMessage(), ex);
+                    }
                 }
                 /** If the user does not wish to sort alphabetically */
                 if (!isChecked) {
 
-                    Toast.makeText(CategorySortingActivity.this, "All categories will be displayed as normal",
-                            Toast.LENGTH_SHORT).show();
+                    try {
+                        Toast.makeText(CategorySortingActivity.this, "All categories will be displayed as normal",
+                                Toast.LENGTH_SHORT).show();
+
+                    } catch (Exception ex) {
+
+                        Log.e("CategorySort switch", ex.getMessage(), ex);
+                    }
                 }
             }
         });
@@ -52,14 +65,27 @@ public class CategorySortingActivity extends AppCompatActivity {
                 /** If the user wishes to sort by the most recently added items */
                 if (isChecked) {
 
-                    Toast.makeText(CategorySortingActivity.this, "All categories have been sorted according" +
-                            " to their order of entry", Toast.LENGTH_SHORT).show();
+                    try {
+
+                        Toast.makeText(CategorySortingActivity.this, "All categories have been sorted according" +
+                                " to their order of entry", Toast.LENGTH_SHORT).show();
+
+                    } catch (Exception ex) {
+
+                        Log.e("Recently added switch", ex.getMessage(), ex);
+                    }
                 }
                 /** If the user does not wish to sort alphabetically */
                 if (!isChecked) {
 
-                    Toast.makeText(CategorySortingActivity.this, "All categories will be displayed as normal",
-                            Toast.LENGTH_SHORT).show();
+                    try {
+                        Toast.makeText(CategorySortingActivity.this, "All categories will be displayed as normal",
+                                Toast.LENGTH_SHORT).show();
+
+                    } catch (Exception ex) {
+
+                        Log.e("Recently added switch", ex.getMessage(), ex);
+                    }
                 }
             }
         });

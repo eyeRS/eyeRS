@@ -40,7 +40,7 @@ public class SetPINActivity extends AppCompatActivity implements View.OnClickLis
             "What is the name of your first pet?",
             "In what year was your father born?",
             "What city does your nearest sibling stay?",
-            "What city or town was your first full time job?",
+            "What city was your first full time job?",
             "What are the last 5 digits of your ID number?",
             "What time of the day were you born (hh:mm)?"
     };
@@ -119,30 +119,38 @@ public class SetPINActivity extends AppCompatActivity implements View.OnClickLis
     @Override
     public void onClick(View view) {
 
-        switch (view.getId()) {
+        try {
 
-            case R.id.btnClearPIN:
-                this.txtUsername.setText("");
-                this.txtPIN1.setText("");
-                this.txtPIN2.setText("");
-                this.txtResponse.setText("");
-                return;
-            case R.id.btnResetPIN:
-                String pinA = txtPIN1.getText().toString();
-                String pinB = txtPIN2.getText().toString();
+            switch (view.getId()) {
 
-                if (pinA == null || pinA.equals("")) {
-                    Toast.makeText(this, "Please enter a PIN.", Toast.LENGTH_LONG).show();
-                } else if (pinA == null || pinA.equals("")) {
-                    Toast.makeText(this, "Please confirm you PIN.", Toast.LENGTH_LONG).show();
-                } else if (!pinA.equals(pinB)) {
-                    Toast.makeText(this, "Your PINs do not match.", Toast.LENGTH_LONG).show();
-                } else if (pinA.equals(pinB)) { //pins match
+                case R.id.btnClearPIN:
+                    this.txtUsername.setText("");
+                    this.txtPIN1.setText("");
+                    this.txtPIN2.setText("");
+                    this.txtResponse.setText("");
+                    return;
+                case R.id.btnResetPIN:
+                    String pinA = txtPIN1.getText().toString();
+                    String pinB = txtPIN2.getText().toString();
 
-                    matchedPIN = txtPIN2.getText().toString();
-                    updateLoginInfo(); //method to update details
-                }
+                    if (pinA == null || pinA.equals("")) {
+                        Toast.makeText(this, "Please enter a PIN.", Toast.LENGTH_LONG).show();
+                    } else if (pinA == null || pinA.equals("")) {
+                        Toast.makeText(this, "Please confirm you PIN.", Toast.LENGTH_LONG).show();
+                    } else if (!pinA.equals(pinB)) {
+                        Toast.makeText(this, "Your PINs do not match.", Toast.LENGTH_LONG).show();
+                    } else if (pinA.equals(pinB)) { //pins match
 
+                        matchedPIN = txtPIN2.getText().toString();
+                        updateLoginInfo(); //method to update details
+                    }
+
+            }
+
+        }
+        catch (Exception ex){
+
+            Log.e("SetPIN event handlers", ex.getMessage(), ex);
         }
     }
 
@@ -174,12 +182,12 @@ public class SetPINActivity extends AppCompatActivity implements View.OnClickLis
                 NewRegInfo.UserRegistrationInfo.SECURITY_QUESTION,
                 NewRegInfo.UserRegistrationInfo.SECURITY_RESPONSE};
 
-        String whereClauseQuery = NewRegInfo.UserRegistrationInfo.SECURITY_QUESTION + " = " + securityQuestion
-                + " AND " + NewRegInfo.UserRegistrationInfo.SECURITY_RESPONSE + " = " + securityResponse;
+        String whereClauseQuery = NewRegInfo.UserRegistrationInfo.SECURITY_QUESTION + " = '" + securityQuestion
+                + "' AND " + NewRegInfo.UserRegistrationInfo.SECURITY_RESPONSE + " = '" + securityResponse + "'";
 
-        String[] selectionArgs = null;
+        String[] selectionArgs = {};
 
-        String sortOrder = null;
+        String sortOrder = "";
 
         /**
          * Cursor object to retrieve query results
@@ -203,8 +211,8 @@ public class SetPINActivity extends AppCompatActivity implements View.OnClickLis
                 /**
                  *
                  */
-                String whereClauseUpdate = NewRegInfo.UserRegistrationInfo.USER_NAME + " = "
-                        + username;
+                String whereClauseUpdate = NewRegInfo.UserRegistrationInfo.USER_NAME + " = '"
+                        + username + "'";
 
                 /**
                  * Get the new values to be updated
@@ -228,7 +236,9 @@ public class SetPINActivity extends AppCompatActivity implements View.OnClickLis
                      */
                     super.startActivity(new Intent(this, LoginActivity.class));
 
-                } catch (SQLException ex) {
+                } catch (Exception ex) {
+
+                    Log.e("PIN update query", ex.getMessage(), ex);
                     Toast.makeText(this, "Unable to add item", Toast.LENGTH_SHORT).show();
                 }
             } else {
@@ -276,12 +286,19 @@ public class SetPINActivity extends AppCompatActivity implements View.OnClickLis
 
         super.onPause();
 
-        /**
-         * Save the spinner's selection
-         */
-        spinner = (Spinner) findViewById(R.id.setPin_spinner);
-        SharedPreferences category_prefs = getSharedPreferences("category_prefs", Context.MODE_PRIVATE);
-        category_prefs.edit().putInt("spinner_indx", spinner.getSelectedItemPosition()).apply();
+        try {
+
+            /**
+             * Save the spinner's selection
+             */
+            spinner = (Spinner) findViewById(R.id.setPin_spinner);
+            SharedPreferences category_prefs = getSharedPreferences("category_prefs", Context.MODE_PRIVATE);
+            category_prefs.edit().putInt("spinner_indx", spinner.getSelectedItemPosition()).apply();
+        }
+        catch (Exception ex){
+
+            Log.e("Spinner onPause", ex.getMessage(), ex);
+        }
 
     }
 
@@ -292,13 +309,21 @@ public class SetPINActivity extends AppCompatActivity implements View.OnClickLis
     protected void onResume() {
         super.onResume();
 
-        /**
-         * Retrieve the saved spinner selection
-         */
-        spinner = (Spinner) findViewById(R.id.setPin_spinner);
-        SharedPreferences category_prefs = getSharedPreferences("category_prefs", Context.MODE_PRIVATE);
-        int spinner_index = category_prefs.getInt("spinner_indx", 0);
-        spinner.setSelection(spinner_index);
+        try {
+
+            /**
+             * Retrieve the saved spinner selection
+             */
+            spinner = (Spinner) findViewById(R.id.setPin_spinner);
+            SharedPreferences category_prefs = getSharedPreferences("category_prefs", Context.MODE_PRIVATE);
+            int spinner_index = category_prefs.getInt("spinner_indx", 0);
+            spinner.setSelection(spinner_index);
+
+        }
+        catch (Exception ex){
+
+            Log.e("Spinner onResume", ex.getMessage(), ex);
+        }
 
     }
 

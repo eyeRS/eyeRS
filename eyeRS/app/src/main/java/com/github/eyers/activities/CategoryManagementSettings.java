@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -41,19 +42,27 @@ public class CategoryManagementSettings extends AppCompatActivity implements OnI
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-        if (position == 0) { //Add Category
-            Intent intent = new Intent(this, NewCategoryActivity.class);
-            startActivity(intent);
-        }
-        if (position == 1) { //Edit Category
+        try {
 
-        }
-        if (position == 2) { //Delete Category
+            if (position == 0) { //Add Category
+                Intent intent = new Intent(this, NewCategoryActivity.class);
+                startActivity(intent);
+            }
+            if (position == 1) { //Edit Category
 
-        }
-        if (position == 3) { //Change Sorting
-            Intent intent = new Intent(this, CategorySortingActivity.class);
-            startActivity(intent);
+            }
+            if (position == 2) { //Delete Category
+
+            }
+            if (position == 3) { //Change Sorting
+                Intent intent = new Intent(this, CategorySortingActivity.class);
+                startActivity(intent);
+            }
+
+        } catch (Exception ex) {
+
+            Log.e("CategoryManagement", ex.getMessage(), ex);
         }
     }
+
 }

@@ -7,6 +7,7 @@ import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -29,7 +30,8 @@ public final class LoginActivity extends AppCompatActivity implements View.OnCli
      */
     private ContentResolver eyeRSContentResolver;
     /*Getting media player*/
-        MediaPlayer welcomeMessage;
+    MediaPlayer welcomeMessage;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -47,7 +49,7 @@ public final class LoginActivity extends AppCompatActivity implements View.OnCli
         Toast.makeText(this, "Welcome!", Toast.LENGTH_SHORT).show();
 
         /*Initialising mediaPlayer*/
-        welcomeMessage=MediaPlayer.create(LoginActivity.this,R.raw.welcomemsg);
+        welcomeMessage = MediaPlayer.create(LoginActivity.this, R.raw.welcomemsg);
     }
 
 
@@ -59,19 +61,26 @@ public final class LoginActivity extends AppCompatActivity implements View.OnCli
     @Override
     public void onClick(View v) {
 
-        switch (v.getId()) {
-            case R.id.txtForgotPin:
-                super.startActivity(new Intent(this, SetPINActivity.class));
-                return;
-            case R.id.btnRegister:
-                super.startActivity(new Intent(this, RegisterActivity.class));
-                return;
-            case R.id.btnLogin:
-                verifyLoginPIN(); //method to validate Login PIN
+        try {
+
+            switch (v.getId()) {
+                case R.id.txtForgotPin:
+                    super.startActivity(new Intent(this, SetPINActivity.class));
+                    return;
+                case R.id.btnRegister:
+                    super.startActivity(new Intent(this, RegisterActivity.class));
+                    return;
+                case R.id.btnLogin:
+                    verifyLoginPIN(); //method to validate Login PIN
+            }
+
+        } catch (Exception ex) {
+
+            Log.e("Login event handlers", ex.getMessage());
         }
     }
 
-    public void verifyLoginPIN(){
+    public void verifyLoginPIN() {
 
         eyeRSContentResolver = getApplicationContext().getContentResolver(); //Content resolver object
 
@@ -83,34 +92,43 @@ public final class LoginActivity extends AppCompatActivity implements View.OnCli
                 NewRegInfo.UserRegistrationInfo.SECURITY_QUESTION,
                 NewRegInfo.UserRegistrationInfo.SECURITY_RESPONSE};
 
-        Cursor cursor = eyeRSContentResolver.query(DBOperations.CONTENT_URI_USER_REG,
-                projection, null, null,
-                null);
+        try {
 
-        if (cursor.moveToFirst()) {
+            Cursor cursor = eyeRSContentResolver.query(DBOperations.CONTENT_URI_USER_REG,
+                    projection, null, null,
+                    null);
 
-            do {
+            if (cursor.moveToFirst()) {
 
-                /**
-                 * We need to retrieve the pin used during the Register Activity
-                 * to validate the Login process
-                 */
-                if (cursor.getString(cursor.getColumnIndex(NewRegInfo.UserRegistrationInfo.USER_PIN)
-                ).equals(txtPIN.getText().toString())) {
+                do {
 
-                    super.startActivity(new Intent(getApplicationContext(), MainActivity.class)); //Grant access
-                    /*Starting media*/
-                    welcomeMessage.start();
-                }
-                else{
+                    /**
+                     * We need to retrieve the pin used during the Register Activity
+                     * to validate the Login process
+                     */
+                    if (cursor.getString(cursor.getColumnIndex(NewRegInfo.UserRegistrationInfo.USER_PIN)
+                    ).equals(txtPIN.getText().toString())) {
 
-                    Toast.makeText(this, "Login failed. Please enter the correct PIN", Toast.LENGTH_SHORT).show();
-                }
+                        super.startActivity(new Intent(getApplicationContext(), MainActivity.class)); //Grant access
+                        /*Welcome message*/
+                        welcomeMessage.start();
 
-            } while (cursor.moveToNext());
+                    } else { //Incorrect PIN
 
-            cursor.close();
+                        Toast.makeText(this, "Login failed. Please enter the correct PIN", Toast.LENGTH_SHORT).show();
 
+                    }
+                } while (cursor.moveToNext());
+
+                cursor.close();
+
+            }
+
+        } catch (Exception ex) {
+
+            Log.e("Login query", ex.getMessage(), ex);
         }
+
     }
-}
+
+} //end class Login

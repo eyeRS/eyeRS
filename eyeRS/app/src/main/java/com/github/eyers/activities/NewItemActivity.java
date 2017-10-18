@@ -14,9 +14,7 @@ import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteException;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
@@ -41,9 +39,6 @@ import com.github.eyers.info.NewCategoryInfo;
 import com.github.eyers.info.NewItemInfo;
 
 import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -114,16 +109,20 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
 
         }
 
-        if (ContextCompat.checkSelfPermission(NewItemActivity.this,
-                Manifest.permission.CAMERA)
-                != PackageManager.PERMISSION_GRANTED) {
-            if (ActivityCompat.shouldShowRequestPermissionRationale(NewItemActivity.this,
-                    Manifest.permission.CAMERA)) {
-            } else {
-                ActivityCompat.requestPermissions(NewItemActivity.this,
-                        new String[]{Manifest.permission.CAMERA},
-                        REQUEST_READ_EXTERNAL_STORAGE);
+        try {
+            if (ContextCompat.checkSelfPermission(NewItemActivity.this,
+                    Manifest.permission.CAMERA)
+                    != PackageManager.PERMISSION_GRANTED) {
+                if (ActivityCompat.shouldShowRequestPermissionRationale(NewItemActivity.this,
+                        Manifest.permission.CAMERA)) {
+                } else {
+                    ActivityCompat.requestPermissions(NewItemActivity.this,
+                            new String[]{Manifest.permission.CAMERA},
+                            REQUEST_READ_EXTERNAL_STORAGE);
+                }
             }
+        } catch (Exception ex) {
+            Log.e("CAMERA PERMISSIONS", "Retrieved permission for in-built camera use");
         }
     }
 
@@ -442,36 +441,30 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
         gamesValues.put(NewItemInfo.ItemInfo.ITEM_IMAGE, img); //Game image
 
         try {
+            //Insert the Game item
+            eyeRSContentResolver.insert(DBOperations.CONTENT_URI_ITEMS, gamesValues);
 
-            try {
-                //Insert the Game item
-                eyeRSContentResolver.insert(DBOperations.CONTENT_URI_ITEMS, gamesValues);
+            Toast.makeText(this, "Your gaming item has been added successfully ", Toast.LENGTH_SHORT).show();
+            //Display message in the logcat window after successful operation execution
+            Log.e("DATABASE OPERATIONS", "...Game item added to DB!");
 
-                Toast.makeText(this, "Your gaming item has been added successfully ", Toast.LENGTH_SHORT).show();
-                //Display message in the logcat window after successful operation execution
-                Log.e("DATABASE OPERATIONS", "...Game item added to DB!");
+            /**
+             * Then clear the fields after successfully inserting the data
+             */
+            txtTitle.setText("");
+            txtDesc.setText("");
+            img = "";
+            ivImage.setImageBitmap(null);
 
-                /**
-                 * Then clear the fields after successfully inserting the data
-                 */
-                txtTitle.setText("");
-                txtDesc.setText("");
-                img = "";
-                ivImage.setImageBitmap(null);
+        } catch (Exception ex) {
 
-            } catch (Exception ex) {
-
-                Log.e(getClass().getSimpleName(), "Gaming item not added.", ex);
-                txtTitle.setText("");
-                txtDesc.setText("");
-                img = "";
-                ivImage.setImageBitmap(null);
-
-            }
-
-        } catch (SQLiteException ex) {
             Toast.makeText(this, "Unable to add item", Toast.LENGTH_SHORT).show();
-            Log.e(getClass().getSimpleName(), "Unable to add item", ex);
+            Log.e(getClass().getSimpleName(), "Gaming item not added.", ex);
+            txtTitle.setText("");
+            txtDesc.setText("");
+            img = "";
+            ivImage.setImageBitmap(null);
+
         }
 
     } //end void addGame()
@@ -492,35 +485,30 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
         otherValues.put(NewItemInfo.ItemInfo.ITEM_IMAGE, img); //Other image
 
         try {
+            //Insert the Other item
+            eyeRSContentResolver.insert(DBOperations.CONTENT_URI_ITEMS, otherValues);
 
-            try {
-                //Insert the Other item
-                eyeRSContentResolver.insert(DBOperations.CONTENT_URI_ITEMS, otherValues);
+            Toast.makeText(this, "Your other item has been added successfully ", Toast.LENGTH_SHORT).show();
+            //Display message in the logcat window after successful operation execution
+            Log.e("DATABASE OPERATIONS", "...Other item added to DB!");
 
-                Toast.makeText(this, "Your other item has been added successfully ", Toast.LENGTH_SHORT).show();
-                //Display message in the logcat window after successful operation execution
-                Log.e("DATABASE OPERATIONS", "...Other item added to DB!");
+            /**
+             * Then clear the fields after successfully inserting the data
+             */
+            txtTitle.setText("");
+            txtDesc.setText("");
+            img = "";
+            ivImage.setImageBitmap(null);
 
-                /**
-                 * Then clear the fields after successfully inserting the data
-                 */
-                txtTitle.setText("");
-                txtDesc.setText("");
-                img = "";
-                ivImage.setImageBitmap(null);
+        } catch (Exception ex) {
 
-            } catch (Exception ex) {
-
-                Log.e(getClass().getSimpleName(), "Other item not added.", ex);
-                txtTitle.setText("");
-                txtDesc.setText("");
-                img = "";
-                ivImage.setImageBitmap(null);
-
-            }
-
-        } catch (SQLiteException ex) {
             Toast.makeText(this, "Unable to add item", Toast.LENGTH_SHORT).show();
+            Log.e(getClass().getSimpleName(), "Other item not added.", ex);
+            txtTitle.setText("");
+            txtDesc.setText("");
+            img = "";
+            ivImage.setImageBitmap(null);
+
         }
 
     } //end void addOther()
@@ -542,34 +530,29 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
         itemsValues.put(NewItemInfo.ItemInfo.ITEM_IMAGE, img); //item's image
 
         try {
+            eyeRSContentResolver.insert(DBOperations.CONTENT_URI_ITEMS, itemsValues);
 
-            try {
-                eyeRSContentResolver.insert(DBOperations.CONTENT_URI_ITEMS, itemsValues);
+            Toast.makeText(this, "Your item has been added successfully", Toast.LENGTH_SHORT).show();
+            //Display message in the logcat window after successful operation execution
+            Log.e("DATABASE OPERATIONS", "...New item added to DB!");
 
-                Toast.makeText(this, "Your item has been added successfully", Toast.LENGTH_SHORT).show();
-                //Display message in the logcat window after successful operation execution
-                Log.e("DATABASE OPERATIONS", "...New item added to DB!");
+            /**
+             * Then clear the fields after successfully inserting the data
+             */
+            txtTitle.setText("");
+            txtDesc.setText("");
+            img = "";
+            ivImage.setImageBitmap(null);
 
-                /**
-                 * Then clear the fields after successfully inserting the data
-                 */
-                txtTitle.setText("");
-                txtDesc.setText("");
-                img = "";
-                ivImage.setImageBitmap(null);
+        } catch (Exception ex) {
 
-            } catch (Exception ex) {
-
-                Log.e(getClass().getSimpleName(), "User specified item not added.", ex);
-                txtTitle.setText("");
-                txtDesc.setText("");
-                img = "";
-                ivImage.setImageBitmap(null);
-
-            }
-
-        } catch (SQLiteException ex) {
             Toast.makeText(this, "Unable to add item", Toast.LENGTH_SHORT).show();
+            Log.e(getClass().getSimpleName(), "User specified item not added.", ex);
+            txtTitle.setText("");
+            txtDesc.setText("");
+            img = "";
+            ivImage.setImageBitmap(null);
+
         }
 
     } //end void addItemInfo()
@@ -577,61 +560,93 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         Toast.makeText(this, requestCode + "", Toast.LENGTH_LONG).show();
-        switch (requestCode) {
-            case REQUEST_READ_EXTERNAL_STORAGE:
-                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    if (userChoosenTask.equals("Take Photo"))
-                        cameraIntent();
-                    else if (userChoosenTask.equals("Choose from Library"))
-                        galleryIntent();
-                } else {
-                    //code for deny
-                }
-                break;
+
+        try {
+
+            switch (requestCode) {
+                case REQUEST_READ_EXTERNAL_STORAGE:
+                    try {
+                        if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                            if (userChoosenTask.equals("Take Photo"))
+                                cameraIntent();
+                            else if (userChoosenTask.equals("Choose from Library"))
+                                galleryIntent();
+                        } else {
+                            //code for deny
+                        }
+                    } catch (Exception ex) {
+                        Log.e("CAMERA PERMISSIONS", "Retrieved permission for in-built camera use", ex);
+                    }
+                    break;
+            }
+        }
+        catch (Exception ex){
+
+            Log.e("onReqPermissionResult()", ex.getMessage(), ex);
         }
     }
+
 
     private void selectImage() {
         final String[] items = {"Take Photo", "Choose from Library", "Cancel"};
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Add Photo!");
-        builder.setItems(items, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int item) {
-                boolean result = EyeRS.checkPermission(NewItemActivity.this);
+        try {
 
-                if (items[item].equals("Take Photo")) {
-                    userChoosenTask = "Take Photo";
-                    if (result) {
-                        cameraIntent();
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle("Add Photo!");
+            builder.setItems(items, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int item) {
+                    boolean result = EyeRS.checkPermission(NewItemActivity.this);
+
+                    if (items[item].equals("Take Photo")) {
+                        userChoosenTask = "Take Photo";
+                        if (result) {
+                            cameraIntent();
+                        }
+                    } else if (items[item].equals("Choose from Library")) {
+                        userChoosenTask = "Choose from Library";
+                        if (result)
+                            galleryIntent();
+
+                    } else if (items[item].equals("Cancel")) {
+                        dialog.dismiss();
                     }
-                } else if (items[item].equals("Choose from Library")) {
-                    userChoosenTask = "Choose from Library";
-                    if (result)
-                        galleryIntent();
-
-                } else if (items[item].equals("Cancel")) {
-                    dialog.dismiss();
                 }
-            }
-        });
-        builder.show();
+            });
+            builder.show();
+        }
+        catch (Exception ex){
+
+            Log.e("selectImage()", ex.getMessage(), ex);
+        }
     }
 
+
     private void galleryIntent() {
-        Intent intent = new Intent();
-        intent.setType("image/*");
-        intent.setAction(Intent.ACTION_GET_CONTENT);//
-        startActivityForResult(Intent.createChooser(intent, "Select File"), SELECT_FILE);
+
+        try {
+
+            Intent intent = new Intent();
+            intent.setType("image/*");
+            intent.setAction(Intent.ACTION_GET_CONTENT);//
+            startActivityForResult(Intent.createChooser(intent, "Select File"), SELECT_FILE);
+
+        } catch (Exception ex) {
+            Log.e("Gallery intent", ex.getMessage(), ex);
+        }
     }
 
     private void cameraIntent() {
-        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        try{
+
+        try {
+
+            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
             startActivityForResult(intent, REQUEST_CAMERA);
-        }catch (Exception ex){
-            Log.e("camera premissions", "error getting premissionns", ex);
+
+        } catch (Exception ex) {
+
+            Log.e("Camera intent", ex.getMessage(), ex);
         }
     }
 
@@ -639,38 +654,60 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (resultCode == Activity.RESULT_OK) {
-            if (requestCode == SELECT_FILE) {
-                onSelectFromGalleryResult(data);
-            } else if (requestCode == REQUEST_CAMERA) {
-                onCaptureImageResult(data);
+        try {
+
+            if (resultCode == Activity.RESULT_OK) {
+                if (requestCode == SELECT_FILE) {
+                    onSelectFromGalleryResult(data);
+                } else if (requestCode == REQUEST_CAMERA) {
+                    onCaptureImageResult(data);
+                }
             }
+
+        } catch (Exception ex) {
+
+            Log.e("Camera request", ex.getMessage(), ex);
         }
     }
 
     private void onCaptureImageResult(Intent data) {
-        thumbnail = (Bitmap) data.getExtras().get("data");
-        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
-        thumbnail.compress(Bitmap.CompressFormat.JPEG, 90, bytes);
 
-        img = Base64.encodeToString(bytes.toByteArray(), Base64.DEFAULT);
+        try {
 
-        ivImage.setImageBitmap(thumbnail);
+            thumbnail = (Bitmap) data.getExtras().get("data");
+            ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+            thumbnail.compress(Bitmap.CompressFormat.JPEG, 90, bytes);
+
+            img = Base64.encodeToString(bytes.toByteArray(), Base64.DEFAULT);
+
+            ivImage.setImageBitmap(thumbnail);
+
+        } catch (Exception ex) {
+
+            Log.e("Image capture", ex.getMessage(), ex);
+        }
     }
 
     @SuppressWarnings("deprecation")
     private void onSelectFromGalleryResult(Intent data) {
 
-        Bitmap bm = null;
-        if (data != null) {
-            try {
-                bm = MediaStore.Images.Media.getBitmap(getApplicationContext().getContentResolver(), data.getData());
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
+        try {
 
-        ivImage.setImageBitmap(bm);
+            Bitmap bm = null;
+            if (data != null) {
+                try {
+                    bm = MediaStore.Images.Media.getBitmap(getApplicationContext().getContentResolver(), data.getData());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            ivImage.setImageBitmap(bm);
+
+        } catch (Exception ex) {
+
+            Log.e("Gallery selection", ex.getMessage(), ex);
+        }
     }
 
     /**
@@ -700,6 +737,7 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
      */
     @Override
     public void onSaveInstanceState(Bundle savedInstanceState) {
+
         savedInstanceState.putInt("category_spinner", categorySpinner.getSelectedItemPosition());
         savedInstanceState.putString("item_name", txtTitle.getText().toString());
         savedInstanceState.putString("item_desc", txtDesc.getText().toString());
@@ -731,4 +769,4 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
 
     }
 
-} //end class NewItemActivity
+}//end class NewItemActivity

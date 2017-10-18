@@ -278,6 +278,8 @@ public class NewCategoryActivity extends AppCompatActivity implements View.OnCli
 
                         this.data.put(cap.replaceAll(" 24dp", ""), field.getInt(null));
                     } catch (Exception ex) {
+
+                        Log.e("Spinner population", ex.getMessage(), ex);
                     }
                 }
             }

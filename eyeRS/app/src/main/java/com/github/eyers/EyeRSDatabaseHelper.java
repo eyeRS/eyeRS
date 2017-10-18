@@ -1,6 +1,5 @@
 package com.github.eyers;
 
-import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.SQLException;
@@ -8,10 +7,10 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-import com.github.eyers.activities.UserProfileInfo;
 import com.github.eyers.info.NewCategoryInfo;
 import com.github.eyers.info.NewItemInfo;
 import com.github.eyers.info.NewRegInfo;
+import com.github.eyers.info.UserProfileInfo;
 
 import java.lang.reflect.Field;
 
@@ -67,10 +66,6 @@ public class EyeRSDatabaseHelper extends SQLiteOpenHelper {
      */
     private static final String DB_NAME = "eyeRS.db";
     private static final int DB_VERSION = 1;
-    /**
-     * Content resolver object.
-     */
-    private ContentResolver eyeRSContentResolver;
 
     /**
      * We're calling the constructor of the SQLiteOpenHelper superclass,
@@ -84,7 +79,6 @@ public class EyeRSDatabaseHelper extends SQLiteOpenHelper {
          * The null parameter is an advanced feature relating to CursorFactory
          */
         super(context, DB_NAME, null, DB_VERSION);
-        eyeRSContentResolver = context.getContentResolver();
 
     }
 

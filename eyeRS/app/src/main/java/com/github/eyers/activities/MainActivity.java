@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.content.Loader;
 import android.content.res.Configuration;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteException;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -110,12 +109,17 @@ public class MainActivity extends AppCompatActivity
         searchView.setOnSearchViewListener(new MaterialSearchView.SearchViewListener() {
             @Override
             public void onSearchViewShown() {
+                /**
+                 * Query to search for items
+                 */
 
             }
 
             @Override
             public void onSearchViewClosed() {
-
+                /**
+                 * Nothing to to here. Default setting
+                 */
             }
         });
 
@@ -135,7 +139,9 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
-        // populate items
+        /**
+         * Populate the list view
+         */
         try {
 
             listView = (ListView) findViewById(R.id.main_listView);
@@ -154,11 +160,10 @@ public class MainActivity extends AppCompatActivity
             LabelAdapter adapter = new LabelAdapter(this, items);
             listView.setAdapter(adapter);
 
-        } catch (SQLiteException ex) {
-            Toast.makeText(this, "Unable to view items.", Toast.LENGTH_SHORT).show();
-            Toast.makeText(this, ex.getMessage(), Toast.LENGTH_LONG).show();
+        } catch (Exception ex) {
 
-            Log.e("ERROR", "Unable to view items", ex);
+            Toast.makeText(this, "Unable to view items", Toast.LENGTH_SHORT).show();
+            Log.e("MainActivity list view", ex.getMessage(), ex);
         }
 
         listView.setOnItemClickListener(this);
@@ -195,14 +200,22 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
 
-        /**
-         * If the drawer is open, hide related items to the content view
-         */
-        boolean drawerOpen = drawer.isDrawerOpen(navigationView);
-        /**
-         * Set the visibility of the menu items when the Drawer is opened or closed
-         */
-        menu.findItem(R.id.action_settings).setVisible(!drawerOpen); //Hide the action settings when drawer is open
+        try {
+
+            /**
+             * If the drawer is open, hide related items to the content view
+             */
+            boolean drawerOpen = drawer.isDrawerOpen(navigationView);
+            /**
+             * Set the visibility of the menu items when the Drawer is opened or closed
+             */
+            menu.findItem(R.id.action_settings).setVisible(!drawerOpen); //Hide the action settings when drawer is open
+
+        } catch (Exception ex) {
+
+            Log.e("Navigation Drawer", ex.getMessage(), ex);
+        }
+
         return super.onPrepareOptionsMenu(menu);
     }
 
@@ -214,7 +227,23 @@ public class MainActivity extends AppCompatActivity
             drawer.closeDrawer(GravityCompat.START);
         } else {
             super.onBackPressed();
+
+            try {
+
+                if (drawer.isDrawerOpen(GravityCompat.START)) {
+
+                    drawer.closeDrawer(GravityCompat.START);
+                } else {
+
+                    super.onBackPressed();
+                }
+
+            } catch (Exception ex) {
+
+                Log.e("Navigation drawer", ex.getMessage(), ex);
+            }
         }
+
     }
 
     /**
@@ -249,13 +278,20 @@ public class MainActivity extends AppCompatActivity
          * as you specify a parent activity in AndroidManifest.xml
          */
 
-        /**
-         * If the ActionBarDrawerToggle is clicked, let it handle what happens
-         */
-        if (item.getItemId() == R.id.action_settings) {
-            super.startActivity(new Intent(this, AppSettingsActivity.class));
-            return true;
-        }
+         /**
+             * If the ActionBarDrawerToggle is clicked, let it handle what happens
+             */
+            if (item.getItemId() == R.id.action_settings) {
+
+                try {
+                    super.startActivity(new Intent(this, AppSettingsActivity.class));
+                    return true;
+
+                } catch(Exception ex){
+                    Log.e("Action settings", ex.getMessage(), ex);
+                }
+            }
+
 
         return super.onOptionsItemSelected(item);
     }
@@ -276,46 +312,53 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
 
-        switch (item.getItemId()) {
-            case R.id.nav_help:
-                super.startActivity(new Intent(this, HelpActivity.class)); //starts the Help & Tips activity
+        try {
+
+            switch (item.getItemId()) {
+                case R.id.nav_help:
+                    super.startActivity(new Intent(this, HelpActivity.class)); //starts the Help & Tips activity
+                    break;
+                case R.id.nav_new_item:
+                    super.startActivity(new Intent(this, NewItemActivity.class)); //starts the New Item activity
+                    break;
+                case R.id.nav_new_category:
+                    super.startActivity(new Intent(this, NewCategoryActivity.class)); //starts the New Category activity
+                    break;
+                case R.id.nav_settings:
+                    super.startActivity(new Intent(this, AppSettingsActivity.class)); //starts the App Settings activity
+                    break;
+                case R.id.nav_about:
+                    super.startActivity(new Intent(this, AboutActivity.class)); //starts the About activity
+                    break;
+                case R.id.nav_slideshow:
+                    super.startActivity(new Intent(this, SlideshowActivity.class)); //starts the Slideshow activity
+                    break;
+                case R.id.nav_share: {
+                    // todo: in method
+                    Intent sendIntent = new Intent();
+                    sendIntent.setAction(Intent.ACTION_SEND);
+                    sendIntent.putExtra(Intent.EXTRA_TEXT, "This is my text to send.");
+                    sendIntent.setType("text/plain");
+                    startActivity(sendIntent);
+                }
                 break;
-            case R.id.nav_new_item:
-                super.startActivity(new Intent(this, NewItemActivity.class)); //starts the New Item activity
+                case R.id.nav_trade: {
+                    // todo: in method
+                    Intent sendIntent = new Intent();
+                    sendIntent.setAction(Intent.ACTION_SEND);
+                    sendIntent.putExtra(Intent.EXTRA_TEXT, "This is my text to send.");
+                    sendIntent.setType("text/plain");
+                    startActivity(sendIntent);
+                }
                 break;
-            case R.id.nav_new_category:
-                super.startActivity(new Intent(this, NewCategoryActivity.class)); //starts the New Category activity
-                break;
-            case R.id.nav_settings:
-                super.startActivity(new Intent(this, AppSettingsActivity.class)); //starts the App Settings activity
-                break;
-            case R.id.nav_about:
-                super.startActivity(new Intent(this, AboutActivity.class)); //starts the About activity
-                break;
-            case R.id.nav_slideshow:
-                super.startActivity(new Intent(this, SlideshowActivity.class)); //starts the Slideshow activity
-                break;
-            case R.id.nav_share: {
-                // todo: in method
-                Intent sendIntent = new Intent();
-                sendIntent.setAction(Intent.ACTION_SEND);
-                sendIntent.putExtra(Intent.EXTRA_TEXT, "This is my text to send.");
-                sendIntent.setType("text/plain");
-                startActivity(sendIntent);
+                case R.id.nav_exit:
+                    exit();
+                    break;
             }
-            break;
-            case R.id.nav_trade: {
-                // todo: in method
-                Intent sendIntent = new Intent();
-                sendIntent.setAction(Intent.ACTION_SEND);
-                sendIntent.putExtra(Intent.EXTRA_TEXT, "This is my text to send.");
-                sendIntent.setType("text/plain");
-                startActivity(sendIntent);
-            }
-            break;
-            case R.id.nav_exit:
-                exit();
-                break;
+
+        }
+        catch (Exception ex){
+            Log.e("Navigation drawer", ex.getMessage(), ex);
         }
 
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -324,10 +367,19 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void exit() {
-        Intent intent = new Intent(Intent.ACTION_MAIN);
-        intent.addCategory(Intent.CATEGORY_HOME);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivity(intent);
+
+        try {
+
+            Intent intent = new Intent(Intent.ACTION_MAIN);
+            intent.addCategory(Intent.CATEGORY_HOME);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+
+        }
+        catch (Exception ex){
+
+            Log.e("Exit feature", ex.getMessage(), ex);
+        }
     }
 
     /**
@@ -381,30 +433,42 @@ public class MainActivity extends AppCompatActivity
                 NewCategoryInfo.CategoryInfo.CATEGORY_DESC,
                 NewCategoryInfo.CategoryInfo.CATEGORY_ICON};
 
-        Cursor cursor = eyeRSContentResolver.query(DBOperations.CONTENT_URI_CATEGORIES,
-                projection, null, null, null);
+        String[] selectionArgs = {};
+
+        String sortOrder = "";
 
         TreeSet<String> data = new TreeSet<>();
 
-        if (cursor.moveToFirst()) {
+        try {
 
-            do {
+        Cursor cursor = eyeRSContentResolver.query(DBOperations.CONTENT_URI_CATEGORIES,
+                projection, null, selectionArgs, sortOrder);
 
-                data.add(cursor.getString(1));
+            if (cursor.moveToFirst()) {
 
-            } while (cursor.moveToNext());
+                do {
 
-            cursor.close();
+                    data.add(cursor.getString(1));
 
-        } else {
+                } while (cursor.moveToNext());
 
-//            addCategories = null; //empty categories list
+                cursor.close();
+
+            } else {
+
+                Log.e("Category list", "Could not populate categories");
+
+            }
+
+            for (String str : data) {
+
+                addCategories.add(str);
+            }
 
         }
+        catch (Exception ex){
 
-        for (String str : data) {
-
-            addCategories.add(str);
+            Log.e("Categories list query", ex.getMessage(), ex);
         }
 
         return addCategories;
@@ -431,28 +495,36 @@ public class MainActivity extends AppCompatActivity
 
         String[] selectionArgs = {};
 
-        String whereClause = NewItemInfo.ItemInfo.CATEGORY_NAME + " = '" + STATE + "'";
+        String itemsWhereClause = NewItemInfo.ItemInfo.CATEGORY_NAME + " = '" + STATE + "'";
 
         String sortOrder = NewItemInfo.ItemInfo.ITEM_NAME;
 
-        Cursor cursor = eyeRSContentResolver.query(DBOperations.CONTENT_URI_ITEMS,
-                projection, whereClause, null, sortOrder);
+        try {
 
-        if (cursor.moveToFirst()) {
-            do {
-                byte[] decodedString = Base64.decode(cursor.getString(4), Base64.DEFAULT);
-                Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+            Cursor cursor = eyeRSContentResolver.query(DBOperations.CONTENT_URI_ITEMS,
+                    projection, itemsWhereClause, selectionArgs, sortOrder);
 
-                Toast.makeText(this, cursor.toString(), Toast.LENGTH_LONG).show();
-                items.add(new ItemLabel(cursor.getString(2), decodedByte));
+            if (cursor.moveToFirst()) {
+                do {
+                    byte[] decodedString = Base64.decode(cursor.getString(4), Base64.DEFAULT);
+                    Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
 
-                ViewItemActivity.ITEM = new ItemWrapper(cursor.getString(2), decodedByte, cursor.getString(3));
-            } while (cursor.moveToNext());
+                    Toast.makeText(this, cursor.toString(), Toast.LENGTH_LONG).show();
+                    items.add(new ItemLabel(cursor.getString(2), decodedByte));
 
-            cursor.close();
+                    ViewItemActivity.ITEM = new ItemWrapper(cursor.getString(2), decodedByte, cursor.getString(3));
+                } while (cursor.moveToNext());
 
-        } else {
-            Toast.makeText(this, "Nothing to display!", Toast.LENGTH_SHORT).show();
+                cursor.close();
+
+            } else {
+                Toast.makeText(this, "Nothing to display!", Toast.LENGTH_SHORT).show();
+            }
+
+        }
+        catch (Exception ex){
+
+            Log.e("Get items query", ex.getMessage(), ex);
         }
 
         return items;
@@ -461,23 +533,41 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        if (STATE.equals("main")) {
-            STATE = listView.getItemAtPosition(position).toString(); //Retrieves the selected category
-            startActivity(new Intent(this, MainActivity.class));
-        } else {
-            STATE = listView.getItemAtPosition(position).toString(); //Retrieves the selected category
-                       startActivity(new Intent(this, ViewItemActivity.class));
+
+        try {
+
+            if (STATE.equals("main")) {
+                STATE = listView.getItemAtPosition(position).toString(); //Retrieves the selected category
+                startActivity(new Intent(this, MainActivity.class));
+            } else {
+                STATE = listView.getItemAtPosition(position).toString(); //Retrieves the selected category
+                startActivity(new Intent(this, ViewItemActivity.class));
+            }
+
+        }
+        catch (Exception ex){
+
+            Log.e("Main activity list view", ex.getMessage(), ex);
         }
     }
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event)  {
-        if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.ECLAIR
-                && keyCode == KeyEvent.KEYCODE_BACK
-                && event.getRepeatCount() == 0) {
-            // Take care of calling this method on earlier versions of
-            // the platform where it doesn't exist.
-            onBackPressed();
+
+        try {
+
+            if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.ECLAIR
+                    && keyCode == KeyEvent.KEYCODE_BACK
+                    && event.getRepeatCount() == 0) {
+                // Take care of calling this method on earlier versions of
+                // the platform where it doesn't exist.
+                onBackPressed();
+            }
+
+        }
+        catch (Exception ex){
+
+            Log.e("MainActivity key_down", ex.getMessage(), ex);
         }
 
         return super.onKeyDown(keyCode, event);

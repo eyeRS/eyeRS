@@ -5,7 +5,6 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.READ_SMS" />
@@ -67,12 +66,7 @@
             android:label="@string/title_activity_slideshow"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="adjustPan" />
-        <activity
-            android:name=".activities.ViewItemsActivity"
-            android:label="@string/title_activity_view_items"
-            android:theme="@style/AppTheme.NoActionBar" /><![CDATA[
         android:windowSoftInputMode="adjustPan">
-        ]]>
         <activity
             android:name=".activities.RegisterActivity"
             android:label="@string/title_activity_register"
@@ -84,7 +78,7 @@
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.github.eyers.activities.ViewItemsActivity" />
+                android:value="com.github.eyers.activities.ViewItemActivity" />
         </activity>
         <activity
             android:name=".activities.NewCategoryActivity"
@@ -112,7 +106,7 @@
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".activities.todo.ProfileSettings"
+            android:name=".activities.ProfileSettingsActivity"
             android:label="@string/title_activity_profile_settings"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="adjustPan" />
@@ -120,7 +114,9 @@
             android:name=".activities.ItemManagementSettings"
             android:label="@string/title_activity_item_mgmt_settings"
             android:theme="@style/AppTheme.NoActionBar"
-            android:windowSoftInputMode="adjustPan"></activity>
+            android:windowSoftInputMode="adjustPan">
+
+        </activity>
 
         <provider
             android:name=".DBOperations"
@@ -142,7 +138,9 @@
         <activity
             android:name=".activities.ViewItemActivity"
             android:label="@string/title_activity_view_item"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar">
+
+        </activity>
     </application>
 
 </manifest>

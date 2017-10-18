@@ -3,6 +3,7 @@ package com.github.eyers.activities;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.widget.CompoundButton;
 import android.widget.Switch;
 import android.widget.Toast;
@@ -32,15 +33,22 @@ public class SoundSettings extends AppCompatActivity {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 
-                /** If the user wishes to receive a welcome message pop up */
-                if (isChecked) {
+                try {
 
-                    Toast.makeText(SoundSettings.this, "Welcome message enabled!", Toast.LENGTH_SHORT).show();
+                    /** If the user wishes to receive a welcome message pop up */
+                    if (isChecked) {
+
+                        Toast.makeText(SoundSettings.this, "Welcome message enabled!", Toast.LENGTH_SHORT).show();
+                    }
+                    /** If the user does not wish to receive a welcome message pop up */
+                    if (!isChecked) {
+
+                        Toast.makeText(SoundSettings.this, "Welcome message disabled!", Toast.LENGTH_SHORT).show();
+                    }
                 }
-                /** If the user does not wish to receive a welcome message pop up */
-                if (!isChecked) {
+                catch (Exception ex){
 
-                    Toast.makeText(SoundSettings.this, "Welcome message disabled!", Toast.LENGTH_SHORT).show();
+                    Log.e("Welcome switch", ex.getMessage(), ex);
                 }
 
             }
@@ -51,15 +59,23 @@ public class SoundSettings extends AppCompatActivity {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 
-                // If the user wishes to get touch sounds
-                if (isChecked) {
+                try {
 
-                    Toast.makeText(SoundSettings.this, "Touch sounds enabled!", Toast.LENGTH_SHORT).show();
+                    // If the user wishes to get touch sounds
+                    if (isChecked) {
+
+                        Toast.makeText(SoundSettings.this, "Touch sounds enabled!", Toast.LENGTH_SHORT).show();
+                    }
+                    // If the user does not wish to get touch sounds
+                    if (!isChecked) {
+
+                        Toast.makeText(SoundSettings.this, "Touch sounds disabled!", Toast.LENGTH_SHORT).show();
+                    }
+
                 }
-                // If the user does not wish to get touch sounds
-                if (!isChecked) {
+                catch (Exception ex){
 
-                    Toast.makeText(SoundSettings.this, "Touch sounds disabled!", Toast.LENGTH_SHORT).show();
+                    Log.e("Touch switch", ex.getMessage(), ex);
                 }
             }
         });
