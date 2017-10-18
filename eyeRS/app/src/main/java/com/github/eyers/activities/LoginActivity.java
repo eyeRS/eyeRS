@@ -3,6 +3,7 @@ package com.github.eyers.activities;
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.database.Cursor;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -27,9 +28,11 @@ public final class LoginActivity extends AppCompatActivity implements View.OnCli
      * Content Resolver declaration.
      */
     private ContentResolver eyeRSContentResolver;
-
+    /*Getting media player*/
+        MediaPlayer welcomeMessage;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         super.setContentView(R.layout.activity_login);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -42,7 +45,11 @@ public final class LoginActivity extends AppCompatActivity implements View.OnCli
         findViewById(R.id.btnRegister).setOnClickListener(this);
 
         Toast.makeText(this, "Welcome!", Toast.LENGTH_SHORT).show();
+
+        /*Initialising mediaPlayer*/
+        welcomeMessage=MediaPlayer.create(LoginActivity.this,R.raw.welcomemsg);
     }
+
 
     /**
      * Called when a view has been clicked.
@@ -92,7 +99,8 @@ public final class LoginActivity extends AppCompatActivity implements View.OnCli
                 ).equals(txtPIN.getText().toString())) {
 
                     super.startActivity(new Intent(getApplicationContext(), MainActivity.class)); //Grant access
-
+                    /*Starting media*/
+                    welcomeMessage.start();
                 }
                 else{
 

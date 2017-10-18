@@ -42,6 +42,7 @@ public class SoundSettings extends AppCompatActivity {
 
                     Toast.makeText(SoundSettings.this, "Welcome message disabled!", Toast.LENGTH_SHORT).show();
                 }
+
             }
         });
 
@@ -50,18 +51,19 @@ public class SoundSettings extends AppCompatActivity {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 
-                /** If the user wishes to get touch sounds */
+                // If the user wishes to get touch sounds
                 if (isChecked) {
 
                     Toast.makeText(SoundSettings.this, "Touch sounds enabled!", Toast.LENGTH_SHORT).show();
                 }
-                /** If the user does not wish to get touch sounds */
+                // If the user does not wish to get touch sounds
                 if (!isChecked) {
 
                     Toast.makeText(SoundSettings.this, "Touch sounds disabled!", Toast.LENGTH_SHORT).show();
                 }
             }
         });
+
     }
 
 } //end class SoundSettings
