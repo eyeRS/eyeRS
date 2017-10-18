@@ -70,12 +70,9 @@
         <activity
             android:name=".activities.ViewItemsActivity"
             android:label="@string/title_activity_view_items"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".activities.ListActivity"
-            android:label="@string/title_activity_list"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar" /><![CDATA[
         android:windowSoftInputMode="adjustPan">
+        ]]>
         <activity
             android:name=".activities.RegisterActivity"
             android:label="@string/title_activity_register"
