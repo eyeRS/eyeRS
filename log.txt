@@ -1,3 +1,170 @@
+commit 514ed0587fa74f7073750a71a2973e2ee8143b16
+Author: Matthew 'siD' Van der Bijl <matthewvdbijl@gmail.com>
+Date:   Wed Oct 18 09:23:09 2017 +0200
+
+    stuff done in class
+
+commit fd125926b59f4c50e357596a0647c51938acff58
+Author: Matthew 'siD' Van der Bijl <matthewvdbijl@gmail.com>
+Date:   Wed Oct 18 08:30:55 2017 +0200
+
+    .
+
+commit 370fa328fb3a15dbd9bbe8ad08e4e986e835addd
+Author: Matthew 'siD' Van der Bijl <matthewvdbijl@gmail.com>
+Date:   Tue Oct 17 19:36:26 2017 +0200
+
+    update
+
+commit 225c7d70709f0674d070935b63a40feebf904c6e
+Author: Nathan Shava <nathantendai.shava@gmail.com>
+Date:   Tue Oct 17 14:16:09 2017 +0200
+
+    Content Resolver insert update
+    
+    # Conflicts:
+    #       eyeRS/app/src/main/java/com/github/eyers/MainActivity.java
+    #       eyeRS/app/src/main/res/layout/activity_main.xml
+    #       eyeRS/app/src/main/res/values/strings.xml
+
+commit 5537c7a9b8f06e31eeea443bf0785be331b9e064
+Author: Matthew 'siD' Van der Bijl <matthewvdbijl@gmail.com>
+Date:   Tue Oct 17 13:13:35 2017 +0200
+
+    error message fix
+
+commit 74eaf391ebb2e971fd565eae8b563dbcaccc694d
+Author: Nathan Shava <nathantendai.shava@gmail.com>
+Date:   Tue Oct 17 13:06:22 2017 +0200
+
+    Cursor query update
+    
+    # Conflicts:
+    #       eyeRS/app/src/main/java/com/github/eyers/MainActivity.java
+    #       eyeRS/app/src/main/res/layout/activity_main.xml
+    #       eyeRS/app/src/main/res/values/strings.xml
+
+commit fef852a647175bc5bc9db1bf004caf1a59e665c2
+Author: Matthew 'siD' Van der Bijl <matthewvdbijl@gmail.com>
+Date:   Tue Oct 17 12:02:54 2017 +0200
+
+    debuggong
+
+commit 96924370ce16172a9d41dec3e6f916347c6295ae
+Author: Matthew 'siD' Van der Bijl <matthewvdbijl@gmail.com>
+Date:   Tue Oct 17 11:37:17 2017 +0200
+
+    javadoc update
+
+commit 7b13ba123dc2199c93b9761aa20787509642b521
+Merge: 6919412 ab7e1f8
+Author: Nathan Shava <nathantendai.shava@gmail.com>
+Date:   Tue Oct 17 11:25:40 2017 +0200
+
+    Merge remote-tracking branch 'origin/master'
+    
+    # Conflicts:
+    #       eyeRS/app/src/main/java/com/github/eyers/activities/NewItemActivity.java
+
+commit 6919412b55971f43df39b821e20459b83025df7c
+Author: Nathan Shava <nathantendai.shava@gmail.com>
+Date:   Tue Oct 17 11:23:10 2017 +0200
+
+    Query update
+    
+    # Conflicts:
+    #       eyeRS/app/src/main/java/com/github/eyers/MainActivity.java
+    #       eyeRS/app/src/main/res/layout/activity_main.xml
+    #       eyeRS/app/src/main/res/values/strings.xml
+
+commit ab7e1f8f824a41f5a662d1e5ec67e25babb4e3e5
+Author: Matthew 'siD' Van der Bijl <matthewvdbijl@gmail.com>
+Date:   Tue Oct 17 10:03:39 2017 +0200
+
+    hot fix on add itme
+
+commit d9ba2c5f1fea477f7e1ce9ec8c4cbb1fd075dd37
+Author: Matthew 'siD' Van der Bijl <matthewvdbijl@gmail.com>
+Date:   Tue Oct 17 09:10:26 2017 +0200
+
+    hot fix on add category
+
+commit f6d27097205598e497f63d342e8344eb74cd3088
+Author: Matthew 'siD' Van der Bijl <matthewvdbijl@gmail.com>
+Date:   Mon Oct 16 21:34:25 2017 +0200
+
+    insert borken
+
+commit e206039ed39ff7b2ed3810bebb738c4646168fbe
+Merge: 3ed4b63 0cfbe62
+Author: Matthew 'siD' Van der Bijl <matthewvdbijl@gmail.com>
+Date:   Mon Oct 16 21:28:03 2017 +0200
+
+    Merge branch 'master' of https://github.com/eyers/eyers
+
+commit 0cfbe62e6b0a7a1eb1c5af69f84dd4f00e9b6a87
+Author: Nathan Shava <nathantendai.shava@gmail.com>
+Date:   Mon Oct 16 21:16:43 2017 +0200
+
+    Query fix
+    
+    # Conflicts:
+    #       eyeRS/app/src/main/java/com/github/eyers/MainActivity.java
+    #       eyeRS/app/src/main/res/layout/activity_main.xml
+    #       eyeRS/app/src/main/res/values/strings.xml
+
+commit 3ed4b635aca65fb8379ed6cb7b379a01217059c9
+Author: Matthew 'siD' Van der Bijl <matthewvdbijl@gmail.com>
+Date:   Mon Oct 16 21:14:20 2017 +0200
+
+    .
+
+commit 45a8d90a6b76948056784bd7ad7138f84b1376e1
+Author: Nathan Shava <nathantendai.shava@gmail.com>
+Date:   Mon Oct 16 21:11:05 2017 +0200
+
+    Query update
+    
+    # Conflicts:
+    #       eyeRS/app/src/main/java/com/github/eyers/MainActivity.java
+    #       eyeRS/app/src/main/res/layout/activity_main.xml
+    #       eyeRS/app/src/main/res/values/strings.xml
+
+commit 91b1bad6be4b23aa21ad182f9d3498acd585d7c4
+Author: Nathan Shava <nathantendai.shava@gmail.com>
+Date:   Mon Oct 16 20:49:07 2017 +0200
+
+    Query fix
+    
+    # Conflicts:
+    #       eyeRS/app/src/main/java/com/github/eyers/MainActivity.java
+    #       eyeRS/app/src/main/res/layout/activity_main.xml
+    #       eyeRS/app/src/main/res/values/strings.xml
+
+commit e0fc6da49ac3d04cd38d3686c006425366322792
+Merge: 0d68fa5 dd005c0
+Author: Nathan Shava <nathantendai.shava@gmail.com>
+Date:   Mon Oct 16 12:01:26 2017 +0200
+
+    Merge remote-tracking branch 'origin/master'
+
+commit 0d68fa55b302f06231c2864e84e3867fc91d2e08
+Author: Nathan Shava <nathantendai.shava@gmail.com>
+Date:   Mon Oct 16 12:01:09 2017 +0200
+
+    PIN resetting
+    
+    # Conflicts:
+    #       eyeRS/app/src/main/java/com/github/eyers/MainActivity.java
+    #       eyeRS/app/src/main/res/layout/activity_main.xml
+    #       eyeRS/app/src/main/res/values/strings.xml
+
+commit dd005c0b1975ea2979371485d1629ec33f25b4ee
+Author: Blunderchips <matthewvdbijl@gmail.com>
+Date:   Mon Oct 16 11:48:37 2017 +0200
+
+    create log
+
 commit 4a53ed57f575ad3be74590a841fb1d379e58cf86
 Author: Blunderchips <matthewvdbijl@gmail.com>
 Date:   Mon Oct 16 11:48:24 2017 +0200
