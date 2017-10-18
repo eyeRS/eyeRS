@@ -11,10 +11,13 @@ public class ItemWrapper {
 
     private final String name;
     private final Bitmap image;
+    private final String description;
 
-    public ItemWrapper(String name, Bitmap image) {
+
+    public ItemWrapper(String name, Bitmap image, String description) {
         this.name = name;
         this.image = image;
+        this.description = description;
     }
 
     public String getName() {
@@ -25,11 +28,16 @@ public class ItemWrapper {
         return image;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
     @Override
     public String toString() {
         return "ItemWrapper{" +
                 "name='" + name + '\'' +
                 ", image=" + image +
+                ", description='" + description + '\'' +
                 '}';
     }
 }

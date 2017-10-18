@@ -145,8 +145,10 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
     }
 
     /**
-     * @return Method returns the categories result set of the SQL query and adds elements into a
-     * list structure for the spinner
+     * Method returns the categories result set of the SQL query and adds elements into a
+     * list structure for the spinner.
+     *
+     * @return
      */
     public List<String> getCategoriesList() {
 
@@ -242,28 +244,29 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
                         case "books": { // if the user is adding a book item
                             addBook(); // call the method to add a book item to the db
                         }
-                        return;
+                        break;
                         case "clothes": { // if the user is adding a clothing item
                             addClothing(); // call the method to add a clothing item to the db
                         }
-                        return;
+                        break;
                         case "accessories": { // if the user is adding an accessory item
                             addAccessory(); // call the method to add an accessory item to the db
                         }
-                        return;
+                        break;
                         case "games": { //if the user is adding a gaming item
                             addGame();
                         }
-                        return;
+                        break;
                         case "other": { // call the method to add another item to the db
                             addOther(); // call the method to add a gaming item to the db
                         }
-                        return;
+                        break;
                         case NewCategoryInfo.CategoryInfo.CATEGORY_NAME: {  // if the user is adding any item that doesn't correspond to the default categories
                             addItemInfo(); // call the method to add a user specified-item to the db
                         }
-
+                        break;
                     }
+                    startActivity(new Intent(this, MainActivity.class));
                 } else {
                     Toast.makeText(this, "Sorry but your item was not added successfully", Toast.LENGTH_SHORT).show();
                 }
@@ -625,7 +628,11 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
 
     private void cameraIntent() {
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        startActivityForResult(intent, REQUEST_CAMERA);
+        try{
+            startActivityForResult(intent, REQUEST_CAMERA);
+        }catch (Exception ex){
+            Log.e("camera premissions", "error getting premissionns", ex);
+        }
     }
 
     @Override
@@ -646,22 +653,7 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
         ByteArrayOutputStream bytes = new ByteArrayOutputStream();
         thumbnail.compress(Bitmap.CompressFormat.JPEG, 90, bytes);
 
-        File destination = new File(Environment.getExternalStorageDirectory(),
-                System.currentTimeMillis() + ".jpg");
-
-        img = /* "data:image/jpg;base64," +*/ Base64.encodeToString(bytes.toByteArray(), Base64.DEFAULT);
-
-//        FileOutputStream fo;
-//        try {
-//            destination.createNewFile();
-//            fo = new FileOutputStream(destination);
-//            fo.write(bytes.toByteArray());
-//            fo.close();
-//        } catch (FileNotFoundException e) {
-//            e.printStackTrace();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
+        img = Base64.encodeToString(bytes.toByteArray(), Base64.DEFAULT);
 
         ivImage.setImageBitmap(thumbnail);
     }
@@ -691,10 +683,8 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
      */
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
         //Category selected from Spinner
         category = parent.getItemAtPosition(position).toString();
-
     }
 
     /**
@@ -710,11 +700,9 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
      */
     @Override
     public void onSaveInstanceState(Bundle savedInstanceState) {
-
         savedInstanceState.putInt("category_spinner", categorySpinner.getSelectedItemPosition());
         savedInstanceState.putString("item_name", txtTitle.getText().toString());
         savedInstanceState.putString("item_desc", txtDesc.getText().toString());
-
     }
 
     /**

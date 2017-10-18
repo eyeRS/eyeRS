@@ -33,6 +33,7 @@ import com.github.eyers.LabelAdapter;
 import com.github.eyers.R;
 import com.github.eyers.info.NewCategoryInfo;
 import com.github.eyers.info.NewItemInfo;
+import com.github.eyers.wrapper.ItemWrapper;
 import com.miguelcatalan.materialsearchview.MaterialSearchView;
 
 import java.util.ArrayList;
@@ -51,7 +52,6 @@ public class MainActivity extends AppCompatActivity
      * Declarations
      */
     private static String STATE = "main";
-    private static String getSelectedCategory;
 
     /**
      * Used to declare the search view bar.
@@ -208,12 +208,11 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onBackPressed() {
+        STATE = "main";
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-
             super.onBackPressed();
         }
     }
@@ -432,25 +431,22 @@ public class MainActivity extends AppCompatActivity
 
         String[] selectionArgs = {};
 
-        String whereClause = NewItemInfo.ItemInfo.CATEGORY_NAME + " = '" + getSelectedCategory + "'";
+        String whereClause = NewItemInfo.ItemInfo.CATEGORY_NAME + " = '" + STATE + "'";
 
         String sortOrder = NewItemInfo.ItemInfo.ITEM_NAME;
 
         Cursor cursor = eyeRSContentResolver.query(DBOperations.CONTENT_URI_ITEMS,
                 projection, whereClause, null, sortOrder);
 
-        Toast.makeText(this, "asdasd " + cursor.getCount(), Toast.LENGTH_LONG).show();
-
         if (cursor.moveToFirst()) {
-            Toast.makeText(this, "bang".toString(), Toast.LENGTH_LONG).show();
             do {
-//                for (int i = 0; i < cursor.getCount(); i++) {
                 byte[] decodedString = Base64.decode(cursor.getString(4), Base64.DEFAULT);
                 Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
 
                 Toast.makeText(this, cursor.toString(), Toast.LENGTH_LONG).show();
                 items.add(new ItemLabel(cursor.getString(2), decodedByte));
-//                }
+
+                ViewItemActivity.ITEM = new ItemWrapper(cursor.getString(2), decodedByte, cursor.getString(3));
             } while (cursor.moveToNext());
 
             cursor.close();
@@ -465,12 +461,13 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//        if (!STATE.equals("main")) {
-//            return;
-//        }
-        STATE = "asd";
-        getSelectedCategory = listView.getItemAtPosition(position).toString(); //Retrieves the selected category
-        startActivity(new Intent(this, MainActivity.class));
+        if (STATE.equals("main")) {
+            STATE = listView.getItemAtPosition(position).toString(); //Retrieves the selected category
+            startActivity(new Intent(this, MainActivity.class));
+        } else {
+            STATE = listView.getItemAtPosition(position).toString(); //Retrieves the selected category
+                       startActivity(new Intent(this, ViewItemActivity.class));
+        }
     }
 
     @Override

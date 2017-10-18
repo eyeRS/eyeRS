@@ -275,8 +275,7 @@ public class AutoResizeTextView extends android.support.v7.widget.AppCompatTextV
     }
 
     @Override
-    protected void onSizeChanged(int width, int height, int oldwidth,
-                                 int oldheight) {
+    protected void onSizeChanged(int width, int height, int oldwidth, int oldheight) {
         mTextCachedSizes.clear();
         super.onSizeChanged(width, height, oldwidth, oldheight);
         if (width != oldwidth || height != oldheight) {
