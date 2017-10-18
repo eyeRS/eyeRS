@@ -33,7 +33,9 @@ import java.util.HashMap;
 public class NewCategoryActivity extends AppCompatActivity implements View.OnClickListener,
         LoaderManager.LoaderCallbacks<Cursor>, AdapterView.OnItemSelectedListener {
 
-    // Fields & other declarations
+    /**
+     * Fields & other declarations
+     */
     private EditText txtTitle;
     private String categoryName;
     private EditText txtDesc;
@@ -51,7 +53,7 @@ public class NewCategoryActivity extends AppCompatActivity implements View.OnCli
      * Constructor
      */
     public NewCategoryActivity() {
-       this. data = new HashMap<>();
+        this.data = new HashMap<>();
     }
 
     @Override
@@ -85,15 +87,21 @@ public class NewCategoryActivity extends AppCompatActivity implements View.OnCli
     @Override
     public void onClick(View view) {
 
-        switch (view.getId()) {
+        try {
+            switch (view.getId()) {
 
-            case R.id.btnAddCategory: //user clicks add
-                /**
-                 * User cannot add a new category without a title & description
-                 */
-                validateCategories();
-                startActivity(new Intent(this, MainActivity.class));
-                break;
+                case R.id.btnAddCategory: //user clicks add
+                    /**
+                     * User cannot add a new category without a title & description
+                     */
+                    validateCategories();
+                    startActivity(new Intent(this, MainActivity.class));
+                    break;
+            }
+
+        } catch (Exception ex) {
+
+            Log.e("Event handlers", ex.getMessage(), ex);
         }
     }
 
@@ -107,6 +115,7 @@ public class NewCategoryActivity extends AppCompatActivity implements View.OnCli
      */
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
         //Display the icon selected for the new category
         this.imageView.setImageDrawable(getResources().getDrawable(data.get(iconSpinner.getSelectedItem())));
         //Get a string reference to store into the db
@@ -139,46 +148,62 @@ public class NewCategoryActivity extends AppCompatActivity implements View.OnCli
                 NewCategoryInfo.CategoryInfo.CATEGORY_DESC,
                 NewCategoryInfo.CategoryInfo.CATEGORY_ICON};
 
-        /**
-         * Cursor object to retrieve query results
-         */
-        Cursor cursor = eyeRSContentResolver.query(DBOperations.CONTENT_URI_CATEGORIES,
-                projection, null, null,
-                null);
+        String whereClause = "";
 
-        if (cursor.moveToFirst()) {
+        String[] selectionArgs = {};
 
-            do {
+        String sortOrder = "";
 
-                /**
-                 * If the user tries to create an existing category display appropriate message
-                 */
-                if (cursor.getString(cursor.getColumnIndex(NewCategoryInfo.
-                        CategoryInfo.CATEGORY_NAME)).equals(categoryName)) {
+        try {
 
-                    Toast.makeText(this, "This category already exists. " +
-                            "Please select a unique name for your new category", Toast.LENGTH_SHORT).show();
+            /**
+             * Content resolver query
+             */
+            Cursor cursor = eyeRSContentResolver.query(
+                    DBOperations.CONTENT_URI_CATEGORIES,
+                    projection,
+                    whereClause,
+                    selectionArgs,
+                    sortOrder);
+
+            if (cursor.moveToFirst()) {
+
+                do {
 
                     /**
-                     * Clear the fields to allow the user to re-enter details
+                     * If the user tries to create an existing category display appropriate message
                      */
-                    this.txtTitle.setText("");
-                    this.txtDesc.setText("");
+                    if (cursor.getString(cursor.getColumnIndex(NewCategoryInfo.
+                            CategoryInfo.CATEGORY_NAME)).equals(categoryName)) {
 
-                }
-                /**
-                 * If the user is creating a new category
-                 */
-                if (!cursor.getString(cursor.getColumnIndex(NewCategoryInfo.
-                        CategoryInfo.CATEGORY_NAME)).equals(categoryName)) {
+                        Toast.makeText(this, "This category already exists. " +
+                                "Please select a unique name for your new category", Toast.LENGTH_SHORT).show();
 
-                    addNewCategory(); //method to add the new category
-                }
+                        /**
+                         * Clear the fields to allow the user to re-enter details
+                         */
+                        this.txtTitle.setText("");
+                        this.txtDesc.setText("");
 
-            } while (cursor.moveToNext());
+                    }
+                    /**
+                     * If the user is creating a new category
+                     */
+                    if (!cursor.getString(cursor.getColumnIndex(NewCategoryInfo.
+                            CategoryInfo.CATEGORY_NAME)).equals(categoryName)) {
+
+                        addNewCategory(); //method to add the new category
+                    }
+
+                } while (cursor.moveToNext());
+            }
+
+            cursor.close();
+
+        } catch (Exception ex) {
+
+            Log.e("Categories query", ex.getMessage(), ex);
         }
-
-        cursor.close();
 
     } //end void validateCategories()
 
@@ -201,7 +226,9 @@ public class NewCategoryActivity extends AppCompatActivity implements View.OnCli
             /**
              * Content resolver insert operation
              */
-            eyeRSContentResolver.insert(DBOperations.CONTENT_URI_CATEGORIES, categoryValues);
+            eyeRSContentResolver.insert(
+                    DBOperations.CONTENT_URI_CATEGORIES,
+                    categoryValues);
 
             Toast.makeText(this, "Your new category has been created successfully ",
                     Toast.LENGTH_SHORT).show();

@@ -89,7 +89,7 @@ public class DBOperations extends ContentProvider {
 
         //get access to the database helper
         eyeRSDatabaseHelper = new EyeRSDatabaseHelper(getContext());
-        return false;
+        return true;
     }
 
     /**

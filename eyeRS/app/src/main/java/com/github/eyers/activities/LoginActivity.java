@@ -92,11 +92,23 @@ public final class LoginActivity extends AppCompatActivity implements View.OnCli
                 NewRegInfo.UserRegistrationInfo.SECURITY_QUESTION,
                 NewRegInfo.UserRegistrationInfo.SECURITY_RESPONSE};
 
+        String whereClause = "";
+
+        String[] selectionArgs = {};
+
+        String sortOrder = "";
+
         try {
 
-            Cursor cursor = eyeRSContentResolver.query(DBOperations.CONTENT_URI_USER_REG,
-                    projection, null, null,
-                    null);
+            /**
+             * Content Resolver query
+             */
+            Cursor cursor = eyeRSContentResolver.query(
+                    DBOperations.CONTENT_URI_USER_REG,
+                    projection,
+                    whereClause,
+                    selectionArgs,
+                    sortOrder);
 
             if (cursor.moveToFirst()) {
 

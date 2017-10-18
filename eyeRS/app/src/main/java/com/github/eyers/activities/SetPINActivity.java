@@ -133,13 +133,23 @@ public class SetPINActivity extends AppCompatActivity implements View.OnClickLis
                     String pinA = txtPIN1.getText().toString();
                     String pinB = txtPIN2.getText().toString();
 
-                    if (pinA == null || pinA.equals("")) {
+                    if (pinA.isEmpty()) {
+
                         Toast.makeText(this, "Please enter a PIN.", Toast.LENGTH_LONG).show();
-                    } else if (pinA == null || pinA.equals("")) {
+                        return;
+                    }
+                    if (pinB.isEmpty()) {
+
                         Toast.makeText(this, "Please confirm you PIN.", Toast.LENGTH_LONG).show();
-                    } else if (!pinA.equals(pinB)) {
+                        return;
+                    }
+                    if (!pinA.equals(pinB)) {
+
                         Toast.makeText(this, "Your PINs do not match.", Toast.LENGTH_LONG).show();
-                    } else if (pinA.equals(pinB)) { //pins match
+                        return;
+
+                    }
+                    if (pinA.equals(pinB)) { //pins match
 
                         matchedPIN = txtPIN2.getText().toString();
                         updateLoginInfo(); //method to update details

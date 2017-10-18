@@ -29,8 +29,6 @@ import com.github.eyers.R;
 import com.github.eyers.info.UserProfileInfo;
 
 import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 
 import static com.github.eyers.EyeRS.REQUEST_READ_EXTERNAL_STORAGE;
@@ -106,12 +104,17 @@ public class ProfileSettingsActivity extends AppCompatActivity implements View.O
 
         try {
 
-            eyeRSContentResolver.insert(DBOperations.CONTENT_URI_USER_PROFILE, profileValues);
+            /**
+             * Content resolver profile insert
+             */
+            eyeRSContentResolver.insert(
+                    DBOperations.CONTENT_URI_USER_PROFILE,
+                    profileValues);
 
             Toast.makeText(this, "Profile settings updated successfully", Toast.LENGTH_LONG).show();
             Log.e("DATABASE OPERATIONS", "...New item added to DB!");
 
-        } catch (SQLiteException ex) {
+        } catch (Exception ex) {
 
             Log.e("Profile update fail", ex.getMessage(), ex);
             Toast.makeText(this, "Unable to update profile", Toast.LENGTH_SHORT).show();

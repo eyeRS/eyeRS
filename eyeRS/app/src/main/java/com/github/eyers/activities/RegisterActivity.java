@@ -69,7 +69,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
      */
     private ContentResolver eyeRSContentResolver;
     /**
-     *
+     * Email address validation pattern
      */
     private Pattern regexPattern = Pattern.compile("^[(a-zA-Z-0-9-\\ \\+\\.)]+@[(a-z-A-z)]+\\.[(a-zA-z)]{2,3}$");
 
@@ -131,7 +131,9 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             /**
              * Content resolver insert operation
              */
-            eyeRSContentResolver.insert(DBOperations.CONTENT_URI_USER_REG, userRegValues);
+            eyeRSContentResolver.insert(
+                    DBOperations.CONTENT_URI_USER_REG,
+                    userRegValues);
 
             Toast.makeText(this, "Your details have been saved successfully", Toast.LENGTH_LONG).show();
             Log.e("DATABASE OPERATIONS", "...New user added to DB!");
@@ -191,12 +193,35 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                     email = txtEmail.getText().toString();
                     securityResponse = txtResponse.getText().toString();
 
-                    if (!validateEmailAddress(email)) { //email not validate
+                    if (!validateEmailAddress(email) && email.isEmpty()) { //email not validate
 
                         Toast.makeText(this, "Please enter a valid email address.", Toast.LENGTH_LONG).show();
                         return;
                     }
+                    if (username.isEmpty()){ //no username
 
+                        Toast.makeText(this, "Please enter a username", Toast.LENGTH_LONG).show();
+                        return;
+                    }
+                    if (pinA.isEmpty()){ //PIN 1 missing
+
+                        Toast.makeText(this, "Please enter a valid PIN", Toast.LENGTH_LONG).show();
+                        return;
+                    }
+                    if (pinB.isEmpty()){ //PIN 2 missing
+
+                        Toast.makeText(this, "Please enter a valid PIN", Toast.LENGTH_LONG).show();
+                        return;
+                    }
+                    if ((pinA.length() < 4) && (pinB.length() < 4)){
+
+                        Toast.makeText(this, "Please ensure your PIN is at least 4 digits",
+                                Toast.LENGTH_LONG).show();
+                        return;
+                    }
+                    if (!pinA.equals(pinB)){
+
+                    }
                     if (pinA.equals(pinB)) { //if pins match
 
                         matchedPIN = txtPIN2.getText().toString(); //get a copy
