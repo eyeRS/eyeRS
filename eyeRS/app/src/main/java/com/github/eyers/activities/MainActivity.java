@@ -44,14 +44,13 @@ import java.util.TreeSet;
  * This class includes a navigation drawer and will display the main home activity of the app
  * once a user has successfully logged in.
  */
-public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener,
-        LoaderManager.LoaderCallbacks<Cursor>, OnItemClickListener {
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener,
+        View.OnClickListener, LoaderManager.LoaderCallbacks<Cursor>, OnItemClickListener {
 
     /**
      * Declarations
      */
-    private static String STATE = "main";
+    public static String STATE = "main";
 
     /**
      * Used to declare the search view bar.
@@ -148,7 +147,9 @@ public class MainActivity extends AppCompatActivity
                     )); // TODO
                 }
             } else {
-                items = getItems();
+                for (ItemWrapper item : getItems(STATE)) {
+                    items.add(new ItemLabel(item.getName(), item.getImage()));
+                }
             }
 
             LabelAdapter adapter = new LabelAdapter(this, items);
@@ -162,6 +163,7 @@ public class MainActivity extends AppCompatActivity
         }
 
         listView.setOnItemClickListener(this);
+        getIntent().setAction("Already created");
     }
 
     /**
@@ -414,9 +416,9 @@ public class MainActivity extends AppCompatActivity
      *
      * @return the items based on the selected category
      */
-    public ArrayList<ItemLabel> getItems() {
+    public ArrayList<ItemWrapper> getItems(String category) {
 
-        ArrayList<ItemLabel> items = new ArrayList<ItemLabel>();
+        ArrayList<ItemWrapper> items = new ArrayList<ItemWrapper>();
 
         ContentResolver eyeRSContentResolver = this.getContentResolver(); // Content resolver object
 
@@ -430,7 +432,7 @@ public class MainActivity extends AppCompatActivity
 
         String[] selectionArgs = {};
 
-        String whereClause = NewItemInfo.ItemInfo.CATEGORY_NAME + " = '" + STATE + "'";
+        String whereClause = NewItemInfo.ItemInfo.CATEGORY_NAME + " = '" + category + "'";
 
         String sortOrder = NewItemInfo.ItemInfo.ITEM_NAME;
 
@@ -445,13 +447,9 @@ public class MainActivity extends AppCompatActivity
                     decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
                 } catch (NullPointerException npe) {
                     Log.e("error loading image", npe.getMessage());
-                    decodedByte = BitmapFactory.decodeResource(
-                            getResources(), R.drawable.ic_action_help);
+                    decodedByte = BitmapFactory.decodeResource(getResources(), R.drawable.ic_action_help);
                 }
-                Toast.makeText(this, cursor.toString(), Toast.LENGTH_LONG).show();
-                items.add(new ItemLabel(cursor.getString(2), decodedByte));
-
-                ViewItemActivity.ITEM = new ItemWrapper(cursor.getString(2), decodedByte, cursor.getString(3));
+                items.add(new ItemWrapper(cursor.getString(2), decodedByte, cursor.getString(3)));
             } while (cursor.moveToNext());
 
             cursor.close();
@@ -470,7 +468,19 @@ public class MainActivity extends AppCompatActivity
             STATE = listView.getItemAtPosition(position).toString(); //Retrieves the selected category
             startActivity(new Intent(this, MainActivity.class));
         } else {
+            String tmp = STATE;
             STATE = listView.getItemAtPosition(position).toString(); //Retrieves the selected category
+
+            for (ItemWrapper item : getItems(tmp)) {
+                if (item.getName().equals(STATE)) {
+                    ViewItemActivity.ITEM = item;
+                    Toast.makeText(this, "bang " + STATE, Toast.LENGTH_LONG).show();
+                    startActivity(new Intent(this, ViewItemActivity.class));
+                    return;
+                }
+            }
+
+            Toast.makeText(this, "not found " + STATE, Toast.LENGTH_LONG).show();
             startActivity(new Intent(this, ViewItemActivity.class));
         }
     }
@@ -486,5 +496,18 @@ public class MainActivity extends AppCompatActivity
         }
 
         return super.onKeyDown(keyCode, event);
+    }
+
+    @Override
+    protected void onResume() {
+        String action = getIntent().getAction();
+        if (action == null || !action.equals("Already created")) {
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+            finish();
+        } else {
+            getIntent().setAction(null);
+        }
+        super.onResume();
     }
 } //end class MainActivity
