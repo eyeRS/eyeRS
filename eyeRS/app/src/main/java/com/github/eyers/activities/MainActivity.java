@@ -18,6 +18,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Base64;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -443,7 +444,6 @@ public class MainActivity extends AppCompatActivity
         if (cursor.moveToFirst()) {
             Toast.makeText(this, "bang".toString(), Toast.LENGTH_LONG).show();
             do {
-
 //                for (int i = 0; i < cursor.getCount(); i++) {
                 byte[] decodedString = Base64.decode(cursor.getString(4), Base64.DEFAULT);
                 Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
@@ -451,15 +451,12 @@ public class MainActivity extends AppCompatActivity
                 Toast.makeText(this, cursor.toString(), Toast.LENGTH_LONG).show();
                 items.add(new ItemLabel(cursor.getString(2), decodedByte));
 //                }
-
             } while (cursor.moveToNext());
 
             cursor.close();
 
         } else {
-
             Toast.makeText(this, "Nothing to display!", Toast.LENGTH_SHORT).show();
-
         }
 
         return items;
@@ -476,4 +473,16 @@ public class MainActivity extends AppCompatActivity
         startActivity(new Intent(this, MainActivity.class));
     }
 
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event)  {
+        if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.ECLAIR
+                && keyCode == KeyEvent.KEYCODE_BACK
+                && event.getRepeatCount() == 0) {
+            // Take care of calling this method on earlier versions of
+            // the platform where it doesn't exist.
+            onBackPressed();
+        }
+
+        return super.onKeyDown(keyCode, event);
+    }
 } //end class MainActivity
