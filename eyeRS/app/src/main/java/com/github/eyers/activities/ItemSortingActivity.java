@@ -3,6 +3,7 @@ package com.github.eyers.activities;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.widget.CompoundButton;
 import android.widget.Switch;
 import android.widget.Toast;
@@ -26,17 +27,23 @@ public class ItemSortingActivity extends AppCompatActivity {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 
-                /** If the user wishes to sort alphabetically */
-                if (isChecked) {
+                try {
 
-                    Toast.makeText(ItemSortingActivity.this, "All items have been sorted alphabetically",
-                            Toast.LENGTH_SHORT).show();
-                }
-                /** If the user does not wish to sort alphabetically */
-                if (!isChecked) {
+                    /** If the user wishes to sort alphabetically */
+                    if (isChecked) {
 
-                    Toast.makeText(ItemSortingActivity.this, "All items will be displayed as normal",
-                            Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ItemSortingActivity.this, "All items have been sorted alphabetically",
+                                Toast.LENGTH_SHORT).show();
+                    }
+                    /** If the user does not wish to sort alphabetically */
+                    if (!isChecked) {
+
+                        Toast.makeText(ItemSortingActivity.this, "All items will be displayed as normal",
+                                Toast.LENGTH_SHORT).show();
+                    }
+
+                } catch (Exception ex) {
+                    Log.e("ItemSorting switch", ex.getMessage(), ex);
                 }
             }
         });
@@ -46,17 +53,22 @@ public class ItemSortingActivity extends AppCompatActivity {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 
-                /** If the user wishes to sort by the most recently added items */
-                if (isChecked) {
+                try {
+                    /** If the user wishes to sort by the most recently added items */
+                    if (isChecked) {
 
-                    Toast.makeText(ItemSortingActivity.this, "All items have been sorted according" +
-                            " to their order of entry", Toast.LENGTH_SHORT).show();
-                }
-                /** If the user does not wish to sort alphabetically */
-                if (!isChecked) {
+                        Toast.makeText(ItemSortingActivity.this, "All items have been sorted according" +
+                                " to their order of entry", Toast.LENGTH_SHORT).show();
+                    }
+                    /** If the user does not wish to sort alphabetically */
+                    if (!isChecked) {
 
-                    Toast.makeText(ItemSortingActivity.this, "All items will be displayed as normal",
-                            Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ItemSortingActivity.this, "All items will be displayed as normal",
+                                Toast.LENGTH_SHORT).show();
+                    }
+
+                } catch (Exception ex) {
+                    Log.e("Recently added switch", ex.getMessage(), ex);
                 }
             }
         });

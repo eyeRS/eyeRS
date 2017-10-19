@@ -5,6 +5,7 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.constraint.solver.SolverVariable;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
@@ -23,7 +24,7 @@ import org.w3c.dom.Text;
  */
 public class DisplaySettingsActivity extends AppCompatActivity implements OnClickListener {
 
-    private Spinner fontTypeSpinner, fontSizeSpinner;
+    private Spinner fontTypeSpinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +32,6 @@ public class DisplaySettingsActivity extends AppCompatActivity implements OnClic
         setContentView(R.layout.activity_display_settings);
 
         String[] fontTypes = getResources().getStringArray(R.array.font_types);
-        String[] fontSizes = getResources().getStringArray(R.array.font_size);
 
         findViewById(R.id.imgbtn_Blue).setOnClickListener(this);
         findViewById(R.id.imgbtn_Red).setOnClickListener(this);
@@ -39,7 +39,6 @@ public class DisplaySettingsActivity extends AppCompatActivity implements OnClic
         findViewById(R.id.imgbtn_Green).setOnClickListener(this);
 
         fontTypeSpinner = (Spinner) findViewById(R.id.spinnerFontType);
-        fontSizeSpinner = (Spinner) findViewById(R.id.spinnerFontSize);
 
         /**
          * Event handler for font type spinner
@@ -105,37 +104,32 @@ public class DisplaySettingsActivity extends AppCompatActivity implements OnClic
             }
         });
 
-        /**
-         * Event handler for font size spinner
-         */
-        fontSizeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
     }
 
     public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.imgbtn_Blue:
-                Utils.changeToTheme(this, Utils.App_Theme);
-                break;
-            case R.id.imgbtn_Red:
-                Utils.changeToTheme(this, Utils.AppTheme_Red);
-                break;
-            case R.id.imgbtn_Yellow:
-                Utils.changeToTheme(this, Utils.AppTheme_Yellow);
-                break;
-            case R.id.imgbtn_Green:
-                Utils.changeToTheme(this, Utils.AppTheme_Green);
-                break;
+
+        try {
+
+            switch (view.getId()) {
+
+                case R.id.imgbtn_Blue:
+                    Utils.changeToTheme(this, Utils.App_Theme);
+                    break;
+                case R.id.imgbtn_Red:
+                    Utils.changeToTheme(this, Utils.AppTheme_Red);
+                    break;
+                case R.id.imgbtn_Yellow:
+                    Utils.changeToTheme(this, Utils.AppTheme_Yellow);
+                    break;
+                case R.id.imgbtn_Green:
+                    Utils.changeToTheme(this, Utils.AppTheme_Green);
+                    break;
+
+            }
+
+        } catch (Exception ex) {
+
+            Log.e("Change Theme", ex.getMessage(), ex);
         }
     }
 } //end class DisplaySettingsActivity

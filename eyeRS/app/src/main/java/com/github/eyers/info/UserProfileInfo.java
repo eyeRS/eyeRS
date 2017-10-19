@@ -1,4 +1,4 @@
-package com.github.eyers.activities;
+package com.github.eyers.info;
 
 /**
  * The class holds data about the database table and column names belonging to the User Profile Settings
@@ -8,7 +8,7 @@ package com.github.eyers.activities;
  */
 public class UserProfileInfo {
 
-    public static abstract class ProfileInfo {
+    public static class ProfileInfo {
         /**
          * Entity name
          */

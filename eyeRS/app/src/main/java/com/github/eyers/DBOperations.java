@@ -12,10 +12,10 @@ import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.util.Log;
 
-import com.github.eyers.activities.UserProfileInfo;
 import com.github.eyers.info.NewCategoryInfo;
 import com.github.eyers.info.NewItemInfo;
 import com.github.eyers.info.NewRegInfo;
+import com.github.eyers.info.UserProfileInfo;
 
 /**
  * A custom Content Provider to perform the database operations.
@@ -89,7 +89,7 @@ public class DBOperations extends ContentProvider {
 
         //get access to the database helper
         eyeRSDatabaseHelper = new EyeRSDatabaseHelper(getContext());
-        return false;
+        return true;
     }
 
     /**

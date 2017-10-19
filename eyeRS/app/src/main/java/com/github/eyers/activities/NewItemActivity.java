@@ -15,7 +15,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteException;
 import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
@@ -40,9 +39,6 @@ import com.github.eyers.info.NewCategoryInfo;
 import com.github.eyers.info.NewItemInfo;
 
 import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -113,16 +109,20 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
 
         }
 
-        if (ContextCompat.checkSelfPermission(NewItemActivity.this,
-                Manifest.permission.CAMERA)
-                != PackageManager.PERMISSION_GRANTED) {
-            if (ActivityCompat.shouldShowRequestPermissionRationale(NewItemActivity.this,
-                    Manifest.permission.CAMERA)) {
-            } else {
-                ActivityCompat.requestPermissions(NewItemActivity.this,
-                        new String[]{Manifest.permission.CAMERA},
-                        REQUEST_READ_EXTERNAL_STORAGE);
+        try {
+            if (ContextCompat.checkSelfPermission(NewItemActivity.this,
+                    Manifest.permission.CAMERA)
+                    != PackageManager.PERMISSION_GRANTED) {
+                if (ActivityCompat.shouldShowRequestPermissionRationale(NewItemActivity.this,
+                        Manifest.permission.CAMERA)) {
+                } else {
+                    ActivityCompat.requestPermissions(NewItemActivity.this,
+                            new String[]{Manifest.permission.CAMERA},
+                            REQUEST_READ_EXTERNAL_STORAGE);
+                }
             }
+        } catch (Exception ex) {
+            Log.e("CAMERA PERMISSIONS", "Retrieved permission for in-built camera use");
         }
     }
 
@@ -131,21 +131,28 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
      */
     public void populateSpinner() {
 
-        //Spinner categories
-        popCategories = getCategoriesList();
+        try {
 
-        //Create an adapter for the spinner
-        categoriesAdapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_spinner_item, popCategories);
+            //Spinner categories
+            popCategories = getCategoriesList();
 
-        //Set the adapter to the spinner
-        this.categorySpinner.setAdapter(categoriesAdapter);
+            //Create an adapter for the spinner
+            categoriesAdapter = new ArrayAdapter<String>(this,
+                    android.R.layout.simple_spinner_item, popCategories);
 
+            //Set the adapter to the spinner
+            this.categorySpinner.setAdapter(categoriesAdapter);
+
+        } catch (Exception ex) {
+            Log.e("Populating the spinner", ex.getMessage(), ex);
+        }
     }
 
     /**
-     * @return Method returns the categories result set of the SQL query and adds elements into a
-     * list structure for the spinner
+     * Method returns the categories result set of the SQL query and adds elements into a
+     * list structure for the spinner.
+     *
+     * @return
      */
     public List<String> getCategoriesList() {
 
@@ -157,36 +164,53 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
                 NewCategoryInfo.CategoryInfo.CATEGORY_ID,
                 NewCategoryInfo.CategoryInfo.CATEGORY_NAME,
                 NewCategoryInfo.CategoryInfo.CATEGORY_DESC,
-                NewCategoryInfo.CategoryInfo.CATEGORY_ICON};
+                NewCategoryInfo.CategoryInfo.CATEGORY_ICON
+        };
 
-        String selection = "category_name = \"" + NewCategoryInfo.CategoryInfo.CATEGORY_NAME
-                + "\"";
+        String whereClause = "";
 
-        Cursor cursor = eyeRSContentResolver.query(DBOperations.CONTENT_URI_CATEGORIES,
-                projection, null, null,
-                null);
+        String[] selectionArgs = {};
 
-        TreeSet<String> data = new TreeSet<>();
+        String sortOrder = NewCategoryInfo.CategoryInfo.CATEGORY_NAME;
 
-        if (cursor.moveToFirst()) {
+        try {
 
-            do {
+            /**
+             * Content resolver query
+             */
+            Cursor cursor = eyeRSContentResolver.query(
+                    DBOperations.CONTENT_URI_CATEGORIES,
+                    projection,
+                    whereClause,
+                    selectionArgs,
+                    sortOrder);
 
-                data.add(cursor.getString(1));
+            TreeSet<String> data = new TreeSet<>();
 
-            } while (cursor.moveToNext());
+            if (cursor.moveToFirst()) {
 
-            cursor.close();
+                do {
 
-        } else {
+                    data.add(cursor.getString(1));
 
-            addCategories = null; //empty categories list
-        }
+                } while (cursor.moveToNext());
 
-        for (String str : data) {
+                cursor.close();
 
-            addCategories.add(str);
+            } else {
 
+                addCategories = null; //empty categories list
+            }
+
+            for (String str : data) {
+
+                addCategories.add(str);
+
+            }
+
+        } catch (Exception ex) {
+
+            Log.e("Categories list", ex.getMessage(), ex);
         }
 
         return addCategories; //return the list of categories
@@ -213,13 +237,20 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
     protected void onResume() {
         super.onResume();
 
-        /**
-         * Retrieve the saved spinner selection
-         */
-        categorySpinner = (Spinner) findViewById(R.id.category_spinner);
-        SharedPreferences category_prefs = getSharedPreferences("category_prefs", Context.MODE_PRIVATE);
-        int spinner_index = category_prefs.getInt("spinner_indx", 0);
-        categorySpinner.setSelection(spinner_index);
+        try {
+
+            /**
+             * Retrieve the saved spinner selection
+             */
+            categorySpinner = (Spinner) findViewById(R.id.category_spinner);
+            SharedPreferences category_prefs = getSharedPreferences("category_prefs", Context.MODE_PRIVATE);
+            int spinner_index = category_prefs.getInt("spinner_indx", 0);
+            categorySpinner.setSelection(spinner_index);
+
+        } catch (Exception ex) {
+
+            Log.e("onPause()", ex.getMessage(), ex);
+        }
 
     }
 
@@ -234,44 +265,51 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
         itemName = txtTitle.getText().toString();
         itemDesc = txtDesc.getText().toString();
 
-        switch (view.getId()) {
+        try {
 
-            case R.id.btnAddItem: //user clicks add
-                if (txtTitle != null) {
-                    switch (categorySpinner.getSelectedItem().toString().toLowerCase()) {
-                        case "books": { // if the user is adding a book item
-                            addBook(); // call the method to add a book item to the db
-                        }
-                        return;
-                        case "clothes": { // if the user is adding a clothing item
-                            addClothing(); // call the method to add a clothing item to the db
-                        }
-                        return;
-                        case "accessories": { // if the user is adding an accessory item
-                            addAccessory(); // call the method to add an accessory item to the db
-                        }
-                        return;
-                        case "games": { //if the user is adding a gaming item
-                            addGame();
-                        }
-                        return;
-                        case "other": { // call the method to add another item to the db
-                            addOther(); // call the method to add a gaming item to the db
-                        }
-                        return;
-                        case NewCategoryInfo.CategoryInfo.CATEGORY_NAME: {  // if the user is adding any item that doesn't correspond to the default categories
-                            addItemInfo(); // call the method to add a user specified-item to the db
-                        }
+            switch (view.getId()) {
 
+                case R.id.btnAddItem: //user clicks add
+                    if (txtTitle != null) {
+                        switch (categorySpinner.getSelectedItem().toString().toLowerCase()) {
+                            case "books": { // if the user is adding a book item
+                                addBook(); // call the method to add a book item to the db
+                            }
+                            break;
+                            case "clothes": { // if the user is adding a clothing item
+                                addClothing(); // call the method to add a clothing item to the db
+                            }
+                            break;
+                            case "accessories": { // if the user is adding an accessory item
+                                addAccessory(); // call the method to add an accessory item to the db
+                            }
+                            break;
+                            case "games": { //if the user is adding a gaming item
+                                addGame();
+                            }
+                            break;
+                            case "other": { // call the method to add another item to the db
+                                addOther(); // call the method to add a gaming item to the db
+                            }
+                            break;
+                            case NewCategoryInfo.CategoryInfo.CATEGORY_NAME: {  // if the user is adding any item that doesn't correspond to the default categories
+                                addItemInfo(); // call the method to add a user specified-item to the db
+                            }
+                            break;
+                        }
+                        startActivity(new Intent(this, MainActivity.class));
+                    } else {
+                        Toast.makeText(this, "Sorry but your item was not added successfully", Toast.LENGTH_SHORT).show();
                     }
-                } else {
-                    Toast.makeText(this, "Sorry but your item was not added successfully",
-                            Toast.LENGTH_SHORT).show();
-                }
-                break;
-            case R.id.new_item_image:
-                selectImage();
-                break;
+                    break;
+                case R.id.new_item_image:
+                    selectImage();
+                    break;
+            }
+
+        } catch (Exception ex) {
+
+            Log.e("Event handlers", ex.getMessage(), ex);
         }
 
     }
@@ -293,10 +331,15 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
 
         try {
 
-            //Insert the Book item
+
             try {
 
-                eyeRSContentResolver.insert(DBOperations.CONTENT_URI_ITEMS, bookValues);
+                /**
+                 * Content resolver book insert
+                 */
+                eyeRSContentResolver.insert(
+                        DBOperations.CONTENT_URI_ITEMS,
+                        bookValues);
 
                 Toast.makeText(this, "Your book item has been added successfully ", Toast.LENGTH_SHORT).show();
                 //Display message in the logcat window after successful operation execution
@@ -344,8 +387,13 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
         try {
 
             try {
-                //Insert the Clothing item
-                eyeRSContentResolver.insert(DBOperations.CONTENT_URI_ITEMS, clothesValues);
+
+                /**
+                 * Content resolver clothes insert
+                 */
+                eyeRSContentResolver.insert(
+                        DBOperations.CONTENT_URI_ITEMS,
+                        clothesValues);
 
                 Toast.makeText(this, "Your clothing item has been added successfully ", Toast.LENGTH_SHORT).show();
                 //Display message in the logcat window after successful operation execution
@@ -393,8 +441,13 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
         try {
 
             try {
-                //Insert the Accessory item
-                eyeRSContentResolver.insert(DBOperations.CONTENT_URI_ITEMS, accessoriesValues);
+
+                /**
+                 * Content resolver accessories insert
+                 */
+                eyeRSContentResolver.insert(
+                        DBOperations.CONTENT_URI_ITEMS,
+                        accessoriesValues);
 
                 Toast.makeText(this, "Your accessory item has been added successfully ", Toast.LENGTH_SHORT).show();
                 //Display message in the logcat window after successful operation execution
@@ -441,38 +494,37 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
 
         try {
 
-            try {
-                //Insert the Game item
-                eyeRSContentResolver.insert(DBOperations.CONTENT_URI_ITEMS, gamesValues);
+            /**
+             * Content resolver games insert
+             */
+            eyeRSContentResolver.insert(
+                    DBOperations.CONTENT_URI_ITEMS,
+                    gamesValues);
 
-                Toast.makeText(this, "Your gaming item has been added successfully ", Toast.LENGTH_SHORT).show();
-                //Display message in the logcat window after successful operation execution
-                Log.e("DATABASE OPERATIONS", "...Game item added to DB!");
+            Toast.makeText(this, "Your gaming item has been added successfully ", Toast.LENGTH_SHORT).show();
+            //Display message in the logcat window after successful operation execution
+            Log.e("DATABASE OPERATIONS", "...Game item added to DB!");
 
-                /**
-                 * Then clear the fields after successfully inserting the data
-                 */
-                txtTitle.setText("");
-                txtDesc.setText("");
-                img = "";
-                ivImage.setImageBitmap(null);
+            /**
+             * Then clear the fields after successfully inserting the data
+             */
+            txtTitle.setText("");
+            txtDesc.setText("");
+            img = "";
+            ivImage.setImageBitmap(null);
 
-            } catch (Exception ex) {
+        } catch (Exception ex) {
 
-                Log.e(getClass().getSimpleName(), "Gaming item not added.", ex);
-                txtTitle.setText("");
-                txtDesc.setText("");
-                img = "";
-                ivImage.setImageBitmap(null);
-
-            }
-
-        } catch (SQLiteException ex) {
             Toast.makeText(this, "Unable to add item", Toast.LENGTH_SHORT).show();
-            Log.e(getClass().getSimpleName(), "Unable to add item", ex);
-        }
+            Log.e(getClass().getSimpleName(), "Gaming item not added.", ex);
+            txtTitle.setText("");
+            txtDesc.setText("");
+            img = "";
+            ivImage.setImageBitmap(null);
 
-    } //end void addGame()
+        }
+    }
+    //end void addGame()
 
     /**
      * Adding a random item.
@@ -491,37 +543,39 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
 
         try {
 
-            try {
-                //Insert the Other item
-                eyeRSContentResolver.insert(DBOperations.CONTENT_URI_ITEMS, otherValues);
+            /**
+             * Content resolver other insert
+             */
+            eyeRSContentResolver.insert(
+                    DBOperations.CONTENT_URI_ITEMS,
+                    otherValues);
 
-                Toast.makeText(this, "Your other item has been added successfully ", Toast.LENGTH_SHORT).show();
-                //Display message in the logcat window after successful operation execution
-                Log.e("DATABASE OPERATIONS", "...Other item added to DB!");
+            Toast.makeText(this, "Your other item has been added successfully ", Toast.LENGTH_SHORT).show();
+            //Display message in the logcat window after successful operation execution
+            Log.e("DATABASE OPERATIONS", "...Other item added to DB!");
 
-                /**
-                 * Then clear the fields after successfully inserting the data
-                 */
-                txtTitle.setText("");
-                txtDesc.setText("");
-                img = "";
-                ivImage.setImageBitmap(null);
+            /**
+             * Then clear the fields after successfully inserting the data
+             */
+            txtTitle.setText("");
+            txtDesc.setText("");
+            img = "";
+            ivImage.setImageBitmap(null);
 
-            } catch (Exception ex) {
+        } catch (Exception ex) {
 
-                Log.e(getClass().getSimpleName(), "Other item not added.", ex);
-                txtTitle.setText("");
-                txtDesc.setText("");
-                img = "";
-                ivImage.setImageBitmap(null);
-
-            }
-
-        } catch (SQLiteException ex) {
             Toast.makeText(this, "Unable to add item", Toast.LENGTH_SHORT).show();
+            Log.e(getClass().getSimpleName(), "Other item not added.", ex);
+            txtTitle.setText("");
+            txtDesc.setText("");
+            img = "";
+            ivImage.setImageBitmap(null);
+
         }
 
-    } //end void addOther()
+    }
+
+    //end void addOther()
 
     /**
      * Method to add a new Item.
@@ -536,162 +590,205 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
         itemsValues.put(NewItemInfo.ItemInfo.CATEGORY_NAME, category); //user specified category
         itemsValues.put(NewItemInfo.ItemInfo.ITEM_NAME, itemName); //item's name
         itemsValues.put(NewItemInfo.ItemInfo.ITEM_DESC, itemDesc); //item's description
+        Toast.makeText(this, img, Toast.LENGTH_LONG).show();
         itemsValues.put(NewItemInfo.ItemInfo.ITEM_IMAGE, img); //item's image
 
         try {
 
-            try {
-                eyeRSContentResolver.insert(DBOperations.CONTENT_URI_ITEMS, itemsValues);
+            /**
+             * Content resolver items insert
+             */
+            eyeRSContentResolver.insert(
+                    DBOperations.CONTENT_URI_ITEMS,
+                    itemsValues);
 
-                Toast.makeText(this, "Your item has been added successfully", Toast.LENGTH_SHORT).show();
-                //Display message in the logcat window after successful operation execution
-                Log.e("DATABASE OPERATIONS", "...New item added to DB!");
+            Toast.makeText(this, "Your item has been added successfully", Toast.LENGTH_SHORT).show();
+            //Display message in the logcat window after successful operation execution
+            Log.e("DATABASE OPERATIONS", "...New item added to DB!");
 
-                /**
-                 * Then clear the fields after successfully inserting the data
-                 */
-                txtTitle.setText("");
-                txtDesc.setText("");
-                img = "";
-                ivImage.setImageBitmap(null);
+            /**
+             * Then clear the fields after successfully inserting the data
+             */
+            txtTitle.setText("");
+            txtDesc.setText("");
+            img = "";
+            ivImage.setImageBitmap(null);
 
-            } catch (Exception ex) {
+        } catch (Exception ex) {
 
-                Log.e(getClass().getSimpleName(), "User specified item not added.", ex);
-                txtTitle.setText("");
-                txtDesc.setText("");
-                img = "";
-                ivImage.setImageBitmap(null);
-
-            }
-
-        } catch (SQLiteException ex) {
             Toast.makeText(this, "Unable to add item", Toast.LENGTH_SHORT).show();
+            Log.e(getClass().getSimpleName(), "User specified item not added.", ex);
+            txtTitle.setText("");
+            txtDesc.setText("");
+            img = "";
+            ivImage.setImageBitmap(null);
+
         }
 
-    } //end void addItemInfo()
+    }
+
+    //end void addItemInfo()
 
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         Toast.makeText(this, requestCode + "", Toast.LENGTH_LONG).show();
-        switch (requestCode) {
-            case REQUEST_READ_EXTERNAL_STORAGE:
-                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    if (userChoosenTask.equals("Take Photo"))
-                        cameraIntent();
-                    else if (userChoosenTask.equals("Choose from Library"))
-                        galleryIntent();
-                } else {
-                    //code for deny
-                }
-                break;
+
+        try {
+
+            switch (requestCode) {
+                case REQUEST_READ_EXTERNAL_STORAGE:
+                    try {
+                        if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                            if (userChoosenTask.equals("Take Photo"))
+                                cameraIntent();
+                            else if (userChoosenTask.equals("Choose from Library"))
+                                galleryIntent();
+                        } else {
+                            //code for deny
+                        }
+                    } catch (Exception ex) {
+                        Log.e("CAMERA PERMISSIONS", "Retrieved permission for in-built camera use", ex);
+                    }
+                    break;
+            }
+        } catch (Exception ex) {
+
+            Log.e("onReqPermissionResult()", ex.getMessage(), ex);
         }
     }
 
     private void selectImage() {
         final String[] items = {"Take Photo", "Choose from Library", "Cancel"};
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Add Photo!");
-        builder.setItems(items, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int item) {
-                boolean result = EyeRS.checkPermission(NewItemActivity.this);
+        try {
 
-                if (items[item].equals("Take Photo")) {
-                    userChoosenTask = "Take Photo";
-                    if (result) {
-                        cameraIntent();
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle("Add Photo!");
+            builder.setItems(items, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int item) {
+                    boolean result = EyeRS.checkPermission(NewItemActivity.this);
+
+                    if (items[item].equals("Take Photo")) {
+                        userChoosenTask = "Take Photo";
+                        if (result) {
+                            cameraIntent();
+                        }
+                    } else if (items[item].equals("Choose from Library")) {
+                        userChoosenTask = "Choose from Library";
+                        if (result)
+                            galleryIntent();
+
+                    } else if (items[item].equals("Cancel")) {
+                        dialog.dismiss();
                     }
-                } else if (items[item].equals("Choose from Library")) {
-                    userChoosenTask = "Choose from Library";
-                    if (result)
-                        galleryIntent();
-
-                } else if (items[item].equals("Cancel")) {
-                    dialog.dismiss();
                 }
-            }
-        });
-        builder.show();
+            });
+            builder.show();
+        } catch (Exception ex) {
+
+            Log.e("selectImage()", ex.getMessage(), ex);
+        }
     }
 
+
     private void galleryIntent() {
-        Intent intent = new Intent();
-        intent.setType("image/*");
-        intent.setAction(Intent.ACTION_GET_CONTENT);//
-        startActivityForResult(Intent.createChooser(intent, "Select File"), SELECT_FILE);
+
+        try {
+
+            Intent intent = new Intent();
+            intent.setType("image/*");
+            intent.setAction(Intent.ACTION_GET_CONTENT);//
+            startActivityForResult(Intent.createChooser(intent, "Select File"), SELECT_FILE);
+
+        } catch (Exception ex) {
+
+            Log.e("Gallery intent", ex.getMessage(), ex);
+        }
     }
 
     private void cameraIntent() {
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        startActivityForResult(intent, REQUEST_CAMERA);
+        try {
+            startActivityForResult(intent, REQUEST_CAMERA);
+        } catch (Exception ex) {
+            Log.e("Camera Permissions", ex.getMessage(), ex);
+        }
     }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (resultCode == Activity.RESULT_OK) {
-            if (requestCode == SELECT_FILE)
-                onSelectFromGalleryResult(data);
-            else if (requestCode == REQUEST_CAMERA)
-                onCaptureImageResult(data);
+        try {
+
+            if (resultCode == Activity.RESULT_OK) {
+                if (requestCode == SELECT_FILE) {
+                    onSelectFromGalleryResult(data);
+                } else if (requestCode == REQUEST_CAMERA) {
+                    onCaptureImageResult(data);
+                }
+            }
+
+        } catch (Exception ex) {
+
+            Log.e("Camera request", ex.getMessage(), ex);
         }
     }
 
     private void onCaptureImageResult(Intent data) {
-        thumbnail = (Bitmap) data.getExtras().get("data");
-        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
-        thumbnail.compress(Bitmap.CompressFormat.JPEG, 90, bytes);
 
-        File destination = new File(Environment.getExternalStorageDirectory(),
-                System.currentTimeMillis() + ".jpg");
-
-        img = "data:image/jpg;base64," + Base64.encodeToString(bytes.toByteArray(), 16);
-
-        FileOutputStream fo;
         try {
-            destination.createNewFile();
-            fo = new FileOutputStream(destination);
-            fo.write(bytes.toByteArray());
-            fo.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
 
-        ivImage.setImageBitmap(thumbnail);
+            thumbnail = (Bitmap) data.getExtras().get("data");
+            ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+            thumbnail.compress(Bitmap.CompressFormat.JPEG, 90, bytes);
+
+            img = Base64.encodeToString(bytes.toByteArray(), Base64.DEFAULT);
+
+            ivImage.setImageBitmap(thumbnail);
+
+        } catch (Exception ex) {
+
+            Log.e("Image capture", ex.getMessage(), ex);
+        }
     }
 
     @SuppressWarnings("deprecation")
     private void onSelectFromGalleryResult(Intent data) {
 
-        Bitmap bm = null;
-        if (data != null) {
-            try {
-                bm = MediaStore.Images.Media.getBitmap(getApplicationContext().getContentResolver(), data.getData());
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
+        try {
 
-        ivImage.setImageBitmap(bm);
+            Bitmap bm = null;
+            if (data != null) {
+                try {
+                    bm = MediaStore.Images.Media.getBitmap(getApplicationContext().getContentResolver(), data.getData());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            ivImage.setImageBitmap(bm);
+
+        } catch (Exception ex) {
+
+            Log.e("Gallery selection", ex.getMessage(), ex);
+        }
     }
 
     /**
+     * Method handles what happens when an item is selected from the spinner.
+     *
      * @param parent
      * @param view
      * @param position
-     * @param id       Method handles what happens when an item is selected from the spinner
+     * @param id
      */
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
         //Category selected from Spinner
         category = parent.getItemAtPosition(position).toString();
-
     }
 
     /**
@@ -707,11 +804,9 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
      */
     @Override
     public void onSaveInstanceState(Bundle savedInstanceState) {
-
         savedInstanceState.putInt("category_spinner", categorySpinner.getSelectedItemPosition());
         savedInstanceState.putString("item_name", txtTitle.getText().toString());
         savedInstanceState.putString("item_desc", txtDesc.getText().toString());
-
     }
 
     /**

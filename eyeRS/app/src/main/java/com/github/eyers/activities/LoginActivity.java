@@ -3,16 +3,22 @@ package com.github.eyers.activities;
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.database.Cursor;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
+import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.Switch;
 import android.widget.Toast;
 
 import com.github.eyers.DBOperations;
 import com.github.eyers.R;
 import com.github.eyers.info.NewRegInfo;
+
+import static com.github.eyers.R.id.welcomeSwitch;
 
 /**
  * This class will handle the Login event of the app.
@@ -27,9 +33,12 @@ public final class LoginActivity extends AppCompatActivity implements View.OnCli
      * Content Resolver declaration.
      */
     private ContentResolver eyeRSContentResolver;
+    /*Getting media player*/
+    MediaPlayer welcomeMessage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         super.setContentView(R.layout.activity_login);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -42,7 +51,12 @@ public final class LoginActivity extends AppCompatActivity implements View.OnCli
         findViewById(R.id.btnRegister).setOnClickListener(this);
 
         Toast.makeText(this, "Welcome!", Toast.LENGTH_SHORT).show();
+
+        ///Initialising mediaPlayer
+        welcomeMessage = MediaPlayer.create(LoginActivity.this, R.raw.welcomemsg);
+
     }
+
 
     /**
      * Called when a view has been clicked.
@@ -52,19 +66,26 @@ public final class LoginActivity extends AppCompatActivity implements View.OnCli
     @Override
     public void onClick(View v) {
 
-        switch (v.getId()) {
-            case R.id.txtForgotPin:
-                super.startActivity(new Intent(this, SetPINActivity.class));
-                return;
-            case R.id.btnRegister:
-                super.startActivity(new Intent(this, RegisterActivity.class));
-                return;
-            case R.id.btnLogin:
-                verifyLoginPIN(); //method to validate Login PIN
+        try {
+
+            switch (v.getId()) {
+                case R.id.txtForgotPin:
+                    super.startActivity(new Intent(this, SetPINActivity.class));
+                    return;
+                case R.id.btnRegister:
+                    super.startActivity(new Intent(this, RegisterActivity.class));
+                    return;
+                case R.id.btnLogin:
+                    verifyLoginPIN(); //method to validate Login PIN
+            }
+
+        } catch (Exception ex) {
+
+            Log.e("Login event handlers", ex.getMessage());
         }
     }
 
-    public void verifyLoginPIN(){
+    public void verifyLoginPIN() {
 
         eyeRSContentResolver = getApplicationContext().getContentResolver(); //Content resolver object
 
@@ -76,33 +97,55 @@ public final class LoginActivity extends AppCompatActivity implements View.OnCli
                 NewRegInfo.UserRegistrationInfo.SECURITY_QUESTION,
                 NewRegInfo.UserRegistrationInfo.SECURITY_RESPONSE};
 
-        Cursor cursor = eyeRSContentResolver.query(DBOperations.CONTENT_URI_USER_REG,
-                projection, null, null,
-                null);
+        String whereClause = "";
 
-        if (cursor.moveToFirst()) {
+        String[] selectionArgs = {};
 
-            do {
+        String sortOrder = "";
 
-                /**
-                 * We need to retrieve the pin used during the Register Activity
-                 * to validate the Login process
-                 */
-                if (cursor.getString(cursor.getColumnIndex(NewRegInfo.UserRegistrationInfo.USER_PIN)
-                ).equals(txtPIN.getText().toString())) {
+        try {
 
-                    super.startActivity(new Intent(getApplicationContext(), MainActivity.class)); //Grant access
+            /**
+             * Content Resolver query
+             */
+            Cursor cursor = eyeRSContentResolver.query(
+                    DBOperations.CONTENT_URI_USER_REG,
+                    projection,
+                    whereClause,
+                    selectionArgs,
+                    sortOrder);
 
-                }
-                else{
+            if (cursor.moveToFirst()) {
 
-                    Toast.makeText(this, "Login failed. Please enter the correct PIN", Toast.LENGTH_SHORT).show();
-                }
+                do {
 
-            } while (cursor.moveToNext());
+                    /**
+                     * We need to retrieve the pin used during the Register Activity
+                     * to validate the Login process
+                     */
+                    if (cursor.getString(cursor.getColumnIndex(NewRegInfo.UserRegistrationInfo.USER_PIN)
+                    ).equals(txtPIN.getText().toString())) {
 
-            cursor.close();
+                        super.startActivity(new Intent(getApplicationContext(), MainActivity.class)); //Grant access
+                        /*Welcome message*/
+                         welcomeMessage.start();
 
+                    } else { //Incorrect PIN
+
+                        Toast.makeText(this, "Login failed. Please enter the correct PIN", Toast.LENGTH_SHORT).show();
+
+                    }
+                } while (cursor.moveToNext());
+
+                cursor.close();
+
+            }
+
+        } catch (Exception ex) {
+
+            Log.e("Login query", ex.getMessage(), ex);
         }
+
     }
-}
+
+} //end class Login

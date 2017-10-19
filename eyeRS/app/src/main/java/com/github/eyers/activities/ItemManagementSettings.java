@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -40,21 +41,30 @@ public class ItemManagementSettings extends AppCompatActivity implements OnItemC
      */
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        switch (position) {
-            case 0:
-                // Add Item
-                startActivity(new Intent(this, NewItemActivity.class));
-                break;
-            case 1:
-                // Edit Item
-                break;
-            case 2:
-                // Delete Item
-                break;
-            case 3:
-                // Change Sorting
-                startActivity(new Intent(this, ItemSortingActivity.class));
-                break;
+
+        try {
+
+
+            switch (position) {
+                case 0:
+                    // Add Item
+                    startActivity(new Intent(this, NewItemActivity.class));
+                    break;
+                case 1:
+                    // Edit Item
+                    break;
+                case 2:
+                    // Delete Item
+                    break;
+                case 3:
+                    // Change Sorting
+                    startActivity(new Intent(this, ItemSortingActivity.class));
+                    break;
+            }
+
+        }
+        catch (Exception ex){
+            Log.e("ItemManagement listview", ex.getMessage(), ex);
         }
     }
 
