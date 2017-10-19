@@ -52,7 +52,7 @@ public final class LoginActivity extends AppCompatActivity implements View.OnCli
 
         Toast.makeText(this, "Welcome!", Toast.LENGTH_SHORT).show();
 
-        ///Initialising mediaPlayer
+        /*Initialising mediaPlayer*/
         welcomeMessage = MediaPlayer.create(LoginActivity.this, R.raw.welcomemsg);
 
     }
@@ -124,15 +124,22 @@ public final class LoginActivity extends AppCompatActivity implements View.OnCli
                      * to validate the Login process
                      */
                     if (cursor.getString(cursor.getColumnIndex(NewRegInfo.UserRegistrationInfo.USER_PIN)
-                    ).equals(txtPIN.getText().toString())) {
+                    ).equals("")) { //No user registered
+
+                        Toast.makeText(this, "Login failed. Please ensure you have registered your details first before " +
+                                "attempting to login", Toast.LENGTH_SHORT).show();
+
+                    } else if (!cursor.getString(cursor.getColumnIndex(NewRegInfo.UserRegistrationInfo.USER_PIN)
+                    ).equals(txtPIN.getText().toString())) { //Incorrect PIN
+
+                        Toast.makeText(this, "Login failed. Please enter the correct PIN", Toast.LENGTH_SHORT).show();
+                    }
+                    else if (cursor.getString(cursor.getColumnIndex(NewRegInfo.UserRegistrationInfo.USER_PIN)
+                    ).equals(txtPIN.getText().toString())) { //Correct PIN entered
 
                         super.startActivity(new Intent(getApplicationContext(), MainActivity.class)); //Grant access
                         /*Welcome message*/
                          welcomeMessage.start();
-
-                    } else { //Incorrect PIN
-
-                        Toast.makeText(this, "Login failed. Please enter the correct PIN", Toast.LENGTH_SHORT).show();
 
                     }
                 } while (cursor.moveToNext());

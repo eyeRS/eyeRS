@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.content.Loader;
 import android.content.res.Configuration;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteException;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -149,7 +148,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     )); // TODO
                 }
             } else {
-                for (ItemWrapper item : getItems(STATE)) {
+                for (ItemWrapper item : getItems()) {
                     items.add(new ItemLabel(item.getName(), item.getImage()));
                 }
             }
@@ -449,24 +448,24 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     selectionArgs,
                     sortOrder);
 
-        if (cursor.moveToFirst()) {
+            if (cursor.moveToFirst()) {
 
-            do {
+                do {
 
-                data.add(cursor.getString(1));
+                    data.add(cursor.getString(1));
 
-            } while (cursor.moveToNext());
+                } while (cursor.moveToNext());
 
-            cursor.close();
+                cursor.close();
 
-        } else {
-            Toast.makeText(this, "No categories to load", Toast.LENGTH_LONG).show();
-        }
+            } else {
+                Toast.makeText(this, "No categories to load", Toast.LENGTH_LONG).show();
+            }
 
-        for (String str : data) {
+            for (String str : data) {
 
-            addCategories.add(str);
-        }
+                addCategories.add(str);
+            }
 
         } catch (Exception ex) {
 
@@ -481,7 +480,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
      *
      * @return the items based on the selected category
      */
-    public ArrayList<ItemWrapper> getItems(String category) {
+    public ArrayList<ItemWrapper> getItems() {
 
         ArrayList<ItemWrapper> items = new ArrayList<ItemWrapper>();
 
@@ -497,7 +496,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         String[] selectionArgs = {};
 
-        String itemsWhereClause = NewItemInfo.ItemInfo.CATEGORY_NAME + " = '" + STATE + "'";
+        String itemsWhereClause = "'" + STATE + "' = "
+                + NewItemInfo.ItemInfo.CATEGORY_NAME + " OR " + "'" + STATE + "' = "
+                + NewCategoryInfo.CategoryInfo.CATEGORY_NAME;
 
         String sortOrder = NewItemInfo.ItemInfo.ITEM_NAME;
 
@@ -513,25 +514,35 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     selectionArgs,
                     sortOrder);
 
-        if (cursor.moveToFirst()) {
-            do {
-                Bitmap decodedByte;
-                try {
-                    byte[] decodedString = Base64.decode(cursor.getString(4), Base64.DEFAULT);
-                    decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
-                } catch (NullPointerException npe) {
-                    Log.e("error loading image", npe.getMessage());
-                    decodedByte = BitmapFactory.decodeResource(getResources(), R.drawable.ic_action_help);
-                }
-                items.add(new ItemWrapper(cursor.getString(2), decodedByte, cursor.getString(3)));
-            } while (cursor.moveToNext());
+            if (cursor.moveToFirst()) {
 
-            cursor.close();
+                do {
 
-        } else {
-            Toast.makeText(this, "Nothing to display!", Toast.LENGTH_SHORT).show();
-        }
+                    Bitmap decodedByte;
 
+                    try {
+
+                        byte[] decodedString = Base64.decode(cursor.getString(
+                                Integer.parseInt(NewItemInfo.ItemInfo.ITEM_IMAGE)), Base64.DEFAULT);
+                        decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+
+                    } catch (NullPointerException npe) {
+                        Log.e("error loading image", npe.getMessage());
+                        decodedByte = BitmapFactory.decodeResource(getResources(), R.drawable.ic_action_help);
+                    }
+
+                    items.add(new ItemWrapper(cursor.getString(
+                            Integer.parseInt(NewItemInfo.ItemInfo.ITEM_NAME)), decodedByte,
+                            cursor.getString(Integer.parseInt(NewItemInfo.ItemInfo.ITEM_DESC))));
+
+                } while (cursor.moveToNext());
+
+                cursor.close();
+
+            } else {
+
+                Toast.makeText(this, "Nothing to display!", Toast.LENGTH_SHORT).show();
+            }
         } catch (Exception ex) {
 
             Log.e("Get items query", ex.getMessage(), ex);
