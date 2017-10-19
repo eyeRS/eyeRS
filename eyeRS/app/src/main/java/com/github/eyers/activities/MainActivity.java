@@ -559,7 +559,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             if (STATE.equals("main")) {
                 STATE = listView.getItemAtPosition(position).toString(); //Retrieves the selected category
-                startActivity(new Intent(this, ViewItemActivity.class));
+                startActivity(new Intent(this, MainActivity.class));
             } else {
                 STATE = listView.getItemAtPosition(position).toString(); //Retrieves the selected category
                 startActivity(new Intent(this, ViewItemActivity.class));
