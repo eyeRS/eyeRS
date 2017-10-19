@@ -7,4 +7,24 @@
         <item name="android:statusBarColor">@color/eyeRSBlack</item>
         <item name="android:windowBackground">@color/eyeRSDarkGrey</item>
     </style>
+
+    <style name="AppThemeGreen1" parent="AppTheme">
+        <item name="colorPrimary">@color/eyeRSGreen</item>
+        <item name="colorPrimaryDark">@color/eyeRSDarkGreen</item>
+        <item name="colorAccent">@color/eyeRSDarkGreen</item>
+        <item name="android:colorBackground">@color/eyeRSGrey</item>
+        <item name="android:windowBackground">@color/eyeRSGrey</item>
+        <item name="android:colorForeground">@color/eyeRSBlack</item>
+        <item name="android:navigationBarColor">@color/eyeRSBlack</item>
+    </style>
+
+    <style name="AppThemeRed" parent="AppTheme">
+        <item name="colorPrimary">@color/eyeRSRed</item>
+        <item name="colorPrimaryDark">@color/eyeRSGrey</item>
+        <item name="colorAccent">@color/eyeRSDarkRed</item>
+        <item name="android:textColorPrimary">@color/eyeRSBlack</item>
+        <item name="android:windowBackground">@color/eyeRSDarkGrey</item>
+        <item name="android:statusBarColor">@color/eyeRSDarkGrey</item>
+        <item name="android:textColorPrimaryInverse">@color/eyeRSRed</item>
+    </style>
 </resources>

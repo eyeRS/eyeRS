@@ -185,16 +185,21 @@
 
     <!-- Strings related to Change font type -->
     <string-array name="font_types">
-        <item>Lancer</item>
-        <item>Athena</item>
-        <item>Crescent</item>
+        <item>Default</item>
+        <item>Arial</item>
+        <item>Antonio</item>
+        <item>Candy</item>
+        <item>DroidSans</item>
     </string-array>
 
     <!-- Strings related to Change font type -->
     <string-array name="font_size">
+        <item>5</item>
+        <item>6</item>
         <item>7</item>
+        <item>8</item>
         <item>9</item>
-        <item>11</item>
+        <item>10</item>
     </string-array>
 
     <!-- Strings related to Help Activity -->

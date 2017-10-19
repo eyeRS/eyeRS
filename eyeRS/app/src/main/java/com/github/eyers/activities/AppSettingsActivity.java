@@ -25,11 +25,11 @@ public class AppSettingsActivity extends AppCompatActivity implements OnItemClic
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_app_settings);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
         listView = (ListView) findViewById(R.id.list_settings);
         listView.setOnItemClickListener(this);
 
