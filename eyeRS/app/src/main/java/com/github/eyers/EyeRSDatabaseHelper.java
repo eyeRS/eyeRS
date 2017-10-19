@@ -1,5 +1,6 @@
 package com.github.eyers;
 
+import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.SQLException;
@@ -21,6 +22,8 @@ import java.lang.reflect.Field;
  * @author Nathan Shava
  */
 public class EyeRSDatabaseHelper extends SQLiteOpenHelper {
+
+    private ContentResolver eyeRSContentResolver;
 
     /**
      * CREATE ITEM TABLE QUERY.
@@ -80,6 +83,7 @@ public class EyeRSDatabaseHelper extends SQLiteOpenHelper {
          */
         super(context, DB_NAME, null, DB_VERSION);
 
+
     }
 
     /**
@@ -125,11 +129,11 @@ public class EyeRSDatabaseHelper extends SQLiteOpenHelper {
     }
 
     /**
+     * Method is used to upgrade the db It accepts a SQLite db object the old and new versions of the
+     * db to validate whether an upgrade is due
      * @param db
      * @param oldVersion
-     * @param newVersion Method is used to upgrade the db
-     *                   It accepts a SQLite db object the old and new versions of the db to validate whether an
-     *                   upgrade is due
+     * @param newVersion
      */
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {

@@ -28,7 +28,7 @@ import com.github.eyers.info.NewRegInfo;
 import java.util.regex.Pattern;
 
 /**
- * This class will handle the user registration activity process on first time use of the app
+ * This class will handle the user registration activity process on first time use of the app.
  *
  * @see android.view.View.OnClickListener
  * @see android.support.v7.app.AppCompatActivity
@@ -50,9 +50,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             "What time of the day were you born (hh:mm)?"
     };
 
-    /**
-     * Field & other declarations
-     */
+    // Field & other declarations
     private static String username;
     private static String email;
     private static String matchedPIN;

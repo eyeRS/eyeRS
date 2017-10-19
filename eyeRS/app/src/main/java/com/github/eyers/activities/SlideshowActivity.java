@@ -6,8 +6,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.widget.ImageView;
 
+import com.github.eyers.EyeRS;
 import com.github.eyers.R;
+import com.github.eyers.wrapper.ItemWrapper;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 /**
@@ -17,6 +20,7 @@ public class SlideshowActivity extends AppCompatActivity {
 
     // Fields & other declarations
     private ImageView img;
+    private ArrayList<ItemWrapper> items;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,34 +31,27 @@ public class SlideshowActivity extends AppCompatActivity {
 
         this.img = (ImageView) findViewById(R.id.img);
 
-        final Handler timer = new Handler(); // final for thread
-        timer.postDelayed(new Runnable() {
+        this.items = new ArrayList<>();
+        for (String category : EyeRS.getCategoriesList(this)) {
+            this.items.addAll(EyeRS.getItems(category, this));
+        }
 
-            @Override
-            public void run() {
-                SlideshowActivity.this.setImage();
-                timer.postDelayed(this, 5000);
-            }
-        }, 5000);
-        this.setImage();
+        if (!items.isEmpty()) {
+            final Handler timer = new Handler(); // final for thread
+            timer.postDelayed(new Runnable() {
+
+                @Override
+                public void run() {
+                    SlideshowActivity.this.setImage();
+                    timer.postDelayed(this, 5000);
+                }
+            }, 5000);
+            this.setImage();
+        }
     }
 
     private void setImage() {
-        this.img.setImageDrawable(getResources().getDrawable(getImg()));
-    }
-
-    private int getImg() {
-        int[] img = {
-                R.drawable.ic_action_about,
-                R.drawable.ic_action_help,
-                R.drawable.ic_action_settings,
-                R.drawable.ic_info,
-                R.drawable.ic_action_voice_search,
-                R.drawable.ic_menu_send,
-                R.drawable.ic_menu_trade
-        };
-
-        return img[new Random().nextInt(img.length - 1)];
+        this.img.setImageBitmap(items.get(new Random().nextInt(items.size())).getImage());
     }
 
 } //end class SlideshowActivity

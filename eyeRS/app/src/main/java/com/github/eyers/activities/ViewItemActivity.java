@@ -32,29 +32,7 @@ public class ViewItemActivity extends AppCompatActivity {
         this.title.setText(ITEM.getName());
         this.description.setText(ITEM.getDescription());
         this.image.setImageBitmap(ITEM.getImage());
-//        this.image.setScaleType(ImageView.ScaleType.FIT_XY);
-
-//        getIntent().setAction("Already created");
     }
-
-//    @Override
-//    protected void onResume() {
-//        Log.v("Example", "onResume");
-//
-//        String action = getIntent().getAction();
-    // Prevent endless loop by adding a unique action, don't restart if action is present
-//        if(action == null || !action.equals("Already created")) {
-//            Log.v("Example", "Force restart");
-//            Intent intent = new Intent(this, ViewItemActivity.class);
-//            startActivity(intent);
-//            finish();
-//        }
-//        // Remove the unique action so the next time onResume is called it will restart
-//        else
-//            getIntent().setAction(null);
-//
-//        super.onResume();
-//    }
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {

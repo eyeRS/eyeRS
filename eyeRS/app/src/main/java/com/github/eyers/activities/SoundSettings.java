@@ -45,8 +45,7 @@ public class SoundSettings extends AppCompatActivity {
 
                         Toast.makeText(SoundSettings.this, "Welcome message disabled!", Toast.LENGTH_SHORT).show();
                     }
-                }
-                catch (Exception ex){
+                } catch (Exception ex) {
 
                     Log.e("Welcome switch", ex.getMessage(), ex);
                 }
@@ -72,8 +71,7 @@ public class SoundSettings extends AppCompatActivity {
                         Toast.makeText(SoundSettings.this, "Touch sounds disabled!", Toast.LENGTH_SHORT).show();
                     }
 
-                }
-                catch (Exception ex){
+                } catch (Exception ex) {
 
                     Log.e("Touch switch", ex.getMessage(), ex);
                 }
