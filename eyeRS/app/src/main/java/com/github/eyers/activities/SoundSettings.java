@@ -30,7 +30,7 @@ import static com.github.eyers.R.id.txtPIN;
  */
 public class SoundSettings extends AppCompatActivity {
 
- // MediaPlayer welcomeMessage;
+
   //  @Override
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +39,7 @@ public class SoundSettings extends AppCompatActivity {
         setContentView(R.layout.activity_sound_settings);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        // welcomeMessage = MediaPlayer.create(SoundSettings.this, R.raw.welcomemsg);
+
         Switch welcomeSwitch = (Switch) findViewById(R.id.welcomeSwitch);
         final Switch touchSwitch = (Switch) findViewById(R.id.touchSwitch);
 
@@ -52,7 +52,7 @@ public class SoundSettings extends AppCompatActivity {
                 if (isChecked) {
 
                     Toast.makeText(SoundSettings.this, "Welcome message enabled!", Toast.LENGTH_SHORT).show();
-                   //welcomeMessage.start()
+
 
                 }
                 /** If the user does not wish to receive a welcome message pop up**/
