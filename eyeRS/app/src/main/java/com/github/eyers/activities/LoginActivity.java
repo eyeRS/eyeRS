@@ -9,12 +9,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.Switch;
 import android.widget.Toast;
 
 import com.github.eyers.DBOperations;
 import com.github.eyers.R;
 import com.github.eyers.info.NewRegInfo;
+
+import static com.github.eyers.R.id.welcomeSwitch;
 
 /**
  * This class will handle the Login event of the app.
@@ -48,8 +52,9 @@ public final class LoginActivity extends AppCompatActivity implements View.OnCli
 
         Toast.makeText(this, "Welcome!", Toast.LENGTH_SHORT).show();
 
-        /*Initialising mediaPlayer*/
+        ///Initialising mediaPlayer
         welcomeMessage = MediaPlayer.create(LoginActivity.this, R.raw.welcomemsg);
+
     }
 
 
@@ -123,7 +128,7 @@ public final class LoginActivity extends AppCompatActivity implements View.OnCli
 
                         super.startActivity(new Intent(getApplicationContext(), MainActivity.class)); //Grant access
                         /*Welcome message*/
-                        welcomeMessage.start();
+                         welcomeMessage.start();
 
                     } else { //Incorrect PIN
 
