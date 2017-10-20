@@ -39,19 +39,19 @@ public class SearchActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onSearchViewClosed()    {
+            public void onSearchViewClosed() {
 
             }
         });
 
-        searchView.setOnQueryTextListener(new MaterialSearchView.OnQueryTextListener()  {
+        searchView.setOnQueryTextListener(new MaterialSearchView.OnQueryTextListener() {
             @Override
-            public boolean onQueryTextSubmit(String query)  {
+            public boolean onQueryTextSubmit(String query) {
                 return false;
             }
 
             @Override
-            public boolean onQueryTextChange(String newText)    {
+            public boolean onQueryTextChange(String newText) {
                 return false;
             }
         });

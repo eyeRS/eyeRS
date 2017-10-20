@@ -81,8 +81,7 @@ public class AppSettingsActivity extends AppCompatActivity implements OnItemClic
                 startActivity(intent);
             }
 
-        }
-        catch (Exception ex){
+        } catch (Exception ex) {
 
             Log.e("AppSettings list view", ex.getMessage(), ex);
         }

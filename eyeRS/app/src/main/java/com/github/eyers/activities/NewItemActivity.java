@@ -52,20 +52,20 @@ import static com.github.eyers.EyeRS.REQUEST_READ_EXTERNAL_STORAGE;
 public class NewItemActivity extends AppCompatActivity implements View.OnClickListener,
         OnItemSelectedListener, LoaderManager.LoaderCallbacks<Cursor> {
 
+    public static ArrayAdapter<String> categoriesAdapter;
     /**
      * Fields & other declarations
      */
     private static String itemName;
     private static String itemDesc;
     private static String category;
-    private EditText txtTitle;
-    private EditText txtDesc;
-    private Spinner categorySpinner;
     /**
      * Categories list declaration
      */
     public List<String> popCategories;
-    public static ArrayAdapter<String> categoriesAdapter;
+    private EditText txtTitle;
+    private EditText txtDesc;
+    private Spinner categorySpinner;
     /**
      * Camera declarations
      */
@@ -187,7 +187,11 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
 
             TreeSet<String> data = new TreeSet<>();
 
-            if (cursor.moveToFirst()) {
+            if (!cursor.moveToFirst()) {
+
+                Toast.makeText(this, "Oops something happened there!", Toast.LENGTH_SHORT).show();
+                Log.e("NewItemActivity", "Null Cursor object");
+            } else if (cursor.moveToFirst()) {
 
                 do {
 
@@ -199,7 +203,7 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
 
             } else {
 
-                addCategories = null; //empty categories list
+                Log.e("NewItemActivity", "Empty categories list");
             }
 
             for (String str : data) {

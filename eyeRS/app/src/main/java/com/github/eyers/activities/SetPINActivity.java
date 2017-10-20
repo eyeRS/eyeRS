@@ -8,7 +8,6 @@ import android.content.Intent;
 import android.content.Loader;
 import android.content.SharedPreferences;
 import android.database.Cursor;
-import android.database.SQLException;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -157,8 +156,7 @@ public class SetPINActivity extends AppCompatActivity implements View.OnClickLis
 
             }
 
-        }
-        catch (Exception ex){
+        } catch (Exception ex) {
 
             Log.e("SetPIN event handlers", ex.getMessage(), ex);
         }
@@ -206,7 +204,13 @@ public class SetPINActivity extends AppCompatActivity implements View.OnClickLis
                 projection, whereClauseQuery, selectionArgs,
                 sortOrder);
 
-        if (cursor != null) {
+
+        if (!cursor.moveToFirst()) {
+
+            Toast.makeText(this, "Oops something happened there!", Toast.LENGTH_SHORT).show();
+            Log.e("SetPINActivity", "Null Cursor object");
+
+        } else if (cursor.moveToFirst()) {
 
             /**
              * The username, security question & security response used during
@@ -253,7 +257,10 @@ public class SetPINActivity extends AppCompatActivity implements View.OnClickLis
                 }
             } else {
 
-                Toast.makeText(this, "PIN reset failed. Please ensure you enter the correct details", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "PIN reset failed. Please ensure you enter the correct details",
+                        Toast.LENGTH_SHORT).show();
+                Log.e("SetPINActivity", "Null Cursor object");
+
             }
 
             cursor.close();
@@ -304,8 +311,7 @@ public class SetPINActivity extends AppCompatActivity implements View.OnClickLis
             spinner = (Spinner) findViewById(R.id.setPin_spinner);
             SharedPreferences category_prefs = getSharedPreferences("category_prefs", Context.MODE_PRIVATE);
             category_prefs.edit().putInt("spinner_indx", spinner.getSelectedItemPosition()).apply();
-        }
-        catch (Exception ex){
+        } catch (Exception ex) {
 
             Log.e("Spinner onPause", ex.getMessage(), ex);
         }
@@ -329,8 +335,7 @@ public class SetPINActivity extends AppCompatActivity implements View.OnClickLis
             int spinner_index = category_prefs.getInt("spinner_indx", 0);
             spinner.setSelection(spinner_index);
 
-        }
-        catch (Exception ex){
+        } catch (Exception ex) {
 
             Log.e("Spinner onResume", ex.getMessage(), ex);
         }

@@ -7,7 +7,6 @@ import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.database.sqlite.SQLiteException;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -113,6 +112,12 @@ public class ProfileSettingsActivity extends AppCompatActivity implements View.O
 
             Toast.makeText(this, "Profile settings updated successfully", Toast.LENGTH_LONG).show();
             Log.e("DATABASE OPERATIONS", "...New item added to DB!");
+
+            /**
+             * Then clear the fields
+             */
+            txtUsername.setText("");
+            ivImage.setImageBitmap(null);
 
         } catch (Exception ex) {
 

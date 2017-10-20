@@ -4,8 +4,8 @@ package com.github.eyers.activities;
  * Created by Emilde on 10/10/2017.
  */
 
-import android.app.Activity;
 import android.content.Intent;
+import android.support.v7.app.AppCompatActivity;
 
 import com.github.eyers.R;
 
@@ -21,7 +21,7 @@ public class Utils {
     /**
      * Set the theme of the Activity, and restart it by creating a new Activity of the same type.
      */
-    public static void changeToTheme(Activity activity, int theme) {
+    public static void changeToTheme(AppCompatActivity activity, int theme) {
         sTheme = theme;
 //        activity.setTheme(theme);
         activity.finish();
@@ -31,7 +31,7 @@ public class Utils {
     /**
      * Set the theme of the activity, according to the configuration.
      */
-    public static void onActivityCreateSetTheme(Activity activity) {
+    public static void onActivityCreateSetTheme(AppCompatActivity activity) {
         switch (sTheme) {
             case App_Theme:
                 activity.setTheme(R.style.AppTheme);

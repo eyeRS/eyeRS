@@ -166,7 +166,11 @@ public class NewCategoryActivity extends AppCompatActivity implements View.OnCli
                     selectionArgs,
                     sortOrder);
 
-            if (cursor.moveToFirst()) {
+            if (!cursor.moveToFirst()) {
+
+                Toast.makeText(this, "Oops something happened there!", Toast.LENGTH_SHORT).show();
+                Log.e("NewCategoryActivity", "Null Cursor object");
+            } else if (cursor.moveToFirst()) {
 
                 do {
 
@@ -196,9 +200,13 @@ public class NewCategoryActivity extends AppCompatActivity implements View.OnCli
                     }
 
                 } while (cursor.moveToNext());
+
+                cursor.close();
+            } else {
+
+                Log.e("NewCategoryActivity", "Cannot retrieve categories");
             }
 
-            cursor.close();
 
         } catch (Exception ex) {
 

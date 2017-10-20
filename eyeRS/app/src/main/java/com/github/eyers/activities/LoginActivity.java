@@ -9,22 +9,20 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
-import android.widget.CompoundButton;
 import android.widget.EditText;
-import android.widget.Switch;
 import android.widget.Toast;
 
 import com.github.eyers.DBOperations;
 import com.github.eyers.R;
 import com.github.eyers.info.NewRegInfo;
 
-import static com.github.eyers.R.id.welcomeSwitch;
-
 /**
  * This class will handle the Login event of the app.
  */
 public final class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
+    /*Getting media player*/
+    MediaPlayer welcomeMessage;
     /**
      * Field declarations
      */
@@ -33,8 +31,6 @@ public final class LoginActivity extends AppCompatActivity implements View.OnCli
      * Content Resolver declaration.
      */
     private ContentResolver eyeRSContentResolver;
-    /*Getting media player*/
-    MediaPlayer welcomeMessage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +48,7 @@ public final class LoginActivity extends AppCompatActivity implements View.OnCli
 
         Toast.makeText(this, "Welcome!", Toast.LENGTH_SHORT).show();
 
-        ///Initialising mediaPlayer
+        /*Initialising mediaPlayer*/
         welcomeMessage = MediaPlayer.create(LoginActivity.this, R.raw.welcomemsg);
 
     }
@@ -76,7 +72,7 @@ public final class LoginActivity extends AppCompatActivity implements View.OnCli
                     super.startActivity(new Intent(this, RegisterActivity.class));
                     return;
                 case R.id.btnLogin:
-                    verifyLoginPIN(); //method to validate Login PIN
+                    verifyLoginPIN(); //method to validate Login process
             }
 
         } catch (Exception ex) {
@@ -115,7 +111,12 @@ public final class LoginActivity extends AppCompatActivity implements View.OnCli
                     selectionArgs,
                     sortOrder);
 
-            if (cursor.moveToFirst()) {
+            if (!cursor.moveToFirst()) {
+
+                Toast.makeText(this, "Login failed. Please ensure you have registered your details first before " +
+                        "attempting to login", Toast.LENGTH_SHORT).show();
+
+            } else if (cursor.moveToFirst()) {
 
                 do {
 
@@ -123,24 +124,33 @@ public final class LoginActivity extends AppCompatActivity implements View.OnCli
                      * We need to retrieve the pin used during the Register Activity
                      * to validate the Login process
                      */
+                    if (!cursor.getString(cursor.getColumnIndex(NewRegInfo.UserRegistrationInfo.USER_PIN)
+                    ).equals(txtPIN.getText().toString())) { //Incorrect PIN
+
+                        Toast.makeText(this, "Login failed. Please enter the correct PIN", Toast.LENGTH_SHORT).show();
+                    }
                     if (cursor.getString(cursor.getColumnIndex(NewRegInfo.UserRegistrationInfo.USER_PIN)
-                    ).equals(txtPIN.getText().toString())) {
+                    ).equals("")) {
+
+                        Toast.makeText(this, "Login failed. Please insert a valid PIN to login successfully",
+                                Toast.LENGTH_SHORT).show();
+                    }
+                    if (cursor.getString(cursor.getColumnIndex(NewRegInfo.UserRegistrationInfo.USER_PIN)
+                    ).equals(txtPIN.getText().toString())) { //Correct PIN entered
 
                         super.startActivity(new Intent(getApplicationContext(), MainActivity.class)); //Grant access
                         /*Welcome message*/
-                         welcomeMessage.start();
-
-                    } else { //Incorrect PIN
-
-                        Toast.makeText(this, "Login failed. Please enter the correct PIN", Toast.LENGTH_SHORT).show();
+                        welcomeMessage.start();
 
                     }
                 } while (cursor.moveToNext());
 
                 cursor.close();
+            } else {
 
+                Toast.makeText(this, "Login failed. Please ensure you have registered your details first before " +
+                        "attempting to login", Toast.LENGTH_SHORT).show();
             }
-
         } catch (Exception ex) {
 
             Log.e("Login query", ex.getMessage(), ex);
