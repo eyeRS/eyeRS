@@ -13,7 +13,7 @@
     <string name="btnClearReg">Clear</string>
     <string name="enterUsernameHint">Enter your new Username</string>
     <string name="enterEmailHint">Enter your Email Address</string>
-    <string name="txtSecurityQuestions">Select a security question</string>
+    <string name="txtSecurityQuestions">Select a security question using the drop-down list</string>
 
     <!-- Strings related to Set Pin Activity -->
 
@@ -27,7 +27,7 @@
     <string name="btnResetPIN">Reset</string>
     <string name="btnClearPIN">Clear</string>
     <string name="enterPinHint">Enter your new PIN here</string>
-    <string name="validationMsg">*Enter your Security details from the registration process*</string>
+    <string name="validationMsg">*Enter the Security details you used during the Registration process*</string>
 
     <!-- Strings related to Login Activity -->
 
@@ -66,12 +66,13 @@
     <string name="txtItemTitle">Name of item</string>
     <string name="txtItemDesc">Item description</string>
     <string name="btnAddItem">Add</string>
+    <string name="txtSelectCategory">Select a category using the drop-down list</string>
 
     <!-- Strings related to New Category Activity -->
     <string name="txtCategoryName">Category Name</string>
     <string name="txtCategoryDesc">Description</string>
     <string name="btnAddCat">Add</string>
-    <string name="txtCategoryIcon">Choose an icon</string>
+    <string name="txtCategoryIcon">Select an icon using the drop-down list</string>
 
     <!-- Item stock label strings -->
     <string name="lblName">Name</string>

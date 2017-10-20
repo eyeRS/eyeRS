@@ -62,8 +62,7 @@ public class ItemManagementSettings extends AppCompatActivity implements OnItemC
                     break;
             }
 
-        }
-        catch (Exception ex){
+        } catch (Exception ex) {
             Log.e("ItemManagement listview", ex.getMessage(), ex);
         }
     }

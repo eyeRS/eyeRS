@@ -88,9 +88,9 @@ public class SlideshowActivity extends AppCompatActivity {
                     selectionArgs,
                     sortOrder);
 
-            if (cursor == (null)) {
+            if (!cursor.moveToFirst()) {
 
-                Log.e("Slideshow images", "Null cursor object");
+                Log.e("Slideshow images", "Null Cursor object");
                 Toast.makeText(this, "No images found", Toast.LENGTH_SHORT).show();
 
             } else if (cursor.moveToFirst()) {

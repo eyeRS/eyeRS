@@ -8,7 +8,6 @@ import android.content.Intent;
 import android.content.Loader;
 import android.content.SharedPreferences;
 import android.database.Cursor;
-import android.database.SQLException;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -198,28 +197,28 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                         Toast.makeText(this, "Please enter a valid email address.", Toast.LENGTH_LONG).show();
                         return;
                     }
-                    if (username.isEmpty()){ //no username
+                    if (username.isEmpty()) { //no username
 
                         Toast.makeText(this, "Please enter a username", Toast.LENGTH_LONG).show();
                         return;
                     }
-                    if (pinA.isEmpty()){ //PIN 1 missing
+                    if (pinA.isEmpty()) { //PIN 1 missing
 
                         Toast.makeText(this, "Please enter a valid PIN", Toast.LENGTH_LONG).show();
                         return;
                     }
-                    if (pinB.isEmpty()){ //PIN 2 missing
+                    if (pinB.isEmpty()) { //PIN 2 missing
 
                         Toast.makeText(this, "Please enter a valid PIN", Toast.LENGTH_LONG).show();
                         return;
                     }
-                    if ((pinA.length() < 4) && (pinB.length() < 4)){
+                    if ((pinA.length() < 4) && (pinB.length() < 4)) {
 
                         Toast.makeText(this, "Please ensure your PIN is at least 4 digits",
                                 Toast.LENGTH_LONG).show();
                         return;
                     }
-                    if (!pinA.equals(pinB)){
+                    if (!pinA.equals(pinB)) {
 
                     }
                     if (pinA.equals(pinB)) { //if pins match
@@ -245,8 +244,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
             }
 
-        }
-        catch (Exception ex){
+        } catch (Exception ex) {
 
             Log.e("Registration validation", ex.getMessage(), ex);
         }
@@ -292,8 +290,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             SharedPreferences category_prefs = getSharedPreferences("category_prefs", Context.MODE_PRIVATE);
             category_prefs.edit().putInt("spinner_indx", spinner.getSelectedItemPosition()).apply();
 
-        }
-        catch (Exception ex){
+        } catch (Exception ex) {
 
             Log.e("Spinner onPause", ex.getMessage(), ex);
         }
@@ -318,8 +315,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             int spinner_index = category_prefs.getInt("spinner_indx", 0);
             spinner.setSelection(spinner_index);
 
-        }
-        catch (Exception ex){
+        } catch (Exception ex) {
 
             Log.e("Spinner onResume", ex.getMessage(), ex);
         }

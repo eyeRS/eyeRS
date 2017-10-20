@@ -448,7 +448,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     selectionArgs,
                     sortOrder);
 
-            if (cursor.moveToFirst()) {
+            if (!cursor.moveToFirst()) {
+
+                Toast.makeText(this, "No categories to load", Toast.LENGTH_LONG).show();
+                Log.e("Categories list query", "Null cursor object");
+            } else if (cursor.moveToFirst()) {
 
                 do {
 
@@ -459,6 +463,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 cursor.close();
 
             } else {
+
                 Toast.makeText(this, "No categories to load", Toast.LENGTH_LONG).show();
             }
 
@@ -514,7 +519,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     selectionArgs,
                     sortOrder);
 
-            if (cursor.moveToFirst()) {
+            if (!cursor.moveToFirst()) {
+
+                Toast.makeText(this, "Nothing to display!", Toast.LENGTH_SHORT).show();
+                Log.e("Get items query", "Null cursor object");
+
+            } else if (cursor.moveToFirst()) {
 
                 do {
 
@@ -576,6 +586,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public boolean onKeyDown(int keyCode, KeyEvent event) {
 
         try {
+
 
             if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.ECLAIR
                     && keyCode == KeyEvent.KEYCODE_BACK
