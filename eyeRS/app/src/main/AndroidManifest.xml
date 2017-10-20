@@ -54,7 +54,7 @@
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".activities.todo.ShareActivity"
+            android:name=".activities.ShareActivity"
             android:label="@string/title_activity_help"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="adjustPan" />

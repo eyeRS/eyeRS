@@ -27,7 +27,6 @@ import com.github.eyers.EyeRS;
 import com.github.eyers.ItemLabel;
 import com.github.eyers.LabelAdapter;
 import com.github.eyers.R;
-import com.github.eyers.activities.todo.ShareActivity;
 import com.github.eyers.wrapper.ItemWrapper;
 import com.miguelcatalan.materialsearchview.MaterialSearchView;
 

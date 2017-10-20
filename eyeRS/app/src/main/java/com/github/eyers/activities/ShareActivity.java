@@ -1,4 +1,4 @@
-package com.github.eyers.activities.todo;
+package com.github.eyers.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
