@@ -1,14 +1,13 @@
 package com.github.eyers.activities;
 
-/**
- * Created by Emilde on 10/10/2017.
- */
-
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 
 import com.github.eyers.R;
 
+/**
+ * Created by Emilde on 10/10/2017.
+ */
 public class Utils {
 
     public final static int App_Theme = 0;

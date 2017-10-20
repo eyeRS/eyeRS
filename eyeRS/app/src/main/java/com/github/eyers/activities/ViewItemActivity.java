@@ -1,5 +1,6 @@
 package com.github.eyers.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -39,8 +40,6 @@ public class ViewItemActivity extends AppCompatActivity {
         if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.ECLAIR
                 && keyCode == KeyEvent.KEYCODE_BACK
                 && event.getRepeatCount() == 0) {
-            // Take care of calling this method on earlier versions of
-            // the platform where it doesn't exist.
             onBackPressed();
         }
 
@@ -50,6 +49,8 @@ public class ViewItemActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         MainActivity.STATE = "main";
+        super.startActivity(new Intent(this, MainActivity.class));
+        super.finish();
         super.onBackPressed();
     }
 }

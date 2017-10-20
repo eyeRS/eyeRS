@@ -1,12 +1,10 @@
 package com.github.eyers.activities;
 
 import android.app.LoaderManager;
-import android.content.ContentResolver;
 import android.content.Intent;
 import android.content.Loader;
 import android.content.res.Configuration;
 import android.database.Cursor;
-import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -15,7 +13,6 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Base64;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
@@ -26,18 +23,15 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.github.eyers.DBOperations;
+import com.github.eyers.EyeRS;
 import com.github.eyers.ItemLabel;
 import com.github.eyers.LabelAdapter;
 import com.github.eyers.R;
-import com.github.eyers.info.NewCategoryInfo;
-import com.github.eyers.info.NewItemInfo;
+import com.github.eyers.activities.todo.ShareActivity;
 import com.github.eyers.wrapper.ItemWrapper;
 import com.miguelcatalan.materialsearchview.MaterialSearchView;
 
 import java.util.ArrayList;
-import java.util.List;
-import java.util.TreeSet;
 
 /**
  * This class includes a navigation drawer and will display the main home activity of the app
@@ -56,9 +50,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
      */
     private MaterialSearchView searchView;
 
-    /**
-     * Other declarations
-     */
+
+    // Other declarations
     private ActionBarDrawerToggle toggle;
     private DrawerLayout drawer;
     private NavigationView navigationView;
@@ -142,13 +135,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             ArrayList<ItemLabel> items = new ArrayList<>();
 
             if (STATE.equals("main")) {
-                for (String category : getCategoriesList()) {
+                for (String category : EyeRS.getCategoriesList(this)) {
                     items.add(new ItemLabel(category, BitmapFactory.decodeResource(
                             getResources(), R.drawable.ic_action_help)
                     )); // TODO
                 }
             } else {
-                for (ItemWrapper item : getItems()) {
+                for (ItemWrapper item : EyeRS.getItems(STATE, this)) {
                     items.add(new ItemLabel(item.getName(), item.getImage()));
                 }
             }
@@ -331,12 +324,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     super.startActivity(new Intent(this, SlideshowActivity.class)); //starts the Slideshow activity
                     break;
                 case R.id.nav_share: {
-                    // todo: in method
-                    Intent sendIntent = new Intent();
-                    sendIntent.setAction(Intent.ACTION_SEND);
-                    sendIntent.putExtra(Intent.EXTRA_TEXT, "This is my text to send.");
-                    sendIntent.setType("text/plain");
-                    startActivity(sendIntent);
+//                    // todo: in method
+//                    Intent sendIntent = new Intent();
+//                    sendIntent.setAction(Intent.ACTION_SEND);
+//                    sendIntent.putExtra(Intent.EXTRA_TEXT, "This is my text to send.");
+//                    sendIntent.setType("text/plain");
+//                    startActivity(sendIntent);
+                    startActivity(new Intent(this, ShareActivity.class));
                 }
                 break;
                 case R.id.nav_trade: {
@@ -362,17 +356,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return true;
     }
 
+    /**
+     * Closes the app.
+     */
     private void exit() {
-
         try {
-
             Intent intent = new Intent(Intent.ACTION_MAIN);
             intent.addCategory(Intent.CATEGORY_HOME);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
-
         } catch (Exception ex) {
-
             Log.e("Exit feature", ex.getMessage(), ex);
         }
     }
@@ -411,172 +404,29 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     /**
-     * Method returns the categories result set of the SQL query and adds elements into a
-     * list structure for the spinner.
+     * Callback method to be invoked when an item in this AdapterView has
+     * been clicked.
+     * <p>
+     * Implementers can call getItemAtPosition(position) if they need
+     * to access the data associated with the selected item.
      *
-     * @return returns the list of categories
+     * @param parent   The AdapterView where the click happened.
+     * @param view     The view within the AdapterView that was clicked (this
+     *                 will be a view provided by the adapter)
+     * @param position The position of the view in the adapter.
+     * @param id       The row id of the item that was clicked.
      */
-    public List<String> getCategoriesList() {
-
-        List<String> addCategories = new ArrayList<String>();
-
-        ContentResolver eyeRSContentResolver = this.getContentResolver(); // Content resolver object
-
-        String[] projection = {
-                NewCategoryInfo.CategoryInfo.CATEGORY_ID,
-                NewCategoryInfo.CategoryInfo.CATEGORY_NAME,
-                NewCategoryInfo.CategoryInfo.CATEGORY_DESC,
-                NewCategoryInfo.CategoryInfo.CATEGORY_ICON};
-
-        String whereClause = "";
-
-        String[] selectionArgs = {};
-
-        String sortOrder = NewCategoryInfo.CategoryInfo.CATEGORY_NAME;
-
-        TreeSet<String> data = new TreeSet<>();
-
-        try {
-
-            /**
-             * Content Resolver query
-             */
-            Cursor cursor = eyeRSContentResolver.query(
-                    DBOperations.CONTENT_URI_CATEGORIES,
-                    projection,
-                    whereClause,
-                    selectionArgs,
-                    sortOrder);
-
-            if (!cursor.moveToFirst()) {
-
-                Toast.makeText(this, "No categories to load", Toast.LENGTH_LONG).show();
-                Log.e("Categories list query", "Null cursor object");
-            } else if (cursor.moveToFirst()) {
-
-                do {
-
-                    data.add(cursor.getString(1));
-
-                } while (cursor.moveToNext());
-
-                cursor.close();
-
-            } else {
-
-                Toast.makeText(this, "No categories to load", Toast.LENGTH_LONG).show();
-            }
-
-            for (String str : data) {
-
-                addCategories.add(str);
-            }
-
-        } catch (Exception ex) {
-
-            Log.e("Categories list query", ex.getMessage(), ex);
-        }
-
-        return addCategories;
-    }
-
-    /**
-     * Method to retrieve items from the db
-     *
-     * @return the items based on the selected category
-     */
-    public ArrayList<ItemWrapper> getItems() {
-
-        ArrayList<ItemWrapper> items = new ArrayList<ItemWrapper>();
-
-        ContentResolver eyeRSContentResolver = this.getContentResolver(); // Content resolver object
-
-        String[] projection = {
-                NewItemInfo.ItemInfo.ITEM_ID,
-                NewItemInfo.ItemInfo.CATEGORY_NAME,
-                NewItemInfo.ItemInfo.ITEM_NAME,
-                NewItemInfo.ItemInfo.ITEM_DESC,
-                NewItemInfo.ItemInfo.ITEM_IMAGE
-        };
-
-        String[] selectionArgs = {};
-
-        String itemsWhereClause = "'" + STATE + "' = "
-                + NewItemInfo.ItemInfo.CATEGORY_NAME + " OR " + "'" + STATE + "' = "
-                + NewCategoryInfo.CategoryInfo.CATEGORY_NAME;
-
-        String sortOrder = NewItemInfo.ItemInfo.ITEM_NAME;
-
-        try {
-
-            /**
-             * Content Resolver query
-             */
-            Cursor cursor = eyeRSContentResolver.query(
-                    DBOperations.CONTENT_URI_ITEMS,
-                    projection,
-                    itemsWhereClause,
-                    selectionArgs,
-                    sortOrder);
-
-            if (!cursor.moveToFirst()) {
-
-                Toast.makeText(this, "Nothing to display!", Toast.LENGTH_SHORT).show();
-                Log.e("Get items query", "Null cursor object");
-
-            } else if (cursor.moveToFirst()) {
-
-                do {
-
-                    Bitmap decodedByte;
-
-                    try {
-
-                        byte[] decodedString = Base64.decode(cursor.getString(
-                                Integer.parseInt(NewItemInfo.ItemInfo.ITEM_IMAGE)), Base64.DEFAULT);
-                        decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
-
-                    } catch (NullPointerException npe) {
-                        Log.e("error loading image", npe.getMessage());
-                        decodedByte = BitmapFactory.decodeResource(getResources(), R.drawable.ic_action_help);
-                    }
-
-                    items.add(new ItemWrapper(cursor.getString(
-                            Integer.parseInt(NewItemInfo.ItemInfo.ITEM_NAME)), decodedByte,
-                            cursor.getString(Integer.parseInt(NewItemInfo.ItemInfo.ITEM_DESC))));
-
-                } while (cursor.moveToNext());
-
-                cursor.close();
-
-            } else {
-
-                Toast.makeText(this, "Nothing to display!", Toast.LENGTH_SHORT).show();
-            }
-        } catch (Exception ex) {
-
-            Log.e("Get items query", ex.getMessage(), ex);
-        }
-
-        return items;
-
-    }
-
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
         try {
-
             if (STATE.equals("main")) {
                 STATE = listView.getItemAtPosition(position).toString(); //Retrieves the selected category
                 startActivity(new Intent(this, MainActivity.class));
             } else {
-                STATE = listView.getItemAtPosition(position).toString(); //Retrieves the selected category
+                STATE = listView.getItemAtPosition(position).toString(); //Retrieves the selected item
                 startActivity(new Intent(this, ViewItemActivity.class));
             }
-
         } catch (Exception ex) {
-
             Toast.makeText(this, "not found " + STATE, Toast.LENGTH_LONG).show();
             startActivity(new Intent(this, ViewItemActivity.class));
         }
@@ -584,10 +434,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-
         try {
-
-
             if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.ECLAIR
                     && keyCode == KeyEvent.KEYCODE_BACK
                     && event.getRepeatCount() == 0) {
@@ -597,7 +444,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
 
         } catch (Exception ex) {
-
             Log.e("MainActivity key_down", ex.getMessage(), ex);
         }
 

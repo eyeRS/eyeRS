@@ -2,20 +2,32 @@ package com.github.eyers.activities.todo;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.ShareActionProvider;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.view.KeyEvent;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ListView;
+import android.widget.Toast;
 
+import com.github.eyers.EyeRS;
+import com.github.eyers.ItemLabel;
+import com.github.eyers.LabelAdapter;
 import com.github.eyers.R;
+import com.github.eyers.activities.MainActivity;
+import com.github.eyers.wrapper.ItemWrapper;
 
-public class ShareActivity extends AppCompatActivity {
+import java.util.ArrayList;
 
-    private ShareActionProvider mShareActionProvider;
+/**
+ *
+ */
+public class ShareActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
+
+    /**
+     * List view to display all stored items.
+     */
+    private ListView listView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,38 +36,65 @@ public class ShareActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+        ArrayList<ItemLabel> items = new ArrayList<>();
+
+        for (String category : EyeRS.getCategoriesList(this)) {
+            for (ItemWrapper item : EyeRS.getItems(category, this)) {
+                items.add(new ItemLabel(item.getName(), item.getImage()));
             }
-        });
+        }
+
+        LabelAdapter adapter = new LabelAdapter(this, items);
+
+        listView = (ListView) findViewById(R.id.listView);
+        listView.setAdapter(adapter);
+        listView.setOnItemClickListener(this);
+
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        Toast.makeText(this, "Please select the item you wish to share", Toast.LENGTH_LONG).show();
+    }
+
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.ECLAIR
+                && keyCode == KeyEvent.KEYCODE_BACK
+                && event.getRepeatCount() == 0) {
+            onBackPressed();
+        }
+
+        return super.onKeyDown(keyCode, event);
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate menu resource file.
-        getMenuInflater().inflate(R.menu.main, menu);
-
-        // Locate MenuItem with ShareActionProvider
-        MenuItem item = menu.findItem(R.id.shareButton);
-
-        // Fetch and store ShareActionProvider
-//        mShareActionProvider = (ShareActionProvider) item.getActionProvider();
-
-
-        // Return true to display menu
-        return true;
+    public void onBackPressed() {
+        MainActivity.STATE = "main";
+        super.startActivity(new Intent(this, MainActivity.class));
+        super.finish();
+        super.onBackPressed();
     }
 
-    // Call to update the share intent
-    private void setShareIntent(Intent shareIntent) {
-        if (mShareActionProvider != null) {
-            mShareActionProvider.setShareIntent(shareIntent);
-        }
-    }
+    /**
+     * Callback method to be invoked when an item in this AdapterView has
+     * been clicked.
+     * <p>
+     * Implementers can call getItemAtPosition(position) if they need
+     * to access the data associated with the selected item.
+     *
+     * @param parent   The AdapterView where the click happened.
+     * @param view     The view within the AdapterView that was clicked (this
+     *                 will be a view provided by the adapter)
+     * @param position The position of the view in the adapter.
+     * @param id       The row id of the item that was clicked.
+     */
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        String item = listView.getItemAtPosition(position).toString();
 
+        Intent sendIntent = new Intent();
+        sendIntent.setAction(Intent.ACTION_SEND);
+        sendIntent.putExtra(Intent.EXTRA_TEXT, "TESTING SHARE: " + item);
+        sendIntent.setType("text/plain");
+        startActivity(sendIntent);
+    }
 }

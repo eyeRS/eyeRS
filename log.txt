@@ -1,3 +1,171 @@
+commit b55b5a56c85e5c9836879e784818b17a64a1e5dd
+Merge: d30c612 e936412
+Author: Matthew 'siD' Van der Bijl <matthewvdbijl@gmail.com>
+Date:   Fri Oct 20 20:49:02 2017 +0200
+
+    Merge remote-tracking branch 'origin/master'
+    
+    # Conflicts:
+    #       eyeRS/app/src/main/java/com/github/eyers/activities/MainActivity.java
+    #       eyeRS/app/src/main/java/com/github/eyers/activities/SlideshowActivity.java
+
+commit e936412bb59300e2f0abc771a37d9ee3819f6d49
+Author: Nathan Shava <nathantendai.shava@gmail.com>
+Date:   Fri Oct 20 18:19:19 2017 +0200
+
+    Validation, Error handling & Tablet screen support
+    
+    # Conflicts:
+    #       eyeRS/app/src/main/java/com/github/eyers/MainActivity.java
+    #       eyeRS/app/src/main/res/layout/activity_main.xml
+    #       eyeRS/app/src/main/res/values/strings.xml
+
+commit d69a508164cba1e731d5328b0177210521816ec7
+Author: Nathan Shava <nathantendai.shava@gmail.com>
+Date:   Thu Oct 19 11:26:10 2017 +0200
+
+    Hot fix
+    
+    # Conflicts:
+    #       eyeRS/app/src/main/java/com/github/eyers/MainActivity.java
+    #       eyeRS/app/src/main/res/layout/activity_main.xml
+    #       eyeRS/app/src/main/res/values/strings.xml
+
+commit cec7adc9d323961968bf0d1855cc529c8110367c
+Author: Nathan Shava <nathantendai.shava@gmail.com>
+Date:   Thu Oct 19 11:22:20 2017 +0200
+
+    Hot fix
+    
+    # Conflicts:
+    #       eyeRS/app/src/main/java/com/github/eyers/MainActivity.java
+    #       eyeRS/app/src/main/res/layout/activity_main.xml
+    #       eyeRS/app/src/main/res/values/strings.xml
+
+commit 659584b587388e8ee4970bf48de828cb6ef1617b
+Author: Nathan Shava <nathantendai.shava@gmail.com>
+Date:   Thu Oct 19 11:13:51 2017 +0200
+
+    Validation, Slideshow & bug fixes
+    
+    # Conflicts:
+    #       eyeRS/app/src/main/java/com/github/eyers/MainActivity.java
+    #       eyeRS/app/src/main/res/layout/activity_main.xml
+    #       eyeRS/app/src/main/res/values/strings.xml
+
+commit d30c6128504c74cfeb934900d6cbfb832e450419
+Author: Matthew 'siD' Van der Bijl <matthewvdbijl@gmail.com>
+Date:   Thu Oct 19 11:10:16 2017 +0200
+
+    worked on slide show
+
+commit 96786c739ecefa17db522ee986a6365c4c205b36
+Merge: 58f3032 890e1b7
+Author: Matthew 'siD' Van der Bijl <matthewvdbijl@gmail.com>
+Date:   Thu Oct 19 11:09:11 2017 +0200
+
+    Merge branch 'master' of https://github.com/eyers/eyers
+    
+    # Conflicts:
+    #       eyeRS/app/src/main/java/com/github/eyers/activities/SlideshowActivity.java
+    #       eyeRS/app/src/main/java/com/github/eyers/activities/SoundSettings.java
+
+commit 58f30321b529d4c057086f7cc7f9b4b284b232c4
+Author: Matthew 'siD' Van der Bijl <matthewvdbijl@gmail.com>
+Date:   Thu Oct 19 10:49:48 2017 +0200
+
+    nihjtly
+
+commit 890e1b71a1bfc5252e8f2ca1f040fb484e60e20f
+Merge: 4e64bd1 f320ee1
+Author: Emilde <emilde46@gmail.com>
+Date:   Thu Oct 19 09:16:22 2017 +0200
+
+    Merge remote-tracking branch 'origin/master'
+
+commit 4e64bd1de6786ac13d13adb9b12c525e6c55b000
+Author: Emilde-Arsenio <emilde46@gmail.com>
+Date:   Thu Oct 19 09:15:45 2017 +0200
+
+    Display settings changes/ Font types
+
+commit f320ee1f7e8b1b9b1f8540188fa3509e8d129e97
+Author: Andrea Cloete <andreacloetekaap@outlook.com>
+Date:   Thu Oct 19 09:11:10 2017 +0200
+
+    Slide show time change
+    And change to the display settings layout
+
+commit fb237dc544c2705bedd4fa6b635f6546452d904c
+Author: Andrea Cloete <andreacloetekaap@outlook.com>
+Date:   Thu Oct 19 09:06:00 2017 +0200
+
+    Slide show time change and change to the display settings layout
+
+commit d36d801e45fd28a44d54c88cd748dabdae4984bb
+Author: Nathan Shava <nathantendai.shava@gmail.com>
+Date:   Wed Oct 18 16:18:13 2017 +0200
+
+    Validation
+    
+    # Conflicts:
+    #       eyeRS/app/src/main/java/com/github/eyers/MainActivity.java
+    #       eyeRS/app/src/main/res/layout/activity_main.xml
+    #       eyeRS/app/src/main/res/values/strings.xml
+
+commit f43050332f28a6834541637ccd092c36456ff645
+Author: Matthew 'siD' Van der Bijl <matthewvdbijl@gmail.com>
+Date:   Wed Oct 18 13:29:06 2017 +0200
+
+    view image
+
+commit a6879c3a23c3b2f96d4a5a0dc5742fa5e84f6260
+Author: Matthew 'siD' Van der Bijl <matthewvdbijl@gmail.com>
+Date:   Wed Oct 18 12:45:27 2017 +0200
+
+    some image validation
+
+commit 3e132dcf69d83eed36e388d1263eb411eb767357
+Author: Nathan Shava <nathantendai.shava@gmail.com>
+Date:   Wed Oct 18 12:19:37 2017 +0200
+
+    Exception handling and DB updates
+    
+    # Conflicts:
+    #       eyeRS/app/src/main/java/com/github/eyers/MainActivity.java
+    #       eyeRS/app/src/main/res/layout/activity_main.xml
+    #       eyeRS/app/src/main/res/values/strings.xml
+
+commit 7697e5fc0815bbc2c40c7cf993a1bec08b053ac8
+Author: Andrea Cloete <andreacloetekaap@outlook.com>
+Date:   Wed Oct 18 09:33:34 2017 +0200
+
+    Welcome message
+
+commit ec7f3e2f197b71e7e2d2e67e6330ffebfa5d8ccb
+Author: Matthew 'siD' Van der Bijl <matthewvdbijl@gmail.com>
+Date:   Wed Oct 18 09:29:52 2017 +0200
+
+    another hot fix
+
+commit eadb472a42dede61ebd1184ad37ae8acc11bcb10
+Author: Matthew 'siD' Van der Bijl <matthewvdbijl@gmail.com>
+Date:   Wed Oct 18 09:29:31 2017 +0200
+
+    hot fix
+
+commit 5a99b3e7db81f55822470dcae3c9d1e67728d6e7
+Author: Matthew 'siD' Van der Bijl <matthewvdbijl@gmail.com>
+Date:   Wed Oct 18 09:27:29 2017 +0200
+
+    removed list activity
+
+commit 60ad9c84a658c6f8a6cc454547220e42e61f3017
+Author: Matthew 'siD' Van der Bijl <matthewvdbijl@gmail.com>
+Date:   Wed Oct 18 09:26:04 2017 +0200
+
+    remade log
+
 commit 514ed0587fa74f7073750a71a2973e2ee8143b16
 Author: Matthew 'siD' Van der Bijl <matthewvdbijl@gmail.com>
 Date:   Wed Oct 18 09:23:09 2017 +0200
