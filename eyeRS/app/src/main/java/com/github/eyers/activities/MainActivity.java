@@ -1,6 +1,7 @@
 package com.github.eyers.activities;
 
 import android.app.LoaderManager;
+import android.content.ClipData;
 import android.content.Intent;
 import android.content.Loader;
 import android.content.res.Configuration;
@@ -31,6 +32,7 @@ import com.github.eyers.wrapper.ItemWrapper;
 import com.miguelcatalan.materialsearchview.MaterialSearchView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * This class includes a navigation drawer and will display the main home activity of the app
@@ -95,35 +97,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         };
 
         drawer.setDrawerListener(toggle);
-        this.searchView = (MaterialSearchView) findViewById(R.id.search_view);
-
-        searchView.setOnSearchViewListener(new MaterialSearchView.SearchViewListener() {
-            @Override
-            public void onSearchViewShown() {
-
-            }
-
-            @Override
-            public void onSearchViewClosed() {
-
-            }
-        });
-
-        searchView.setOnQueryTextListener(new MaterialSearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                /**
-                 * Database functions should be entered in here
-                 * Once the text changes in the search bar the items should appear
-                 */
-                return false;
-            }
-        });
 
         /**
          * Populate the list view
@@ -156,7 +129,84 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         listView.setOnItemClickListener(this);
         getIntent().setAction("Already created");
+
+        this.searchView = (MaterialSearchView) findViewById(R.id.search_view);
+
+        searchView.setOnSearchViewListener(new MaterialSearchView.SearchViewListener() {
+            @Override
+            public void onSearchViewShown() {
+
+            }
+
+            @Override
+            public void onSearchViewClosed() {
+                // Returns default view when search is closed.
+                try {
+                    listView = (ListView) findViewById(R.id.main_listView);
+                    ArrayList<ItemLabel> items = new ArrayList<>();
+
+                    if (STATE.equals("main")) {
+                        for (String category : EyeRS.getCategoriesList(MainActivity.this)) {
+                            items.add(new ItemLabel(category, BitmapFactory.decodeResource(
+                                    getResources(), R.drawable.ic_action_help)
+                            )); // TODO
+                        }
+                    } else {
+                        for (ItemWrapper item : EyeRS.getItems(STATE, MainActivity.this)) {
+                            items.add(new ItemLabel(item.getName(), item.getImage()));
+                        }
+                    }
+
+                    LabelAdapter adapter = new LabelAdapter(MainActivity.this, items);
+                    listView.setAdapter(adapter);
+
+                } catch (Exception ex) {
+
+                    Toast.makeText(MainActivity.this, "Unable to view items", Toast.LENGTH_SHORT).show();
+                    Log.e("MainActivity list view", ex.getMessage(), ex);
+                }
+
+                listView.setOnItemClickListener(MainActivity.this);
+                getIntent().setAction("Already created");
+            }
+        });
+
+        searchView.setOnQueryTextListener(new MaterialSearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                /**
+                 * Once the text changes in the search bar the items should appear
+                 */
+                listView = (ListView) findViewById(R.id.main_listView);
+                ArrayList<ItemLabel> items = new ArrayList<>();
+
+                // ItemLabel lblName = null;
+                // lblName = new ItemLabel(lblName.getName(), null);
+
+                if (newText != null & !newText.isEmpty())   {
+                    ArrayList<ItemLabel> lstFound = new ArrayList<ItemLabel>();
+                    for (ItemLabel item: items)    {
+                        if (item.getName() == newText) {
+                            lstFound.add(item);
+                        }
+                        LabelAdapter adapter = new LabelAdapter(MainActivity.this, lstFound);
+                        listView.setAdapter(adapter);
+                    }
+                } else {
+                    LabelAdapter adapter = new LabelAdapter(MainActivity.this, items);
+                    listView.setAdapter(adapter);
+                }
+                return true;
+            }
+        });
     }
+
+
 
     /**
      * Sync the state of the ActionBarDrawerToggle with the state of the drawer
