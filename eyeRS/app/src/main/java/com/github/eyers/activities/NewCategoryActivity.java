@@ -6,7 +6,6 @@ import android.content.ContentValues;
 import android.content.Intent;
 import android.content.Loader;
 import android.database.Cursor;
-import android.database.SQLException;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -92,11 +91,42 @@ public class NewCategoryActivity extends AppCompatActivity implements View.OnCli
             switch (view.getId()) {
 
                 case R.id.btnAddCategory: //user clicks add
+
                     /**
-                     * User cannot add a new category without a title & description
+                     * Retrieve user input from fields
                      */
+                    categoryName = txtTitle.getText().toString();
+                    categoryDesc = txtDesc.getText().toString();
+
+                    /**
+                     * Empty category name
+                     */
+                    if (categoryName.isEmpty()) {
+
+                        Toast.makeText(this, "Please give the category a name",
+                                Toast.LENGTH_SHORT).show();
+                        break;
+                    }
+                    /**
+                     * Empty category description
+                     */
+                    else if (categoryDesc.isEmpty()) {
+
+                        Toast.makeText(this, "Please give the category a description",
+                                Toast.LENGTH_SHORT).show();
+                        break;
+                    }
+                    /**
+                     * No category icon selected
+                     */
+                    else if (categoryIcon.isEmpty()) {
+
+                        Toast.makeText(this, "Please select an icon for the category",
+                                Toast.LENGTH_SHORT).show();
+                        break;
+                    }
+
                     validateCategories();
-                    startActivity(new Intent(this, MainActivity.class));
                     break;
             }
 
@@ -128,12 +158,6 @@ public class NewCategoryActivity extends AppCompatActivity implements View.OnCli
      * Method performs validation to ensure that the user cannot re-create an existing category.
      */
     public void validateCategories() {
-
-        /**
-         * Get the text input from the EditText fields
-         */
-        categoryName = txtTitle.getText().toString();
-        categoryDesc = txtDesc.getText().toString();
 
         /**
          * Content resolver object
@@ -181,7 +205,7 @@ public class NewCategoryActivity extends AppCompatActivity implements View.OnCli
                     if (cursor.getString(cursor.getColumnIndex(NewCategoryInfo.
                             CategoryInfo.CATEGORY_NAME)).equals(categoryName)) {
 
-                        Toast.makeText(this, "This category already exists. " +
+                        Toast.makeText(this, "This category is already in use. " +
                                 "Please select a unique name for your new category", Toast.LENGTH_SHORT).show();
 
                         /**
@@ -203,6 +227,7 @@ public class NewCategoryActivity extends AppCompatActivity implements View.OnCli
                 } while (cursor.moveToNext());
 
                 cursor.close();
+
             } else {
 
                 Log.e("NewCategoryActivity", "Cannot retrieve categories");
@@ -220,6 +245,11 @@ public class NewCategoryActivity extends AppCompatActivity implements View.OnCli
      * Method adds the new category to the db only if it has passed the validation test.
      */
     public void addNewCategory() {
+
+        /**
+         * Content resolver object
+         */
+        eyeRSContentResolver = this.getContentResolver();
 
         /**
          * Define an object to contain the new values to insert
@@ -249,9 +279,17 @@ public class NewCategoryActivity extends AppCompatActivity implements View.OnCli
             this.txtDesc.setText("");
 
             Log.e("DATABASE OPERATIONS", "...New category added to DB!");
-        } catch (SQLException ex) {
+
+            /**
+             *  Then navigate the user to the Home screen after successfully creating the category
+             */
+            startActivity(new Intent(this, MainActivity.class));
+
+        } catch (Exception ex) {
+
             Toast.makeText(this, "Unable to create category", Toast.LENGTH_SHORT).show();
         }
+
 
     } //end void addNewCategory()
 

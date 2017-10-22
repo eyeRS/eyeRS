@@ -49,7 +49,9 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             "What time of the day were you born (hh:mm)?"
     };
 
-    // Field & other declarations
+    /**
+     * Field & other declarations
+     */
     private static String username;
     private static String email;
     private static String matchedPIN;
@@ -112,18 +114,18 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
          */
         eyeRSContentResolver = this.getContentResolver();
 
-        /**
-         * Define an object to contain the new values to insert
-         */
-        ContentValues userRegValues = new ContentValues();
-
-        userRegValues.put(NewRegInfo.UserRegistrationInfo.USER_NAME, username); //User's name
-        userRegValues.put(NewRegInfo.UserRegistrationInfo.EMAIL_ADD, email); //User's email address
-        userRegValues.put(NewRegInfo.UserRegistrationInfo.USER_PIN, matchedPIN); //User's pin
-        userRegValues.put(NewRegInfo.UserRegistrationInfo.SECURITY_QUESTION, securityQuestion); //User's security question
-        userRegValues.put(NewRegInfo.UserRegistrationInfo.SECURITY_RESPONSE, securityResponse); //User's security response
-
         try {
+
+            /**
+             * Define an object to contain the new values to insert
+             */
+            ContentValues userRegValues = new ContentValues();
+
+            userRegValues.put(NewRegInfo.UserRegistrationInfo.USER_NAME, username); //User's name
+            userRegValues.put(NewRegInfo.UserRegistrationInfo.EMAIL_ADD, email); //User's email address
+            userRegValues.put(NewRegInfo.UserRegistrationInfo.USER_PIN, matchedPIN); //User's pin
+            userRegValues.put(NewRegInfo.UserRegistrationInfo.SECURITY_QUESTION, securityQuestion); //User's security question
+            userRegValues.put(NewRegInfo.UserRegistrationInfo.SECURITY_RESPONSE, securityResponse); //User's security response
 
             /**
              * Content resolver insert operation
@@ -134,6 +136,20 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
             Toast.makeText(this, "Your details have been saved successfully", Toast.LENGTH_LONG).show();
             Log.e("DATABASE OPERATIONS", "...New user added to DB!");
+
+            /**
+             * Then clear the fields
+             */
+            this.txtUsername.setText("");
+            this.txtEmail.setText("");
+            this.txtPIN1.setText("");
+            this.txtPIN2.setText("");
+            this.txtResponse.setText("");
+
+            /**
+             * Navigate to the Login screen once registration has been successful
+             */
+            super.startActivity(new Intent(this, LoginActivity.class));
 
         } catch (Exception ex) {
 
@@ -178,60 +194,107 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     @Override
     public void onClick(View view) {
 
-        String pinA = txtPIN1.getText().toString();
-        String pinB = txtPIN2.getText().toString();
-
         try {
 
             switch (view.getId()) {
                 case R.id.btnRegister: //user clicks the register button
 
+                    /**
+                     * Retrieve user input from fields
+                     */
                     username = txtUsername.getText().toString();
                     email = txtEmail.getText().toString();
                     securityResponse = txtResponse.getText().toString();
+                    String pinA = txtPIN1.getText().toString();
+                    String pinB = txtPIN2.getText().toString();
 
-                    if (!validateEmailAddress(email) && email.isEmpty()) { //email not validate
+                    /**
+                     * Empty username
+                     */
+                    if (username.isEmpty()) {
 
-                        Toast.makeText(this, "Please enter a valid email address.", Toast.LENGTH_LONG).show();
-                        return;
+                        Toast.makeText(this, "Please enter a username", Toast.LENGTH_SHORT).show();
+                        break;
                     }
-                    if (username.isEmpty()) { //no username
+                    /**
+                     * Empty email
+                     */
+                    else if (email.isEmpty()) {
 
-                        Toast.makeText(this, "Please enter a username", Toast.LENGTH_LONG).show();
-                        return;
+                        Toast.makeText(this, "Please enter a valid email address", Toast.LENGTH_SHORT).show();
+                        break;
                     }
-                    if (pinA.isEmpty()) { //PIN 1 missing
+                    /**
+                     * Validate email
+                     */
+                    else if (!validateEmailAddress(email)) {
 
-                        Toast.makeText(this, "Please enter a valid PIN", Toast.LENGTH_LONG).show();
-                        return;
+                        Toast.makeText(this, "Please enter a valid email address", Toast.LENGTH_SHORT).show();
+                        break;
                     }
-                    if (pinB.isEmpty()) { //PIN 2 missing
+                    /**
+                     *
+                     * PIN 1 missing
+                     */
+                    else if (pinA.isEmpty()) {
 
-                        Toast.makeText(this, "Please enter a valid PIN", Toast.LENGTH_LONG).show();
-                        return;
+                        Toast.makeText(this, "Please enter a new PIN", Toast.LENGTH_LONG).show();
+                        break;
                     }
-                    if ((pinA.length() < 4) && (pinB.length() < 4)) {
+                    /**
+                     * PIN 2 missing
+                     */
+                    else if (pinB.isEmpty()) {
+
+                        Toast.makeText(this, "Please verify the new PIN", Toast.LENGTH_LONG).show();
+                        break;
+                    }
+                    /**
+                     * PINs do not match
+                     */
+                    else if (!pinA.equals(pinB)) {
+
+                        Toast.makeText(this, "Sorry but your PINs do not match", Toast.LENGTH_SHORT).show();
+                        break;
+                    }
+                    /**
+                     * Length of the PINs
+                     */
+                    else if ((pinA.length() < 4) && (pinB.length() < 4)) {
 
                         Toast.makeText(this, "Please ensure your PIN is at least 4 digits",
-                                Toast.LENGTH_LONG).show();
-                        return;
+                                Toast.LENGTH_SHORT).show();
+                        break;
                     }
-                    if (!pinA.equals(pinB)) {
+                    /**
+                     * Empty security question
+                     */
+                    else if (securityQuestion.isEmpty()) {
 
+                        Toast.makeText(this, "Please select a security question from the drop-down list",
+                                Toast.LENGTH_SHORT).show();
+                        break;
                     }
-                    if (pinA.equals(pinB)) { //if pins match
+                    /**
+                     * Empty security response
+                     */
+                    else if (securityResponse.isEmpty()) {
+
+                        Toast.makeText(this, "Please enter a response to your security question", Toast.LENGTH_SHORT).show();
+                        break;
+                    }
+                    /**
+                     * PINs match
+                     */
+                    else if (pinA.equals(pinB)) {
 
                         matchedPIN = txtPIN2.getText().toString(); //get a copy
-
-                        addRegInfo(); //method to add registration info
-
-                        /**
-                         * Navigate to the Login screen once registration has been successful
-                         */
-                        super.startActivity(new Intent(this, LoginActivity.class));
                     }
-                    return;
-
+                    /**
+                     * User input validated
+                     */
+                    addRegInfo(); //add registration info
+                    break;
                 case R.id.btnClearReg: //user clicks the clear button
 
                     this.txtUsername.setText("");
@@ -239,13 +302,13 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                     this.txtPIN1.setText("");
                     this.txtPIN2.setText("");
                     this.txtResponse.setText("");
-
+                    break;
             }
-
         } catch (Exception ex) {
 
             Log.e("Registration validation", ex.getMessage(), ex);
         }
+
     }
 
     /**

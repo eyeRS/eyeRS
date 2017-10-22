@@ -42,21 +42,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         View.OnClickListener, LoaderManager.LoaderCallbacks<Cursor>, OnItemClickListener {
 
     /**
-     * Declarations
+     * Fields & other declarations
      */
     public static String STATE = "main";
+    private ActionBarDrawerToggle toggle;
+    private DrawerLayout drawer;
+    private NavigationView navigationView;
+    private ListView listView;
 
     /**
      * Used to declare the search view bar.
      */
     private MaterialSearchView searchView;
-
-
-    // Other declarations
-    private ActionBarDrawerToggle toggle;
-    private DrawerLayout drawer;
-    private NavigationView navigationView;
-    private ListView listView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -24,6 +24,8 @@ import com.github.eyers.DBOperations;
 import com.github.eyers.R;
 import com.github.eyers.info.NewRegInfo;
 
+import java.util.regex.Pattern;
+
 /**
  * This class will handle the PIN reset activity.
  */
@@ -43,11 +45,14 @@ public class SetPINActivity extends AppCompatActivity implements View.OnClickLis
             "What are the last 5 digits of your ID number?",
             "What time of the day were you born (hh:mm)?"
     };
-
     /**
      * Retrieves the username.
      */
     private static String username;
+    /**
+     * Retrieves the email
+     */
+    private static String email;
     /**
      * Retrieves the matched pins.
      */
@@ -61,11 +66,16 @@ public class SetPINActivity extends AppCompatActivity implements View.OnClickLis
      */
     private static String securityResponse;
     /**
+     * Email address validation pattern
+     */
+    private Pattern regexPattern = Pattern.compile("^[(a-zA-Z-0-9-\\ \\+\\.)]+@[(a-z-A-z)]+\\.[(a-zA-z)]{2,3}$");
+    /**
      * Field declarations
      */
     private EditText txtPIN1;
     private EditText txtPIN2;
     private EditText txtUsername;
+    private EditText txtEmail;
     /**
      * Retrieves the user's security response.
      */
@@ -90,6 +100,7 @@ public class SetPINActivity extends AppCompatActivity implements View.OnClickLis
         this.txtPIN2 = (EditText) findViewById(R.id.txtPIN2);
         this.txtResponse = (EditText) findViewById(R.id.txtSecurityResponse);
         this.txtUsername = (EditText) findViewById(R.id.verifyTxtUsername);
+        this.txtEmail = (EditText) findViewById(R.id.edtTxtEmail);
 
         this.spinner = (Spinner) findViewById(R.id.setPin_spinner);
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
@@ -127,33 +138,104 @@ public class SetPINActivity extends AppCompatActivity implements View.OnClickLis
                     this.txtPIN1.setText("");
                     this.txtPIN2.setText("");
                     this.txtResponse.setText("");
-                    return;
+                    break;
                 case R.id.btnResetPIN:
+
+                    username = txtUsername.getText().toString();
                     String pinA = txtPIN1.getText().toString();
                     String pinB = txtPIN2.getText().toString();
+                    email = txtEmail.getText().toString();
+                    securityResponse = txtResponse.getText().toString();
 
-                    if (pinA.isEmpty()) {
+                    /**
+                     * Empty username
+                     */
+                    if (username.isEmpty()) {
 
-                        Toast.makeText(this, "Please enter a PIN.", Toast.LENGTH_LONG).show();
-                        return;
+                        Toast.makeText(this, "Please enter a valid email", Toast.LENGTH_SHORT).show();
+                        break;
                     }
-                    if (pinB.isEmpty()) {
+                    /**
+                     * Empty email
+                     */
+                    else if (email.isEmpty()) {
 
-                        Toast.makeText(this, "Please confirm you PIN.", Toast.LENGTH_LONG).show();
-                        return;
+                        Toast.makeText(this, "Please enter a valid email address.", Toast.LENGTH_LONG).show();
+                        break;
                     }
-                    if (!pinA.equals(pinB)) {
+                    /**
+                     * Email validation
+                     */
+                    else if (!validateEmailAddress(email)) {
+
+                        Toast.makeText(this, "Please enter a valid email address.", Toast.LENGTH_LONG).show();
+                        break;
+                    }
+                    /**
+                     * PIN 1 is empty
+                     */
+                    else if (pinA.isEmpty()) {
+
+                        Toast.makeText(this, "Please enter a new PIN", Toast.LENGTH_LONG).show();
+                        break;
+                    }
+                    /**
+                     * PIN 2 is empty
+                     */
+                    else if (pinB.isEmpty()) {
+
+                        Toast.makeText(this, "Please confirm your new PIN", Toast.LENGTH_LONG).show();
+                        break;
+                    }
+                    /**
+                     * PINs do not match
+                     */
+                    else if (!pinA.equals(pinB)) {
 
                         Toast.makeText(this, "Your PINs do not match.", Toast.LENGTH_LONG).show();
-                        return;
+                        break;
 
                     }
-                    if (pinA.equals(pinB)) { //pins match
+                    /**
+                     * Empty security question
+                     */
+                    else if (securityQuestion.isEmpty()) {
 
+                        Toast.makeText(this, "Please select a security question from the drop-down list",
+                                Toast.LENGTH_SHORT).show();
+                        break;
+                    }
+                    /**
+                     * Empty security response
+                     */
+                    else if (securityResponse.isEmpty()) {
+
+                        Toast.makeText(this, "Please enter a response for your security question",
+                                Toast.LENGTH_SHORT).show();
+                        break;
+                    }
+                    /**
+                     * No matching PIN
+                     */
+                    else if (matchedPIN.isEmpty()) {
+
+                        Toast.makeText(this, "Please ensure you've entered PINs that match",
+                                Toast.LENGTH_SHORT).show();
+                        break;
+                    }
+                    /**
+                     * PINs match so get a copy
+                     */
+                    else if (pinA.equals(pinB)) {
+
+                        /**
+                         * Get a copy of the matched PINs
+                         */
                         matchedPIN = txtPIN2.getText().toString();
-                        updateLoginInfo(); //method to update details
                     }
 
+                    updateLoginInfo(); //update the user's details
+                    break;
             }
 
         } catch (Exception ex) {
@@ -166,19 +248,6 @@ public class SetPINActivity extends AppCompatActivity implements View.OnClickLis
      * Method to add the updated user credentials & security details
      */
     public void updateLoginInfo() {
-
-        /**
-         * Content resolver object
-         */
-        eyeRSContentResolver = this.getContentResolver();
-
-        /**
-         * Define an object to contain the new values to insert
-         */
-        ContentValues userRegValues = new ContentValues();
-
-        username = txtUsername.getText().toString();
-        securityResponse = txtResponse.getText().toString();
 
         /**
          * Array of columns to be included for each row retrieved
@@ -198,12 +267,16 @@ public class SetPINActivity extends AppCompatActivity implements View.OnClickLis
         String sortOrder = "";
 
         /**
+         * Content resolver object
+         */
+        eyeRSContentResolver = this.getContentResolver();
+
+        /**
          * Cursor object to retrieve query results
          */
         Cursor cursor = eyeRSContentResolver.query(DBOperations.CONTENT_URI_USER_REG,
                 projection, whereClauseQuery, selectionArgs,
                 sortOrder);
-
 
         if (!cursor.moveToFirst()) {
 
@@ -213,14 +286,42 @@ public class SetPINActivity extends AppCompatActivity implements View.OnClickLis
         } else if (cursor.moveToFirst()) {
 
             /**
+             * Validating input for security purposes
+             */
+            if (!(cursor.getString(cursor.getColumnIndex(NewRegInfo.UserRegistrationInfo.USER_NAME))
+                    .equals(username))) {
+
+                Toast.makeText(this, "Please enter the correct username", Toast.LENGTH_SHORT).show();
+            }
+            /**
+             * Invalid security question
+             */
+            else if (!(cursor.getString(cursor.getColumnIndex(NewRegInfo.UserRegistrationInfo.SECURITY_QUESTION))
+                    .equals(securityQuestion))) {
+
+                Toast.makeText(this, "Please select the security question you specified during Registration",
+                        Toast.LENGTH_SHORT).show();
+            }
+            /**
+             * Invalid security response
+             */
+            else if (!(cursor.getString(cursor.getColumnIndex(NewRegInfo.UserRegistrationInfo.SECURITY_RESPONSE))
+                    .equals(securityResponse))) {
+
+                Toast.makeText(this, "Your security response is invalid", Toast.LENGTH_SHORT).show();
+            }
+            /**
              * The username, security question & security response used during
              * the Registration process will be used to validate PIN resetting.
              * User can only change a PIN if a matching record exists from the
              * Register table in the db.
              */
-            if ((cursor.getString(1).equals(username))
-                    && (cursor.getString(4).equals(securityQuestion))
-                    && (cursor.getString(5).equals(securityResponse))) {
+            else if ((cursor.getString(cursor.getColumnIndex(NewRegInfo.UserRegistrationInfo.USER_NAME))
+                    .equals(username))
+                    && (cursor.getString(cursor.getColumnIndex(NewRegInfo.UserRegistrationInfo.SECURITY_QUESTION))
+                    .equals(securityQuestion))
+                    && (cursor.getString(cursor.getColumnIndex(NewRegInfo.UserRegistrationInfo.SECURITY_RESPONSE))
+                    .equals(securityResponse))) {
 
                 /**
                  *
@@ -229,8 +330,14 @@ public class SetPINActivity extends AppCompatActivity implements View.OnClickLis
                         + username + "'";
 
                 /**
+                 * Define an object to contain the new values to insert
+                 */
+                ContentValues userRegValues = new ContentValues();
+
+                /**
                  * Get the new values to be updated
                  */
+                userRegValues.put(NewRegInfo.UserRegistrationInfo.EMAIL_ADD, email);
                 userRegValues.put(NewRegInfo.UserRegistrationInfo.USER_PIN, matchedPIN); //new matched pin
                 userRegValues.put(NewRegInfo.UserRegistrationInfo.SECURITY_QUESTION, securityQuestion); //new security question
                 userRegValues.put(NewRegInfo.UserRegistrationInfo.SECURITY_RESPONSE, securityResponse); //new security response
@@ -240,9 +347,18 @@ public class SetPINActivity extends AppCompatActivity implements View.OnClickLis
                     eyeRSContentResolver.update(DBOperations.CONTENT_URI_USER_REG, userRegValues,
                             whereClauseUpdate, null);
 
-                    Toast.makeText(this, "Your credentials have been updated successfully ",
+                    Toast.makeText(this, "Your details have been updated successfully ",
                             Toast.LENGTH_SHORT).show();
                     Log.e("DATABASE OPERATIONS", "...Credentials updated successfully!");
+
+                    /**
+                     * Then clear the fields
+                     */
+                    this.txtUsername.setText("");
+                    this.txtEmail.setText("");
+                    this.txtPIN1.setText("");
+                    this.txtPIN2.setText("");
+                    this.txtResponse.setText("");
 
                     /**
                      * Once credentials are successfully updated,
@@ -255,9 +371,10 @@ public class SetPINActivity extends AppCompatActivity implements View.OnClickLis
                     Log.e("PIN update query", ex.getMessage(), ex);
                     Toast.makeText(this, "Unable to add item", Toast.LENGTH_SHORT).show();
                 }
+
             } else {
 
-                Toast.makeText(this, "PIN reset failed. Please ensure you enter the correct details",
+                Toast.makeText(this, "PIN reset failed. Please ensure you have entered the correct details",
                         Toast.LENGTH_SHORT).show();
                 Log.e("SetPINActivity", "Null Cursor object");
 
@@ -283,6 +400,16 @@ public class SetPINActivity extends AppCompatActivity implements View.OnClickLis
          * Question selected from Spinner
          */
         securityQuestion = parent.getItemAtPosition(position).toString();
+    }
+
+    /**
+     * @param emailAddress
+     * @return
+     */
+
+    public boolean validateEmailAddress(String emailAddress) {
+
+        return regexPattern.matcher(emailAddress).matches();
     }
 
     /**

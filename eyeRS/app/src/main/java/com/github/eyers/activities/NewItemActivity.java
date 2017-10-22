@@ -12,7 +12,6 @@ import android.content.Loader;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteException;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -134,17 +133,18 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
 
         try {
 
-            //Spinner categories
             popCategories = getCategoriesList();
 
-            //Create an adapter for the spinner
+            /**
+             * Spinner adapter
+             */
             categoriesAdapter = new ArrayAdapter<String>(this,
                     android.R.layout.simple_spinner_item, popCategories);
 
-            //Set the adapter to the spinner
             this.categorySpinner.setAdapter(categoriesAdapter);
 
         } catch (Exception ex) {
+
             Log.e("Populating the spinner", ex.getMessage(), ex);
         }
     }
@@ -159,7 +159,10 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
 
         List<String> addCategories = new ArrayList<String>();
 
-        eyeRSContentResolver = this.getContentResolver(); //Content resolver object
+        /**
+         * Content resolver object
+         */
+        eyeRSContentResolver = this.getContentResolver();
 
         String[] projection = {
                 NewCategoryInfo.CategoryInfo.CATEGORY_ID,
@@ -192,6 +195,7 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
 
                 Toast.makeText(this, "Oops something happened there!", Toast.LENGTH_SHORT).show();
                 Log.e("NewItemActivity", "Null Cursor object");
+
             } else if (cursor.moveToFirst()) {
 
                 do {
@@ -267,44 +271,301 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
     @Override
     public void onClick(View view) {
 
-        itemName = txtTitle.getText().toString();
-        itemDesc = txtDesc.getText().toString();
-
         try {
 
             switch (view.getId()) {
 
                 case R.id.btnAddItem: //user clicks add
-                    if (txtTitle != null) {
-                        switch (categorySpinner.getSelectedItem().toString().toLowerCase()) {
-                            case "books": { // if the user is adding a book item
-                                addBook(); // call the method to add a book item to the db
+                    switch (categorySpinner.getSelectedItem().toString().toLowerCase()) {
+                        case "books": { // user adds a book item
+
+                            /**
+                             * Retrieve user input from fields
+                             */
+                            itemName = txtTitle.getText().toString();
+                            itemDesc = txtDesc.getText().toString();
+
+                            /**
+                             * Empty category
+                             */
+                            if (category.isEmpty()) {
+
+                                Toast.makeText(this, "Please select a category from the spinner",
+                                        Toast.LENGTH_SHORT).show();
+                                break;
                             }
-                            break;
-                            case "clothes": { // if the user is adding a clothing item
-                                addClothing(); // call the method to add a clothing item to the db
+                            /**
+                             * Empty item name
+                             */
+                            else if (itemName.isEmpty()) {
+
+                                Toast.makeText(this, "Please give the item a name",
+                                        Toast.LENGTH_SHORT).show();
+                                break;
                             }
-                            break;
-                            case "accessories": { // if the user is adding an accessory item
-                                addAccessory(); // call the method to add an accessory item to the db
+                            /**
+                             * Empty item description
+                             */
+                            else if (itemDesc.isEmpty()) {
+
+                                Toast.makeText(this, "Please give the item a description",
+                                        Toast.LENGTH_SHORT).show();
+                                break;
                             }
-                            break;
-                            case "games": { //if the user is adding a gaming item
-                                addGame();
+                            /**
+                             * No image added
+                             */
+                            else if (img.isEmpty()) {
+
+                                Toast.makeText(this, "Please add an image for the item",
+                                        Toast.LENGTH_SHORT).show();
+                                break;
                             }
-                            break;
-                            case "other": { // call the method to add another item to the db
-                                addOther(); // call the method to add a gaming item to the db
-                            }
-                            break;
-                            case NewCategoryInfo.CategoryInfo.CATEGORY_NAME: {  // if the user is adding any item that doesn't correspond to the default categories
-                                addItemInfo(); // call the method to add a user specified-item to the db
-                            }
-                            break;
+
+                            addBook();
                         }
-                        startActivity(new Intent(this, MainActivity.class));
-                    } else {
-                        Toast.makeText(this, "Sorry but your item was not added successfully", Toast.LENGTH_SHORT).show();
+                        break;
+                        case "clothes": { //user adds a clothing item
+
+                            /**
+                             * Retrieve user input from fields
+                             */
+                            itemName = txtTitle.getText().toString();
+                            itemDesc = txtDesc.getText().toString();
+
+                            /**
+                             * Empty category
+                             */
+                            if (category.isEmpty()) {
+
+                                Toast.makeText(this, "Please select a category from the spinner",
+                                        Toast.LENGTH_SHORT).show();
+                                break;
+                            }
+                            /**
+                             * Empty item name
+                             */
+                            else if (itemName.isEmpty()) {
+
+                                Toast.makeText(this, "Please give the item a name",
+                                        Toast.LENGTH_SHORT).show();
+                                break;
+                            }
+                            /**
+                             * Empty item description
+                             */
+                            else if (itemDesc.isEmpty()) {
+
+                                Toast.makeText(this, "Please give the item a description",
+                                        Toast.LENGTH_SHORT).show();
+                                break;
+                            }
+                            /**
+                             * No image added
+                             */
+                            else if (img.isEmpty()) {
+
+                                Toast.makeText(this, "Please add an image for the item",
+                                        Toast.LENGTH_SHORT).show();
+                                break;
+                            }
+
+                            addClothing();
+                        }
+                        break;
+                        case "accessories": { //user adds an accessory item
+
+                            /**
+                             * Retrieve user input from fields
+                             */
+                            itemName = txtTitle.getText().toString();
+                            itemDesc = txtDesc.getText().toString();
+
+                            /**
+                             * Empty category
+                             */
+                            if (category.isEmpty()) {
+
+                                Toast.makeText(this, "Please select a category from the spinner",
+                                        Toast.LENGTH_SHORT).show();
+                                break;
+                            }
+                            /**
+                             * Empty item name
+                             */
+                            else if (itemName.isEmpty()) {
+
+                                Toast.makeText(this, "Please give the item a name",
+                                        Toast.LENGTH_SHORT).show();
+                                break;
+                            }
+                            /**
+                             * Empty item description
+                             */
+                            else if (itemDesc.isEmpty()) {
+
+                                Toast.makeText(this, "Please give the item a description",
+                                        Toast.LENGTH_SHORT).show();
+                                break;
+                            }
+                            /**
+                             * No image added
+                             */
+                            else if (img.isEmpty()) {
+
+                                Toast.makeText(this, "Please add an image for the item",
+                                        Toast.LENGTH_SHORT).show();
+                                break;
+
+                            }
+
+                            addAccessory();
+                        }
+                        break;
+                        case "games": { //user adds a gaming item
+
+                            /**
+                             * Retrieve user input from fields
+                             */
+                            itemName = txtTitle.getText().toString();
+                            itemDesc = txtDesc.getText().toString();
+
+                            /**
+                             * Empty category
+                             */
+                            if (category.isEmpty()) {
+
+                                Toast.makeText(this, "Please select a category from the spinner",
+                                        Toast.LENGTH_SHORT).show();
+                                break;
+                            }
+                            /**
+                             * Empty item name
+                             */
+                            else if (itemName.isEmpty()) {
+
+                                Toast.makeText(this, "Please give the item a name",
+                                        Toast.LENGTH_SHORT).show();
+                                break;
+                            }
+                            /**
+                             * Empty item description
+                             */
+                            else if (itemDesc.isEmpty()) {
+
+                                Toast.makeText(this, "Please give the item a description",
+                                        Toast.LENGTH_SHORT).show();
+                                break;
+                            }
+                            /**
+                             * No image added
+                             */
+                            else if (img.isEmpty()) {
+
+                                Toast.makeText(this, "Please add an image for the item",
+                                        Toast.LENGTH_SHORT).show();
+                                break;
+                            }
+
+                            addGame();
+                        }
+                        break;
+                        case "other": { //user adds another item
+
+                            /**
+                             * Retrieve user input from fields
+                             */
+                            itemName = txtTitle.getText().toString();
+                            itemDesc = txtDesc.getText().toString();
+
+                            /**
+                             * Empty category
+                             */
+                            if (category.isEmpty()) {
+
+                                Toast.makeText(this, "Please select a category from the spinner",
+                                        Toast.LENGTH_SHORT).show();
+                                break;
+                            }
+                            /**
+                             * Empty item name
+                             */
+                            else if (itemName.isEmpty()) {
+
+                                Toast.makeText(this, "Please give the item a name",
+                                        Toast.LENGTH_SHORT).show();
+                                break;
+                            }
+                            /**
+                             * Empty item description
+                             */
+                            else if (itemDesc.isEmpty()) {
+
+                                Toast.makeText(this, "Please give the item a description",
+                                        Toast.LENGTH_SHORT).show();
+                                break;
+                            }
+                            /**
+                             * No image added
+                             */
+                            else if (img.isEmpty()) {
+
+                                Toast.makeText(this, "Please add an image for the item",
+                                        Toast.LENGTH_SHORT).show();
+                                break;
+                            }
+
+                            addOther();
+                        }
+                        break;
+                        case NewCategoryInfo.CategoryInfo.CATEGORY_NAME: {  //user adds in any other category
+
+                            /**
+                             * Retrieve user input from fields
+                             */
+                            itemName = txtTitle.getText().toString();
+                            itemDesc = txtDesc.getText().toString();
+
+                            /**
+                             * Empty category
+                             */
+                            if (category.isEmpty()) {
+
+                                Toast.makeText(this, "Please select a category from the spinner",
+                                        Toast.LENGTH_SHORT).show();
+                                break;
+                            }
+                            /**
+                             * Empty item name
+                             */
+                            else if (itemName.isEmpty()) {
+
+                                Toast.makeText(this, "Please give the item a name",
+                                        Toast.LENGTH_SHORT).show();
+                                break;
+                            }
+                            /**
+                             * Empty item description
+                             */
+                            else if (itemDesc.isEmpty()) {
+
+                                Toast.makeText(this, "Please give the item a description",
+                                        Toast.LENGTH_SHORT).show();
+                                break;
+                            }
+                            /**
+                             * No image added
+                             */
+                            else if (img.isEmpty()) {
+
+                                Toast.makeText(this, "Please add an image for the item",
+                                        Toast.LENGTH_SHORT).show();
+                                break;
+                            }
+
+                            addItemInfo();
+                        }
+                        break;
                     }
                     break;
                 case R.id.new_item_image:
@@ -314,7 +575,7 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
 
         } catch (Exception ex) {
 
-            Log.e("Event handlers", ex.getMessage(), ex);
+            Log.e("Add item event handlers", ex.getMessage(), ex);
         }
 
     }
@@ -334,42 +595,42 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
         bookValues.put(NewItemInfo.ItemInfo.ITEM_DESC, itemDesc); //Book description
         bookValues.put(NewItemInfo.ItemInfo.ITEM_IMAGE, img); //Book image
 
+        /**
+         * Content resolver object
+         */
+        eyeRSContentResolver = this.getContentResolver();
+
         try {
 
+            /**
+             * Content resolver book insert
+             */
+            eyeRSContentResolver.insert(
+                    DBOperations.CONTENT_URI_ITEMS,
+                    bookValues);
 
-            try {
+            Toast.makeText(this, "Your book item has been added successfully ", Toast.LENGTH_SHORT).show();
+            //Display message in the logcat window after successful operation execution
+            Log.e("DATABASE OPERATIONS", "...Book item added to DB!");
 
-                /**
-                 * Content resolver book insert
-                 */
-                eyeRSContentResolver.insert(
-                        DBOperations.CONTENT_URI_ITEMS,
-                        bookValues);
+            /**
+             * Then clear the fields after successfully inserting the data
+             */
+            txtTitle.setText("");
+            txtDesc.setText("");
+            img = "";
+            ivImage.setImageBitmap(null);
+            startActivity(new Intent(this, MainActivity.class));
 
-                Toast.makeText(this, "Your book item has been added successfully ", Toast.LENGTH_SHORT).show();
-                //Display message in the logcat window after successful operation execution
-                Log.e("DATABASE OPERATIONS", "...Book item added to DB!");
+        } catch (Exception ex) {
 
-                /**
-                 * Then clear the fields after successfully inserting the data
-                 */
-                txtTitle.setText("");
-                txtDesc.setText("");
-                img = "";
-                ivImage.setImageBitmap(null);
-
-            } catch (Exception ex) {
-
-                Log.e(getClass().getSimpleName(), "Book item not added.", ex);
-                txtTitle.setText("");
-                txtDesc.setText("");
-                img = "";
-                ivImage.setImageBitmap(null);
-
-            }
-
-        } catch (SQLiteException ex) {
             Toast.makeText(this, "Unable to add item the book", Toast.LENGTH_SHORT).show();
+            Log.e(getClass().getSimpleName(), "Book item not added.", ex);
+            txtTitle.setText("");
+            txtDesc.setText("");
+            img = "";
+            ivImage.setImageBitmap(null);
+
         }
 
     } //end void addBook()
@@ -389,41 +650,42 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
         clothesValues.put(NewItemInfo.ItemInfo.ITEM_DESC, itemDesc); //Clothing description
         clothesValues.put(NewItemInfo.ItemInfo.ITEM_IMAGE, img); //Clothing image
 
+        /**
+         * Content resolver object
+         */
+        eyeRSContentResolver = this.getContentResolver();
+
         try {
 
-            try {
+            /**
+             * Content resolver clothes insert
+             */
+            eyeRSContentResolver.insert(
+                    DBOperations.CONTENT_URI_ITEMS,
+                    clothesValues);
 
-                /**
-                 * Content resolver clothes insert
-                 */
-                eyeRSContentResolver.insert(
-                        DBOperations.CONTENT_URI_ITEMS,
-                        clothesValues);
+            Toast.makeText(this, "Your clothing item has been added successfully ", Toast.LENGTH_SHORT).show();
+            //Display message in the logcat window after successful operation execution
+            Log.e("DATABASE OPERATIONS", "...Clothing item added to DB!");
 
-                Toast.makeText(this, "Your clothing item has been added successfully ", Toast.LENGTH_SHORT).show();
-                //Display message in the logcat window after successful operation execution
-                Log.e("DATABASE OPERATIONS", "...Clothing item added to DB!");
+            /**
+             * Then clear the fields after successfully inserting the data
+             */
+            txtTitle.setText("");
+            txtDesc.setText("");
+            img = "";
+            ivImage.setImageBitmap(null);
+            startActivity(new Intent(this, MainActivity.class));
 
-                /**
-                 * Then clear the fields after successfully inserting the data
-                 */
-                txtTitle.setText("");
-                txtDesc.setText("");
-                img = "";
-                ivImage.setImageBitmap(null);
+        } catch (Exception ex) {
 
-            } catch (Exception ex) {
-
-                Log.e(getClass().getSimpleName(), "Clothing item not added.", ex);
-                txtTitle.setText("");
-                txtDesc.setText("");
-                img = "";
-                ivImage.setImageBitmap(null);
-
-            }
-
-        } catch (SQLiteException ex) {
             Toast.makeText(this, "Unable to add item", Toast.LENGTH_SHORT).show();
+            Log.e(getClass().getSimpleName(), "Clothing item not added.", ex);
+            txtTitle.setText("");
+            txtDesc.setText("");
+            img = "";
+            ivImage.setImageBitmap(null);
+
         }
 
     } //end void addClothing()
@@ -443,42 +705,44 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
         accessoriesValues.put(NewItemInfo.ItemInfo.ITEM_DESC, itemDesc); //Accessory description
         accessoriesValues.put(NewItemInfo.ItemInfo.ITEM_IMAGE, img); //Accessory image
 
+        /**
+         * Content resolver object
+         */
+        eyeRSContentResolver = this.getContentResolver();
+
         try {
 
-            try {
+            /**
+             * Content resolver accessories insert
+             */
+            eyeRSContentResolver.insert(
+                    DBOperations.CONTENT_URI_ITEMS,
+                    accessoriesValues);
 
-                /**
-                 * Content resolver accessories insert
-                 */
-                eyeRSContentResolver.insert(
-                        DBOperations.CONTENT_URI_ITEMS,
-                        accessoriesValues);
+            Toast.makeText(this, "Your accessory item has been added successfully ", Toast.LENGTH_SHORT).show();
+            //Display message in the logcat window after successful operation execution
+            Log.e("DATABASE OPERATIONS", "...Accessory item added to DB!");
 
-                Toast.makeText(this, "Your accessory item has been added successfully ", Toast.LENGTH_SHORT).show();
-                //Display message in the logcat window after successful operation execution
-                Log.e("DATABASE OPERATIONS", "...Accessory item added to DB!");
+            /**
+             * Then clear the fields after successfully inserting the data
+             */
+            txtTitle.setText("");
+            txtDesc.setText("");
+            img = "";
+            ivImage.setImageBitmap(null);
+            startActivity(new Intent(this, MainActivity.class));
 
-                /**
-                 * Then clear the fields after successfully inserting the data
-                 */
-                txtTitle.setText("");
-                txtDesc.setText("");
-                img = "";
-                ivImage.setImageBitmap(null);
+        } catch (Exception ex) {
 
-            } catch (Exception ex) {
-
-                Log.e(getClass().getSimpleName(), "Accessory item not added.", ex);
-                txtTitle.setText("");
-                txtDesc.setText("");
-                img = "";
-                ivImage.setImageBitmap(null);
-
-            }
-
-        } catch (SQLiteException ex) {
             Toast.makeText(this, "Unable to add item", Toast.LENGTH_SHORT).show();
+            Log.e(getClass().getSimpleName(), "Accessory item not added.", ex);
+            txtTitle.setText("");
+            txtDesc.setText("");
+            img = "";
+            ivImage.setImageBitmap(null);
+
         }
+
 
     } //end void addAccessory()
 
@@ -496,6 +760,11 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
         gamesValues.put(NewItemInfo.ItemInfo.ITEM_NAME, itemName); //Game name
         gamesValues.put(NewItemInfo.ItemInfo.ITEM_DESC, itemDesc); //Game description
         gamesValues.put(NewItemInfo.ItemInfo.ITEM_IMAGE, img); //Game image
+
+        /**
+         * Content resolver object
+         */
+        eyeRSContentResolver = this.getContentResolver();
 
         try {
 
@@ -517,6 +786,7 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
             txtDesc.setText("");
             img = "";
             ivImage.setImageBitmap(null);
+            startActivity(new Intent(this, MainActivity.class));
 
         } catch (Exception ex) {
 
@@ -528,6 +798,8 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
             ivImage.setImageBitmap(null);
 
         }
+
+
     }
     //end void addGame()
 
@@ -545,6 +817,11 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
         otherValues.put(NewItemInfo.ItemInfo.ITEM_NAME, itemName); //Other name
         otherValues.put(NewItemInfo.ItemInfo.ITEM_DESC, itemDesc); //Other description
         otherValues.put(NewItemInfo.ItemInfo.ITEM_IMAGE, img); //Other image
+
+        /**
+         * Content resolver object
+         */
+        eyeRSContentResolver = this.getContentResolver();
 
         try {
 
@@ -566,6 +843,7 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
             txtDesc.setText("");
             img = "";
             ivImage.setImageBitmap(null);
+            startActivity(new Intent(this, MainActivity.class));
 
         } catch (Exception ex) {
 
@@ -577,6 +855,7 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
             ivImage.setImageBitmap(null);
 
         }
+
 
     }
 
@@ -595,8 +874,12 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
         itemsValues.put(NewItemInfo.ItemInfo.CATEGORY_NAME, category); //user specified category
         itemsValues.put(NewItemInfo.ItemInfo.ITEM_NAME, itemName); //item's name
         itemsValues.put(NewItemInfo.ItemInfo.ITEM_DESC, itemDesc); //item's description
-        Toast.makeText(this, img, Toast.LENGTH_LONG).show();
         itemsValues.put(NewItemInfo.ItemInfo.ITEM_IMAGE, img); //item's image
+
+        /**
+         * Content resolver object
+         */
+        eyeRSContentResolver = this.getContentResolver();
 
         try {
 
@@ -618,6 +901,7 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
             txtDesc.setText("");
             img = "";
             ivImage.setImageBitmap(null);
+            startActivity(new Intent(this, MainActivity.class));
 
         } catch (Exception ex) {
 
@@ -629,6 +913,7 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
             ivImage.setImageBitmap(null);
 
         }
+
 
     }
 

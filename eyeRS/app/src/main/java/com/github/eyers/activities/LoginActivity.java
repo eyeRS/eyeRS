@@ -67,12 +67,13 @@ public final class LoginActivity extends AppCompatActivity implements View.OnCli
             switch (v.getId()) {
                 case R.id.txtForgotPin:
                     super.startActivity(new Intent(this, SetPINActivity.class));
-                    return;
+                    break;
                 case R.id.btnRegister:
                     super.startActivity(new Intent(this, RegisterActivity.class));
-                    return;
+                    break;
                 case R.id.btnLogin:
                     verifyLoginPIN(); //method to validate Login process
+                    break;
             }
 
         } catch (Exception ex) {
@@ -116,7 +117,8 @@ public final class LoginActivity extends AppCompatActivity implements View.OnCli
                 Toast.makeText(this, "Login failed. Please ensure you have registered your details first before " +
                         "attempting to login", Toast.LENGTH_SHORT).show();
 
-            } else if (cursor.moveToFirst()) {
+            }
+            else if (cursor.moveToFirst()) {
 
                 do {
 
@@ -130,7 +132,7 @@ public final class LoginActivity extends AppCompatActivity implements View.OnCli
                         Toast.makeText(this, "Login failed. Please enter the correct PIN", Toast.LENGTH_SHORT).show();
                     }
                     if (cursor.getString(cursor.getColumnIndex(NewRegInfo.UserRegistrationInfo.USER_PIN)
-                    ).equals("")) {
+                    ).equals("")) { //No PIN entered
 
                         Toast.makeText(this, "Login failed. Please insert a valid PIN to login successfully",
                                 Toast.LENGTH_SHORT).show();
@@ -146,10 +148,12 @@ public final class LoginActivity extends AppCompatActivity implements View.OnCli
                 } while (cursor.moveToNext());
 
                 cursor.close();
+
             } else {
 
                 Toast.makeText(this, "Login failed. Please ensure you have registered your details first before " +
                         "attempting to login", Toast.LENGTH_SHORT).show();
+
             }
         } catch (Exception ex) {
 

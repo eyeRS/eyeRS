@@ -41,6 +41,7 @@ public class ProfileSettingsActivity extends AppCompatActivity implements View.O
      * Field & other declarations
      */
     private EditText txtUsername;
+    private String username;
     /**
      * Camera declarations
      */
@@ -85,8 +86,6 @@ public class ProfileSettingsActivity extends AppCompatActivity implements View.O
     }
 
     public void addProfileInfo() {
-
-        String username = txtUsername.getText().toString();
 
         /**
          * Content resolver declaration
@@ -141,9 +140,29 @@ public class ProfileSettingsActivity extends AppCompatActivity implements View.O
 
                 case R.id.saveProfileBtn:
 
+                    username = txtUsername.getText().toString();
+
+                    /**
+                     * Empty username
+                     */
+                    if (username.isEmpty()) {
+
+                        Toast.makeText(this, "Please enter a username", Toast.LENGTH_SHORT).show();
+                        break;
+                    }
+                    /**
+                     * No image added
+                     */
+                    else if (img.isEmpty()) {
+
+                        Toast.makeText(this, "Please add an image", Toast.LENGTH_SHORT).show();
+                        break;
+                    }
+
                     addProfileInfo(); //Method to save user profile data
                     break;
                 case R.id.new_user_avatar:
+
                     selectImage();
                     break;
             }

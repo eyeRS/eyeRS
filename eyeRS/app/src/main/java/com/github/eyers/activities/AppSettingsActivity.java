@@ -20,7 +20,9 @@ public class AppSettingsActivity extends AppCompatActivity implements OnItemClic
 
     static boolean hasRun = false;
 
-    // Field declarations
+    /**
+     * Field & other declarations
+     */
     private ListView listView;
 
     @Override
