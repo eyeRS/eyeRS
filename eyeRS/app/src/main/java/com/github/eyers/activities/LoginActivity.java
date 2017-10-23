@@ -88,12 +88,12 @@ public final class LoginActivity extends AppCompatActivity implements View.OnCli
         eyeRSContentResolver = getApplicationContext().getContentResolver(); //Content resolver object
 
         String[] projection = {
-                NewRegInfo.UserRegistrationInfo.REG_ID,
-                NewRegInfo.UserRegistrationInfo.USER_NAME,
-                NewRegInfo.UserRegistrationInfo.EMAIL_ADD,
-                NewRegInfo.UserRegistrationInfo.USER_PIN,
-                NewRegInfo.UserRegistrationInfo.SECURITY_QUESTION,
-                NewRegInfo.UserRegistrationInfo.SECURITY_RESPONSE};
+                NewRegInfo.REG_ID,
+                NewRegInfo.USER_NAME,
+                NewRegInfo.EMAIL_ADD,
+                NewRegInfo.USER_PIN,
+                NewRegInfo.SECURITY_QUESTION,
+                NewRegInfo.SECURITY_RESPONSE};
 
         String whereClause = "";
 
@@ -127,18 +127,18 @@ public final class LoginActivity extends AppCompatActivity implements View.OnCli
                      * We need to retrieve the pin used during the Register Activity
                      * to validate the Login process
                      */
-                    if (!cursor.getString(cursor.getColumnIndex(NewRegInfo.UserRegistrationInfo.USER_PIN)
+                    if (!cursor.getString(cursor.getColumnIndex(NewRegInfo.USER_PIN)
                     ).equals(txtPIN.getText().toString())) { //Incorrect PIN
 
                         Toast.makeText(this, "Login failed. Please enter the correct PIN", Toast.LENGTH_SHORT).show();
                     }
-                    if (cursor.getString(cursor.getColumnIndex(NewRegInfo.UserRegistrationInfo.USER_PIN)
+                    if (cursor.getString(cursor.getColumnIndex(NewRegInfo.USER_PIN)
                     ).equals("")) { //No PIN entered
 
                         Toast.makeText(this, "Login failed. Please insert a valid PIN to login successfully",
                                 Toast.LENGTH_SHORT).show();
                     }
-                    if (cursor.getString(cursor.getColumnIndex(NewRegInfo.UserRegistrationInfo.USER_PIN)
+                    if (cursor.getString(cursor.getColumnIndex(NewRegInfo.USER_PIN)
                     ).equals(txtPIN.getText().toString())) { //Correct PIN entered
 
                         super.startActivity(new Intent(getApplicationContext(), MainActivity.class)); //Grant access

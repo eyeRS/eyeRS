@@ -6,21 +6,18 @@ package com.github.eyers.info;
  *
  * @author Nathan Shava
  */
-public class NewRegInfo {
+public interface NewRegInfo {//UserRegistrationInfo
 
-    public static class UserRegistrationInfo {
-        /**
-         * Entity name
-         */
-        public static final String TABLE_NAME = "user_registration";
-        /**
-         * Attributes
-         */
-        public static final String REG_ID = "_id";
-        public static final String USER_NAME = "user_name";
-        public static final String EMAIL_ADD = "user_email";
-        public static final String USER_PIN = "user_pin";
-        public static final String SECURITY_QUESTION = "security_question";
-        public static final String SECURITY_RESPONSE = "security_response";
-    }
+    /**
+     * Entity name
+     */
+    String TABLE_NAME = "user_registration";
+
+    // Attributes
+    String REG_ID = "_id";
+    String USER_NAME = "user_name";
+    String EMAIL_ADD = "user_email";
+    String USER_PIN = "user_pin";
+    String SECURITY_QUESTION = "security_question";
+    String SECURITY_RESPONSE = "security_response";
 }

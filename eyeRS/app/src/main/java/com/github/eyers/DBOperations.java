@@ -12,8 +12,8 @@ import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.util.Log;
 
-import com.github.eyers.info.NewCategoryInfo;
-import com.github.eyers.info.NewItemInfo;
+import com.github.eyers.info.CategoryInfo;
+import com.github.eyers.info.ItemInfo;
 import com.github.eyers.info.NewRegInfo;
 import com.github.eyers.info.UserProfileInfo;
 
@@ -33,10 +33,10 @@ public class DBOperations extends ContentProvider {
     /**
      * Specify the table names to be used by the Content Provider.
      */
-    public static final String CATEGORIES_TABLE = NewCategoryInfo.CategoryInfo.TABLE_NAME;
-    public static final String ITEMS_TABLE = NewItemInfo.ItemInfo.TABLE_NAME;
-    public static final String USER_REGISTRATION_TABLE = NewRegInfo.UserRegistrationInfo.TABLE_NAME;
-    public static final String USER_PROFILE_TABLE = UserProfileInfo.ProfileInfo.TABLE_NAME;
+    public static final String CATEGORIES_TABLE = CategoryInfo.TABLE_NAME;
+    public static final String ITEMS_TABLE = ItemInfo.TABLE_NAME;
+    public static final String USER_REGISTRATION_TABLE = NewRegInfo.TABLE_NAME;
+    public static final String USER_PROFILE_TABLE = UserProfileInfo.TABLE_NAME;
     /**
      * Specify the table paths.
      */
@@ -284,7 +284,7 @@ public class DBOperations extends ContentProvider {
 
                     updatedRows = db.update(USER_REGISTRATION_TABLE,
                             values,
-                            NewRegInfo.UserRegistrationInfo.USER_NAME + " = " + username,
+                            NewRegInfo.USER_NAME + " = " + username,
                             null);
                 } else {
 

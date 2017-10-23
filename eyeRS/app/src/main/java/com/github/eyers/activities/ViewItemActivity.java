@@ -13,6 +13,9 @@ import com.vj.widgets.AutoResizeTextView;
 
 public class ViewItemActivity extends AppCompatActivity {
 
+    /**
+     *
+     */
     public static ItemWrapper ITEM = null;
 
     private ImageView image;

@@ -253,15 +253,15 @@ public class SetPINActivity extends AppCompatActivity implements View.OnClickLis
         /**
          * Array of columns to be included for each row retrieved
          */
-        String[] projection = {NewRegInfo.UserRegistrationInfo.REG_ID,
-                NewRegInfo.UserRegistrationInfo.USER_NAME,
-                NewRegInfo.UserRegistrationInfo.EMAIL_ADD,
-                NewRegInfo.UserRegistrationInfo.USER_PIN,
-                NewRegInfo.UserRegistrationInfo.SECURITY_QUESTION,
-                NewRegInfo.UserRegistrationInfo.SECURITY_RESPONSE};
+        String[] projection = {NewRegInfo.REG_ID,
+                NewRegInfo.USER_NAME,
+                NewRegInfo.EMAIL_ADD,
+                NewRegInfo.USER_PIN,
+                NewRegInfo.SECURITY_QUESTION,
+                NewRegInfo.SECURITY_RESPONSE};
 
-        String whereClauseQuery = NewRegInfo.UserRegistrationInfo.SECURITY_QUESTION + " = '" + securityQuestion
-                + "' AND " + NewRegInfo.UserRegistrationInfo.SECURITY_RESPONSE + " = '" + securityResponse + "'";
+        String whereClauseQuery = NewRegInfo.SECURITY_QUESTION + " = '" + securityQuestion
+                + "' AND " + NewRegInfo.SECURITY_RESPONSE + " = '" + securityResponse + "'";
 
         String[] selectionArgs = {};
 
@@ -289,7 +289,7 @@ public class SetPINActivity extends AppCompatActivity implements View.OnClickLis
             /**
              * Validating input for security purposes
              */
-            if (!(cursor.getString(cursor.getColumnIndex(NewRegInfo.UserRegistrationInfo.USER_NAME))
+            if (!(cursor.getString(cursor.getColumnIndex(NewRegInfo.USER_NAME))
                     .equals(username))) {
 
                 Toast.makeText(this, "Please enter the correct username", Toast.LENGTH_SHORT).show();
@@ -297,7 +297,7 @@ public class SetPINActivity extends AppCompatActivity implements View.OnClickLis
             /**
              * Invalid security question
              */
-            else if (!(cursor.getString(cursor.getColumnIndex(NewRegInfo.UserRegistrationInfo.SECURITY_QUESTION))
+            else if (!(cursor.getString(cursor.getColumnIndex(NewRegInfo.SECURITY_QUESTION))
                     .equals(securityQuestion))) {
 
                 Toast.makeText(this, "Please select the security question you specified during Registration",
@@ -306,7 +306,7 @@ public class SetPINActivity extends AppCompatActivity implements View.OnClickLis
             /**
              * Invalid security response
              */
-            else if (!(cursor.getString(cursor.getColumnIndex(NewRegInfo.UserRegistrationInfo.SECURITY_RESPONSE))
+            else if (!(cursor.getString(cursor.getColumnIndex(NewRegInfo.SECURITY_RESPONSE))
                     .equals(securityResponse))) {
 
                 Toast.makeText(this, "Your security response is invalid", Toast.LENGTH_SHORT).show();
@@ -317,17 +317,17 @@ public class SetPINActivity extends AppCompatActivity implements View.OnClickLis
              * User can only change a PIN if a matching record exists from the
              * Register table in the db.
              */
-            else if ((cursor.getString(cursor.getColumnIndex(NewRegInfo.UserRegistrationInfo.USER_NAME))
+            else if ((cursor.getString(cursor.getColumnIndex(NewRegInfo.USER_NAME))
                     .equals(username))
-                    && (cursor.getString(cursor.getColumnIndex(NewRegInfo.UserRegistrationInfo.SECURITY_QUESTION))
+                    && (cursor.getString(cursor.getColumnIndex(NewRegInfo.SECURITY_QUESTION))
                     .equals(securityQuestion))
-                    && (cursor.getString(cursor.getColumnIndex(NewRegInfo.UserRegistrationInfo.SECURITY_RESPONSE))
+                    && (cursor.getString(cursor.getColumnIndex(NewRegInfo.SECURITY_RESPONSE))
                     .equals(securityResponse))) {
 
                 /**
                  *
                  */
-                String whereClauseUpdate = NewRegInfo.UserRegistrationInfo.USER_NAME + " = '"
+                String whereClauseUpdate = NewRegInfo.USER_NAME + " = '"
                         + username + "'";
 
                 /**
@@ -338,10 +338,10 @@ public class SetPINActivity extends AppCompatActivity implements View.OnClickLis
                 /**
                  * Get the new values to be updated
                  */
-                userRegValues.put(NewRegInfo.UserRegistrationInfo.EMAIL_ADD, email);
-                userRegValues.put(NewRegInfo.UserRegistrationInfo.USER_PIN, matchedPIN); //new matched pin
-                userRegValues.put(NewRegInfo.UserRegistrationInfo.SECURITY_QUESTION, securityQuestion); //new security question
-                userRegValues.put(NewRegInfo.UserRegistrationInfo.SECURITY_RESPONSE, securityResponse); //new security response
+                userRegValues.put(NewRegInfo.EMAIL_ADD, email);
+                userRegValues.put(NewRegInfo.USER_PIN, matchedPIN); //new matched pin
+                userRegValues.put(NewRegInfo.SECURITY_QUESTION, securityQuestion); //new security question
+                userRegValues.put(NewRegInfo.SECURITY_RESPONSE, securityResponse); //new security response
 
                 try {
 

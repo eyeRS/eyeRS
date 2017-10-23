@@ -18,8 +18,8 @@ import android.util.Base64;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.github.eyers.info.NewCategoryInfo;
-import com.github.eyers.info.NewItemInfo;
+import com.github.eyers.info.CategoryInfo;
+import com.github.eyers.info.ItemInfo;
 import com.github.eyers.wrapper.ItemWrapper;
 
 import java.security.MessageDigest;
@@ -121,10 +121,10 @@ public final class EyeRS {
         ContentResolver eyeRSContentResolver = activity.getContentResolver(); // Content resolver object
 
         String[] projection = {
-                NewCategoryInfo.CategoryInfo.CATEGORY_ID,
-                NewCategoryInfo.CategoryInfo.CATEGORY_NAME,
-                NewCategoryInfo.CategoryInfo.CATEGORY_DESC,
-                NewCategoryInfo.CategoryInfo.CATEGORY_ICON
+                CategoryInfo.CATEGORY_ID,
+                CategoryInfo.CATEGORY_NAME,
+                CategoryInfo.CATEGORY_DESC,
+                CategoryInfo.CATEGORY_ICON
         };
 
         Cursor cursor = eyeRSContentResolver.query(DBOperations.CONTENT_URI_CATEGORIES,
@@ -168,18 +168,18 @@ public final class EyeRS {
         ContentResolver eyeRSContentResolver = activity.getContentResolver(); // Content resolver object
 
         String[] projection = {
-                NewItemInfo.ItemInfo.ITEM_ID,
-                NewItemInfo.ItemInfo.CATEGORY_NAME,
-                NewItemInfo.ItemInfo.ITEM_NAME,
-                NewItemInfo.ItemInfo.ITEM_DESC,
-                NewItemInfo.ItemInfo.ITEM_IMAGE
+                ItemInfo.ITEM_ID,
+                ItemInfo.CATEGORY_NAME,
+                ItemInfo.ITEM_NAME,
+                ItemInfo.ITEM_DESC,
+                ItemInfo.ITEM_IMAGE
         };
 
         String[] selectionArgs = {};
 
-        String whereClause = NewItemInfo.ItemInfo.CATEGORY_NAME + " = '" + category + "'";
+        String whereClause = ItemInfo.CATEGORY_NAME + " = '" + category + "'";
 
-        String sortOrder = NewItemInfo.ItemInfo.ITEM_NAME;
+        String sortOrder = ItemInfo.ITEM_NAME;
 
         Cursor cursor = eyeRSContentResolver.query(DBOperations.CONTENT_URI_ITEMS,
                 projection, whereClause, null, sortOrder);

@@ -122,11 +122,11 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
              */
             ContentValues userRegValues = new ContentValues();
 
-            userRegValues.put(NewRegInfo.UserRegistrationInfo.USER_NAME, username); //User's name
-            userRegValues.put(NewRegInfo.UserRegistrationInfo.EMAIL_ADD, email); //User's email address
-            userRegValues.put(NewRegInfo.UserRegistrationInfo.USER_PIN, matchedPIN); //User's pin
-            userRegValues.put(NewRegInfo.UserRegistrationInfo.SECURITY_QUESTION, securityQuestion); //User's security question
-            userRegValues.put(NewRegInfo.UserRegistrationInfo.SECURITY_RESPONSE, securityResponse); //User's security response
+            userRegValues.put(NewRegInfo.USER_NAME, username); //User's name
+            userRegValues.put(NewRegInfo.EMAIL_ADD, email); //User's email address
+            userRegValues.put(NewRegInfo.USER_PIN, matchedPIN); //User's pin
+            userRegValues.put(NewRegInfo.SECURITY_QUESTION, securityQuestion); //User's security question
+            userRegValues.put(NewRegInfo.SECURITY_RESPONSE, securityResponse); //User's security response
 
             /**
              * Content resolver insert operation

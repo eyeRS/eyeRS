@@ -98,8 +98,8 @@ public class ProfileSettingsActivity extends AppCompatActivity implements View.O
          */
         ContentValues profileValues = new ContentValues();
 
-        profileValues.put(UserProfileInfo.ProfileInfo.USER_NAME, username); //username
-        profileValues.put(UserProfileInfo.ProfileInfo.USER_AVATAR, img); //user avatar
+        profileValues.put(UserProfileInfo.USER_NAME, username); //username
+        profileValues.put(UserProfileInfo.USER_AVATAR, img); //user avatar
 
         try {
 

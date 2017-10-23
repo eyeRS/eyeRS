@@ -35,8 +35,8 @@ import android.widget.Toast;
 import com.github.eyers.DBOperations;
 import com.github.eyers.EyeRS;
 import com.github.eyers.R;
-import com.github.eyers.info.NewCategoryInfo;
-import com.github.eyers.info.NewItemInfo;
+import com.github.eyers.info.CategoryInfo;
+import com.github.eyers.info.ItemInfo;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -166,17 +166,17 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
         eyeRSContentResolver = this.getContentResolver();
 
         String[] projection = {
-                NewCategoryInfo.CategoryInfo.CATEGORY_ID,
-                NewCategoryInfo.CategoryInfo.CATEGORY_NAME,
-                NewCategoryInfo.CategoryInfo.CATEGORY_DESC,
-                NewCategoryInfo.CategoryInfo.CATEGORY_ICON
+                CategoryInfo.CATEGORY_ID,
+                CategoryInfo.CATEGORY_NAME,
+                CategoryInfo.CATEGORY_DESC,
+                CategoryInfo.CATEGORY_ICON
         };
 
         String whereClause = "";
 
         String[] selectionArgs = {};
 
-        String sortOrder = NewCategoryInfo.CategoryInfo.CATEGORY_NAME;
+        String sortOrder = CategoryInfo.CATEGORY_NAME;
 
         try {
 
@@ -519,7 +519,7 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
                             addOther();
                         }
                         break;
-                        case NewCategoryInfo.CategoryInfo.CATEGORY_NAME: {  //user adds in any other category
+                        case CategoryInfo.CATEGORY_NAME: {  //user adds in any other category
 
                             /**
                              * Retrieve user input from fields
@@ -591,10 +591,10 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
          */
         ContentValues bookValues = new ContentValues();
 
-        bookValues.put(NewItemInfo.ItemInfo.CATEGORY_NAME, category); //Book category
-        bookValues.put(NewItemInfo.ItemInfo.ITEM_NAME, itemName); //Book name
-        bookValues.put(NewItemInfo.ItemInfo.ITEM_DESC, itemDesc); //Book description
-        bookValues.put(NewItemInfo.ItemInfo.ITEM_IMAGE, img); //Book image
+        bookValues.put(ItemInfo.CATEGORY_NAME, category); //Book category
+        bookValues.put(ItemInfo.ITEM_NAME, itemName); //Book name
+        bookValues.put(ItemInfo.ITEM_DESC, itemDesc); //Book description
+        bookValues.put(ItemInfo.ITEM_IMAGE, img); //Book image
 
         /**
          * Content resolver object
@@ -646,10 +646,10 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
          */
         ContentValues clothesValues = new ContentValues();
 
-        clothesValues.put(NewItemInfo.ItemInfo.CATEGORY_NAME, category); //Clothing category
-        clothesValues.put(NewItemInfo.ItemInfo.ITEM_NAME, itemName); //Clothing name
-        clothesValues.put(NewItemInfo.ItemInfo.ITEM_DESC, itemDesc); //Clothing description
-        clothesValues.put(NewItemInfo.ItemInfo.ITEM_IMAGE, img); //Clothing image
+        clothesValues.put(ItemInfo.CATEGORY_NAME, category); //Clothing category
+        clothesValues.put(ItemInfo.ITEM_NAME, itemName); //Clothing name
+        clothesValues.put(ItemInfo.ITEM_DESC, itemDesc); //Clothing description
+        clothesValues.put(ItemInfo.ITEM_IMAGE, img); //Clothing image
 
         /**
          * Content resolver object
@@ -701,10 +701,10 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
          */
         ContentValues accessoriesValues = new ContentValues();
 
-        accessoriesValues.put(NewItemInfo.ItemInfo.CATEGORY_NAME, category); //Accessory category
-        accessoriesValues.put(NewItemInfo.ItemInfo.ITEM_NAME, itemName); //Accessory name
-        accessoriesValues.put(NewItemInfo.ItemInfo.ITEM_DESC, itemDesc); //Accessory description
-        accessoriesValues.put(NewItemInfo.ItemInfo.ITEM_IMAGE, img); //Accessory image
+        accessoriesValues.put(ItemInfo.CATEGORY_NAME, category); //Accessory category
+        accessoriesValues.put(ItemInfo.ITEM_NAME, itemName); //Accessory name
+        accessoriesValues.put(ItemInfo.ITEM_DESC, itemDesc); //Accessory description
+        accessoriesValues.put(ItemInfo.ITEM_IMAGE, img); //Accessory image
 
         /**
          * Content resolver object
@@ -757,10 +757,10 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
          */
         ContentValues gamesValues = new ContentValues();
 
-        gamesValues.put(NewItemInfo.ItemInfo.CATEGORY_NAME, category); //Game category
-        gamesValues.put(NewItemInfo.ItemInfo.ITEM_NAME, itemName); //Game name
-        gamesValues.put(NewItemInfo.ItemInfo.ITEM_DESC, itemDesc); //Game description
-        gamesValues.put(NewItemInfo.ItemInfo.ITEM_IMAGE, img); //Game image
+        gamesValues.put(ItemInfo.CATEGORY_NAME, category); //Game category
+        gamesValues.put(ItemInfo.ITEM_NAME, itemName); //Game name
+        gamesValues.put(ItemInfo.ITEM_DESC, itemDesc); //Game description
+        gamesValues.put(ItemInfo.ITEM_IMAGE, img); //Game image
 
         /**
          * Content resolver object
@@ -814,10 +814,10 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
          */
         ContentValues otherValues = new ContentValues();
 
-        otherValues.put(NewItemInfo.ItemInfo.CATEGORY_NAME, category); //Other category
-        otherValues.put(NewItemInfo.ItemInfo.ITEM_NAME, itemName); //Other name
-        otherValues.put(NewItemInfo.ItemInfo.ITEM_DESC, itemDesc); //Other description
-        otherValues.put(NewItemInfo.ItemInfo.ITEM_IMAGE, img); //Other image
+        otherValues.put(ItemInfo.CATEGORY_NAME, category); //Other category
+        otherValues.put(ItemInfo.ITEM_NAME, itemName); //Other name
+        otherValues.put(ItemInfo.ITEM_DESC, itemDesc); //Other description
+        otherValues.put(ItemInfo.ITEM_IMAGE, img); //Other image
 
         /**
          * Content resolver object
@@ -872,10 +872,10 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
          */
         ContentValues itemsValues = new ContentValues();
 
-        itemsValues.put(NewItemInfo.ItemInfo.CATEGORY_NAME, category); //user specified category
-        itemsValues.put(NewItemInfo.ItemInfo.ITEM_NAME, itemName); //item's name
-        itemsValues.put(NewItemInfo.ItemInfo.ITEM_DESC, itemDesc); //item's description
-        itemsValues.put(NewItemInfo.ItemInfo.ITEM_IMAGE, img); //item's image
+        itemsValues.put(ItemInfo.CATEGORY_NAME, category); //user specified category
+        itemsValues.put(ItemInfo.ITEM_NAME, itemName); //item's name
+        itemsValues.put(ItemInfo.ITEM_DESC, itemDesc); //item's description
+        itemsValues.put(ItemInfo.ITEM_IMAGE, img); //item's image
 
         /**
          * Content resolver object

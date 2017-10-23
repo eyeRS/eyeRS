@@ -14,8 +14,10 @@
         android:layout_height="0dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginBottom="128dp"
+        android:layout_marginEnd="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="128dp"
         android:adjustViewBounds="true"
         android:scaleType="centerCrop"
@@ -23,8 +25,6 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
         app:srcCompat="@mipmap/ic_launcher" />
 
     <com.vj.widgets.AutoResizeTextView
@@ -32,35 +32,35 @@
         android:layout_width="0dp"
         android:layout_height="100dp"
         android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
         android:ellipsize="none"
-        android:layout_marginEnd="8dp"
+        android:gravity="center"
         android:maxLines="3"
         android:text="TextView"
         android:textSize="100sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_marginStart="8dp"
-        android:gravity="center"
         app:layout_constraintRight_toRightOf="parent" />
 
     <com.vj.widgets.AutoResizeTextView
         android:id="@+id/txtTitle"
         android:layout_width="0dp"
         android:layout_height="100dp"
+        android:layout_marginEnd="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:ellipsize="none"
-        android:layout_marginEnd="8dp"
+        android:gravity="center"
         android:maxLines="1"
         android:text="TextView"
         android:textSize="100sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginStart="8dp"
-        android:gravity="center"
         app:layout_constraintTop_toTopOf="parent" />
 
 </android.support.constraint.ConstraintLayout>

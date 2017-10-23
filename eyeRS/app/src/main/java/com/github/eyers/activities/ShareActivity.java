@@ -20,7 +20,7 @@ import com.github.eyers.wrapper.ItemWrapper;
 import java.util.ArrayList;
 
 /**
- *
+ * ShareActivity.
  */
 public class ShareActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
