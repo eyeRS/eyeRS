@@ -226,5 +226,6 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="title_activity_cam_test">CamTestActivity</string>
     <string name="title_activity_share">ShareActivity</string>
+    <string name="title_activity_trade">TradeActivity</string>
 
 </resources>

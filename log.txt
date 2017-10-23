@@ -1,3 +1,27 @@
+commit 7aa6620fa9cef64918edeae35c2f8ba1b628647b
+Author: Andrea Cloete <andreacloetekaap@outlook.com>
+Date:   Sun Oct 22 11:14:21 2017 +0200
+
+    Removed touch sound setting
+
+commit 95cee6ccae2dbc15ebb0ce05201a0375b9d2f17b
+Author: sajjaadishmail3 <sajjaadishmail@gmail.com>
+Date:   Sun Oct 22 08:47:50 2017 +0200
+
+    Search function
+
+commit 07549f05ffcadbc874931eac84e03f3b5a2b75db
+Author: Matthew 'siD' Van der Bijl <matthewvdbijl@gmail.com>
+Date:   Fri Oct 20 22:01:40 2017 +0200
+
+    moved the share activity out of todo + update javadoc
+
+commit 63ae823900c3ab1f32157229bc0e7fdbfa062edb
+Author: Matthew 'siD' Van der Bijl <matthewvdbijl@gmail.com>
+Date:   Fri Oct 20 21:57:02 2017 +0200
+
+    nightly
+
 commit b55b5a56c85e5c9836879e784818b17a64a1e5dd
 Merge: d30c612 e936412
 Author: Matthew 'siD' Van der Bijl <matthewvdbijl@gmail.com>
