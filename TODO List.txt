@@ -1,6 +1,7 @@
-details/view item
-add new category
-slideshow
-profile screen
-about
-search activity
+23/10/2017
+edit & remove item
+edit & remove category
+trade
+share
+search
+fix eveything
