@@ -54,7 +54,9 @@ public class SlideshowActivity extends AppCompatActivity {
     }
 
     private void setImage() {
-        this.img.setImageBitmap(items.get(new Random().nextInt(items.size())).getImage());
+        if (!items.isEmpty()) {
+            this.img.setImageBitmap(items.get(new Random().nextInt(items.size())).getImage());
+        }
     }
 
     @Override

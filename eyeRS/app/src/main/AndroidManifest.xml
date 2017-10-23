@@ -14,9 +14,9 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <supports-screens
+        android:anyDensity="true"
         android:largeScreens="true"
         android:normalScreens="true"
-        android:anyDensity="true"
         android:smallScreens="true"
         android:xlargeScreens="true" />
 
@@ -126,9 +126,7 @@
             android:name=".activities.ItemManagementSettings"
             android:label="@string/title_activity_item_mgmt_settings"
             android:theme="@style/AppTheme.NoActionBar"
-            android:windowSoftInputMode="adjustPan">
-
-        </activity>
+            android:windowSoftInputMode="adjustPan"></activity>
 
         <provider
             android:name=".DBOperations"
@@ -150,9 +148,11 @@
         <activity
             android:name=".activities.ViewItemActivity"
             android:label="@string/title_activity_view_item"
-            android:theme="@style/AppTheme.NoActionBar">
-
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".activities.todo.TradeActivity"
+            android:label="@string/title_activity_trade"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
