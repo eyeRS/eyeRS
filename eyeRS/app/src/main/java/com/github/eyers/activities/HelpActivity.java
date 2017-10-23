@@ -34,6 +34,7 @@ public final class HelpActivity extends AppCompatActivity implements View.OnClic
             Uri uri = Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.tut);
             videoView.setVideoURI(uri);
             videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+
                 @Override
                 public void onPrepared(MediaPlayer mp) {
                     mp.setLooping(true);

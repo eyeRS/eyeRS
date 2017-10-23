@@ -7,6 +7,8 @@ import com.github.eyers.R;
 
 /**
  * Created by Emilde on 10/10/2017.
+ *
+ * @author Emilde
  */
 public class Utils {
 

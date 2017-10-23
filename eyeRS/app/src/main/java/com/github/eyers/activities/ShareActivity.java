@@ -1,7 +1,11 @@
 package com.github.eyers.activities;
 
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.KeyEvent;
@@ -17,10 +21,14 @@ import com.github.eyers.R;
 import com.github.eyers.activities.MainActivity;
 import com.github.eyers.wrapper.ItemWrapper;
 
+import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 
 /**
  * ShareActivity.
+ *
+ * @see AppCompatActivity
+ * @see AdapterView.OnItemClickListener
  */
 public class ShareActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
@@ -90,12 +98,22 @@ public class ShareActivity extends AppCompatActivity implements AdapterView.OnIt
      */
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        String item = listView.getItemAtPosition(position).toString();
+        ItemLabel item =(ItemLabel) listView.getItemAtPosition(position);
 
-        Intent sendIntent = new Intent();
-        sendIntent.setAction(Intent.ACTION_SEND);
-        sendIntent.putExtra(Intent.EXTRA_TEXT, "TESTING SHARE: " + item);
-        sendIntent.setType("text/plain");
-        startActivity(sendIntent);
+        Uri imageUri = getImageUri(item.getImage());
+        Intent shareIntent = new Intent();
+        shareIntent.setAction(Intent.ACTION_SEND);
+        shareIntent.putExtra(Intent.EXTRA_TEXT, item.getName());
+        shareIntent.putExtra(Intent.EXTRA_STREAM, imageUri);
+        shareIntent.setType("image/jpeg");
+        shareIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+        startActivity(Intent.createChooser(shareIntent, "send"));
+    }
+
+    private Uri getImageUri(Bitmap inImage) {
+        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+        inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
+        String path = MediaStore.Images.Media.insertImage(getContentResolver(), inImage, "Title", null);
+        return Uri.parse(path);
     }
 }
