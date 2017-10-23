@@ -1,3 +1,109 @@
+commit c7e1c206716dfff94c4cbc63b205aa2b8b7af2b3
+Author: Matthew 'siD' Van der Bijl <matthewvdbijl@gmail.com>
+Date:   Mon Oct 23 12:38:03 2017 +0200
+
+    update javadoc
+
+commit affa862e2f4572d199d13f07b4e2a6e640ccd203
+Merge: 76adbd4 54a6d4f
+Author: Emilde <emilde46@gmail.com>
+Date:   Mon Oct 23 10:59:29 2017 +0200
+
+    Merge remote-tracking branch 'origin/master'
+
+commit 76adbd41cc5b2198ee01189fb054a4827d8ae738
+Author: Emilde-Arsenio <emilde46@gmail.com>
+Date:   Mon Oct 23 10:59:11 2017 +0200
+
+    Please be aware about changes on the layout contents to allow the theme work with no issues.
+
+commit 54a6d4fee1c9508daedf20c9446aafce319115c2
+Author: Matthew 'siD' Van der Bijl <matthewvdbijl@gmail.com>
+Date:   Mon Oct 23 10:30:53 2017 +0200
+
+    test share working
+
+commit 55d36a5616aad07af088f1781bd5694be5590a17
+Author: Matthew 'siD' Van der Bijl <matthewvdbijl@gmail.com>
+Date:   Mon Oct 23 09:49:44 2017 +0200
+
+    renamed UserRegistrationInfo
+
+commit 739e425b013eaf52a1bf2848f1add139341dc78b
+Author: Matthew 'siD' Van der Bijl <matthewvdbijl@gmail.com>
+Date:   Mon Oct 23 09:45:30 2017 +0200
+
+    reworked info classes
+
+commit 70f81734d43989b7220fd7f2f65277447ab2d269
+Author: Matthew 'siD' Van der Bijl <matthewvdbijl@gmail.com>
+Date:   Mon Oct 23 09:13:10 2017 +0200
+
+    removed MyAudioApplication
+
+commit ecc481e82abdc3de7feb71fb237832867f52f176
+Merge: ec7044b 48a6d2e
+Author: Matthew 'siD' Van der Bijl <matthewvdbijl@gmail.com>
+Date:   Mon Oct 23 09:04:29 2017 +0200
+
+    Merge branch 'master' of https://github.com/eyers/eyers
+
+commit ec7044be96a8fdee712ef436a4eb0f4d1af2ec27
+Author: Matthew 'siD' Van der Bijl <matthewvdbijl@gmail.com>
+Date:   Mon Oct 23 09:04:14 2017 +0200
+
+    added prototype messages
+
+commit 48a6d2e90ad17da725e97449fe92e5f58cef904a
+Author: Emilde-Arsenio <emilde46@gmail.com>
+Date:   Mon Oct 23 09:04:02 2017 +0200
+
+    The Theme is now working.
+
+commit 7cebb844d52d95963768f913827261b1857ddae6
+Author: Emilde-Arsenio <emilde46@gmail.com>
+Date:   Mon Oct 23 08:58:10 2017 +0200
+
+    The Theme is now working.
+
+commit 78244cd078f9f785932cc592e17fbdc8998d6f1f
+Merge: d43ae53 462d507
+Author: Emilde <emilde46@gmail.com>
+Date:   Mon Oct 23 08:27:36 2017 +0200
+
+    Merge remote-tracking branch 'origin/master'
+
+commit d43ae537209c57bd51bfe9a8ea898826dfd5a26a
+Author: Emilde-Arsenio <emilde46@gmail.com>
+Date:   Mon Oct 23 08:27:02 2017 +0200
+
+    The Theme is now working.
+
+commit 462d507568883d264ac736ec9c2e434c3ebe9a8f
+Author: Matthew 'siD' Van der Bijl <matthewvdbijl@gmail.com>
+Date:   Mon Oct 23 08:24:30 2017 +0200
+
+    Update TODO List.txt
+    
+    added the last few things we need to do
+
+commit 49886a777c102b91e0fdca508410b4ad6e70e796
+Author: Matthew 'siD' Van der Bijl <matthewvdbijl@gmail.com>
+Date:   Mon Oct 23 08:18:31 2017 +0200
+
+    morning
+
+commit 521221ebefba97c29573279275fb70ebe68c13fd
+Author: Nathan Shava <nathantendai.shava@gmail.com>
+Date:   Sun Oct 22 23:34:50 2017 +0200
+
+    Validation, Error handling & Tablet screen support
+    
+    # Conflicts:
+    #       eyeRS/app/src/main/java/com/github/eyers/MainActivity.java
+    #       eyeRS/app/src/main/res/layout/activity_main.xml
+    #       eyeRS/app/src/main/res/values/strings.xml
+
 commit 7aa6620fa9cef64918edeae35c2f8ba1b628647b
 Author: Andrea Cloete <andreacloetekaap@outlook.com>
 Date:   Sun Oct 22 11:14:21 2017 +0200
