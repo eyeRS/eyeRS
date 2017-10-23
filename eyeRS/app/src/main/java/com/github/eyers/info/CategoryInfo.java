@@ -8,14 +8,14 @@ package com.github.eyers.info;
  */
 public interface CategoryInfo {
 
-        /**
-         * Entity name
-         */
-        String TABLE_NAME = "category_info";
+    /**
+     * Entity name
+     */
+    String TABLE_NAME = "category_info";
 
-        // Attributes
-        String CATEGORY_ID = "_id";
-        String CATEGORY_NAME = "category_name";
-        String CATEGORY_DESC = "category_desc";
-        String CATEGORY_ICON = "category_icon";
+    // Attributes
+    String CATEGORY_ID = "_id";
+    String CATEGORY_NAME = "category_name";
+    String CATEGORY_DESC = "category_desc";
+    String CATEGORY_ICON = "category_icon";
 }

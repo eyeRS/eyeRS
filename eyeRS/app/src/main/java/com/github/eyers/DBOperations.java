@@ -14,7 +14,7 @@ import android.util.Log;
 
 import com.github.eyers.info.CategoryInfo;
 import com.github.eyers.info.ItemInfo;
-import com.github.eyers.info.NewRegInfo;
+import com.github.eyers.info.UserRegistrationInfo;
 import com.github.eyers.info.UserProfileInfo;
 
 /**
@@ -35,7 +35,7 @@ public class DBOperations extends ContentProvider {
      */
     public static final String CATEGORIES_TABLE = CategoryInfo.TABLE_NAME;
     public static final String ITEMS_TABLE = ItemInfo.TABLE_NAME;
-    public static final String USER_REGISTRATION_TABLE = NewRegInfo.TABLE_NAME;
+    public static final String USER_REGISTRATION_TABLE = UserRegistrationInfo.TABLE_NAME;
     public static final String USER_PROFILE_TABLE = UserProfileInfo.TABLE_NAME;
     /**
      * Specify the table paths.
@@ -284,7 +284,7 @@ public class DBOperations extends ContentProvider {
 
                     updatedRows = db.update(USER_REGISTRATION_TABLE,
                             values,
-                            NewRegInfo.USER_NAME + " = " + username,
+                            UserRegistrationInfo.USER_NAME + " = " + username,
                             null);
                 } else {
 

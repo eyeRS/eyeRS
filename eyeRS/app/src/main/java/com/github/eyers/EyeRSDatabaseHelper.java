@@ -10,7 +10,7 @@ import android.util.Log;
 
 import com.github.eyers.info.CategoryInfo;
 import com.github.eyers.info.ItemInfo;
-import com.github.eyers.info.NewRegInfo;
+import com.github.eyers.info.UserRegistrationInfo;
 import com.github.eyers.info.UserProfileInfo;
 
 import java.lang.reflect.Field;
@@ -48,13 +48,13 @@ public class EyeRSDatabaseHelper extends SQLiteOpenHelper {
      * CREATE USER REGISTRATION TABLE QUERY.
      */
     private static final String CREATE_USER_REGISTRATION_TABLE_QUERY =
-            "CREATE TABLE IF NOT EXISTS " + NewRegInfo.TABLE_NAME + " ( "
-                    + NewRegInfo.REG_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-                    + NewRegInfo.USER_NAME + " TEXT, "
-                    + NewRegInfo.EMAIL_ADD + " TEXT, "
-                    + NewRegInfo.USER_PIN + " TEXT, "
-                    + NewRegInfo.SECURITY_QUESTION + " TEXT, "
-                    + NewRegInfo.SECURITY_RESPONSE + " TEXT);";
+            "CREATE TABLE IF NOT EXISTS " + UserRegistrationInfo.TABLE_NAME + " ( "
+                    + UserRegistrationInfo.REG_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+                    + UserRegistrationInfo.USER_NAME + " TEXT, "
+                    + UserRegistrationInfo.EMAIL_ADD + " TEXT, "
+                    + UserRegistrationInfo.USER_PIN + " TEXT, "
+                    + UserRegistrationInfo.SECURITY_QUESTION + " TEXT, "
+                    + UserRegistrationInfo.SECURITY_RESPONSE + " TEXT);";
     /**
      * CREATE USER PROFILE TABLE QUERY.
      */

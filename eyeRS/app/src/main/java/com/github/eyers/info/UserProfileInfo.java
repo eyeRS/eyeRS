@@ -9,7 +9,7 @@ package com.github.eyers.info;
 public interface UserProfileInfo {
 
     /**
-     * Entity name
+     * Entity name.
      */
     String TABLE_NAME = "user_profile";
 

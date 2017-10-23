@@ -6,7 +6,6 @@ package com.github.eyers.info;
  *
  * @author Nathan Shava
  */
-
 public interface ItemInfo {
 
     /**

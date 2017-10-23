@@ -13,7 +13,6 @@ public class ItemWrapper {
     private final Bitmap image;
     private final String description;
 
-
     public ItemWrapper(String name, Bitmap image, String description) {
         this.name = name;
         this.image = image;

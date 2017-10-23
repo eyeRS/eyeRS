@@ -6,10 +6,10 @@ package com.github.eyers.info;
  *
  * @author Nathan Shava
  */
-public interface NewRegInfo {//UserRegistrationInfo
+public interface UserRegistrationInfo {
 
     /**
-     * Entity name
+     * Entity name.
      */
     String TABLE_NAME = "user_registration";
 

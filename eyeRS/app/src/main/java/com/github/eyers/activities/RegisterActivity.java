@@ -22,7 +22,7 @@ import android.widget.Toast;
 
 import com.github.eyers.DBOperations;
 import com.github.eyers.R;
-import com.github.eyers.info.NewRegInfo;
+import com.github.eyers.info.UserRegistrationInfo;
 
 import java.util.regex.Pattern;
 
@@ -122,11 +122,11 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
              */
             ContentValues userRegValues = new ContentValues();
 
-            userRegValues.put(NewRegInfo.USER_NAME, username); //User's name
-            userRegValues.put(NewRegInfo.EMAIL_ADD, email); //User's email address
-            userRegValues.put(NewRegInfo.USER_PIN, matchedPIN); //User's pin
-            userRegValues.put(NewRegInfo.SECURITY_QUESTION, securityQuestion); //User's security question
-            userRegValues.put(NewRegInfo.SECURITY_RESPONSE, securityResponse); //User's security response
+            userRegValues.put(UserRegistrationInfo.USER_NAME, username); //User's name
+            userRegValues.put(UserRegistrationInfo.EMAIL_ADD, email); //User's email address
+            userRegValues.put(UserRegistrationInfo.USER_PIN, matchedPIN); //User's pin
+            userRegValues.put(UserRegistrationInfo.SECURITY_QUESTION, securityQuestion); //User's security question
+            userRegValues.put(UserRegistrationInfo.SECURITY_RESPONSE, securityResponse); //User's security response
 
             /**
              * Content resolver insert operation
