@@ -1,8 +1,11 @@
 package com.github.eyers.activities;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.preference.DialogPreference;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -100,6 +103,26 @@ public class DisplaySettingsActivity extends AppCompatActivity implements OnClic
     }
 
     public void onClick(View view) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(DisplaySettingsActivity.this);
+        builder.setCancelable(true);
+        builder.setTitle("Alert");
+        builder.setMessage("If you press OK the application will restart.");
+        builder.setMessage("Do you want to continue?");
+
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+
+        builder.setNegativeButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.getClass();
+
+            }
+        });
 
         try {
 
@@ -108,9 +131,11 @@ public class DisplaySettingsActivity extends AppCompatActivity implements OnClic
                 case R.id.imgbtn_Blue:
                     Utils.changeToTheme(this, Utils.App_Theme);
                     //It will restart the app
+
                     Intent i = getBaseContext().getPackageManager()
                             .getLaunchIntentForPackage( getBaseContext().getPackageName() );
                     i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+
                     startActivity(i);
                     break;
                 case R.id.imgbtn_Red:

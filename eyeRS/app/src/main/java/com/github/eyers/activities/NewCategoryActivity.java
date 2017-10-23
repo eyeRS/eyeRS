@@ -70,7 +70,7 @@ public class NewCategoryActivity extends AppCompatActivity implements View.OnCli
         this.iconSpinner.setOnItemSelectedListener(this);
         this.imageView = (ImageView) findViewById(R.id.new_category_image);
 
-        findViewById(R.id.btnAddCategory).setOnClickListener(this);
+        findViewById(R.id.btnAddCat).setOnClickListener(this);
 
         populateSpinner();
 
@@ -91,7 +91,7 @@ public class NewCategoryActivity extends AppCompatActivity implements View.OnCli
         try {
             switch (view.getId()) {
 
-                case R.id.btnAddCategory: //user clicks add
+                case R.id.btnAddCat: //user clicks add
 
                     /**
                      * Retrieve user input from fields

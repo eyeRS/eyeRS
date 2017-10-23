@@ -78,6 +78,7 @@
     <string name="lblName">Name</string>
     <string name="lblSymbol">Symbol</string>
 
+
     <!-- This section defines strings relating to the AppSettings Activity -->
 
     <string-array name="settings_titles">
@@ -103,14 +104,11 @@
     <string name="selectChangetheme">Change Theme:</string>
     <string name="selectChangeFont">Change Font</string>
     <string name="selectChangefont">Change Font:</string>
-    <string name="selectChangeFontSize">Change Font Size</string>
-    <string name="selectChangefontsize">Change Font Size:</string>
-
 
     <!-- Profile Settings -->
     <string name="pref_header_profile">Profile</string>
     <string name="displayName">Please enter your display name</string>
-    <string name="saveBtn">Save changes</string>
+    <string name="saveProfileBtn">Save changes</string>
 
     <!-- Category Settings -->
     <string-array name="category_mgmt_titles">
@@ -194,15 +192,6 @@
         <item>DroidSans</item>
     </string-array>
 
-    <!-- Strings related to Change font type -->
-    <string-array name="font_size">
-        <item>5</item>
-        <item>6</item>
-        <item>7</item>
-        <item>8</item>
-        <item>9</item>
-        <item>10</item>
-    </string-array>
 
     <!-- Strings related to Help Activity -->
 

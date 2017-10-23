@@ -156,13 +156,12 @@
                 app:layout_constraintTop_toBottomOf="@+id/textInputLayout2">
 
                 <Button
-                    android:id="@+id/btnAddCategory"
+                    android:id="@+id/btnAddCat"
+                    style="@style/Widget.AppCompat.Button.Colored"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="@android:color/holo_blue_dark"
-                    android:text="@string/btnAddCat"
-                    android:textColor="@android:color/white" />
+                    android:text="@string/btnAddCat"/>
 
             </LinearLayout>
 
