@@ -6,19 +6,15 @@ package com.github.eyers.info;
  *
  * @author Nathan Shava
  */
-public class UserProfileInfo {
+public interface UserProfileInfo {
 
-    public static class ProfileInfo {
-        /**
-         * Entity name
-         */
-        public static final String TABLE_NAME = "user_profile";
-        /**
-         * Attributes
-         */
-        public static final String PROFILE_ID = "_id";
-        public static final String USER_NAME = "user_name";
-        public static final String USER_AVATAR = "user_avatar";
+    /**
+     * Entity name.
+     */
+    String TABLE_NAME = "user_profile";
 
-    }
+    // Attributes
+    String PROFILE_ID = "_id";
+    String USER_NAME = "user_name";
+    String USER_AVATAR = "user_avatar";
 }

@@ -21,7 +21,7 @@ import android.widget.Toast;
 
 import com.github.eyers.DBOperations;
 import com.github.eyers.R;
-import com.github.eyers.info.NewCategoryInfo;
+import com.github.eyers.info.CategoryInfo;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -169,10 +169,11 @@ public class NewCategoryActivity extends AppCompatActivity implements View.OnCli
          * Array of columns to be included for each row retrieved
          */
         String[] projection = {
-                NewCategoryInfo.CategoryInfo.CATEGORY_ID,
-                NewCategoryInfo.CategoryInfo.CATEGORY_NAME,
-                NewCategoryInfo.CategoryInfo.CATEGORY_DESC,
-                NewCategoryInfo.CategoryInfo.CATEGORY_ICON};
+                CategoryInfo.CATEGORY_ID,
+                CategoryInfo.CATEGORY_NAME,
+                CategoryInfo.CATEGORY_DESC,
+                CategoryInfo.CATEGORY_ICON
+        };
 
         String whereClause = "";
 
@@ -203,8 +204,7 @@ public class NewCategoryActivity extends AppCompatActivity implements View.OnCli
                     /**
                      * If the user tries to create an existing category display appropriate message
                      */
-                    if (cursor.getString(cursor.getColumnIndex(NewCategoryInfo.
-                            CategoryInfo.CATEGORY_NAME)).equals(categoryName)) {
+                    if (cursor.getString(cursor.getColumnIndex(CategoryInfo.CATEGORY_NAME)).equals(categoryName)) {
 
                         Toast.makeText(this, "This category is already in use. " +
                                 "Please select a unique name for your new category", Toast.LENGTH_SHORT).show();
@@ -219,8 +219,7 @@ public class NewCategoryActivity extends AppCompatActivity implements View.OnCli
                     /**
                      * If the user is creating a new category
                      */
-                    if (!cursor.getString(cursor.getColumnIndex(NewCategoryInfo.
-                            CategoryInfo.CATEGORY_NAME)).equals(categoryName)) {
+                    if (!cursor.getString(cursor.getColumnIndex(CategoryInfo.CATEGORY_NAME)).equals(categoryName)) {
 
                         addNewCategory(); //method to add the new category
                     }
@@ -257,9 +256,9 @@ public class NewCategoryActivity extends AppCompatActivity implements View.OnCli
          */
         ContentValues categoryValues = new ContentValues();
 
-        categoryValues.put(NewCategoryInfo.CategoryInfo.CATEGORY_NAME, categoryName.toUpperCase()); //Category's name
-        categoryValues.put(NewCategoryInfo.CategoryInfo.CATEGORY_DESC, categoryDesc); //Category's description
-        categoryValues.put(NewCategoryInfo.CategoryInfo.CATEGORY_ICON, categoryIcon); //Icon
+        categoryValues.put(CategoryInfo.CATEGORY_NAME, categoryName.toUpperCase()); //Category's name
+        categoryValues.put(CategoryInfo.CATEGORY_DESC, categoryDesc); //Category's description
+        categoryValues.put(CategoryInfo.CATEGORY_ICON, categoryIcon); //Icon
 
         try {
 

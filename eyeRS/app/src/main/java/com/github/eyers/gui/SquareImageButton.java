@@ -5,7 +5,9 @@ import android.support.v7.widget.AppCompatImageButton;
 import android.util.AttributeSet;
 
 /**
+ * SquareImageButton.
  *
+ * @see AppCompatImageButton
  */
 public class SquareImageButton extends AppCompatImageButton {
 

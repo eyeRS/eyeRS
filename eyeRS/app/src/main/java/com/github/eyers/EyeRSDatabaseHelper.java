@@ -8,9 +8,9 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-import com.github.eyers.info.NewCategoryInfo;
-import com.github.eyers.info.NewItemInfo;
-import com.github.eyers.info.NewRegInfo;
+import com.github.eyers.info.CategoryInfo;
+import com.github.eyers.info.ItemInfo;
+import com.github.eyers.info.UserRegistrationInfo;
 import com.github.eyers.info.UserProfileInfo;
 
 import java.lang.reflect.Field;
@@ -29,40 +29,40 @@ public class EyeRSDatabaseHelper extends SQLiteOpenHelper {
      * CREATE ITEM TABLE QUERY.
      */
     private static final String CREATE_ITEM_TABLE_QUERY =
-            "CREATE TABLE IF NOT EXISTS " + NewItemInfo.ItemInfo.TABLE_NAME + " ( "
-                    + NewItemInfo.ItemInfo.ITEM_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-                    + NewItemInfo.ItemInfo.CATEGORY_NAME + " TEXT, "
-                    + NewItemInfo.ItemInfo.ITEM_NAME + " TEXT, "
-                    + NewItemInfo.ItemInfo.ITEM_DESC + " TEXT, "
-                    + NewItemInfo.ItemInfo.ITEM_IMAGE + " TEXT);";
+            "CREATE TABLE IF NOT EXISTS " + ItemInfo.TABLE_NAME + " ( "
+                    + ItemInfo.ITEM_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+                    + ItemInfo.CATEGORY_NAME + " TEXT, "
+                    + ItemInfo.ITEM_NAME + " TEXT, "
+                    + ItemInfo.ITEM_DESC + " TEXT, "
+                    + ItemInfo.ITEM_IMAGE + " TEXT);";
     /**
      * CREATE CATEGORY TABLE QUERY.
      */
     private static final String CREATE_CATEGORY_TABLE_QUERY =
-            "CREATE TABLE IF NOT EXISTS " + NewCategoryInfo.CategoryInfo.TABLE_NAME + " ( "
-                    + NewCategoryInfo.CategoryInfo.CATEGORY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-                    + NewCategoryInfo.CategoryInfo.CATEGORY_NAME + " TEXT, "
-                    + NewCategoryInfo.CategoryInfo.CATEGORY_DESC + " TEXT, "
-                    + NewCategoryInfo.CategoryInfo.CATEGORY_ICON + " TEXT);";
+            "CREATE TABLE IF NOT EXISTS " + CategoryInfo.TABLE_NAME + " ( "
+                    + CategoryInfo.CATEGORY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+                    + CategoryInfo.CATEGORY_NAME + " TEXT, "
+                    + CategoryInfo.CATEGORY_DESC + " TEXT, "
+                    + CategoryInfo.CATEGORY_ICON + " TEXT);";
     /**
      * CREATE USER REGISTRATION TABLE QUERY.
      */
     private static final String CREATE_USER_REGISTRATION_TABLE_QUERY =
-            "CREATE TABLE IF NOT EXISTS " + NewRegInfo.UserRegistrationInfo.TABLE_NAME + " ( "
-                    + NewRegInfo.UserRegistrationInfo.REG_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-                    + NewRegInfo.UserRegistrationInfo.USER_NAME + " TEXT, "
-                    + NewRegInfo.UserRegistrationInfo.EMAIL_ADD + " TEXT, "
-                    + NewRegInfo.UserRegistrationInfo.USER_PIN + " TEXT, "
-                    + NewRegInfo.UserRegistrationInfo.SECURITY_QUESTION + " TEXT, "
-                    + NewRegInfo.UserRegistrationInfo.SECURITY_RESPONSE + " TEXT);";
+            "CREATE TABLE IF NOT EXISTS " + UserRegistrationInfo.TABLE_NAME + " ( "
+                    + UserRegistrationInfo.REG_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+                    + UserRegistrationInfo.USER_NAME + " TEXT, "
+                    + UserRegistrationInfo.EMAIL_ADD + " TEXT, "
+                    + UserRegistrationInfo.USER_PIN + " TEXT, "
+                    + UserRegistrationInfo.SECURITY_QUESTION + " TEXT, "
+                    + UserRegistrationInfo.SECURITY_RESPONSE + " TEXT);";
     /**
      * CREATE USER PROFILE TABLE QUERY.
      */
     private static final String CREATE_USER_PROFILE_TABLE_QUERY =
-            "CREATE TABLE IF NOT EXISTS " + UserProfileInfo.ProfileInfo.TABLE_NAME + " ( "
-                    + UserProfileInfo.ProfileInfo.PROFILE_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-                    + UserProfileInfo.ProfileInfo.USER_NAME + " TEXT, "
-                    + UserProfileInfo.ProfileInfo.USER_AVATAR + " TEXT);";
+            "CREATE TABLE IF NOT EXISTS " + UserProfileInfo.TABLE_NAME + " ( "
+                    + UserProfileInfo.PROFILE_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+                    + UserProfileInfo.USER_NAME + " TEXT, "
+                    + UserProfileInfo.USER_AVATAR + " TEXT);";
 
     /**
      * DB variables
@@ -161,15 +161,15 @@ public class EyeRSDatabaseHelper extends SQLiteOpenHelper {
             e.printStackTrace();
         }
 
-        bookValues.put(NewCategoryInfo.CategoryInfo.CATEGORY_NAME, "BOOKS");
-        bookValues.put(NewCategoryInfo.CategoryInfo.CATEGORY_DESC, "Educational/Sci-Fi/Comics");
-        bookValues.put(NewCategoryInfo.CategoryInfo.CATEGORY_ICON, bookIcon);
+        bookValues.put(CategoryInfo.CATEGORY_NAME, "BOOKS");
+        bookValues.put(CategoryInfo.CATEGORY_DESC, "Educational/Sci-Fi/Comics");
+        bookValues.put(CategoryInfo.CATEGORY_ICON, bookIcon);
 
 
         /**
          * Content resolver insert operation
          */
-        db.insert(NewCategoryInfo.CategoryInfo.TABLE_NAME, null, bookValues);
+        db.insert(CategoryInfo.TABLE_NAME, null, bookValues);
     }
 
     /**
@@ -193,14 +193,14 @@ public class EyeRSDatabaseHelper extends SQLiteOpenHelper {
             Log.e("Insert Error", ex.getMessage());
         }
 
-        clothesValues.put(NewCategoryInfo.CategoryInfo.CATEGORY_NAME, "CLOTHES");
-        clothesValues.put(NewCategoryInfo.CategoryInfo.CATEGORY_DESC, "Formal/Casual");
-        clothesValues.put(NewCategoryInfo.CategoryInfo.CATEGORY_ICON, clothingIcon);
+        clothesValues.put(CategoryInfo.CATEGORY_NAME, "CLOTHES");
+        clothesValues.put(CategoryInfo.CATEGORY_DESC, "Formal/Casual");
+        clothesValues.put(CategoryInfo.CATEGORY_ICON, clothingIcon);
 
         /**
          * Content resolver insert operation
          */
-        db.insert(NewCategoryInfo.CategoryInfo.TABLE_NAME, null, clothesValues);
+        db.insert(CategoryInfo.TABLE_NAME, null, clothesValues);
 
     }
 
@@ -224,14 +224,14 @@ public class EyeRSDatabaseHelper extends SQLiteOpenHelper {
             Log.e("Insert Error", ex.getMessage());
         }
 
-        accessoryValues.put(NewCategoryInfo.CategoryInfo.CATEGORY_NAME, "ACCESSORIES");
-        accessoryValues.put(NewCategoryInfo.CategoryInfo.CATEGORY_DESC, "Collectibles");
-        accessoryValues.put(NewCategoryInfo.CategoryInfo.CATEGORY_ICON, accessoryIcon);
+        accessoryValues.put(CategoryInfo.CATEGORY_NAME, "ACCESSORIES");
+        accessoryValues.put(CategoryInfo.CATEGORY_DESC, "Collectibles");
+        accessoryValues.put(CategoryInfo.CATEGORY_ICON, accessoryIcon);
 
         /**
          * Content resolver insert operation
          */
-        db.insert(NewCategoryInfo.CategoryInfo.TABLE_NAME, null, accessoryValues);
+        db.insert(CategoryInfo.TABLE_NAME, null, accessoryValues);
 
     }
 
@@ -256,14 +256,14 @@ public class EyeRSDatabaseHelper extends SQLiteOpenHelper {
         }
 
 
-        gameValues.put(NewCategoryInfo.CategoryInfo.CATEGORY_NAME, "GAMES");
-        gameValues.put(NewCategoryInfo.CategoryInfo.CATEGORY_DESC, "Sport/Shooting/VR");
-        gameValues.put(NewCategoryInfo.CategoryInfo.CATEGORY_ICON, gameIcon);
+        gameValues.put(CategoryInfo.CATEGORY_NAME, "GAMES");
+        gameValues.put(CategoryInfo.CATEGORY_DESC, "Sport/Shooting/VR");
+        gameValues.put(CategoryInfo.CATEGORY_ICON, gameIcon);
 
         /**
          * Content resolver insert operation
          */
-        db.insert(NewCategoryInfo.CategoryInfo.TABLE_NAME, null, gameValues);
+        db.insert(CategoryInfo.TABLE_NAME, null, gameValues);
 
     }
 
@@ -287,14 +287,14 @@ public class EyeRSDatabaseHelper extends SQLiteOpenHelper {
         }
 
 
-        otherValues.put(NewCategoryInfo.CategoryInfo.CATEGORY_NAME, "OTHER");
-        otherValues.put(NewCategoryInfo.CategoryInfo.CATEGORY_DESC, "Random stuff");
-        otherValues.put(NewCategoryInfo.CategoryInfo.CATEGORY_ICON, otherIcon);
+        otherValues.put(CategoryInfo.CATEGORY_NAME, "OTHER");
+        otherValues.put(CategoryInfo.CATEGORY_DESC, "Random stuff");
+        otherValues.put(CategoryInfo.CATEGORY_ICON, otherIcon);
 
         /**
          * Content resolver insert operation
          */
-        db.insert(NewCategoryInfo.CategoryInfo.TABLE_NAME, null, otherValues);
+        db.insert(CategoryInfo.TABLE_NAME, null, otherValues);
 
     }
 
