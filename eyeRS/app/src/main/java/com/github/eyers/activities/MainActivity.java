@@ -1,7 +1,6 @@
 package com.github.eyers.activities;
 
 import android.app.LoaderManager;
-import android.content.ClipData;
 import android.content.Intent;
 import android.content.Loader;
 import android.content.res.Configuration;
@@ -32,7 +31,6 @@ import com.github.eyers.wrapper.ItemWrapper;
 import com.miguelcatalan.materialsearchview.MaterialSearchView;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * This class includes a navigation drawer and will display the main home activity of the app
@@ -381,11 +379,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
                 case R.id.nav_trade: {
                     // todo: in method
-                    Intent sendIntent = new Intent();
-                    sendIntent.setAction(Intent.ACTION_SEND);
-                    sendIntent.putExtra(Intent.EXTRA_TEXT, "This is my text to send.");
-                    sendIntent.setType("text/plain");
-                    startActivity(sendIntent);
+//                    Intent sendIntent = new Intent();
+//                    sendIntent.setAction(Intent.ACTION_SEND);
+//                    sendIntent.putExtra(Intent.EXTRA_TEXT, "This is my text to send.");
+//                    sendIntent.setType("text/plain");
+//                    startActivity(sendIntent);
+                    startActivity(new Intent(this, TradeActivity.class));
                 }
                 break;
                 case R.id.nav_exit:
