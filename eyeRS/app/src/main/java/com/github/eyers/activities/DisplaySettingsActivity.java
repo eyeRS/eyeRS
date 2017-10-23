@@ -1,8 +1,10 @@
 package com.github.eyers.activities;
 
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -25,6 +27,8 @@ public class DisplaySettingsActivity extends AppCompatActivity implements OnClic
         super.onCreate(savedInstanceState);
         Utils.onActivityCreateSetTheme(this);
         setContentView(R.layout.activity_display_settings);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
         String[] fontTypes = getResources().getStringArray(R.array.font_types);
 
@@ -103,15 +107,35 @@ public class DisplaySettingsActivity extends AppCompatActivity implements OnClic
 
                 case R.id.imgbtn_Blue:
                     Utils.changeToTheme(this, Utils.App_Theme);
+                    //It will restart the app
+                    Intent i = getBaseContext().getPackageManager()
+                            .getLaunchIntentForPackage( getBaseContext().getPackageName() );
+                    i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(i);
                     break;
                 case R.id.imgbtn_Red:
                     Utils.changeToTheme(this, Utils.AppTheme_Red);
+                    //It will restart the app
+                    Intent i1 = getBaseContext().getPackageManager()
+                            .getLaunchIntentForPackage( getBaseContext().getPackageName() );
+                    i1.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(i1);
                     break;
                 case R.id.imgbtn_Yellow:
                     Utils.changeToTheme(this, Utils.AppTheme_Yellow);
+                    //It will restart the app
+                    Intent i2 = getBaseContext().getPackageManager()
+                            .getLaunchIntentForPackage( getBaseContext().getPackageName() );
+                    i2.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(i2);
                     break;
                 case R.id.imgbtn_Green:
                     Utils.changeToTheme(this, Utils.AppTheme_Green);
+                    //It will restart the app
+                    Intent i3 = getBaseContext().getPackageManager()
+                            .getLaunchIntentForPackage( getBaseContext().getPackageName() );
+                    i3.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(i3);
                     break;
 
             }
