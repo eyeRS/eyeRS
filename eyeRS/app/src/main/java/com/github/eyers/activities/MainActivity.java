@@ -20,6 +20,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -31,7 +32,9 @@ import com.github.eyers.activities.todo.TradeActivity;
 import com.github.eyers.wrapper.ItemWrapper;
 import com.miguelcatalan.materialsearchview.MaterialSearchView;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * This class includes a navigation drawer and will display the main home activity of the app
@@ -48,6 +51,34 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private DrawerLayout drawer;
     private NavigationView navigationView;
     private ListView listView;
+
+    /** Used to test the search
+     * private String[] ls = {
+     * "Jimmy",
+     * "Ronald",
+     * "Ayesha",
+     * "James",
+     * "Amy",
+     * "Hermione",
+     * "Simone",
+     * "One",
+     * "Two",
+     * "Three"
+     * };
+     */
+
+    private String[] ls = {
+            "Jimmy",
+            "Ronald",
+            "Ayesha",
+            "James",
+            "Amy",
+            "Hermione",
+            "Simone",
+            "One",
+            "Two",
+            "Three"
+    };
 
     /**
      * Used to declare the search view bar.
@@ -129,15 +160,23 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         this.searchView = (MaterialSearchView) findViewById(R.id.search_view);
 
         searchView.setOnSearchViewListener(new MaterialSearchView.SearchViewListener() {
+
+
             @Override
             public void onSearchViewShown() {
+                // The purpose for this segment of code is to test the search function
+
+                ArrayAdapter adapter = new ArrayAdapter(MainActivity.this, android.R.layout.simple_list_item_1, ls);
+                listView.setAdapter(adapter);
 
             }
 
             @Override
             public void onSearchViewClosed() {
                 // Returns default view when search is closed.
+
                 try {
+
                     listView = (ListView) findViewById(R.id.main_listView);
                     ArrayList<ItemLabel> items = new ArrayList<>();
 
@@ -178,23 +217,41 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 /**
                  * Once the text changes in the search bar the items should appear
                  */
-                listView = (ListView) findViewById(R.id.main_listView);
-                ArrayList<ItemLabel> items = new ArrayList<>();
 
-                // ItemLabel lblName = null;
-                // lblName = new ItemLabel(lblName.getName(), null);
+                /**
+                 listView = (ListView) findViewById(R.id.main_listView);
+                 ArrayList<ItemLabel> items = new ArrayList<>();
+
+                 // ItemLabel lblName = null;
+                 // lblName = new ItemLabel(lblName.getName(), null);
+
+                 if (newText != null & !newText.isEmpty())   {
+                 List<ItemLabel> lstFound = new ArrayList<ItemLabel>();
+                 for (ItemLabel item: items)    {
+                 if (item.getName() == newText) {
+                 lstFound.add(item);
+                 }
+                 LabelAdapter adapter = new LabelAdapter(MainActivity.this, (ArrayList<ItemLabel>) lstFound);
+                 listView.setAdapter(adapter);
+                 }
+                 } else {
+                 LabelAdapter adapter = new LabelAdapter(MainActivity.this, items);
+                 listView.setAdapter(adapter);
+                 }
+                 return true;
+                 */
 
                 if (newText != null & !newText.isEmpty())   {
-                    ArrayList<ItemLabel> lstFound = new ArrayList<ItemLabel>();
-                    for (ItemLabel item: items)    {
-                        if (item.getName() == newText) {
+                    List<String> lstFound = new ArrayList<String>();
+                    for (String item: ls)    {
+                        if (item.contains(newText)) {
                             lstFound.add(item);
                         }
-                        LabelAdapter adapter = new LabelAdapter(MainActivity.this, lstFound);
+                        ArrayAdapter adapter = new ArrayAdapter(MainActivity.this, android.R.layout.simple_list_item_1, lstFound);
                         listView.setAdapter(adapter);
                     }
                 } else {
-                    LabelAdapter adapter = new LabelAdapter(MainActivity.this, items);
+                    ArrayAdapter adapter = new ArrayAdapter(MainActivity.this, android.R.layout.simple_list_item_1, ls);
                     listView.setAdapter(adapter);
                 }
                 return true;
