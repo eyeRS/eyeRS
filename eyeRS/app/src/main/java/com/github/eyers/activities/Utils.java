@@ -22,7 +22,7 @@ public class Utils {
      */
     public static void changeToTheme(AppCompatActivity activity, int theme) {
         sTheme = theme;
-//        activity.setTheme(theme);
+       // activity.setTheme(theme);
         activity.finish();
         activity.startActivity(new Intent(activity, activity.getClass()));
     }

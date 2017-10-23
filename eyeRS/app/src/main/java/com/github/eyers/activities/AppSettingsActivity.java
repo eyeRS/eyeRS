@@ -28,7 +28,7 @@ public class AppSettingsActivity extends AppCompatActivity implements OnItemClic
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        Utils.onActivityCreateSetTheme(this);
         setContentView(R.layout.activity_app_settings);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
