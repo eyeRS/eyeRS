@@ -38,7 +38,7 @@
 
             <com.vj.widgets.AutoResizeTextView
                 android:id="@+id/txtItemTitle"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginLeft="8dp"
@@ -78,7 +78,7 @@
 
             <com.vj.widgets.AutoResizeTextView
                 android:id="@+id/txtItemDescription"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="80dp"
                 android:layout_marginBottom="8dp"
                 android:layout_marginEnd="8dp"
