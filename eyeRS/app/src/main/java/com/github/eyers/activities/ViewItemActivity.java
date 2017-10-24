@@ -1,5 +1,6 @@
 package com.github.eyers.activities;
 
+import android.content.ContentResolver;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -10,7 +11,9 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.github.eyers.DBOperations;
 import com.github.eyers.R;
+import com.github.eyers.info.ItemInfo;
 import com.github.eyers.wrapper.ItemWrapper;
 import com.vj.widgets.AutoResizeTextView;
 
@@ -20,6 +23,10 @@ public class ViewItemActivity extends AppCompatActivity implements View.OnClickL
      * ItemWrapper
      */
     public static ItemWrapper ITEM = null;
+    /**
+     * Content Resolver declaration.
+     */
+    private ContentResolver eyeRSContentResolver;
 
     private ImageView image;
     private AutoResizeTextView title;
@@ -33,8 +40,8 @@ public class ViewItemActivity extends AppCompatActivity implements View.OnClickL
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        this.title = (AutoResizeTextView) findViewById(R.id.txtTitle);
-        this.description = (AutoResizeTextView) findViewById(R.id.txtDescription);
+        this.title = (AutoResizeTextView) findViewById(R.id.txtItemTitle);
+        this.description = (AutoResizeTextView) findViewById(R.id.txtItemDescription);
         this.image = (ImageView) findViewById(R.id.img);
 
         try {
@@ -45,8 +52,8 @@ public class ViewItemActivity extends AppCompatActivity implements View.OnClickL
             Log.e("Error adding item", "Something is null");
         }
 
-        findViewById(R.id.btnEdit).setOnClickListener(this);
-        findViewById(R.id.btnDelete).setOnClickListener(this);
+        findViewById(R.id.btnEditItem).setOnClickListener(this);
+        findViewById(R.id.btnDeleteItem).setOnClickListener(this);
 
         Toast.makeText(this, ViewItemActivity.ITEM.getName(), Toast.LENGTH_LONG).show();
     }
@@ -78,24 +85,51 @@ public class ViewItemActivity extends AppCompatActivity implements View.OnClickL
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.btnEdit:
+            case R.id.btnEditItem:
                 this.edit();
                 break;
-            case R.id.btnDelete:
-                this.delete();
+            case R.id.btnDeleteItem:
+                this.deleteItem();
                 break;
         }
     }
 
     private void edit() {
 
+        /**
+         * Content resolver object
+         */
+        eyeRSContentResolver = this.getContentResolver();
+
+
     }
 
-    private void delete() {
+    /**
+     * Removes the record of the item when the user presses delete
+     * Once an item is deleted it cannot be undone
+     */
+    private void deleteItem() {
 
+        String itemToDelete = this.title.getText().toString();
 
-        MainActivity.STATE = "main";
-        super.startActivity(new Intent(this, MainActivity.class));
-        super.finish();
+        /**
+         * Content resolver object
+         */
+        eyeRSContentResolver = this.getContentResolver();
+        String whereClause = ItemInfo.ITEM_NAME + " = '" + itemToDelete + "'";
+        String[] whereArgs = {ItemInfo.ITEM_NAME};
+
+        try {
+
+            eyeRSContentResolver.delete(DBOperations.CONTENT_URI_ITEMS,
+                    whereClause, whereArgs);
+
+            MainActivity.STATE = "main";
+            super.startActivity(new Intent(this, MainActivity.class));
+            super.finish();
+        } catch (Exception ex) {
+
+            Log.e("ViewItemActivity", ex.getMessage(), ex);
+        }
     }
 }

@@ -174,7 +174,7 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
 
         String whereClause = "";
 
-        String[] selectionArgs = {};
+        String[] whereArgs = {};
 
         String sortOrder = CategoryInfo.CATEGORY_NAME;
 
@@ -187,7 +187,7 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
                     DBOperations.CONTENT_URI_CATEGORIES,
                     projection,
                     whereClause,
-                    selectionArgs,
+                    whereArgs,
                     sortOrder);
 
             TreeSet<String> data = new TreeSet<>();

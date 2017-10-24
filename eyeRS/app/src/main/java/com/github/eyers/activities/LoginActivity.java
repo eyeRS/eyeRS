@@ -49,7 +49,7 @@ public final class LoginActivity extends AppCompatActivity implements View.OnCli
 
         Toast.makeText(this, "Welcome!", Toast.LENGTH_SHORT).show();
 
-        /*Initialising mediaPlayer*/
+        /** Initialising mediaPlayer*/
         welcomeMessage = MediaPlayer.create(LoginActivity.this, R.raw.welcomemsg);
 
     }
@@ -85,7 +85,10 @@ public final class LoginActivity extends AppCompatActivity implements View.OnCli
 
     public void verifyLoginPIN() {
 
-        eyeRSContentResolver = getApplicationContext().getContentResolver(); //Content resolver object
+        /**
+         * Content resolver object
+         */
+        eyeRSContentResolver = this.getContentResolver();
 
         String[] projection = {
                 UserRegistrationInfo.REG_ID,
@@ -97,7 +100,7 @@ public final class LoginActivity extends AppCompatActivity implements View.OnCli
 
         String whereClause = "";
 
-        String[] selectionArgs = {};
+        String[] whereArgs = {};
 
         String sortOrder = "";
 
@@ -110,7 +113,7 @@ public final class LoginActivity extends AppCompatActivity implements View.OnCli
                     DBOperations.CONTENT_URI_USER_REG,
                     projection,
                     whereClause,
-                    selectionArgs,
+                    whereArgs,
                     sortOrder);
 
             if (!cursor.moveToFirst()) {

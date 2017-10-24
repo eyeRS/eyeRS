@@ -260,10 +260,10 @@ public class SetPINActivity extends AppCompatActivity implements View.OnClickLis
                 UserRegistrationInfo.SECURITY_QUESTION,
                 UserRegistrationInfo.SECURITY_RESPONSE};
 
-        String whereClauseQuery = UserRegistrationInfo.SECURITY_QUESTION + " = '" + securityQuestion
+        String whereClause = UserRegistrationInfo.SECURITY_QUESTION + " = '" + securityQuestion
                 + "' AND " + UserRegistrationInfo.SECURITY_RESPONSE + " = '" + securityResponse + "'";
 
-        String[] selectionArgs = {};
+        String[] whereArgs = {};
 
         String sortOrder = "";
 
@@ -276,7 +276,7 @@ public class SetPINActivity extends AppCompatActivity implements View.OnClickLis
          * Cursor object to retrieve query results
          */
         Cursor cursor = eyeRSContentResolver.query(DBOperations.CONTENT_URI_USER_REG,
-                projection, whereClauseQuery, selectionArgs,
+                projection, whereClause, whereArgs,
                 sortOrder);
 
         if (!cursor.moveToFirst()) {

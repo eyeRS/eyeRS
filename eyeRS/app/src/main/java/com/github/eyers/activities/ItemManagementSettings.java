@@ -53,9 +53,11 @@ public class ItemManagementSettings extends AppCompatActivity implements OnItemC
                     break;
                 case 1:
                     // Edit Item
+                    startActivity(new Intent(this, ViewItemActivity.class));
                     break;
                 case 2:
-                    // Delete Item
+                    //Delete Item
+                    startActivity(new Intent(this, ViewItemActivity.class));
                     break;
                 case 3:
                     // Change Sorting
@@ -64,6 +66,7 @@ public class ItemManagementSettings extends AppCompatActivity implements OnItemC
             }
 
         } catch (Exception ex) {
+
             Log.e("ItemManagement listview", ex.getMessage(), ex);
         }
     }

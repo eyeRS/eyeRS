@@ -54,8 +54,8 @@ public class DBOperations extends ContentProvider {
     /**
      * Constants to identify the requested operation
      */
-    public static final int ALL_CATEGORIES = 1;
-    public static final int ALL_ITEMS = 2;
+    public static final int CATEGORIES = 1;
+    public static final int ITEMS = 2;
     public static final int REG_DETAILS = 3;
     public static final int PROFILE_DETAILS = 4;
     /**
@@ -68,8 +68,8 @@ public class DBOperations extends ContentProvider {
      */
     static {
 
-        uriMatcher.addURI(AUTHORITY, CATEGORIES_TABLE, ALL_CATEGORIES);
-        uriMatcher.addURI(AUTHORITY, ITEMS_TABLE, ALL_ITEMS);
+        uriMatcher.addURI(AUTHORITY, CATEGORIES_TABLE, CATEGORIES);
+        uriMatcher.addURI(AUTHORITY, ITEMS_TABLE, ITEMS);
         uriMatcher.addURI(AUTHORITY, USER_REGISTRATION_TABLE, REG_DETAILS);
         uriMatcher.addURI(AUTHORITY, USER_PROFILE_TABLE, PROFILE_DETAILS);
 
@@ -108,7 +108,9 @@ public class DBOperations extends ContentProvider {
     @Override
     public boolean onCreate() {
 
-        //get access to the database helper
+        /**
+         * Get access to the database helper
+         */
         eyeRSDatabaseHelper = new EyeRSDatabaseHelper(getContext());
         return true;
     }
@@ -135,7 +137,7 @@ public class DBOperations extends ContentProvider {
      * We should return null only if an internal error occurred during the query process.
      */
     @Override
-    public Cursor query(@NonNull Uri uri, String[] projection, String selection, String[] selectionArgs, String sortOrder) {
+    public Cursor query(@NonNull Uri uri, String[] projection, String whereClause, String[] whereArgs, String sortOrder) {
 
         SQLiteQueryBuilder queryBuilder = new SQLiteQueryBuilder();
 
@@ -143,9 +145,9 @@ public class DBOperations extends ContentProvider {
         queryBuilder.setTables(getTableName(uri));
 
         switch (uriType) {
-            case ALL_CATEGORIES:
+            case CATEGORIES:
                 break;
-            case ALL_ITEMS:
+            case ITEMS:
                 break;
             case REG_DETAILS:
                 break;
@@ -157,8 +159,8 @@ public class DBOperations extends ContentProvider {
 
         Cursor cursor = queryBuilder.query(eyeRSDatabaseHelper.getReadableDatabase(),
                 projection,
-                selection,
-                selectionArgs,
+                whereClause,
+                whereArgs,
                 null,
                 null,
                 sortOrder);
@@ -186,28 +188,27 @@ public class DBOperations extends ContentProvider {
         String table = getTableName(uri);
         SQLiteDatabase db = eyeRSDatabaseHelper.getWritableDatabase();
 
-        if (uriType == ALL_CATEGORIES){
+        if (uriType == CATEGORIES) {
             long categoryID = db.insert(table, null, values);
             getContext().getContentResolver().notifyChange(uri, null);
             return Uri.parse(table + "/" + categoryID);
         }
-        if (uriType == ALL_ITEMS){
+        if (uriType == ITEMS) {
             long itemID = db.insert(table, null, values);
             getContext().getContentResolver().notifyChange(uri, null);
             return Uri.parse(table + "/" + itemID);
         }
-        if (uriType == REG_DETAILS){
+        if (uriType == REG_DETAILS) {
             long regID = db.insert(table, null, values);
             getContext().getContentResolver().notifyChange(uri, null);
             return Uri.parse(table + "/" + regID);
         }
-        if (uriType == PROFILE_DETAILS){
+        if (uriType == PROFILE_DETAILS) {
             long profileID = db.insert(table, null, values);
             getContext().getContentResolver().notifyChange(uri, null);
             return Uri.parse(table + "/" + profileID);
-        }
-        else{
-            Log.e("Insert operation", "Could not determine uri: " + uri);
+        } else {
+            Log.e("INSERT OPERATION", "Unable to perform insert operation");
             throw new UnsupportedOperationException("Unsupported URI: " + uri);
         }
     }
@@ -218,12 +219,12 @@ public class DBOperations extends ContentProvider {
      * If we choose not to delete the data physically then just update a flag here.
      *
      * @param uri
-     * @param selection
-     * @param selectionArgs
+     * @param whereClause
+     * @param whereArgs
      * @return
      */
     @Override
-    public int delete(Uri uri, String selection, String[] selectionArgs) {
+    public int delete(Uri uri, String whereClause, String[] whereArgs) {
 
         int uriType = uriMatcher.match(uri);
         SQLiteDatabase db = eyeRSDatabaseHelper.getWritableDatabase();
@@ -231,17 +232,27 @@ public class DBOperations extends ContentProvider {
 
         switch (uriType) {
 
-            case ALL_CATEGORIES:
+            case CATEGORIES:
                 deletedRows = db.delete(CATEGORIES_TABLE,
-                        selection,
-                        selectionArgs);
+                        whereClause,
+                        whereArgs);
+                break;
+            case ITEMS:
+                deletedRows = db.delete(ITEMS_TABLE,
+                        whereClause,
+                        whereArgs);
                 break;
 
             default:
+                Log.e("DELETE OPERATION", "Unable to perform delete operation");
                 throw new IllegalArgumentException("Unknown URI: " + uri);
         }
 
-        getContext().getContentResolver().notifyChange(uri, null);
+        if (deletedRows != 0) {
+
+            getContext().getContentResolver().notifyChange(uri, null);
+        }
+
         return deletedRows;
     }
 
@@ -252,13 +263,13 @@ public class DBOperations extends ContentProvider {
      *
      * @param uri
      * @param values
-     * @param selection
-     * @param selectionArgs
+     * @param whereClause
+     * @param whereArgs
      * @return
      */
     @Override
-    public int update(Uri uri, ContentValues values, String selection,
-                      String[] selectionArgs) throws IllegalArgumentException {
+    public int update(Uri uri, ContentValues values, String whereClause,
+                      String[] whereArgs) throws IllegalArgumentException {
 
         int uriType = uriMatcher.match(uri);
         SQLiteDatabase db = eyeRSDatabaseHelper.getWritableDatabase();
@@ -266,16 +277,22 @@ public class DBOperations extends ContentProvider {
 
         switch (uriType) {
 
-            case ALL_CATEGORIES:
+            case CATEGORIES:
                 updatedRows = db.update(CATEGORIES_TABLE,
                         values,
-                        selection,
-                        selectionArgs);
+                        whereClause,
+                        whereArgs);
+                break;
+            case ITEMS:
+                updatedRows = db.update(ITEMS_TABLE,
+                        values,
+                        whereClause,
+                        whereArgs);
                 break;
             case REG_DETAILS:
                 String username = uri.getLastPathSegment();
 
-                if (TextUtils.isEmpty(selection)) {
+                if (TextUtils.isEmpty(whereClause)) {
 
                     updatedRows = db.update(USER_REGISTRATION_TABLE,
                             values,

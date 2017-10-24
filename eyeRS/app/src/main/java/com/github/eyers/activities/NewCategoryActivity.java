@@ -177,7 +177,7 @@ public class NewCategoryActivity extends AppCompatActivity implements View.OnCli
 
         String whereClause = "";
 
-        String[] selectionArgs = {};
+        String[] whereArgs = {};
 
         String sortOrder = "";
 
@@ -190,7 +190,7 @@ public class NewCategoryActivity extends AppCompatActivity implements View.OnCli
                     DBOperations.CONTENT_URI_CATEGORIES,
                     projection,
                     whereClause,
-                    selectionArgs,
+                    whereArgs,
                     sortOrder);
 
             if (!cursor.moveToFirst()) {
