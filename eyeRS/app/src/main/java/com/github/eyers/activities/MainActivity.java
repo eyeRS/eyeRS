@@ -388,18 +388,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return super.onOptionsItemSelected(item);
     }
 
-    /**
-     * Method called when the nav_send button is clicked
-     */
-    public void sendIntent() {
-        Intent intent = new Intent(Intent.ACTION_SEND);
-        intent.setType("text/plain");
-        intent.putExtra(Intent.EXTRA_TEXT, "Details of the catalog item to be sent will be attached here");
-        String chooserTitle = getString(R.string.chooser); //Get the chooser title
-        Intent chosenIntent = Intent.createChooser(intent, chooserTitle);
-        startActivity(chosenIntent); //Start the activity that the user selected
-    }
-
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {

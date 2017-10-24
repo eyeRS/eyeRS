@@ -13,7 +13,9 @@ public interface ItemInfo {
      */
     String TABLE_NAME = "item_info";
 
-    // Attributes
+    /**
+     * Attributes
+     */
     String ITEM_ID = "_id";
     String CATEGORY_NAME = "category_name";
     String ITEM_NAME = "item_name";

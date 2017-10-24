@@ -5,7 +5,7 @@
 
     <!-- Strings related to Register Activity -->
 
-    <string name="txtWelcomeMsg">Welcome!</string>
+    <string name="txtWelcomeMsg">Welcome New User!</string>
     <string name="txtRequiredFields">*All fields are required*</string>
     <string name="btnRegister">Register</string>
     <string name="createPinHint">Enter your new PIN</string>
@@ -17,12 +17,7 @@
 
     <!-- Strings related to Set Pin Activity -->
 
-    <string name="txtWelcome">Welcome !</string>
-    <string name="txtWelcomeDesc">Make Life Easy\n with eyeRS</string>
-    <string name="txtPinRequired">This is a required field!</string>
-    <string name="txtSecurityQtn">Please select a security question</string>
     <string name="txtSecurityResponse">Security Response</string>
-    <string name="responseHint">Your security answer</string>
     <string name="validateUsername">Enter your username</string>
     <string name="btnResetPIN">Reset</string>
     <string name="btnClearPIN">Clear</string>
@@ -47,7 +42,7 @@
     <string name="title_activity_new_item">My new Item</string>
     <string name="title_activity_help">Help &amp; Tips</string>
     <string name="title_activity_register">My Registration</string>
-    <string name="title_activity_set_pin">Reset my PIN</string>
+    <string name="title_activity_update_details">Reset my PIN</string>
     <string name="title_activity_about">About EyeRS</string>
     <string name="title_activity_slideshow">My Slideshow</string>
     <string name="title_activity_view_items">My Items</string>
@@ -100,10 +95,10 @@
     <string name="pref_header_security">Security</string>
 
     <!-- Display Settings -->
-    <string name="selectChangeTheme">Change Theme</string>
-    <string name="selectChangetheme">Change Theme:</string>
-    <string name="selectChangeFont">Change Font</string>
-    <string name="selectChangefont">Change Font:</string>
+    <string name="selectChangeTheme">Change App Themes</string>
+    <string name="selectChangetheme">Choose a theme color below</string>
+    <string name="selectChangeFont">Change App Fonts</string>
+    <string name="selectChangefont">Choose a font style from the drop-down list</string>
 
     <!-- Profile Settings -->
     <string name="pref_header_profile">Profile</string>

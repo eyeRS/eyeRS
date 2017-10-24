@@ -189,7 +189,9 @@ public class EyeRSDatabaseHelper extends SQLiteOpenHelper {
 
             field = R.drawable.class.getField("ic_polo_shirt");
             clothingIcon = field.toString();
+
         } catch (Exception ex) {
+
             Log.e("Insert Error", ex.getMessage());
         }
 

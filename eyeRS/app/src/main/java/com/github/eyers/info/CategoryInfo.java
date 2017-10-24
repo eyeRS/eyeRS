@@ -13,7 +13,9 @@ public interface CategoryInfo {
      */
     String TABLE_NAME = "category_info";
 
-    // Attributes
+    /**
+     * Attributes
+     */
     String CATEGORY_ID = "_id";
     String CATEGORY_NAME = "category_name";
     String CATEGORY_DESC = "category_desc";

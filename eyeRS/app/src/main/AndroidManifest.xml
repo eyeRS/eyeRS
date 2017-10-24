@@ -65,7 +65,7 @@
             android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".activities.SetPINActivity"
-            android:label="@string/title_activity_set_pin"
+            android:label="@string/title_activity_update_details"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="adjustPan" />
         <activity

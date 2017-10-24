@@ -13,7 +13,9 @@ public interface UserRegistrationInfo {
      */
     String TABLE_NAME = "user_registration";
 
-    // Attributes
+    /**
+     * Attributes
+     */
     String REG_ID = "_id";
     String USER_NAME = "user_name";
     String EMAIL_ADD = "user_email";

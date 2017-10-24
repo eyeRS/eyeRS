@@ -44,7 +44,7 @@
 
             <com.github.eyers.gui.SquareImageView
                 android:id="@+id/imgEyeRS"
-                android:layout_width="270dp"
+                android:layout_width="400dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginEnd="8dp"
@@ -59,52 +59,56 @@
 
             <TextView
                 android:id="@+id/txtAppName"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="60dp"
+                android:layout_gravity="center"
+                android:textSize="40sp"
+                android:text="@string/app_name"
+                app:layout_constraintTop_toBottomOf="@+id/imgEyeRS" />
+
+            <TextView
+                android:id="@+id/txtAppDesc"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
                 android:layout_marginLeft="8dp"
                 android:layout_marginRight="8dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="40dp"
-                android:gravity="center_horizontal"
-                android:text="@string/app_name"
-                app:layout_constraintTop_toBottomOf="@+id/imgEyeRS" />
-
-            <TextView
-                android:id="@+id/txtAppDesc"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="20dp"
-                android:gravity="center_horizontal"
+                android:layout_gravity="center"
+                android:textSize="40sp"
                 android:text="@string/appDesc"
                 app:layout_constraintTop_toBottomOf="@+id/txtAppName" />
 
             <TextView
                 android:id="@+id/txtAppCap"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
                 android:layout_marginLeft="8dp"
                 android:layout_marginRight="8dp"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="20dp"
-                android:gravity="center_horizontal"
+                android:layout_marginTop="40dp"
+                android:layout_gravity="center"
+                android:textSize="40sp"
                 android:text="@string/txtAppCap"
                 app:layout_constraintTop_toBottomOf="@+id/txtAppDesc" />
 
             <TextView
                 android:id="@+id/txtCpyRight"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
                 android:layout_marginLeft="8dp"
                 android:layout_marginRight="8dp"
                 android:layout_marginStart="8dp"
-                android:gravity="center_horizontal"
+                android:layout_gravity="center"
+                android:textSize="40sp"
                 android:text="@string/cpyRight"
                 app:layout_constraintTop_toBottomOf="@+id/txtAppCap" />
 

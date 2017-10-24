@@ -46,16 +46,16 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:text="@string/selectChangeTheme"
-                android:textSize="30sp"
+                android:textSize="50sp"
                 android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/txtView_ChangeTheme"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="30dp"
                 android:text="@string/selectChangetheme"
-                android:textSize="20sp"
+                android:textSize="40sp"
                 app:layout_constraintTop_toBottomOf="@+id/txtViewChangeTheme" />
 
             <LinearLayout
@@ -66,12 +66,12 @@
 
                 <ImageButton
                     android:id="@+id/imgbtn_Blue"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
                     android:layout_marginBottom="8dp"
                     android:layout_marginLeft="8dp"
                     android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="30dp"
                     android:backgroundTint="@color/eyeRSBlue"
                     android:tint="@color/eyeRSBlue"
                     app:srcCompat="@drawable/color_cursor_white" />
@@ -79,36 +79,36 @@
 
                 <ImageButton
                     android:id="@+id/imgbtn_Red"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
                     android:layout_marginBottom="8dp"
                     android:layout_marginLeft="16dp"
                     android:layout_marginStart="16dp"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="30dp"
                     android:backgroundTint="@color/eyeRSDarkRed"
                     android:tint="@color/eyeRSRed"
                     app:srcCompat="@drawable/color_cursor_white" />
 
                 <ImageButton
                     android:id="@+id/imgbtn_Yellow"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
                     android:layout_marginBottom="8dp"
                     android:layout_marginLeft="24dp"
                     android:layout_marginStart="24dp"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="30dp"
                     android:backgroundTint="@color/eyeRSDarkYellow"
                     android:tint="@color/eyeRSYellow"
                     app:srcCompat="@drawable/color_cursor_white" />
 
                 <ImageButton
                     android:id="@+id/imgbtn_Green"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
                     android:layout_marginBottom="8dp"
                     android:layout_marginLeft="32dp"
                     android:layout_marginStart="32dp"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="30dp"
                     android:backgroundTint="@color/eyeRSDarkGreen"
                     android:tint="@color/eyeRSGreen"
                     app:srcCompat="@drawable/color_cursor_white" />
@@ -119,9 +119,9 @@
                 android:id="@+id/txtViewChangeFont"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="80dp"
                 android:text="@string/selectChangeFont"
-                android:textSize="30sp"
+                android:textSize="50sp"
                 android:textStyle="bold"
                 app:layout_constraintTop_toBottomOf="@+id/colors" />
 
@@ -129,9 +129,9 @@
                 android:id="@+id/txtViewChange_Font"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="30dp"
                 android:text="@string/selectChangefont"
-                android:textSize="20sp"
+                android:textSize="40sp"
                 app:layout_constraintTop_toBottomOf="@+id/txtViewChangeFont" />
 
 
@@ -143,7 +143,8 @@
                 android:layout_marginLeft="8dp"
                 android:layout_marginRight="8dp"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="40dp"
+                android:layout_gravity="center"
                 android:entries="@array/font_types"
                 android:scrollbars="horizontal|vertical"
                 app:layout_constraintHorizontal_bias="0.501"

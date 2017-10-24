@@ -13,7 +13,9 @@ public interface UserProfileInfo {
      */
     String TABLE_NAME = "user_profile";
 
-    // Attributes
+    /**
+     * Attributes
+     */
     String PROFILE_ID = "_id";
     String USER_NAME = "user_name";
     String USER_AVATAR = "user_avatar";

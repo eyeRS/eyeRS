@@ -97,13 +97,13 @@ public class SetPINActivity extends AppCompatActivity implements View.OnClickLis
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        this.txtPIN1 = (EditText) findViewById(R.id.txtPIN1);
-        this.txtPIN2 = (EditText) findViewById(R.id.txtPIN2);
-        this.txtResponse = (EditText) findViewById(R.id.txtSecurityResponse);
+        this.txtPIN1 = (EditText) findViewById(R.id.txtNewPIN1);
+        this.txtPIN2 = (EditText) findViewById(R.id.txtNewPIN2);
+        this.txtResponse = (EditText) findViewById(R.id.txtNewSecurityResponse);
         this.txtUsername = (EditText) findViewById(R.id.verifyTxtUsername);
-        this.txtEmail = (EditText) findViewById(R.id.edtTxtEmail);
+        this.txtEmail = (EditText) findViewById(R.id.verifyTxtEmail);
 
-        this.spinner = (Spinner) findViewById(R.id.setPin_spinner);
+        this.spinner = (Spinner) findViewById(R.id.detailsUpdate_spinner);
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_spinner_item, QUESTIONS); //Populates the spinner with the array contents
 

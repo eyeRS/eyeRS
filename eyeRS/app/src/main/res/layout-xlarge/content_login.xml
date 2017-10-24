@@ -29,7 +29,7 @@
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
             android:layout_marginStart="5dp"
-            android:layout_marginTop="0dp"
+            android:layout_marginTop="5dp"
             android:orientation="vertical"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintTop_toTopOf="parent"
@@ -39,14 +39,13 @@
 
             <com.github.eyers.gui.SquareImageView
                 android:id="@+id/imageView2"
-                android:layout_width="250dp"
+                android:layout_width="400dp"
                 android:layout_height="wrap_content"
-                android:gravity="center"
+                android:layout_gravity="center"
                 android:layout_marginEnd="8dp"
                 android:layout_marginLeft="8dp"
                 android:layout_marginRight="8dp"
                 android:layout_marginStart="8dp"
-                app:layout_constraintHorizontal_bias="0.514"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -61,9 +60,10 @@
                 android:layout_marginRight="8dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="80dp"
+                android:textSize="30sp"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:gravity="center"
-                android:text="@string/txtWelcomeDesc"
+                android:text="@string/txtWelcomeDescLogin"
                 app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 
             <android.support.design.widget.TextInputLayout
@@ -100,6 +100,7 @@
                 android:layout_marginRight="8dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginTop="80dp"
+                android:textSize="30sp"
                 android:clickable="true"
                 android:text="@string/txtForgotPin"
                 android:textAppearance="?android:attr/textAppearanceLarge"

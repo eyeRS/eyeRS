@@ -14,7 +14,7 @@ import com.vj.widgets.AutoResizeTextView;
 public class ViewItemActivity extends AppCompatActivity {
 
     /**
-     *
+     * ItemWrapper
      */
     public static ItemWrapper ITEM = null;
 
