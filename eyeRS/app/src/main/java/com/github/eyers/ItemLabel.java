@@ -11,10 +11,12 @@ public class ItemLabel {
 
     private final String name;
     private final Bitmap image;
+    private final String description;
 
-    public ItemLabel(String name, Bitmap image) {
+    public ItemLabel(String name, Bitmap image, String description) {
         this.name = name;
         this.image = image;
+        this.description = description;
     }
 
     public String getName() {
@@ -32,6 +34,10 @@ public class ItemLabel {
         return getName();
     }
 
+    public String getDescription() {
+        return description;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -41,7 +47,9 @@ public class ItemLabel {
 
         if (getName() != null ? !getName().equals(itemLabel.getName()) : itemLabel.getName() != null)
             return false;
-        return getImage() != null ? getImage().equals(itemLabel.getImage()) : itemLabel.getImage() == null;
+        if (getImage() != null ? !getImage().equals(itemLabel.getImage()) : itemLabel.getImage() != null)
+            return false;
+        return getDescription() != null ? getDescription().equals(itemLabel.getDescription()) : itemLabel.getDescription() == null;
 
     }
 
@@ -49,6 +57,7 @@ public class ItemLabel {
     public int hashCode() {
         int result = getName() != null ? getName().hashCode() : 0;
         result = 31 * result + (getImage() != null ? getImage().hashCode() : 0);
+        result = 31 * result + (getDescription() != null ? getDescription().hashCode() : 0);
         return result;
     }
 }

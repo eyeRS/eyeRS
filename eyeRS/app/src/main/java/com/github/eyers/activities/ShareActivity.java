@@ -1,6 +1,5 @@
 package com.github.eyers.activities;
 
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -18,7 +17,6 @@ import com.github.eyers.EyeRS;
 import com.github.eyers.ItemLabel;
 import com.github.eyers.LabelAdapter;
 import com.github.eyers.R;
-import com.github.eyers.activities.MainActivity;
 import com.github.eyers.wrapper.ItemWrapper;
 
 import java.io.ByteArrayOutputStream;
@@ -49,7 +47,7 @@ public class ShareActivity extends AppCompatActivity implements AdapterView.OnIt
 
         for (String category : EyeRS.getCategoriesList(this)) {
             for (ItemWrapper item : EyeRS.getItems(category, this)) {
-                items.add(new ItemLabel(item.getName(), item.getImage()));
+                items.add(new ItemLabel(item.getName(), item.getImage(), ""));
             }
         }
 
