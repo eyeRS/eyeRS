@@ -51,33 +51,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private NavigationView navigationView;
     private ListView listView;
 
-    /** Used to test the search
-     * private String[] ls = {
-     * "Jimmy",
-     * "Ronald",
-     * "Ayesha",
-     * "James",
-     * "Amy",
-     * "Hermione",
-     * "Simone",
-     * "One",
-     * "Two",
-     * "Three"
-     * };
-     */
-
-    private String[] ls = {
-            "Jimmy",
-            "Ronald",
-            "Ayesha",
-            "James",
-            "Amy",
-            "Hermione",
-            "Simone",
-            "One",
-            "Two",
-            "Three"
-    };
+//    private String[] ls = {
+//            "Jimmy",
+//            "Ronald",
+//            "Ayesha",
+//            "James",
+//            "Amy",
+//            "Hermione",
+//            "Simone",
+//            "One",
+//            "Two",
+//            "Three"
+//    };
 
     /**
      * Used to declare the search view bar.
@@ -124,13 +109,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         drawer.setDrawerListener(toggle);
 
+        final ArrayList<ItemLabel> items = new ArrayList<>();
         /**
          * Populate the list view
          */
         try {
-
             listView = (ListView) findViewById(R.id.main_listView);
-            ArrayList<ItemLabel> items = new ArrayList<>();
 
             if (STATE.equals("main")) {
                 for (String category : EyeRS.getCategoriesList(this)) {
@@ -157,55 +141,49 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         getIntent().setAction("Already created");
 
         this.searchView = (MaterialSearchView) findViewById(R.id.search_view);
-
-        searchView.setOnSearchViewListener(new MaterialSearchView.SearchViewListener() {
-
-
-            @Override
-            public void onSearchViewShown() {
-                // The purpose for this segment of code is to test the search function
-
-                ArrayAdapter adapter = new ArrayAdapter(MainActivity.this, android.R.layout.simple_list_item_1, ls);
-                listView.setAdapter(adapter);
-
-            }
-
-            @Override
-            public void onSearchViewClosed() {
-                // Returns default view when search is closed.
-
-                try {
-
-                    listView = (ListView) findViewById(R.id.main_listView);
-                    ArrayList<ItemLabel> items = new ArrayList<>();
-
-                    if (STATE.equals("main")) {
-                        for (String category : EyeRS.getCategoriesList(MainActivity.this)) {
-                            items.add(new ItemLabel(category, BitmapFactory.decodeResource(
-                                    getResources(), R.drawable.ic_action_help), ""
-                            )); // TODO
-                        }
-                    } else {
-                        for (ItemWrapper item : EyeRS.getItems(STATE, MainActivity.this)) {
-                            items.add(new ItemLabel(item.getName(), item.getImage(), item.getDescription()));
-                        }
-                    }
-
-                    LabelAdapter adapter = new LabelAdapter(MainActivity.this, items);
-                    listView.setAdapter(adapter);
-
-                } catch (Exception ex) {
-
-                    Toast.makeText(MainActivity.this, "Unable to view items", Toast.LENGTH_SHORT).show();
-                    Log.e("MainActivity list view", ex.getMessage(), ex);
-                }
-
-                listView.setOnItemClickListener(MainActivity.this);
-                getIntent().setAction("Already created");
-            }
-        });
+        searchView.setOnClickListener(this);
+//        searchView.setOnSearchViewListener(new MaterialSearchView.SearchViewListener() {
+//
+//            @Override
+//            public void onSearchViewShown() {
+////                ArrayAdapter adapter = new ArrayAdapter(MainActivity.this, android.R.layout.simple_list_item_1, ls);
+////                listView.setAdapter(adapter);
+//            }
+//
+//            @Override
+//            public void onSearchViewClosed() {
+//                MainActivity.this.startActivity(new Intent(MainActivity.this, MainActivity.class));
+////                try {
+////                    listView = (ListView) findViewById(R.id.main_listView);
+////                    ArrayList<ItemLabel> items = new ArrayList<>();
+////
+////                    if (STATE.equals("main")) {
+////                        for (String category : EyeRS.getCategoriesList(MainActivity.this)) {
+////                            items.add(new ItemLabel(category, BitmapFactory.decodeResource(
+////                                    getResources(), R.drawable.ic_action_help), ""
+////                            )); // TODO
+////                        }
+////                    } else {
+////                        for (ItemWrapper item : EyeRS.getItems(STATE, MainActivity.this)) {
+////                            items.add(new ItemLabel(item.getName(), item.getImage(), item.getDescription()));
+////                        }
+////                    }
+////
+////                    LabelAdapter adapter = new LabelAdapter(MainActivity.this, items);
+////                    listView.setAdapter(adapter);
+////                } catch (Exception ex) {
+////
+////                    Toast.makeText(MainActivity.this, "Unable to view items", Toast.LENGTH_SHORT).show();
+////                    Log.e("MainActivity list view", ex.getMessage(), ex);
+////                }
+////
+////                listView.setOnItemClickListener(MainActivity.this);
+////                getIntent().setAction("Already created");
+//            }
+//        });
 
         searchView.setOnQueryTextListener(new MaterialSearchView.OnQueryTextListener() {
+
             @Override
             public boolean onQueryTextSubmit(String query) {
                 return false;
@@ -213,45 +191,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                /**
-                 * Once the text changes in the search bar the items should appear
-                 */
-
-                /**
-                 listView = (ListView) findViewById(R.id.main_listView);
-                 ArrayList<ItemLabel> items = new ArrayList<>();
-
-                 // ItemLabel lblName = null;
-                 // lblName = new ItemLabel(lblName.getName(), null);
-
-                 if (newText != null & !newText.isEmpty())   {
-                 List<ItemLabel> lstFound = new ArrayList<ItemLabel>();
-                 for (ItemLabel item: items)    {
-                 if (item.getName() == newText) {
-                 lstFound.add(item);
-                 }
-                 LabelAdapter adapter = new LabelAdapter(MainActivity.this, (ArrayList<ItemLabel>) lstFound);
-                 listView.setAdapter(adapter);
-                 }
-                 } else {
-                 LabelAdapter adapter = new LabelAdapter(MainActivity.this, items);
-                 listView.setAdapter(adapter);
-                 }
-                 return true;
-                 */
-
                 if (newText != null & !newText.isEmpty())   {
                     List<String> lstFound = new ArrayList<String>();
-                    for (String item: ls)    {
-                        if (item.contains(newText)) {
-                            lstFound.add(item);
+                    for (ItemLabel item : items) {
+                        if (item.getName().toLowerCase().contains(newText.toLowerCase())) {
+                            lstFound.add(item.getName());
                         }
                         ArrayAdapter adapter = new ArrayAdapter(MainActivity.this, android.R.layout.simple_list_item_1, lstFound);
                         listView.setAdapter(adapter);
                     }
                 } else {
-                    ArrayAdapter adapter = new ArrayAdapter(MainActivity.this, android.R.layout.simple_list_item_1, ls);
-                    listView.setAdapter(adapter);
+//                    ArrayAdapter adapter = new ArrayAdapter(MainActivity.this, android.R.layout.simple_list_item_1, ls);
+//                    listView.setAdapter(adapter);
                 }
                 return true;
             }
@@ -290,9 +241,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
      */
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
-
         try {
-
             /**
              * If the drawer is open, hide related items to the content view
              */
@@ -301,9 +250,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
              * Set the visibility of the menu items when the Drawer is opened or closed
              */
             menu.findItem(R.id.action_settings).setVisible(!drawerOpen); //Hide the action settings when drawer is open
-
         } catch (Exception ex) {
-
             Log.e("Navigation Drawer", ex.getMessage(), ex);
         }
 
@@ -312,28 +259,31 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public void onBackPressed() {
-        STATE = "main";
-        drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
-
-            try {
-
-                if (drawer.isDrawerOpen(GravityCompat.START)) {
-
-                    drawer.closeDrawer(GravityCompat.START);
-                } else {
-
-                    super.onBackPressed();
-                }
-
-            } catch (Exception ex) {
-
-                Log.e("Navigation drawer", ex.getMessage(), ex);
-            }
-        }
+        MainActivity.STATE = "main";
+        super.startActivity(new Intent(this, MainActivity.class));
+        super.finish();
+//        STATE = "main";
+//        drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+//        if (drawer.isDrawerOpen(GravityCompat.START)) {
+//            drawer.closeDrawer(GravityCompat.START);
+//        } else {
+//            super.onBackPressed();
+//
+//            try {
+//
+//                if (drawer.isDrawerOpen(GravityCompat.START)) {
+//
+//                    drawer.closeDrawer(GravityCompat.START);
+//                } else {
+//
+//                    super.onBackPressed();
+//                }
+//
+//            } catch (Exception ex) {
+//
+//                Log.e("Navigation drawer", ex.getMessage(), ex);
+//            }
+//        }
     }
 
     /**
@@ -452,7 +402,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public void onClick(View v) {
 //        switch (v.getId()) {
 //        }
-//        Toast.makeText(this, "TODO Button: " + v.getId(), Toast.LENGTH_LONG).show();
+        Toast.makeText(this, "TODO Button: " + v.getId(), Toast.LENGTH_LONG).show();
     }
 
     /**
@@ -502,8 +452,20 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 STATE = listView.getItemAtPosition(position).toString(); // Retrieves the selected item
                 startActivity(new Intent(this, ViewItemActivity.class));
             }
+        } catch (ClassCastException cce) {
+            String itemName = listView.getItemAtPosition(position).toString();
+            for (String category : EyeRS.getCategoriesList(this)) {
+                for (ItemWrapper item : EyeRS.getItems(category, this)) {
+                    if (itemName.equals(itemName)) {
+                        ViewItemActivity.ITEM = item;
+                        startActivity(new Intent(this, ViewItemActivity.class));
+                        finish();
+                    }
+                }
+            }
         } catch (Exception ex) {
             Toast.makeText(this, STATE + " not found.", Toast.LENGTH_LONG).show();
+            Log.e("", "", ex);
         }
     }
 

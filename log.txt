@@ -1,3 +1,53 @@
+commit d527c51b9758a426ed718250db9ccdd375226e87
+Author: Nathan Shava <nathantendai.shava@gmail.com>
+Date:   Tue Oct 24 22:54:08 2017 +0200
+
+    Bug fix
+    
+    # Conflicts:
+    #       eyeRS/app/src/main/java/com/github/eyers/MainActivity.java
+    #       eyeRS/app/src/main/res/layout/activity_main.xml
+    #       eyeRS/app/src/main/res/values/strings.xml
+
+commit 5471814fa6008cf5d7635a03bd4e16be34ca203a
+Author: Nathan Shava <nathantendai.shava@gmail.com>
+Date:   Tue Oct 24 19:47:14 2017 +0200
+
+    Delete Item query & tab layout updates
+    
+    # Conflicts:
+    #       eyeRS/app/src/main/java/com/github/eyers/MainActivity.java
+    #       eyeRS/app/src/main/res/layout/activity_main.xml
+    #       eyeRS/app/src/main/res/values/strings.xml
+
+commit 86309a7c1477e13ce982eba54790737866a54bc1
+Merge: 099c0c5 9bec59a
+Author: Nathan Shava <nathantendai.shava@gmail.com>
+Date:   Tue Oct 24 14:05:17 2017 +0200
+
+    Merge remote-tracking branch 'origin/master'
+    
+    # Conflicts:
+    #       eyeRS/app/src/main/java/com/github/eyers/activities/MainActivity.java
+    #       eyeRS/app/src/main/res/layout/content_view_item.xml
+
+commit 099c0c538ca6b8bd13f8e6566a9195926844003d
+Author: Nathan Shava <nathantendai.shava@gmail.com>
+Date:   Tue Oct 24 14:02:04 2017 +0200
+
+    Tab layout updates
+    
+    # Conflicts:
+    #       eyeRS/app/src/main/java/com/github/eyers/MainActivity.java
+    #       eyeRS/app/src/main/res/layout/activity_main.xml
+    #       eyeRS/app/src/main/res/values/strings.xml
+
+commit 9bec59a7820270be5319f859b3ae30b2d206825c
+Author: Matthew 'siD' Van der Bijl <matthewvdbijl@gmail.com>
+Date:   Tue Oct 24 09:40:04 2017 +0200
+
+    remade log
+
 commit 853f95f9348f43a8075f8794e2bf836c0699e388
 Author: Matthew 'siD' Van der Bijl <matthewvdbijl@gmail.com>
 Date:   Tue Oct 24 09:39:52 2017 +0200

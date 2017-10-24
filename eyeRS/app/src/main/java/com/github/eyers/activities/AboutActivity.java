@@ -39,5 +39,4 @@ public class AboutActivity extends AppCompatActivity {
         super.startActivity(new Intent(this, MainActivity.class));
         super.finish();
     }
-
 }
