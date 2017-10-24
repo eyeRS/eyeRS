@@ -701,10 +701,10 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
          */
         ContentValues accessoriesValues = new ContentValues();
 
-        accessoriesValues.put(ItemInfo.CATEGORY_NAME, category); //Accessory category
-        accessoriesValues.put(ItemInfo.ITEM_NAME, itemName); //Accessory name
-        accessoriesValues.put(ItemInfo.ITEM_DESC, itemDesc); //Accessory description
-        accessoriesValues.put(ItemInfo.ITEM_IMAGE, img); //Accessory image
+        accessoriesValues.put(ItemInfo.CATEGORY_NAME, category); // Accessory category
+        accessoriesValues.put(ItemInfo.ITEM_NAME, itemName);     // Accessory name
+        accessoriesValues.put(ItemInfo.ITEM_DESC, itemDesc);    // Accessory description
+        accessoriesValues.put(ItemInfo.ITEM_IMAGE, img);        // Accessory image
 
         /**
          * Content resolver object
