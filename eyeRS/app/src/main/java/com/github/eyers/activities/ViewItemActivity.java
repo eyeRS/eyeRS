@@ -2,6 +2,7 @@ package com.github.eyers.activities;
 
 import android.content.ContentResolver;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -110,14 +111,65 @@ public class ViewItemActivity extends AppCompatActivity implements View.OnClickL
      */
     private void deleteItem() {
 
-        String itemToDelete = this.title.getText().toString();
-
         /**
          * Content resolver object
          */
         eyeRSContentResolver = this.getContentResolver();
-        String whereClause = ItemInfo.ITEM_NAME + " = '" + itemToDelete + "'";
-        String[] whereArgs = {ItemInfo.ITEM_NAME};
+        String itemToDelete = this.title.getText().toString();
+        long itemID = 1;
+
+        /**
+         * We must retrieve the ID of the row to be deleted from the db
+         */
+        try {
+
+            /**
+             * Selection criteria to retrieve items
+             */
+            String[] projection = {ItemInfo.ITEM_ID,
+                    ItemInfo.CATEGORY_NAME,
+                    ItemInfo.ITEM_NAME,
+                    ItemInfo.ITEM_DESC,
+                    ItemInfo.ITEM_IMAGE};
+            String whereClause = "";
+            String[] whereArgs = {};
+            String sortOrder = ItemInfo.ITEM_NAME;
+
+            /**
+             * Content resolver query
+             */
+            Cursor cursor = eyeRSContentResolver.query(
+                    DBOperations.CONTENT_URI_CATEGORIES,
+                    projection,
+                    whereClause,
+                    whereArgs,
+                    sortOrder);
+
+            if (!cursor.moveToFirst()){
+
+                Log.e("Null Cursor object", "Nothing to display");
+                return;
+            }
+            else if (cursor.moveToFirst()){
+
+                if (cursor.getString(cursor.getColumnIndex(ItemInfo.ITEM_NAME)).equals(itemToDelete)){
+
+                    itemID = cursor.getLong(cursor.getColumnIndex(ItemInfo.ITEM_ID));
+                }
+
+            }
+            else{
+
+                Log.e("Cursor error", "Unable to retrieve items");
+            }
+        }
+        catch (Exception ex){
+
+            Log.e("ViewItem query", "Unable to retrieve items");
+        }
+
+        String whereClause = ItemInfo.ITEM_ID + " = " + itemID;
+        String[] whereArgs = {String.valueOf(itemID)};
 
         try {
 
