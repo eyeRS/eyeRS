@@ -42,7 +42,7 @@ public class ViewItemActivity extends AppCompatActivity implements View.OnClickL
 
         this.title = (AutoResizeTextView) findViewById(R.id.txtItemTitle);
         this.description = (AutoResizeTextView) findViewById(R.id.txtItemDescription);
-        this.image = (ImageView) findViewById(R.id.img);
+        this.image = (ImageView) findViewById(R.id.imgViewItem);
 
         try {
             this.title.setText(ITEM.getName());
