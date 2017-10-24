@@ -14,8 +14,8 @@ import android.util.Log;
 
 import com.github.eyers.info.CategoryInfo;
 import com.github.eyers.info.ItemInfo;
-import com.github.eyers.info.UserRegistrationInfo;
 import com.github.eyers.info.UserProfileInfo;
+import com.github.eyers.info.UserRegistrationInfo;
 
 /**
  * A custom Content Provider to perform the database operations.
@@ -23,7 +23,6 @@ import com.github.eyers.info.UserProfileInfo;
  *
  * @author Nathan Shava
  */
-
 public class DBOperations extends ContentProvider {
 
     /**
@@ -82,6 +81,28 @@ public class DBOperations extends ContentProvider {
     private EyeRSDatabaseHelper eyeRSDatabaseHelper;
 
     /**
+     * Retrieve the table name to query based on the Content URI selected
+     *
+     * @return
+     */
+    public static String getTableName(Uri uri) {
+        if (uri.equals(CONTENT_URI_CATEGORIES)) {
+            return CATEGORIES_TABLE;
+        }
+        if (uri.equals(CONTENT_URI_ITEMS)) {
+            return ITEMS_TABLE;
+        }
+        if (uri.equals(CONTENT_URI_USER_REG)) {
+            return USER_REGISTRATION_TABLE;
+        }
+        if (uri.equals(CONTENT_URI_USER_PROFILE)) {
+            return USER_PROFILE_TABLE;
+        } else {
+            return "Table does not exist";
+        }
+    }
+
+    /**
      * System calls onCreate() when it starts up the provider
      */
     @Override
@@ -107,29 +128,6 @@ public class DBOperations extends ContentProvider {
     }
 
     /**
-     * Retrieve the table name to query based on the Content URI selected
-     *
-     * @return
-     */
-    public static String getTableName(Uri uri) {
-
-        if (uri.equals(CONTENT_URI_CATEGORIES)) {
-            return CATEGORIES_TABLE;
-        }
-        if (uri.equals(CONTENT_URI_ITEMS)) {
-            return ITEMS_TABLE;
-        }
-        if (uri.equals(CONTENT_URI_USER_REG)) {
-            return USER_REGISTRATION_TABLE;
-        }
-        if (uri.equals(CONTENT_URI_USER_PROFILE)) {
-            return USER_PROFILE_TABLE;
-        } else {
-            return ("Table does not exist!");
-        }
-    }
-
-    /**
      * The query() method must return a Cursor object, or if it fails, throw an Exception.
      * Using the SQLite database as the proposed data storage means we can simply return the Cursor returned
      * by one of the query() methods of the SQLite database class. If the query does not match any
@@ -145,7 +143,6 @@ public class DBOperations extends ContentProvider {
         queryBuilder.setTables(getTableName(uri));
 
         switch (uriType) {
-
             case ALL_CATEGORIES:
                 break;
             case ALL_ITEMS:
@@ -169,10 +166,8 @@ public class DBOperations extends ContentProvider {
         /**
          * If we want to be notified of any changes
          */
-        cursor.setNotificationUri(getContext().getContentResolver(),
-                uri);
+        cursor.setNotificationUri(getContext().getContentResolver(), uri);
         return cursor;
-
     }
 
     /**

@@ -4,14 +4,17 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.KeyEvent;
+import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.github.eyers.R;
 import com.github.eyers.wrapper.ItemWrapper;
 import com.vj.widgets.AutoResizeTextView;
 
-public class ViewItemActivity extends AppCompatActivity {
+public class ViewItemActivity extends AppCompatActivity implements View.OnClickListener {
 
     /**
      * ItemWrapper
@@ -34,9 +37,18 @@ public class ViewItemActivity extends AppCompatActivity {
         this.description = (AutoResizeTextView) findViewById(R.id.txtDescription);
         this.image = (ImageView) findViewById(R.id.img);
 
-        this.title.setText(ITEM.getName());
-        this.description.setText(ITEM.getDescription());
-        this.image.setImageBitmap(ITEM.getImage());
+        try {
+            this.title.setText(ITEM.getName());
+            this.description.setText(ITEM.getDescription());
+            this.image.setImageBitmap(ITEM.getImage());
+        } catch (NullPointerException npe) {
+            Log.e("Error adding item", "Something is null");
+        }
+
+        findViewById(R.id.btnEdit).setOnClickListener(this);
+        findViewById(R.id.btnDelete).setOnClickListener(this);
+
+        Toast.makeText(this, ViewItemActivity.ITEM.getName(), Toast.LENGTH_LONG).show();
     }
 
     @Override
@@ -56,5 +68,34 @@ public class ViewItemActivity extends AppCompatActivity {
         super.startActivity(new Intent(this, MainActivity.class));
         super.finish();
         super.onBackPressed();
+    }
+
+    /**
+     * Called when a view has been clicked.
+     *
+     * @param v The view that was clicked.
+     */
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.btnEdit:
+                this.edit();
+                break;
+            case R.id.btnDelete:
+                this.delete();
+                break;
+        }
+    }
+
+    private void edit() {
+
+    }
+
+    private void delete() {
+
+
+        MainActivity.STATE = "main";
+        super.startActivity(new Intent(this, MainActivity.class));
+        super.finish();
     }
 }

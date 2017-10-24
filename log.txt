@@ -1,3 +1,33 @@
+commit 853f95f9348f43a8075f8794e2bf836c0699e388
+Author: Matthew 'siD' Van der Bijl <matthewvdbijl@gmail.com>
+Date:   Tue Oct 24 09:39:52 2017 +0200
+
+    javadoc update
+
+commit 6686ffe25a977f9b18954ad231dc045fc0c40a74
+Author: Matthew 'siD' Van der Bijl <matthewvdbijl@gmail.com>
+Date:   Tue Oct 24 09:32:59 2017 +0200
+
+    fixed view item
+
+commit 2fa34b1bc4c5d02b7b099235a056194f12156af0
+Author: Matthew 'siD' Van der Bijl <matthewvdbijl@gmail.com>
+Date:   Tue Oct 24 09:25:29 2017 +0200
+
+    fixed view item
+
+commit 9f4158e5dc68112096b82db29386693e27887100
+Author: sajjaadishmail3 <sajjaadishmail@gmail.com>
+Date:   Mon Oct 23 14:54:28 2017 +0200
+
+    Search function test data for different data type (String)
+
+commit ce3787dfdd25f8f95aa84d35487ee835f22f6eda
+Author: Matthew 'siD' Van der Bijl <matthewvdbijl@gmail.com>
+Date:   Mon Oct 23 12:38:15 2017 +0200
+
+    remade log
+
 commit c7e1c206716dfff94c4cbc63b205aa2b8b7af2b3
 Author: Matthew 'siD' Van der Bijl <matthewvdbijl@gmail.com>
 Date:   Mon Oct 23 12:38:03 2017 +0200

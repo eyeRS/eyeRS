@@ -46,7 +46,7 @@ public class TradeActivity extends AppCompatActivity implements AdapterView.OnIt
 
         for (String category : EyeRS.getCategoriesList(this)) {
             for (ItemWrapper item : EyeRS.getItems(category, this)) {
-                items.add(new ItemLabel(item.getName(), item.getImage()));
+                items.add(new ItemLabel(item.getName(), item.getImage(), ""));
             }
         }
 

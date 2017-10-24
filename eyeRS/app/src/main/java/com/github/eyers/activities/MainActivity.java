@@ -32,7 +32,6 @@ import com.github.eyers.activities.todo.TradeActivity;
 import com.github.eyers.wrapper.ItemWrapper;
 import com.miguelcatalan.materialsearchview.MaterialSearchView;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -136,12 +135,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             if (STATE.equals("main")) {
                 for (String category : EyeRS.getCategoriesList(this)) {
                     items.add(new ItemLabel(category, BitmapFactory.decodeResource(
-                            getResources(), R.drawable.ic_action_help)
+                            getResources(), R.drawable.ic_action_help), ""
                     )); // TODO
                 }
             } else {
                 for (ItemWrapper item : EyeRS.getItems(STATE, this)) {
-                    items.add(new ItemLabel(item.getName(), item.getImage()));
+                    items.add(new ItemLabel(item.getName(), item.getImage(), item.getDescription()));
                 }
             }
 
@@ -183,12 +182,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     if (STATE.equals("main")) {
                         for (String category : EyeRS.getCategoriesList(MainActivity.this)) {
                             items.add(new ItemLabel(category, BitmapFactory.decodeResource(
-                                    getResources(), R.drawable.ic_action_help)
+                                    getResources(), R.drawable.ic_action_help), ""
                             )); // TODO
                         }
                     } else {
                         for (ItemWrapper item : EyeRS.getItems(STATE, MainActivity.this)) {
-                            items.add(new ItemLabel(item.getName(), item.getImage()));
+                            items.add(new ItemLabel(item.getName(), item.getImage(), item.getDescription()));
                         }
                     }
 
@@ -335,7 +334,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 Log.e("Navigation drawer", ex.getMessage(), ex);
             }
         }
-
     }
 
     /**
@@ -384,16 +382,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
         }
 
-
         return super.onOptionsItemSelected(item);
     }
 
-    @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-
         try {
-
             switch (item.getItemId()) {
                 case R.id.nav_help:
                     super.startActivity(new Intent(this, HelpActivity.class)); //starts the Help & Tips activity
@@ -414,22 +408,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     super.startActivity(new Intent(this, SlideshowActivity.class)); //starts the Slideshow activity
                     break;
                 case R.id.nav_share: {
-//                    // todo: in method
-//                    Intent sendIntent = new Intent();
-//                    sendIntent.setAction(Intent.ACTION_SEND);
-//                    sendIntent.putExtra(Intent.EXTRA_TEXT, "This is my text to send.");
-//                    sendIntent.setType("text/plain");
-//                    startActivity(sendIntent);
                     startActivity(new Intent(this, ShareActivity.class));
                 }
                 break;
                 case R.id.nav_trade: {
-                    // todo: in method
-//                    Intent sendIntent = new Intent();
-//                    sendIntent.setAction(Intent.ACTION_SEND);
-//                    sendIntent.putExtra(Intent.EXTRA_TEXT, "This is my text to send.");
-//                    sendIntent.setType("text/plain");
-//                    startActivity(sendIntent);
                     startActivity(new Intent(this, TradeActivity.class));
                 }
                 break;
@@ -470,11 +452,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public void onClick(View v) {
 //        switch (v.getId()) {
 //        }
-        Toast.makeText(this, "TODO Button: " + v.getId(), Toast.LENGTH_LONG).show();
+//        Toast.makeText(this, "TODO Button: " + v.getId(), Toast.LENGTH_LONG).show();
     }
 
     /**
-     * A callback method invoked by the loader when initLoader() is called
+     * A callback method invoked by the loader when initLoader() is called.
+     *
+     * @return null
      */
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
@@ -486,12 +470,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
      */
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
-
     }
 
     @Override
     public void onLoaderReset(Loader<Cursor> loader) {
-
     }
 
     /**
@@ -511,15 +493,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         try {
             if (STATE.equals("main")) {
-                STATE = listView.getItemAtPosition(position).toString(); //Retrieves the selected category
+                STATE = listView.getItemAtPosition(position).toString(); // Retrieves the selected category
                 startActivity(new Intent(this, MainActivity.class));
             } else {
-                STATE = listView.getItemAtPosition(position).toString(); //Retrieves the selected item
+                ItemLabel lblItem = (ItemLabel) listView.getItemAtPosition(position);
+                ViewItemActivity.ITEM = new ItemWrapper(lblItem.getName(), lblItem.getImage(), lblItem.getDescription());
+
+                STATE = listView.getItemAtPosition(position).toString(); // Retrieves the selected item
                 startActivity(new Intent(this, ViewItemActivity.class));
             }
         } catch (Exception ex) {
-            Toast.makeText(this, "not found " + STATE, Toast.LENGTH_LONG).show();
-            startActivity(new Intent(this, ViewItemActivity.class));
+            Toast.makeText(this, STATE + " not found.", Toast.LENGTH_LONG).show();
         }
     }
 
