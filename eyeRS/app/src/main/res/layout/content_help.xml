@@ -35,7 +35,7 @@
 
             <VideoView
                 android:id="@+id/videoView"
-                android:layout_width="325dp"
+                android:layout_width="match_parent"
                 android:layout_height="400dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginBottom="8dp"

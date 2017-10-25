@@ -64,7 +64,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     private EditText txtPIN2;
     private EditText txtResponse;
     private Spinner spinner;
-    private Button registerButton;
+
     /**
      * Content resolver declaration
      */
@@ -96,8 +96,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         this.spinner.setAdapter(adapter);
         this.spinner.setOnItemSelectedListener(this);
 
-        this.registerButton = (Button) findViewById(R.id.btnRegister);
-        this.registerButton.setOnClickListener(this);
+        findViewById(R.id.btnRegister).setOnClickListener(this);
         findViewById(R.id.btnClearReg).setOnClickListener(this);
 
         if (savedInstanceState != null) {
@@ -154,10 +153,6 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
              * Navigate to the Login screen once registration has been successful
              */
             super.startActivity(new Intent(this, LoginActivity.class));
-            /**
-             * Disable the button after user has successfully registered
-             */
-            this.registerButton.setEnabled(false);
 
         } catch (Exception ex) {
 
