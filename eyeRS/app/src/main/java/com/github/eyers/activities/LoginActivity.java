@@ -123,13 +123,16 @@ public final class LoginActivity extends AppCompatActivity implements View.OnCli
                 cursor.close();
 
                 if (flag) {
+
                     Toast.makeText(this, "Login failed. Please enter the correct PIN", Toast.LENGTH_SHORT).show();
                 }
             } else {
+
                 Toast.makeText(this, "Login failed. Please ensure you have registered your details first before " +
                         "attempting to login", Toast.LENGTH_SHORT).show();
             }
         } catch (Exception ex) {
+
             Log.e("Login query", ex.getMessage(), ex);
         }
 

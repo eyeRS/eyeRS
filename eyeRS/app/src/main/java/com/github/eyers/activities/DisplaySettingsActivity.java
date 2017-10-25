@@ -4,7 +4,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.preference.DialogPreference;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -103,66 +102,23 @@ public class DisplaySettingsActivity extends AppCompatActivity implements OnClic
     }
 
     public void onClick(View view) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(DisplaySettingsActivity.this);
-        builder.setCancelable(true);
-        builder.setTitle("Alert");
-        builder.setMessage("If you press OK the application will restart.");
-        builder.setMessage("Do you want to continue?");
-
-        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.cancel();
-            }
-        });
-
-        builder.setNegativeButton("OK", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.getClass();
-
-            }
-        });
 
         try {
 
             switch (view.getId()) {
 
                 case R.id.imgbtn_Blue:
-                    Utils.changeToTheme(this, Utils.App_Theme);
-                    //It will restart the app
-
-                    Intent i = getBaseContext().getPackageManager()
-                            .getLaunchIntentForPackage( getBaseContext().getPackageName() );
-                    i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-
-                    startActivity(i);
+                    promptChangeThemeDefault();
                     break;
                 case R.id.imgbtn_Red:
-                    Utils.changeToTheme(this, Utils.AppTheme_Red);
-                    //It will restart the app
-                    Intent i1 = getBaseContext().getPackageManager()
-                            .getLaunchIntentForPackage( getBaseContext().getPackageName() );
-                    i1.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    startActivity(i1);
+                    promptChangeThemeRed();
                     break;
                 case R.id.imgbtn_Yellow:
-                    Utils.changeToTheme(this, Utils.AppTheme_Yellow);
-                    //It will restart the app
-                    Intent i2 = getBaseContext().getPackageManager()
-                            .getLaunchIntentForPackage( getBaseContext().getPackageName() );
-                    i2.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    startActivity(i2);
+                    promptChangeThemeYellow();
                     break;
                 case R.id.imgbtn_Green:
-                    Utils.changeToTheme(this, Utils.AppTheme_Green);
-                    //It will restart the app
-                    Intent i3 = getBaseContext().getPackageManager()
-                            .getLaunchIntentForPackage( getBaseContext().getPackageName() );
-                    i3.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    startActivity(i3);
+                    promptChangeThemeGreen();
                     break;
-
             }
 
         } catch (Exception ex) {
@@ -170,6 +126,180 @@ public class DisplaySettingsActivity extends AppCompatActivity implements OnClic
             Log.e("Change Theme", ex.getMessage(), ex);
         }
     }
+
+
+    private void promptChangeThemeDefault() {
+        /**
+         * We need to specify an AlertDialog to prompt the user to change the app theme
+         */
+        AlertDialog.Builder builder = new AlertDialog.Builder(DisplaySettingsActivity.this);
+        builder.setMessage("Are you sure you want apply the EyeRS default theme? \n" +
+                "Your app will restart and you may lose any unsaved changes")
+                .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                    /**
+                     * User clicks on Ok so change the theme and restart the app
+                     * @param dialog
+                     * @param which
+                     */
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        changeThemeDefault();
+                    }
+                    /**
+                     * User clicks on Cancel so do nothing
+                     */
+                }).setNegativeButton("Cancel", null);
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
+
+    private void promptChangeThemeRed() {
+
+        /**
+         * We need to specify an AlertDialog to prompt the user to change the app theme
+         */
+        AlertDialog.Builder builder = new AlertDialog.Builder(DisplaySettingsActivity.this);
+        builder.setMessage("Are you sure you want apply the EyeRS Red theme? \n" +
+                "Your app will restart and you may lose any unsaved changes")
+                .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                    /**
+                     * User clicks on Ok so change the theme and restart the app
+                     * @param dialog
+                     * @param which
+                     */
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        changeThemeRed();
+                    }
+                    /**
+                     * User clicks on Cancel so do nothing
+                     */
+                }).setNegativeButton("Cancel", null);
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
+
+    private void promptChangeThemeYellow() {
+
+        /**
+         * We need to specify an AlertDialog to prompt the user to change the app theme
+         */
+        AlertDialog.Builder builder = new AlertDialog.Builder(DisplaySettingsActivity.this);
+        builder.setMessage("Are you sure you want apply the EyeRS Yellow theme? \n" +
+                "Your app will restart and you may lose any unsaved changes")
+                .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                    /**
+                     * User clicks on Ok so change the theme and restart the app
+                     * @param dialog
+                     * @param which
+                     */
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        changeThemeYellow();
+                    }
+                    /**
+                     * User clicks on Cancel so do nothing
+                     */
+                }).setNegativeButton("Cancel", null);
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
+
+    private void promptChangeThemeGreen() {
+
+        /**
+         * We need to specify an AlertDialog to prompt the user to change the app theme
+         */
+        AlertDialog.Builder builder = new AlertDialog.Builder(DisplaySettingsActivity.this);
+        builder.setMessage("Are you sure you want apply the EyeRS Green theme? \n" +
+                "Your app will restart and you may lose any unsaved changes")
+                .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                    /**
+                     * User clicks on Ok so change the theme and restart the app
+                     * @param dialog
+                     * @param which
+                     */
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        changeThemeGreen();
+                    }
+                    /**
+                     * User clicks on Cancel so do nothing
+                     */
+                }).setNegativeButton("Cancel", null);
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
+
+    private void changeThemeDefault() {
+
+        try {
+
+            Utils.changeToTheme(this, Utils.App_Theme);
+
+            Intent intent = getBaseContext().getPackageManager()
+                    .getLaunchIntentForPackage(getBaseContext().getPackageName());
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
+
+        } catch (Exception ex) {
+
+            Log.e("DisplaySettingsActivity", ex.getMessage(), ex);
+        }
+    }
+
+    private void changeThemeRed() {
+
+        try {
+
+            Utils.changeToTheme(this, Utils.AppTheme_Red);
+            Intent intent = getBaseContext().getPackageManager()
+                    .getLaunchIntentForPackage(getBaseContext().getPackageName());
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
+
+        } catch (Exception ex) {
+
+            Log.e("DisplaySettingsActivity", ex.getMessage(), ex);
+        }
+    }
+
+    private void changeThemeYellow() {
+
+        try {
+
+            Utils.changeToTheme(this, Utils.AppTheme_Yellow);
+            Intent intent = getBaseContext().getPackageManager()
+                    .getLaunchIntentForPackage(getBaseContext().getPackageName());
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
+
+        } catch (Exception ex) {
+
+            Log.e("DisplaySettingsActivity", ex.getMessage(), ex);
+        }
+    }
+
+    private void changeThemeGreen() {
+
+        try {
+
+            Utils.changeToTheme(this, Utils.AppTheme_Green);
+            Intent intent = getBaseContext().getPackageManager()
+                    .getLaunchIntentForPackage(getBaseContext().getPackageName());
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
+
+        } catch (Exception ex) {
+
+            Log.e("DisplaySettingsActivity", ex.getMessage(), ex);
+        }
+    }
+
 } //end class DisplaySettingsActivity
 
 
