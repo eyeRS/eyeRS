@@ -1,9 +1,11 @@
 package com.github.eyers.activities;
 
 import android.content.ContentResolver;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -90,7 +92,7 @@ public class ViewItemActivity extends AppCompatActivity implements View.OnClickL
                 this.edit();
                 break;
             case R.id.btnDeleteItem:
-                this.deleteItem();
+                this.promptDeletion();
                 break;
         }
     }
@@ -105,8 +107,37 @@ public class ViewItemActivity extends AppCompatActivity implements View.OnClickL
 
     }
 
+
+    private void promptDeletion() {
+
+        /**
+         * We need to specify an AlertDialog to prompt the user for deletion
+         * to avoid accidental deletion
+         */
+        AlertDialog.Builder builder = new AlertDialog.Builder(ViewItemActivity.this);
+        builder.setMessage("Are you sure you want to delete this item? \n" +
+                "This operation cannot be undone!")
+                .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                    /**
+                     * User clicks on Ok so delete the item
+                     * @param dialog
+                     * @param which
+                     */
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        deleteItem();
+                    }
+                    /**
+                     * User clicks on Cancel so do nothing
+                     */
+                }).setNegativeButton("Cancel", null);
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
+
     /**
-     * Removes the record of the item when the user presses delete
+     * Removes the record of the item when the user clicks Ok when prompted for deletion
      * Once an item is deleted it cannot be undone
      */
     private void deleteItem() {
@@ -168,22 +199,16 @@ public class ViewItemActivity extends AppCompatActivity implements View.OnClickL
         String deleteWhereClause = ItemInfo.ITEM_ID + " = ?";
         String[] deleteWhereArgs = {idToDelete};
 
-        try {
+        /**
+         * Content Resolver delete operation
+         */
+        eyeRSContentResolver.delete(DBOperations.CONTENT_URI_ITEMS,
+                deleteWhereClause, deleteWhereArgs);
 
-            /**
-             * Content Resolver delete operation
-             */
-            eyeRSContentResolver.delete(DBOperations.CONTENT_URI_ITEMS,
-                    deleteWhereClause, deleteWhereArgs);
-
-            Toast.makeText(this, "Your item was deleted successfully", Toast.LENGTH_SHORT).show();
-            MainActivity.STATE = "main";
-            super.startActivity(new Intent(this, MainActivity.class));
-            super.finish();
-
-        } catch (Exception ex) {
-
-            Log.e("ViewItemActivity", ex.getMessage(), ex);
-        }
+        Toast.makeText(this, "Your item was deleted successfully", Toast.LENGTH_SHORT).show();
+        MainActivity.STATE = "main";
+        super.startActivity(new Intent(this, MainActivity.class));
+        super.finish();
     }
+
 } //end class ViewItemActivity
