@@ -115,73 +115,75 @@ public class ViewItemActivity extends AppCompatActivity implements View.OnClickL
          * Content resolver object
          */
         eyeRSContentResolver = this.getContentResolver();
-        String itemToDelete = this.title.getText().toString();
-        long itemID = 1;
 
-        /**
-         * We must retrieve the ID of the row to be deleted from the db
-         */
+        String[] projection = {
+                ItemInfo.ITEM_ID,
+                ItemInfo.CATEGORY_NAME,
+                ItemInfo.ITEM_NAME,
+                ItemInfo.ITEM_DESC,
+                ItemInfo.ITEM_IMAGE
+        };
+
+        String whereClause = "";
+        String[] whereArgs = {};
+        String sortOrder = ItemInfo.ITEM_NAME;
+
+        String idToDelete = "";
+
         try {
-
-            /**
-             * Selection criteria to retrieve items
-             */
-            String[] projection = {ItemInfo.ITEM_ID,
-                    ItemInfo.CATEGORY_NAME,
-                    ItemInfo.ITEM_NAME,
-                    ItemInfo.ITEM_DESC,
-                    ItemInfo.ITEM_IMAGE};
-            String whereClause = "";
-            String[] whereArgs = {};
-            String sortOrder = ItemInfo.ITEM_NAME;
 
             /**
              * Content resolver query
              */
             Cursor cursor = eyeRSContentResolver.query(
-                    DBOperations.CONTENT_URI_CATEGORIES,
+                    DBOperations.CONTENT_URI_ITEMS,
                     projection,
                     whereClause,
                     whereArgs,
                     sortOrder);
 
-            if (!cursor.moveToFirst()){
+            if (cursor.moveToFirst()) {
 
-                Log.e("Null Cursor object", "Nothing to display");
-                return;
-            }
-            else if (cursor.moveToFirst()){
+                if (cursor.getString(cursor.getColumnIndex(ItemInfo.ITEM_NAME))
+                        .equals(this.title.getText().toString())) {
 
-                if (cursor.getString(cursor.getColumnIndex(ItemInfo.ITEM_NAME)).equals(itemToDelete)){
+                    /**
+                     * Retrieves the id of the item to be deleted
+                     */
+                    idToDelete = cursor.getString(cursor.getColumnIndex(ItemInfo.ITEM_ID));
+                } else {
 
-                    itemID = cursor.getLong(cursor.getColumnIndex(ItemInfo.ITEM_ID));
+                    Log.e("ViewItemActivity", "Sorry that item doesn't exist");
                 }
 
+                cursor.close();
             }
-            else{
-
-                Log.e("Cursor error", "Unable to retrieve items");
-            }
-        }
-        catch (Exception ex){
-
-            Log.e("ViewItem query", "Unable to retrieve items");
+        } catch (Exception ex) {
+            Log.e("ViewItemActivity", "Unable to retrieve item details");
         }
 
-        String whereClause = ItemInfo.ITEM_ID + " = " + itemID;
-        String[] whereArgs = {String.valueOf(itemID)};
+        /**
+         * To delete the item simply specify the item's ID in the where clause
+         */
+        String deleteWhereClause = ItemInfo.ITEM_ID + " = ?";
+        String[] deleteWhereArgs = {idToDelete};
 
         try {
 
+            /**
+             * Content Resolver delete operation
+             */
             eyeRSContentResolver.delete(DBOperations.CONTENT_URI_ITEMS,
-                    whereClause, whereArgs);
+                    deleteWhereClause, deleteWhereArgs);
 
+            Toast.makeText(this, "Your item was deleted successfully", Toast.LENGTH_SHORT).show();
             MainActivity.STATE = "main";
             super.startActivity(new Intent(this, MainActivity.class));
             super.finish();
+
         } catch (Exception ex) {
 
             Log.e("ViewItemActivity", ex.getMessage(), ex);
         }
     }
-}
+} //end class ViewItemActivity

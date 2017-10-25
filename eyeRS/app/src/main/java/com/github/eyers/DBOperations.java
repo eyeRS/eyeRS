@@ -233,23 +233,16 @@ public class DBOperations extends ContentProvider {
         switch (uriType) {
 
             case CATEGORIES:
-                deletedRows = db.delete(CATEGORIES_TABLE,
-                        whereClause,
-                        whereArgs);
                 break;
             case ITEMS:
-                deletedRows = db.delete(ITEMS_TABLE,
-                        whereClause,
-                        whereArgs);
+                deletedRows = db.delete(ITEMS_TABLE, whereClause, whereArgs);
                 break;
-
             default:
                 Log.e("DELETE OPERATION", "Unable to perform delete operation");
                 throw new IllegalArgumentException("Unknown URI: " + uri);
         }
 
-        if (deletedRows != 0) {
-
+        if (deletedRows > 0) {
             getContext().getContentResolver().notifyChange(uri, null);
         }
 
