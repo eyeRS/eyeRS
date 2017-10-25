@@ -81,6 +81,7 @@ public class CategorySortingActivity extends AppCompatActivity {
                         Log.e("Recently added switch", ex.getMessage(), ex);
                     }
                 }
+
                 /** If the user does not wish to sort alphabetically */
                 if (!isChecked) {
 
