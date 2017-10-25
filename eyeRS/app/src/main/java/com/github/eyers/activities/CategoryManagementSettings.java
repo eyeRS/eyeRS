@@ -14,6 +14,9 @@ import com.github.eyers.R;
 
 /**
  * This class will handle category management settings events based on the user's selection.
+ *
+ * @see AppCompatActivity
+ * @see OnItemClickListener
  */
 public class CategoryManagementSettings extends AppCompatActivity implements OnItemClickListener {
 
@@ -42,12 +45,10 @@ public class CategoryManagementSettings extends AppCompatActivity implements OnI
      */
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
         try {
 
             if (position == 0) { //Add Category
-                Intent intent = new Intent(this, NewCategoryActivity.class);
-                startActivity(intent);
+                startActivity(new Intent(this, NewCategoryActivity.class));
             }
             if (position == 1) { //Edit Category
                 Intent intent = new Intent(this, MainActivity.class);
@@ -58,12 +59,10 @@ public class CategoryManagementSettings extends AppCompatActivity implements OnI
                 startActivity(intent);
             }
             if (position == 3) { //Change Sorting
-                Intent intent = new Intent(this, CategorySortingActivity.class);
-                startActivity(intent);
+                startActivity(new Intent(this, CategorySortingActivity.class));
             }
 
         } catch (Exception ex) {
-
             Log.e("CategoryManagement", ex.getMessage(), ex);
         }
     }

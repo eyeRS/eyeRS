@@ -53,9 +53,8 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
         OnItemSelectedListener, LoaderManager.LoaderCallbacks<Cursor> {
 
     public static ArrayAdapter<String> categoriesAdapter;
-    /**
-     * Fields & other declarations
-     */
+
+    // Fields & other declarations
     private static String itemName;
     private static String itemDesc;
     private static String category;
@@ -66,9 +65,7 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
     private EditText txtTitle;
     private EditText txtDesc;
     private Spinner categorySpinner;
-    /**
-     * Camera declarations
-     */
+    // Camera declarations
     private String img;
     private int REQUEST_CAMERA = 0, SELECT_FILE = 1;
     private ImageView ivImage;
@@ -376,13 +373,13 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
                         break;
                         case "accessories": { //user adds an accessory item
 
-                            /**
+                            /*
                              * Retrieve user input from fields
                              */
                             itemName = txtTitle.getText().toString();
                             itemDesc = txtDesc.getText().toString();
 
-                            /**
+                            /*
                              * Empty category
                              */
                             if (category.isEmpty()) {
@@ -391,7 +388,7 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
                                         Toast.LENGTH_SHORT).show();
                                 break;
                             }
-                            /**
+                            /*
                              * Empty item name
                              */
                             else if (itemName.isEmpty()) {
@@ -400,7 +397,7 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
                                         Toast.LENGTH_SHORT).show();
                                 break;
                             }
-                            /**
+                            /*
                              * Empty item description
                              */
                             else if (itemDesc.isEmpty()) {
@@ -409,7 +406,7 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
                                         Toast.LENGTH_SHORT).show();
                                 break;
                             }
-                            /**
+                            /*
                              * No image added
                              */
                             else if (img.isEmpty()) {
@@ -431,7 +428,7 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
                             itemName = txtTitle.getText().toString();
                             itemDesc = txtDesc.getText().toString();
 
-                            /**
+                            /*
                              * Empty category
                              */
                             if (category.isEmpty()) {
@@ -440,7 +437,7 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
                                         Toast.LENGTH_SHORT).show();
                                 break;
                             }
-                            /**
+                            /*
                              * Empty item name
                              */
                             else if (itemName.isEmpty()) {
@@ -449,7 +446,7 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
                                         Toast.LENGTH_SHORT).show();
                                 break;
                             }
-                            /**
+                            /*
                              * Empty item description
                              */
                             else if (itemDesc.isEmpty()) {
@@ -458,7 +455,7 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
                                         Toast.LENGTH_SHORT).show();
                                 break;
                             }
-                            /**
+                            /*
                              * No image added
                              */
                             else if (img.isEmpty()) {
@@ -473,13 +470,13 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
                         break;
                         case "other": { //user adds another item
 
-                            /**
+                            /*
                              * Retrieve user input from fields
                              */
                             itemName = txtTitle.getText().toString();
                             itemDesc = txtDesc.getText().toString();
 
-                            /**
+                            /*
                              * Empty category
                              */
                             if (category.isEmpty()) {
@@ -488,7 +485,7 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
                                         Toast.LENGTH_SHORT).show();
                                 break;
                             }
-                            /**
+                            /*
                              * Empty item name
                              */
                             else if (itemName.isEmpty()) {
@@ -497,7 +494,7 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
                                         Toast.LENGTH_SHORT).show();
                                 break;
                             }
-                            /**
+                            /*
                              * Empty item description
                              */
                             else if (itemDesc.isEmpty()) {
@@ -506,7 +503,7 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
                                         Toast.LENGTH_SHORT).show();
                                 break;
                             }
-                            /**
+                            /*
                              * No image added
                              */
                             else if (img.isEmpty()) {
@@ -521,13 +518,13 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
                         break;
                         case CategoryInfo.CATEGORY_NAME: {  //user adds in any other category
 
-                            /**
+                            /*
                              * Retrieve user input from fields
                              */
                             itemName = txtTitle.getText().toString();
                             itemDesc = txtDesc.getText().toString();
 
-                            /**
+                            /*
                              * Empty category
                              */
                             if (category.isEmpty()) {
@@ -536,7 +533,7 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
                                         Toast.LENGTH_SHORT).show();
                                 break;
                             }
-                            /**
+                            /*
                              * Empty item name
                              */
                             else if (itemName.isEmpty()) {
@@ -545,7 +542,7 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
                                         Toast.LENGTH_SHORT).show();
                                 break;
                             }
-                            /**
+                            /*
                              * Empty item description
                              */
                             else if (itemDesc.isEmpty()) {
@@ -554,7 +551,7 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
                                         Toast.LENGTH_SHORT).show();
                                 break;
                             }
-                            /**
+                            /*
                              * No image added
                              */
                             else if (img.isEmpty()) {
@@ -596,14 +593,14 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
         bookValues.put(ItemInfo.ITEM_DESC, itemDesc); //Book description
         bookValues.put(ItemInfo.ITEM_IMAGE, img); //Book image
 
-        /**
+        /*
          * Content resolver object
          */
         eyeRSContentResolver = this.getContentResolver();
 
         try {
 
-            /**
+            /*
              * Content resolver book insert
              */
             eyeRSContentResolver.insert(
@@ -614,7 +611,7 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
             //Display message in the logcat window after successful operation execution
             Log.e("DATABASE OPERATIONS", "...Book item added to DB!");
 
-            /**
+            /*
              * Then clear the fields after successfully inserting the data
              */
             txtTitle.setText("");
@@ -640,8 +637,7 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
      * Adding a clothing item.
      */
     private void addClothing() {
-
-        /**
+        /*
          * Define an object to contain the new values to insert.
          */
         ContentValues clothesValues = new ContentValues();
@@ -651,14 +647,14 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
         clothesValues.put(ItemInfo.ITEM_DESC, itemDesc); //Clothing description
         clothesValues.put(ItemInfo.ITEM_IMAGE, img); //Clothing image
 
-        /**
+        /*
          * Content resolver object
          */
         eyeRSContentResolver = this.getContentResolver();
 
         try {
 
-            /**
+            /*
              * Content resolver clothes insert
              */
             eyeRSContentResolver.insert(
@@ -669,7 +665,7 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
             //Display message in the logcat window after successful operation execution
             Log.e("DATABASE OPERATIONS", "...Clothing item added to DB!");
 
-            /**
+            /*
              * Then clear the fields after successfully inserting the data
              */
             txtTitle.setText("");
@@ -706,25 +702,23 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
         accessoriesValues.put(ItemInfo.ITEM_DESC, itemDesc);     // Accessory description
         accessoriesValues.put(ItemInfo.ITEM_IMAGE, img);         // Accessory image
 
-        /**
+        /*
          * Content resolver object
          */
         eyeRSContentResolver = this.getContentResolver();
 
         try {
 
-            /**
+            /*
              * Content resolver accessories insert
              */
-            eyeRSContentResolver.insert(
-                    DBOperations.CONTENT_URI_ITEMS,
-                    accessoriesValues);
+            eyeRSContentResolver.insert(DBOperations.CONTENT_URI_ITEMS, accessoriesValues);
 
             Toast.makeText(this, "Your accessory item has been added successfully ", Toast.LENGTH_SHORT).show();
             //Display message in the logcat window after successful operation execution
             Log.e("DATABASE OPERATIONS", "...Accessory item added to DB!");
 
-            /**
+            /*
              * Then clear the fields after successfully inserting the data
              */
             txtTitle.setText("");
@@ -732,19 +726,14 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
             img = "";
             ivImage.setImageBitmap(null);
             startActivity(new Intent(this, MainActivity.class));
-
         } catch (Exception ex) {
-
             Toast.makeText(this, "Unable to add item", Toast.LENGTH_SHORT).show();
             Log.e(getClass().getSimpleName(), "Accessory item not added.", ex);
             txtTitle.setText("");
             txtDesc.setText("");
             img = "";
             ivImage.setImageBitmap(null);
-
         }
-
-
     } //end void addAccessory()
 
     /**
@@ -752,7 +741,7 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
      */
     private void addGame() {
 
-        /**
+        /*
          * Define an object to contain the new values to insert
          */
         ContentValues gamesValues = new ContentValues();
@@ -762,25 +751,23 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
         gamesValues.put(ItemInfo.ITEM_DESC, itemDesc); //Game description
         gamesValues.put(ItemInfo.ITEM_IMAGE, img); //Game image
 
-        /**
+        /*
          * Content resolver object
          */
         eyeRSContentResolver = this.getContentResolver();
 
         try {
 
-            /**
+            /*
              * Content resolver games insert
              */
-            eyeRSContentResolver.insert(
-                    DBOperations.CONTENT_URI_ITEMS,
-                    gamesValues);
+            eyeRSContentResolver.insert(DBOperations.CONTENT_URI_ITEMS, gamesValues);
 
             Toast.makeText(this, "Your gaming item has been added successfully ", Toast.LENGTH_SHORT).show();
             //Display message in the logcat window after successful operation execution
             Log.e("DATABASE OPERATIONS", "...Game item added to DB!");
 
-            /**
+            /*
              * Then clear the fields after successfully inserting the data
              */
             txtTitle.setText("");
@@ -790,17 +777,13 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
             startActivity(new Intent(this, MainActivity.class));
 
         } catch (Exception ex) {
-
             Toast.makeText(this, "Unable to add item", Toast.LENGTH_SHORT).show();
             Log.e(getClass().getSimpleName(), "Gaming item not added.", ex);
             txtTitle.setText("");
             txtDesc.setText("");
             img = "";
             ivImage.setImageBitmap(null);
-
         }
-
-
     }
     //end void addGame()
 
@@ -808,8 +791,7 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
      * Adding a random item.
      */
     private void addOther() {
-
-        /**
+        /*
          * Define an object to contain the new values to insert
          */
         ContentValues otherValues = new ContentValues();
@@ -819,25 +801,22 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
         otherValues.put(ItemInfo.ITEM_DESC, itemDesc); //Other description
         otherValues.put(ItemInfo.ITEM_IMAGE, img); //Other image
 
-        /**
+        /*
          * Content resolver object
          */
         eyeRSContentResolver = this.getContentResolver();
 
         try {
-
-            /**
+            /*
              * Content resolver other insert
              */
-            eyeRSContentResolver.insert(
-                    DBOperations.CONTENT_URI_ITEMS,
-                    otherValues);
+            eyeRSContentResolver.insert(DBOperations.CONTENT_URI_ITEMS, otherValues);
 
             Toast.makeText(this, "Your other item has been added successfully ", Toast.LENGTH_SHORT).show();
             //Display message in the logcat window after successful operation execution
             Log.e("DATABASE OPERATIONS", "...Other item added to DB!");
 
-            /**
+            /*
              * Then clear the fields after successfully inserting the data
              */
             txtTitle.setText("");
@@ -854,10 +833,7 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
             txtDesc.setText("");
             img = "";
             ivImage.setImageBitmap(null);
-
         }
-
-
     }
 
     //end void addOther()
@@ -905,19 +881,14 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
             startActivity(new Intent(this, MainActivity.class));
 
         } catch (Exception ex) {
-
             Toast.makeText(this, "Unable to add item", Toast.LENGTH_SHORT).show();
             Log.e(getClass().getSimpleName(), "User specified item not added.", ex);
             txtTitle.setText("");
             txtDesc.setText("");
             img = "";
             ivImage.setImageBitmap(null);
-
         }
-
-
     }
-
     //end void addItemInfo()
 
     @Override
@@ -925,7 +896,6 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
         Toast.makeText(this, requestCode + "", Toast.LENGTH_LONG).show();
 
         try {
-
             switch (requestCode) {
                 case REQUEST_READ_EXTERNAL_STORAGE:
                     try {
@@ -943,7 +913,6 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
                     break;
             }
         } catch (Exception ex) {
-
             Log.e("onReqPermissionResult()", ex.getMessage(), ex);
         }
     }

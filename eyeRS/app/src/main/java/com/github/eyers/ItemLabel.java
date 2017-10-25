@@ -1,13 +1,14 @@
 package com.github.eyers;
 
 import android.graphics.Bitmap;
+import android.support.annotation.NonNull;
 
 /**
  * ItemLabel. Created by Matthew Van der Bijl on 2017/08/17.
  *
  * @author Matthew Van der Bijl
  */
-public class ItemLabel {
+public class ItemLabel implements Comparable<ItemLabel> {
 
     private final String name;
     private final Bitmap image;
@@ -59,6 +60,11 @@ public class ItemLabel {
         result = 31 * result + (getImage() != null ? getImage().hashCode() : 0);
         result = 31 * result + (getDescription() != null ? getDescription().hashCode() : 0);
         return result;
+    }
+
+    @Override
+    public int compareTo(@NonNull ItemLabel o) {
+        return this.getName().compareTo(o.getName());
     }
 }
 

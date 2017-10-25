@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.content.Loader;
 import android.content.res.Configuration;
 import android.database.Cursor;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -50,19 +49,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private DrawerLayout drawer;
     private NavigationView navigationView;
     private ListView listView;
-
-//    private String[] ls = {
-//            "Jimmy",
-//            "Ronald",
-//            "Ayesha",
-//            "James",
-//            "Amy",
-//            "Hermione",
-//            "Simone",
-//            "One",
-//            "Two",
-//            "Three"
-//    };
 
     /**
      * Used to declare the search view bar.
@@ -117,10 +103,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             listView = (ListView) findViewById(R.id.main_listView);
 
             if (STATE.equals("main")) {
-                for (String category : EyeRS.getCategoriesList(this)) {
-                    items.add(new ItemLabel(category, BitmapFactory.decodeResource(
-                            getResources(), R.drawable.ic_action_help), ""
-                    )); // TODO
+                for (ItemLabel category : EyeRS.getCategoriesList(this)) {
+                    items.add(category);
                 }
             } else {
                 for (ItemWrapper item : EyeRS.getItems(STATE, this)) {
@@ -142,45 +126,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         this.searchView = (MaterialSearchView) findViewById(R.id.search_view);
         searchView.setOnClickListener(this);
-//        searchView.setOnSearchViewListener(new MaterialSearchView.SearchViewListener() {
-//
-//            @Override
-//            public void onSearchViewShown() {
-////                ArrayAdapter adapter = new ArrayAdapter(MainActivity.this, android.R.layout.simple_list_item_1, ls);
-////                listView.setAdapter(adapter);
-//            }
-//
-//            @Override
-//            public void onSearchViewClosed() {
-//                MainActivity.this.startActivity(new Intent(MainActivity.this, MainActivity.class));
-////                try {
-////                    listView = (ListView) findViewById(R.id.main_listView);
-////                    ArrayList<ItemLabel> items = new ArrayList<>();
-////
-////                    if (STATE.equals("main")) {
-////                        for (String category : EyeRS.getCategoriesList(MainActivity.this)) {
-////                            items.add(new ItemLabel(category, BitmapFactory.decodeResource(
-////                                    getResources(), R.drawable.ic_action_help), ""
-////                            )); // TODO
-////                        }
-////                    } else {
-////                        for (ItemWrapper item : EyeRS.getItems(STATE, MainActivity.this)) {
-////                            items.add(new ItemLabel(item.getName(), item.getImage(), item.getDescription()));
-////                        }
-////                    }
-////
-////                    LabelAdapter adapter = new LabelAdapter(MainActivity.this, items);
-////                    listView.setAdapter(adapter);
-////                } catch (Exception ex) {
-////
-////                    Toast.makeText(MainActivity.this, "Unable to view items", Toast.LENGTH_SHORT).show();
-////                    Log.e("MainActivity list view", ex.getMessage(), ex);
-////                }
-////
-////                listView.setOnItemClickListener(MainActivity.this);
-////                getIntent().setAction("Already created");
-//            }
-//        });
 
         searchView.setOnQueryTextListener(new MaterialSearchView.OnQueryTextListener() {
 
@@ -200,9 +145,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         ArrayAdapter adapter = new ArrayAdapter(MainActivity.this, android.R.layout.simple_list_item_1, lstFound);
                         listView.setAdapter(adapter);
                     }
-                } else {
-//                    ArrayAdapter adapter = new ArrayAdapter(MainActivity.this, android.R.layout.simple_list_item_1, ls);
-//                    listView.setAdapter(adapter);
                 }
                 return true;
             }
@@ -262,28 +204,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         MainActivity.STATE = "main";
         super.startActivity(new Intent(this, MainActivity.class));
         super.finish();
-//        STATE = "main";
-//        drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-//        if (drawer.isDrawerOpen(GravityCompat.START)) {
-//            drawer.closeDrawer(GravityCompat.START);
-//        } else {
-//            super.onBackPressed();
-//
-//            try {
-//
-//                if (drawer.isDrawerOpen(GravityCompat.START)) {
-//
-//                    drawer.closeDrawer(GravityCompat.START);
-//                } else {
-//
-//                    super.onBackPressed();
-//                }
-//
-//            } catch (Exception ex) {
-//
-//                Log.e("Navigation drawer", ex.getMessage(), ex);
-//            }
-//        }
     }
 
     /**
@@ -402,7 +322,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public void onClick(View v) {
 //        switch (v.getId()) {
 //        }
-        Toast.makeText(this, "TODO Button: " + v.getId(), Toast.LENGTH_LONG).show();
+//        Toast.makeText(this, "TODO Button: " + v.getId(), Toast.LENGTH_LONG).show();
     }
 
     /**
@@ -454,7 +374,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
         } catch (ClassCastException cce) {
             String itemName = listView.getItemAtPosition(position).toString();
-            for (String category : EyeRS.getCategoriesList(this)) {
+            for (ItemLabel lbl : EyeRS.getCategoriesList(this)) {
+                String category = lbl.getName();
                 for (ItemWrapper item : EyeRS.getItems(category, this)) {
                     if (itemName.equals(itemName)) {
                         ViewItemActivity.ITEM = item;

@@ -12,6 +12,8 @@ import com.github.eyers.R;
 
 /**
  * This class will handle category sorting based on the user's preference.
+ *
+ * @see AppCompatActivity
  */
 public class CategorySortingActivity extends AppCompatActivity {
 

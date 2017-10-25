@@ -6,9 +6,11 @@ import android.content.ContentValues;
 import android.content.Intent;
 import android.content.Loader;
 import android.database.Cursor;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Base64;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
@@ -23,6 +25,7 @@ import com.github.eyers.DBOperations;
 import com.github.eyers.R;
 import com.github.eyers.info.CategoryInfo;
 
+import java.io.ByteArrayOutputStream;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -33,16 +36,15 @@ import java.util.HashMap;
 public class NewCategoryActivity extends AppCompatActivity implements View.OnClickListener,
         LoaderManager.LoaderCallbacks<Cursor>, AdapterView.OnItemSelectedListener {
 
-    /**
-     * Fields & other declarations
-     */
+
+    // Fields & other declarations
     private EditText txtTitle;
     private String categoryName;
     private EditText txtDesc;
     private String categoryDesc;
-    private String categoryIcon;
     private Spinner iconSpinner;
     private ImageView imageView;
+    private String categoryIcon;
     private HashMap<String, Integer> data;
     /**
      * Content Resolver declaration.
@@ -74,7 +76,7 @@ public class NewCategoryActivity extends AppCompatActivity implements View.OnCli
 
         populateSpinner();
 
-        /**
+        /*
          * Retrieve the saved state values before the activity was destroyed
          */
         if (savedInstanceState != null) {
@@ -93,13 +95,13 @@ public class NewCategoryActivity extends AppCompatActivity implements View.OnCli
 
                 case R.id.btnAddCat: //user clicks add
 
-                    /**
+                    /*
                      * Retrieve user input from fields
                      */
                     categoryName = txtTitle.getText().toString();
                     categoryDesc = txtDesc.getText().toString();
 
-                    /**
+                    /*
                      * Empty category name
                      */
                     if (categoryName.isEmpty()) {
@@ -108,7 +110,7 @@ public class NewCategoryActivity extends AppCompatActivity implements View.OnCli
                                 Toast.LENGTH_SHORT).show();
                         break;
                     }
-                    /**
+                    /*
                      * Empty category description
                      */
                     else if (categoryDesc.isEmpty()) {
@@ -117,7 +119,7 @@ public class NewCategoryActivity extends AppCompatActivity implements View.OnCli
                                 Toast.LENGTH_SHORT).show();
                         break;
                     }
-                    /**
+                    /*
                      * No category icon selected
                      */
                     else if (categoryIcon.isEmpty()) {
@@ -150,9 +152,14 @@ public class NewCategoryActivity extends AppCompatActivity implements View.OnCli
 
         //Display the icon selected for the new category
         this.imageView.setImageDrawable(getResources().getDrawable(data.get(iconSpinner.getSelectedItem())));
-        //Get a string reference to store into the db
-        categoryIcon = parent.getItemAtPosition(position).toString();
 
+        imageView.buildDrawingCache();
+        Bitmap bmap = imageView.getDrawingCache();
+        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+        bmap.compress(Bitmap.CompressFormat.JPEG, 90, bytes);
+
+        //Get a string reference to store into the db
+        categoryIcon = Base64.encodeToString(bytes.toByteArray(), Base64.DEFAULT);
     }
 
     /**

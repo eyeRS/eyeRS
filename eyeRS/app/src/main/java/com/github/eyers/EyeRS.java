@@ -114,9 +114,9 @@ public final class EyeRS {
      *
      * @return returns the list of categories
      */
-    public static List<String> getCategoriesList(Activity activity) {
+    public static List<ItemLabel> getCategoriesList(Activity activity) {
 
-        List<String> addCategories = new ArrayList<String>();
+        List<ItemLabel> addCategories = new ArrayList<>();
 
         ContentResolver eyeRSContentResolver = activity.getContentResolver(); // Content resolver object
 
@@ -134,13 +134,20 @@ public final class EyeRS {
         Cursor cursor = eyeRSContentResolver.query(DBOperations.CONTENT_URI_CATEGORIES,
                 projection, whereClause, whereArgs, sortOrder);
 
-        TreeSet<String> data = new TreeSet<>();
+        TreeSet<ItemLabel> data = new TreeSet<>();
 
         if (cursor.moveToFirst()) {
 
             do {
-
-                data.add(cursor.getString(1));
+                Bitmap decodedByte;
+                try {
+                    byte[] decodedString = Base64.decode(cursor.getString(3), Base64.DEFAULT);
+                    decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+                } catch (Exception ex) {
+                    Log.e("Error loading image", cursor.getString(1) + " " + ex.getMessage(), ex);
+                    decodedByte = BitmapFactory.decodeResource(activity.getResources(), R.drawable.ic_action_help);
+                }
+                data.add(new ItemLabel(cursor.getString(1), decodedByte, ""));
 
             } while (cursor.moveToNext());
 
@@ -152,8 +159,7 @@ public final class EyeRS {
             }
         }
 
-        for (String str : data) {
-
+        for (ItemLabel str : data) {
             addCategories.add(str);
         }
 

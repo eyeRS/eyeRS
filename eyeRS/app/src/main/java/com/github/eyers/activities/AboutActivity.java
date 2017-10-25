@@ -10,6 +10,8 @@ import com.github.eyers.R;
 
 /**
  * This class displays the information about the application.
+ *
+ * @see AppCompatActivity
  */
 public class AboutActivity extends AppCompatActivity {
 

@@ -14,6 +14,9 @@ import com.github.eyers.R;
 
 /**
  * This class will handle item management settings based on the user's preference.
+ *
+ * @see AppCompatActivity
+ * @see OnItemClickListener
  */
 public class ItemManagementSettings extends AppCompatActivity implements OnItemClickListener {
 
@@ -42,10 +45,7 @@ public class ItemManagementSettings extends AppCompatActivity implements OnItemC
      */
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
         try {
-
-
             switch (position) {
                 case 0: {
                     // Add Item

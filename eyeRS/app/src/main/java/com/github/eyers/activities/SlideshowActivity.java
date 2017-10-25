@@ -9,6 +9,7 @@ import android.view.KeyEvent;
 import android.widget.ImageView;
 
 import com.github.eyers.EyeRS;
+import com.github.eyers.ItemLabel;
 import com.github.eyers.R;
 import com.github.eyers.wrapper.ItemWrapper;
 
@@ -35,8 +36,8 @@ public class SlideshowActivity extends AppCompatActivity {
         this.img = (ImageView) findViewById(R.id.img);
 
         this.items = new ArrayList<>();
-        for (String category : EyeRS.getCategoriesList(this)) {
-            this.items.addAll(EyeRS.getItems(category, this));
+        for (ItemLabel category : EyeRS.getCategoriesList(this)) {
+            this.items.addAll(EyeRS.getItems(category.getName(), this));
         }
 
         if (!items.isEmpty()) {
