@@ -50,10 +50,12 @@ public class CategoryManagementSettings extends AppCompatActivity implements OnI
                 startActivity(intent);
             }
             if (position == 1) { //Edit Category
-
+                Intent intent = new Intent(this, MainActivity.class);
+                startActivity(intent);
             }
             if (position == 2) { //Delete Category
-
+                Intent intent = new Intent(this, MainActivity.class);
+                startActivity(intent);
             }
             if (position == 3) { //Change Sorting
                 Intent intent = new Intent(this, CategorySortingActivity.class);

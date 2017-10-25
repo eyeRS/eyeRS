@@ -23,8 +23,8 @@ public class CategorySortingActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        Switch asc_descSwitch = (Switch) findViewById(R.id.cat_asc_descSwitch);
-        Switch recently_addSwitch = (Switch) findViewById(R.id.cat_recently_add_Switch);
+        final Switch asc_descSwitch = (Switch) findViewById(R.id.cat_asc_descSwitch);
+        final Switch recently_addSwitch = (Switch) findViewById(R.id.cat_recently_add_Switch);
 
         asc_descSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 
@@ -35,6 +35,8 @@ public class CategorySortingActivity extends AppCompatActivity {
                 if (isChecked) {
 
                     try {
+
+                        recently_addSwitch.setEnabled(false);
                         Toast.makeText(CategorySortingActivity.this, "All categories have been sorted alphabetically",
                                 Toast.LENGTH_SHORT).show();
 
@@ -47,6 +49,8 @@ public class CategorySortingActivity extends AppCompatActivity {
                 if (!isChecked) {
 
                     try {
+
+                        recently_addSwitch.setEnabled(true);
                         Toast.makeText(CategorySortingActivity.this, "All categories will be displayed as normal",
                                 Toast.LENGTH_SHORT).show();
 
@@ -68,6 +72,7 @@ public class CategorySortingActivity extends AppCompatActivity {
 
                     try {
 
+                        asc_descSwitch.setEnabled(false);
                         Toast.makeText(CategorySortingActivity.this, "All categories have been sorted according" +
                                 " to their order of entry", Toast.LENGTH_SHORT).show();
 
@@ -80,6 +85,8 @@ public class CategorySortingActivity extends AppCompatActivity {
                 if (!isChecked) {
 
                     try {
+
+                        asc_descSwitch.setEnabled(true);
                         Toast.makeText(CategorySortingActivity.this, "All categories will be displayed as normal",
                                 Toast.LENGTH_SHORT).show();
 

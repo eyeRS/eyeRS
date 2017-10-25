@@ -20,8 +20,8 @@ public class ItemSortingActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        Switch asc_descSwitch = (Switch) findViewById(R.id.item_asc_descSwitch);
-        Switch recently_addSwitch = (Switch) findViewById(R.id.item_recently_add_Switch);
+        final Switch asc_descSwitch = (Switch) findViewById(R.id.item_asc_descSwitch);
+        final Switch recently_addSwitch = (Switch) findViewById(R.id.item_recently_add_Switch);
 
         asc_descSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 
@@ -33,12 +33,14 @@ public class ItemSortingActivity extends AppCompatActivity {
                     /** If the user wishes to sort alphabetically */
                     if (isChecked) {
 
+                        recently_addSwitch.setEnabled(false);
                         Toast.makeText(ItemSortingActivity.this, "All items have been sorted alphabetically",
                                 Toast.LENGTH_SHORT).show();
                     }
                     /** If the user does not wish to sort alphabetically */
                     if (!isChecked) {
 
+                        recently_addSwitch.setEnabled(true);
                         Toast.makeText(ItemSortingActivity.this, "All items will be displayed as normal",
                                 Toast.LENGTH_SHORT).show();
                     }
@@ -58,12 +60,14 @@ public class ItemSortingActivity extends AppCompatActivity {
                     /** If the user wishes to sort by the most recently added items */
                     if (isChecked) {
 
+                        asc_descSwitch.setEnabled(false);
                         Toast.makeText(ItemSortingActivity.this, "All items have been sorted according" +
                                 " to their order of entry", Toast.LENGTH_SHORT).show();
                     }
                     /** If the user does not wish to sort alphabetically */
                     if (!isChecked) {
 
+                        asc_descSwitch.setEnabled(true);
                         Toast.makeText(ItemSortingActivity.this, "All items will be displayed as normal",
                                 Toast.LENGTH_SHORT).show();
                     }

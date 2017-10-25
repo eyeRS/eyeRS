@@ -47,22 +47,30 @@ public class ItemManagementSettings extends AppCompatActivity implements OnItemC
 
 
             switch (position) {
-                case 0:
+                case 0: {
                     // Add Item
-                    startActivity(new Intent(this, NewItemActivity.class));
+                    Intent intent = new Intent(this, NewItemActivity.class);
+                    startActivity(intent);
                     break;
-                case 1:
+                }
+                case 1: {
                     // Edit Item
-                    startActivity(new Intent(this, ViewItemActivity.class));
+                    Intent intent = new Intent(this, MainActivity.class);
+                    startActivity(intent);
                     break;
-                case 2:
+                }
+                case 2: {
                     //Delete Item
-                    startActivity(new Intent(this, ViewItemActivity.class));
+                    Intent intent = new Intent(this, MainActivity.class);
+                    startActivity(intent);
                     break;
-                case 3:
+                }
+                case 3: {
                     // Change Sorting
-                    startActivity(new Intent(this, ItemSortingActivity.class));
+                    Intent intent = new Intent(this, ItemSortingActivity.class);
+                    startActivity(intent);
                     break;
+                }
             }
 
         } catch (Exception ex) {

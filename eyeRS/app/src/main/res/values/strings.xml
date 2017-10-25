@@ -55,6 +55,8 @@
     <string name="title_activity_sorting">Select Sorting Preference</string>
     <string name="title_activity_profile_settings">My Profile</string>
     <string name="title_activity_item_mgmt_settings">Item Management</string>
+    <string name="title_activity_share">Share an item</string>
+    <string name="title_activity_trade">Trade an item</string>
 
     <!--Strings related to New Activity -->
 
@@ -210,9 +212,5 @@
     <!-- Strings related to ViewItem Activity -->
     <string name="btnEditItem">Edit</string>
     <string name="btnDeleteItem">Delete</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="title_activity_share">ShareActivity</string>
-    <string name="title_activity_trade">TradeActivity</string>
 
 </resources>

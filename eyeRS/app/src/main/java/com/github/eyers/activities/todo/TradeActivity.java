@@ -57,7 +57,7 @@ public class TradeActivity extends AppCompatActivity implements AdapterView.OnIt
         listView.setOnItemClickListener(this);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        Toast.makeText(this, "Please select the item you wish to share", Toast.LENGTH_LONG).show();
+        Toast.makeText(this, "Please select the item you wish to trade", Toast.LENGTH_LONG).show();
     }
 
 

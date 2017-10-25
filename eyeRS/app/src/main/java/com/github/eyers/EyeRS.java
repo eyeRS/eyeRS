@@ -127,8 +127,12 @@ public final class EyeRS {
                 CategoryInfo.CATEGORY_ICON
         };
 
+        String whereClause = "";
+        String[] whereArgs = {};
+        String sortOrder = CategoryInfo.CATEGORY_NAME;
+
         Cursor cursor = eyeRSContentResolver.query(DBOperations.CONTENT_URI_CATEGORIES,
-                projection, null, null, null);
+                projection, whereClause, whereArgs, sortOrder);
 
         TreeSet<String> data = new TreeSet<>();
 
@@ -143,7 +147,7 @@ public final class EyeRS {
             cursor.close();
 
         } else {
-            if (activity != null) {
+            if (activity == null) {
                 Toast.makeText(activity, "No categories to load", Toast.LENGTH_LONG).show();
             }
         }
@@ -175,14 +179,12 @@ public final class EyeRS {
                 ItemInfo.ITEM_IMAGE
         };
 
-        String[] selectionArgs = {};
-
         String whereClause = ItemInfo.CATEGORY_NAME + " = '" + category + "'";
-
+        String[] whereArgs = {};
         String sortOrder = ItemInfo.ITEM_NAME;
 
         Cursor cursor = eyeRSContentResolver.query(DBOperations.CONTENT_URI_ITEMS,
-                projection, whereClause, null, sortOrder);
+                projection, whereClause, whereArgs, sortOrder);
 
         if (cursor.moveToFirst()) {
             do {
@@ -200,12 +202,10 @@ public final class EyeRS {
             cursor.close();
 
         } else {
-            if (activity != null) {
+            if (activity == null) {
                 Toast.makeText(activity, "Nothing to display.", Toast.LENGTH_SHORT).show();
             }
         }
-
         return items;
-
     }
 }
