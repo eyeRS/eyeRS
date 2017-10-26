@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -57,7 +58,12 @@ public class SlideshowActivity extends AppCompatActivity {
         if (!items.isEmpty()) {
             ItemWrapper item = items.get(new Random().nextInt(items.size()));
             Toast.makeText(this, item.getName(), Toast.LENGTH_SHORT).show();
-            this.img.setImageBitmap(item.getImage());
+            try {
+                this.img.setImageBitmap(item.getImage());
+            } catch (NullPointerException npe) {
+                Log.e("Slideshow image error", "error showing image", npe);
+            }
+//            Toast.makeText(this, item.getName() + item.getImage(), Toast.LENGTH_SHORT).show();
         }
     }
 
