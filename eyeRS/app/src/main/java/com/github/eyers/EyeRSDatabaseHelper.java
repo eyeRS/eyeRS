@@ -10,8 +10,8 @@ import android.util.Log;
 
 import com.github.eyers.info.CategoryInfo;
 import com.github.eyers.info.ItemInfo;
-import com.github.eyers.info.UserRegistrationInfo;
 import com.github.eyers.info.UserProfileInfo;
+import com.github.eyers.info.UserRegistrationInfo;
 
 import java.lang.reflect.Field;
 
@@ -22,8 +22,6 @@ import java.lang.reflect.Field;
  * @author Nathan Shava
  */
 public class EyeRSDatabaseHelper extends SQLiteOpenHelper {
-
-    private ContentResolver eyeRSContentResolver;
 
     /**
      * CREATE ITEM TABLE QUERY.
@@ -63,12 +61,12 @@ public class EyeRSDatabaseHelper extends SQLiteOpenHelper {
                     + UserProfileInfo.PROFILE_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                     + UserProfileInfo.USER_NAME + " TEXT, "
                     + UserProfileInfo.USER_AVATAR + " TEXT);";
-
     /**
      * DB variables
      */
     private static final String DB_NAME = "eyeRS.db";
     private static final int DB_VERSION = 1;
+    private ContentResolver eyeRSContentResolver;
 
     /**
      * We're calling the constructor of the SQLiteOpenHelper superclass,
@@ -131,6 +129,7 @@ public class EyeRSDatabaseHelper extends SQLiteOpenHelper {
     /**
      * Method is used to upgrade the db It accepts a SQLite db object the old and new versions of the
      * db to validate whether an upgrade is due
+     *
      * @param db
      * @param oldVersion
      * @param newVersion

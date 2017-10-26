@@ -34,7 +34,7 @@ public class SoundSettings extends AppCompatActivity {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 
-               /** If the user wishes to receive a welcome message pop up*/
+                /** If the user wishes to receive a welcome message pop up*/
                 if (isChecked) {
 
                     Toast.makeText(SoundSettings.this, "Welcome message enabled!", Toast.LENGTH_SHORT).show();

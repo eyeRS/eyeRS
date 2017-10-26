@@ -136,7 +136,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                if (newText != null & !newText.isEmpty())   {
+                if (newText != null & !newText.isEmpty()) {
                     List<String> lstFound = new ArrayList<String>();
                     for (ItemLabel item : items) {
                         if (item.getName().toLowerCase().contains(newText.toLowerCase())) {
@@ -150,7 +150,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
         });
     }
-
 
 
     /**

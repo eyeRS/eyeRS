@@ -27,10 +27,9 @@ import java.util.ArrayList;
  * TradeActivity. Created by Matthew Van der Bijl on 20/10/2017.
  *
  * @author Matthew Van der Bijl
- * @since 20/10/2017
- *
  * @see AdapterView.OnItemClickListener
  * @see AppCompatActivity
+ * @since 20/10/2017
  */
 public class TradeActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
 

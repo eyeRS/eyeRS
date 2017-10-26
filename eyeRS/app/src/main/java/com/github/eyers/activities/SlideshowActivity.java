@@ -45,11 +45,11 @@ public class SlideshowActivity extends AppCompatActivity {
         final Handler timer = new Handler(); // final for thread
         timer.postDelayed(new Runnable() {
 
-                @Override
-                public void run() {
-                    SlideshowActivity.this.setImage();
-                    timer.postDelayed(this, 2 * 1000);
-                }
+            @Override
+            public void run() {
+                SlideshowActivity.this.setImage();
+                timer.postDelayed(this, 2 * 1000);
+            }
         }, 2 * 1000);
         this.setImage();
     }

@@ -96,7 +96,7 @@ public class ShareActivity extends AppCompatActivity implements AdapterView.OnIt
      */
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        ItemLabel item =(ItemLabel) listView.getItemAtPosition(position);
+        ItemLabel item = (ItemLabel) listView.getItemAtPosition(position);
 
         Uri imageUri = getImageUri(item.getImage());
         Intent shareIntent = new Intent();

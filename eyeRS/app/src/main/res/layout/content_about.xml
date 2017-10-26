@@ -61,55 +61,55 @@
                 android:id="@+id/txtAppName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:layout_marginEnd="8dp"
                 android:layout_marginLeft="8dp"
                 android:layout_marginRight="8dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="40dp"
-                android:layout_gravity="center"
-                android:textSize="20sp"
                 android:text="@string/app_name"
+                android:textSize="20sp"
                 app:layout_constraintTop_toBottomOf="@+id/imgEyeRS" />
 
             <TextView
                 android:id="@+id/txtAppDesc"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:layout_marginEnd="8dp"
                 android:layout_marginLeft="8dp"
                 android:layout_marginRight="8dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="20dp"
-                android:layout_gravity="center"
-                android:textSize="20sp"
                 android:text="@string/appDesc"
+                android:textSize="20sp"
                 app:layout_constraintTop_toBottomOf="@+id/txtAppName" />
 
             <TextView
                 android:id="@+id/txtAppCap"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:layout_marginEnd="8dp"
                 android:layout_marginLeft="8dp"
                 android:layout_marginRight="8dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="20dp"
-                android:layout_gravity="center"
-                android:textSize="20sp"
                 android:text="@string/txtAppCap"
+                android:textSize="20sp"
                 app:layout_constraintTop_toBottomOf="@+id/txtAppDesc" />
 
             <TextView
                 android:id="@+id/txtCpyRight"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:layout_marginEnd="8dp"
                 android:layout_marginLeft="8dp"
                 android:layout_marginRight="8dp"
                 android:layout_marginStart="8dp"
-                android:layout_gravity="center"
-                android:textSize="20sp"
                 android:text="@string/cpyRight"
+                android:textSize="20sp"
                 app:layout_constraintTop_toBottomOf="@+id/txtAppCap" />
 
         </LinearLayout>
