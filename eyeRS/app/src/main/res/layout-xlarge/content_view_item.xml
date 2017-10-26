@@ -48,9 +48,9 @@
                 android:ellipsize="none"
                 android:gravity="center"
                 android:textAlignment="center"
-                android:maxLines="1"
+                android:singleLine="true"
                 android:text="Item Name"
-                android:textSize="100sp"
+                android:textSize="150sp"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />

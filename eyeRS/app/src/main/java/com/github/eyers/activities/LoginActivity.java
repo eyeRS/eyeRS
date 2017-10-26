@@ -28,6 +28,7 @@ public final class LoginActivity extends AppCompatActivity implements View.OnCli
     MediaPlayer welcomeMessage;
     private EditText txtPIN;
     private Button registerButton;
+    private Button loginButton;
     /**
      * Content Resolver declaration.
      */
@@ -44,7 +45,8 @@ public final class LoginActivity extends AppCompatActivity implements View.OnCli
 
         this.txtPIN = (EditText) findViewById(R.id.txtPIN);
 
-        findViewById(R.id.btnLogin).setOnClickListener(this);
+        this.loginButton = (Button) findViewById(R.id.btnLogin);
+        this.loginButton.setOnClickListener(this);
         findViewById(R.id.txtForgotPin).setOnClickListener(this);
         this.registerButton = (Button) findViewById(R.id.btnRegister);
         this.registerButton.setOnClickListener(this);
@@ -76,6 +78,10 @@ public final class LoginActivity extends AppCompatActivity implements View.OnCli
 
             if (!cursor.moveToFirst()) {
 
+                /**
+                 * No user registered so disable the Login button
+                 */
+                this.loginButton.setEnabled(false);
                 Log.e("Null Cursor object", "Unable to retrieve cursor data");
 
             } else if (cursor.moveToFirst()) {
@@ -153,6 +159,11 @@ public final class LoginActivity extends AppCompatActivity implements View.OnCli
                 Toast.makeText(this, "Login failed. Please ensure you have registered your details first before " +
                         "attempting to login", Toast.LENGTH_SHORT).show();
             } else if (cursor.moveToFirst()) {
+
+                /**
+                 * Enable the Login button
+                 */
+                this.loginButton.setEnabled(true);
                 boolean flag = true;
                 do {
                     if (cursor.getString(cursor.getColumnIndex(UserRegistrationInfo.USER_PIN)).equals("")) { //No PIN entered
