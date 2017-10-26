@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -26,6 +27,7 @@ public final class LoginActivity extends AppCompatActivity implements View.OnCli
 
     MediaPlayer welcomeMessage;
     private EditText txtPIN;
+    private Button registerButton;
     /**
      * Content Resolver declaration.
      */
@@ -44,9 +46,53 @@ public final class LoginActivity extends AppCompatActivity implements View.OnCli
 
         findViewById(R.id.btnLogin).setOnClickListener(this);
         findViewById(R.id.txtForgotPin).setOnClickListener(this);
-        findViewById(R.id.btnRegister).setOnClickListener(this);
+        this.registerButton = (Button) findViewById(R.id.btnRegister);
+        this.registerButton.setOnClickListener(this);
 
-        Toast.makeText(this, "Welcome!", Toast.LENGTH_SHORT).show();
+        /**
+         * Content resolver object
+         */
+        eyeRSContentResolver = this.getContentResolver();
+
+        String[] projection = {
+                UserRegistrationInfo.REG_ID,
+                UserRegistrationInfo.USER_NAME,
+                UserRegistrationInfo.EMAIL_ADD,
+                UserRegistrationInfo.USER_PIN,
+                UserRegistrationInfo.SECURITY_QUESTION,
+                UserRegistrationInfo.SECURITY_RESPONSE
+        };
+
+        String whereClause = "";
+        String[] whereArgs = {};
+        String sortOrder = "";
+
+        try {
+            /**
+             * Content Resolver query
+             */
+            Cursor cursor = eyeRSContentResolver.query(DBOperations.CONTENT_URI_USER_REG, projection,
+                    whereClause, whereArgs, sortOrder);
+
+            if (!cursor.moveToFirst()) {
+
+                Log.e("Null Cursor object", "Unable to retrieve cursor data");
+
+            } else if (cursor.moveToFirst()) {
+
+                /**
+                 * If a user has been registered already
+                 * we need to disable the Register button to follow
+                 * the One user per device policy
+                 */
+                this.registerButton.setEnabled(false);
+
+                cursor.close();
+            }
+        } catch (Exception ex) {
+
+            Log.e("Login query", ex.getMessage(), ex);
+        }
 
         /*Initialising mediaPlayer*/
         welcomeMessage = MediaPlayer.create(LoginActivity.this, R.raw.welcomemsg);
@@ -92,7 +138,7 @@ public final class LoginActivity extends AppCompatActivity implements View.OnCli
 
         String whereClause = "";
 
-        String[] selectionArgs = {};
+        String[] whereArgs = {};
 
         String sortOrder = "";
 
@@ -101,13 +147,12 @@ public final class LoginActivity extends AppCompatActivity implements View.OnCli
              * Content Resolver query
              */
             Cursor cursor = eyeRSContentResolver.query(DBOperations.CONTENT_URI_USER_REG, projection,
-                    whereClause, selectionArgs, sortOrder);
+                    whereClause, whereArgs, sortOrder);
 
             if (!cursor.moveToFirst()) {
                 Toast.makeText(this, "Login failed. Please ensure you have registered your details first before " +
                         "attempting to login", Toast.LENGTH_SHORT).show();
-            }
-            else if (cursor.moveToFirst()) {
+            } else if (cursor.moveToFirst()) {
                 boolean flag = true;
                 do {
                     if (cursor.getString(cursor.getColumnIndex(UserRegistrationInfo.USER_PIN)).equals("")) { //No PIN entered

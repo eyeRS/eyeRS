@@ -16,6 +16,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -63,6 +64,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     private EditText txtPIN2;
     private EditText txtResponse;
     private Spinner spinner;
+
     /**
      * Content resolver declaration
      */
