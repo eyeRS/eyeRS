@@ -96,7 +96,7 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
         this.ivImage = (ImageView) findViewById(R.id.new_item_image);
         this.ivImage.setOnClickListener(this);
 
-        /**
+        /*
          * Retrieve the saved state values before the activity was destroyed
          */
         if (savedInstanceState != null) {
@@ -133,7 +133,7 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
 
             popCategories = getCategoriesList();
 
-            /**
+            /*
              * Spinner adapter
              */
             categoriesAdapter = new ArrayAdapter<String>(this,
@@ -142,7 +142,6 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
             this.categorySpinner.setAdapter(categoriesAdapter);
 
         } catch (Exception ex) {
-
             Log.e("Populating the spinner", ex.getMessage(), ex);
         }
     }
@@ -150,14 +149,12 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
     /**
      * Method returns the categories result set of the SQL query and adds elements into a
      * list structure for the spinner.
-     *
-     * @return
      */
     public List<String> getCategoriesList() {
 
         List<String> addCategories = new ArrayList<String>();
 
-        /**
+        /*
          * Content resolver object
          */
         eyeRSContentResolver = this.getContentResolver();
@@ -177,7 +174,7 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
 
         try {
 
-            /**
+            /*
              * Content resolver query
              */
             Cursor cursor = eyeRSContentResolver.query(
@@ -209,11 +206,7 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
                 Log.e("NewItemActivity", "Empty categories list");
             }
 
-            for (String str : data) {
-
-                addCategories.add(str);
-
-            }
+            addCategories.addAll(data);
 
         } catch (Exception ex) {
 
@@ -243,10 +236,8 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
     @Override
     protected void onResume() {
         super.onResume();
-
         try {
-
-            /**
+            /*
              * Retrieve the saved spinner selection
              */
             categorySpinner = (Spinner) findViewById(R.id.category_spinner);
@@ -255,10 +246,8 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
             categorySpinner.setSelection(spinner_index);
 
         } catch (Exception ex) {
-
             Log.e("onPause()", ex.getMessage(), ex);
         }
-
     }
 
     /**
@@ -277,13 +266,13 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
                     switch (categorySpinner.getSelectedItem().toString().toLowerCase()) {
                         case "books": { // user adds a book item
 
-                            /**
+                            /*
                              * Retrieve user input from fields
                              */
                             itemName = txtTitle.getText().toString();
                             itemDesc = txtDesc.getText().toString();
 
-                            /**
+                            /*
                              * Empty category
                              */
                             if (category.isEmpty()) {
@@ -292,7 +281,7 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
                                         Toast.LENGTH_SHORT).show();
                                 break;
                             }
-                            /**
+                            /*
                              * Empty item name
                              */
                             else if (itemName.isEmpty()) {
@@ -301,7 +290,7 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
                                         Toast.LENGTH_SHORT).show();
                                 break;
                             }
-                            /**
+                            /*
                              * Empty item description
                              */
                             else if (itemDesc.isEmpty()) {
@@ -310,7 +299,7 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
                                         Toast.LENGTH_SHORT).show();
                                 break;
                             }
-                            /**
+                            /*
                              * No image added
                              */
                             else if (img.isEmpty()) {
@@ -325,13 +314,13 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
                         break;
                         case "clothes": { //user adds a clothing item
 
-                            /**
+                            /*
                              * Retrieve user input from fields
                              */
                             itemName = txtTitle.getText().toString();
                             itemDesc = txtDesc.getText().toString();
 
-                            /**
+                            /*
                              * Empty category
                              */
                             if (category.isEmpty()) {
@@ -340,7 +329,7 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
                                         Toast.LENGTH_SHORT).show();
                                 break;
                             }
-                            /**
+                            /*
                              * Empty item name
                              */
                             else if (itemName.isEmpty()) {
@@ -349,7 +338,7 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
                                         Toast.LENGTH_SHORT).show();
                                 break;
                             }
-                            /**
+                            /*
                              * Empty item description
                              */
                             else if (itemDesc.isEmpty()) {
@@ -358,7 +347,7 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
                                         Toast.LENGTH_SHORT).show();
                                 break;
                             }
-                            /**
+                            /*
                              * No image added
                              */
                             else if (img.isEmpty()) {
@@ -422,7 +411,7 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
                         break;
                         case "games": { //user adds a gaming item
 
-                            /**
+                            /*
                              * Retrieve user input from fields
                              */
                             itemName = txtTitle.getText().toString();
@@ -583,7 +572,7 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
      */
     private void addBook() {
 
-        /**
+        /*
          * Define an object to contain the new values to insert
          */
         ContentValues bookValues = new ContentValues();

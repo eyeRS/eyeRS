@@ -139,13 +139,12 @@ public final class EyeRS {
         if (cursor.moveToFirst()) {
 
             do {
-                Bitmap decodedByte;
+                Bitmap decodedByte = BitmapFactory.decodeResource(activity.getResources(), R.drawable.ic_action_help);
                 try {
                     byte[] decodedString = Base64.decode(cursor.getString(3), Base64.DEFAULT);
                     decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
-                } catch (Exception ex) {
-                    Log.e("Error loading image", cursor.getString(1) + " " + ex.getMessage(), ex);
-                    decodedByte = BitmapFactory.decodeResource(activity.getResources(), R.drawable.ic_action_help);
+                } catch (Throwable t) { // lets be sure we get it
+                    Log.e("Error loading image", cursor.getString(1) + " " + t.getMessage(), t);
                 }
                 data.add(new ItemLabel(cursor.getString(1), decodedByte, ""));
 

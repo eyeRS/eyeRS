@@ -141,11 +141,6 @@ public class NewCategoryActivity extends AppCompatActivity implements View.OnCli
 
     /**
      * Method handles what happens when an item is selected from the spinner.
-     *
-     * @param parent
-     * @param view
-     * @param position
-     * @param id
      */
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {

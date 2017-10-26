@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.KeyEvent;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.github.eyers.EyeRS;
 import com.github.eyers.ItemLabel;
@@ -40,23 +41,23 @@ public class SlideshowActivity extends AppCompatActivity {
             this.items.addAll(EyeRS.getItems(category.getName(), this));
         }
 
-        if (!items.isEmpty()) {
-            final Handler timer = new Handler(); // final for thread
-            timer.postDelayed(new Runnable() {
+        final Handler timer = new Handler(); // final for thread
+        timer.postDelayed(new Runnable() {
 
                 @Override
                 public void run() {
                     SlideshowActivity.this.setImage();
                     timer.postDelayed(this, 2 * 1000);
                 }
-            }, 2 * 1000);
-            this.setImage();
-        }
+        }, 2 * 1000);
+        this.setImage();
     }
 
     private void setImage() {
         if (!items.isEmpty()) {
-            this.img.setImageBitmap(items.get(new Random().nextInt(items.size())).getImage());
+            ItemWrapper item = items.get(new Random().nextInt(items.size()));
+            Toast.makeText(this, item.getName(), Toast.LENGTH_SHORT).show();
+            this.img.setImageBitmap(item.getImage());
         }
     }
 
