@@ -1,6 +1,7 @@
 package com.github.eyers.activities;
 
 import android.app.LoaderManager;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.Loader;
 import android.content.res.Configuration;
@@ -10,6 +11,7 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -285,7 +287,33 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 }
                 break;
                 case R.id.nav_exit:
-                    exit();
+                    /**
+                     *
+                     * We need to specify an AlertDialog to alert the user when they wish to
+                     * exit the app
+                     */
+                    AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                    builder.setMessage("Are you sure you want to exit EyeRS? \n" +
+                            "You may lose any unsaved changes!")
+                            .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                                /**
+                                 * User clicks on Ok so delete the item
+                                 * @param dialog
+                                 * @param which
+                                 */
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+
+                                    /** Calls the method to exit the app when user clicks the Ok button */
+                                    exit();
+                                }
+                                /**
+                                 * User clicks on Cancel so abort the operation
+                                 */
+                            }).setNegativeButton("Cancel", null);
+
+                    AlertDialog dialog = builder.create();
+                    dialog.show();
                     break;
             }
 
