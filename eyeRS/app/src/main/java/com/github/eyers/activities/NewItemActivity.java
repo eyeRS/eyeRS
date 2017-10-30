@@ -186,12 +186,7 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
 
             TreeSet<String> data = new TreeSet<>();
 
-            if (!cursor.moveToFirst()) {
-
-                Toast.makeText(this, "Oops something happened there!", Toast.LENGTH_SHORT).show();
-                Log.e("NewItemActivity", "Null Cursor object");
-
-            } else if (cursor.moveToFirst()) {
+            if (cursor.moveToFirst()) {
 
                 do {
 

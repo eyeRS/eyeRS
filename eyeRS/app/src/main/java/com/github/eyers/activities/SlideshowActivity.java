@@ -48,9 +48,9 @@ public class SlideshowActivity extends AppCompatActivity {
             @Override
             public void run() {
                 SlideshowActivity.this.setImage();
-                timer.postDelayed(this, 2 * 1000);
+                timer.postDelayed(this, 3 * 1000);
             }
-        }, 2 * 1000);
+        }, 3 * 1000);
         this.setImage();
     }
 
