@@ -287,33 +287,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 }
                 break;
                 case R.id.nav_exit:
-                    /**
-                     *
-                     * We need to specify an AlertDialog to alert the user when they wish to
-                     * exit the app
-                     */
-                    AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-                    builder.setMessage("Are you sure you want to exit EyeRS? \n" +
-                            "You may lose any unsaved changes!")
-                            .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                                /**
-                                 * User clicks on Ok so delete the item
-                                 * @param dialog
-                                 * @param which
-                                 */
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-
-                                    /** Calls the method to exit the app when user clicks the Ok button */
-                                    exit();
-                                }
-                                /**
-                                 * User clicks on Cancel so abort the operation
-                                 */
-                            }).setNegativeButton("Cancel", null);
-
-                    AlertDialog dialog = builder.create();
-                    dialog.show();
+                    promptExit();
                     break;
             }
 
@@ -324,6 +298,36 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    private void promptExit() {
+        /**
+         *
+         * We need to specify an AlertDialog to alert the user when they wish to
+         * exit the app
+         */
+        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+        builder.setMessage("Are you sure you want to exit EyeRS? \n" +
+                "You may lose any unsaved changes!")
+                .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                    /**
+                     * User clicks on Ok so delete the item
+                     * @param dialog
+                     * @param which
+                     */
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        /** Calls the method to exit the app when user clicks the Ok button */
+                        exit();
+                    }
+                    /**
+                     * User clicks on Cancel so abort the operation
+                     */
+                }).setNegativeButton("Cancel", null);
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 
     /**
