@@ -1,3 +1,5 @@
+com.badlogic.gdx
+com.badlogic.gdx.backends.android
 com.github.eyers
 com.github.eyers.activities
 com.github.eyers.activities.dummy
