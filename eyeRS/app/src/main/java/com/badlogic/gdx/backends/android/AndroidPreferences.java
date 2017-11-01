@@ -20,57 +20,52 @@ import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.os.Build;
 
-import com.badlogic.gdx.Preferences;
-
 import java.util.Map;
 import java.util.Map.Entry;
 
-public class AndroidPreferences implements Preferences {
+/**
+ * Taken from LibGDX.
+ */
+public class AndroidPreferences {
 
-    SharedPreferences sharedPrefs;
-    Editor editor;
+    private SharedPreferences sharedPrefs;
+    private Editor editor;
 
     public AndroidPreferences(SharedPreferences preferences) {
         this.sharedPrefs = preferences;
     }
 
-    @Override
-    public Preferences putBoolean(String key, boolean val) {
+    public AndroidPreferences putBoolean(String key, boolean val) {
         edit();
         editor.putBoolean(key, val);
         return this;
     }
 
-    @Override
-    public Preferences putInteger(String key, int val) {
+    public AndroidPreferences putInteger(String key, int val) {
         edit();
         editor.putInt(key, val);
         return this;
     }
 
-    @Override
-    public Preferences putLong(String key, long val) {
+    public AndroidPreferences putLong(String key, long val) {
         edit();
         editor.putLong(key, val);
         return this;
     }
 
-    @Override
-    public Preferences putFloat(String key, float val) {
+    public AndroidPreferences putFloat(String key, float val) {
         edit();
         editor.putFloat(key, val);
         return this;
     }
 
-    @Override
-    public Preferences putString(String key, String val) {
+    public AndroidPreferences putString(String key, String val) {
         edit();
         editor.putString(key, val);
         return this;
     }
 
-    @Override
-    public Preferences put(Map<String, ?> vals) {
+    public AndroidPreferences put(Map<String, ?> vals) {
         edit();
         for (Entry<String, ?> val : vals.entrySet()) {
             if (val.getValue() instanceof Boolean)
@@ -84,73 +79,59 @@ public class AndroidPreferences implements Preferences {
         return this;
     }
 
-    @Override
     public boolean getBoolean(String key) {
         return sharedPrefs.getBoolean(key, false);
     }
 
-    @Override
     public int getInteger(String key) {
         return sharedPrefs.getInt(key, 0);
     }
 
-    @Override
     public long getLong(String key) {
         return sharedPrefs.getLong(key, 0);
     }
 
-    @Override
     public float getFloat(String key) {
         return sharedPrefs.getFloat(key, 0);
     }
 
-    @Override
     public String getString(String key) {
         return sharedPrefs.getString(key, "");
     }
 
-    @Override
     public boolean getBoolean(String key, boolean defValue) {
         return sharedPrefs.getBoolean(key, defValue);
     }
 
-    @Override
     public int getInteger(String key, int defValue) {
         return sharedPrefs.getInt(key, defValue);
     }
 
-    @Override
     public long getLong(String key, long defValue) {
         return sharedPrefs.getLong(key, defValue);
     }
 
-    @Override
     public float getFloat(String key, float defValue) {
         return sharedPrefs.getFloat(key, defValue);
     }
 
-    @Override
     public String getString(String key, String defValue) {
         return sharedPrefs.getString(key, defValue);
     }
 
-    @Override
     public Map<String, ?> get() {
         return sharedPrefs.getAll();
     }
 
-    @Override
     public boolean contains(String key) {
         return sharedPrefs.contains(key);
     }
 
-    @Override
     public void clear() {
         edit();
         editor.clear();
     }
 
-    @Override
     public void flush() {
         if (editor != null) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.GINGERBREAD) {
@@ -162,7 +143,6 @@ public class AndroidPreferences implements Preferences {
         }
     }
 
-    @Override
     public void remove(String key) {
         edit();
         editor.remove(key);

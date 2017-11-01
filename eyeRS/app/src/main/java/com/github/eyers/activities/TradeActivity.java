@@ -1,4 +1,4 @@
-package com.github.eyers.activities.todo;
+package com.github.eyers.activities;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -17,7 +17,6 @@ import com.github.eyers.EyeRS;
 import com.github.eyers.ItemLabel;
 import com.github.eyers.LabelAdapter;
 import com.github.eyers.R;
-import com.github.eyers.activities.MainActivity;
 import com.github.eyers.wrapper.ItemWrapper;
 
 import java.io.ByteArrayOutputStream;
@@ -104,7 +103,7 @@ public class TradeActivity extends AppCompatActivity implements AdapterView.OnIt
         Intent shareIntent = new Intent();
         shareIntent.setAction(Intent.ACTION_SEND);
         shareIntent.putExtra(Intent.EXTRA_TEXT, String.format(
-                "I am looking to trade mu %s, are you intrested?", item.getName()));
+                "I am looking to trade my %s, are you intrested?", item.getName()));
         shareIntent.putExtra(Intent.EXTRA_STREAM, imageUri);
         shareIntent.setType("image/jpeg");
         shareIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);

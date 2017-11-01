@@ -152,7 +152,7 @@
 
         </activity>
         <activity
-            android:name=".activities.todo.TradeActivity"
+            android:name=".activities.TradeActivity"
             android:label="@string/title_activity_trade"
             android:theme="@style/AppTheme.NoActionBar">
 
