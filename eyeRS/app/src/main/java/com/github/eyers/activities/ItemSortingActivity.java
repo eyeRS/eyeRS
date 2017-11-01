@@ -30,14 +30,14 @@ public class ItemSortingActivity extends AppCompatActivity {
 
                 try {
 
-                    /** If the user wishes to sort alphabetically */
+                    /* If the user wishes to sort alphabetically */
                     if (isChecked) {
 
                         recently_addSwitch.setEnabled(false);
                         Toast.makeText(ItemSortingActivity.this, "All items have been sorted alphabetically",
                                 Toast.LENGTH_SHORT).show();
                     }
-                    /** If the user does not wish to sort alphabetically */
+                    /* If the user does not wish to sort alphabetically */
                     if (!isChecked) {
 
                         recently_addSwitch.setEnabled(true);
@@ -57,14 +57,14 @@ public class ItemSortingActivity extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 
                 try {
-                    /** If the user wishes to sort by the most recently added items */
+                    /* If the user wishes to sort by the most recently added items */
                     if (isChecked) {
 
                         asc_descSwitch.setEnabled(false);
                         Toast.makeText(ItemSortingActivity.this, "All items have been sorted according" +
                                 " to their order of entry", Toast.LENGTH_SHORT).show();
                     }
-                    /** If the user does not wish to sort alphabetically */
+                    /* If the user does not wish to sort alphabetically */
                     if (!isChecked) {
 
                         asc_descSwitch.setEnabled(true);

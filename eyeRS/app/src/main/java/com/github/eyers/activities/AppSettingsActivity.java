@@ -36,14 +36,15 @@ public class AppSettingsActivity extends AppCompatActivity implements OnItemClic
         listView = (ListView) findViewById(R.id.list_settings);
         listView.setOnItemClickListener(this);
 
-        // Utils.changeToTheme(this, Utils.AppTheme_Red);
     }
 
     /**
+     * Method handles what happens when an item is clicked from the list view
+     *
      * @param parent
      * @param view
      * @param position
-     * @param id       Method handles what happens when an item is clicked from the list view
+     * @param id
      */
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {

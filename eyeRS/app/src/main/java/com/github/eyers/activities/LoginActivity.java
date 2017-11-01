@@ -51,7 +51,7 @@ public final class LoginActivity extends AppCompatActivity implements View.OnCli
         this.registerButton = (Button) findViewById(R.id.btnRegister);
         this.registerButton.setOnClickListener(this);
 
-        /**
+        /*
          * Content resolver object
          */
         eyeRSContentResolver = this.getContentResolver();
@@ -70,7 +70,8 @@ public final class LoginActivity extends AppCompatActivity implements View.OnCli
         String sortOrder = "";
 
         try {
-            /**
+
+            /*
              * Content Resolver query
              */
             Cursor cursor = eyeRSContentResolver.query(DBOperations.CONTENT_URI_USER_REG, projection,
@@ -78,15 +79,14 @@ public final class LoginActivity extends AppCompatActivity implements View.OnCli
 
             if (!cursor.moveToFirst()) {
 
-                /**
+                /*
                  * No user registered so disable the Login button
                  */
                 this.loginButton.setEnabled(false);
-                Log.e("Null Cursor object", "Unable to retrieve cursor data");
 
             } else if (cursor.moveToFirst()) {
 
-                /**
+                /*
                  * If a user has been registered already
                  * we need to disable the Register button to follow
                  * the One user per device policy
@@ -143,24 +143,29 @@ public final class LoginActivity extends AppCompatActivity implements View.OnCli
         };
 
         String whereClause = "";
-
         String[] whereArgs = {};
-
         String sortOrder = "";
 
         try {
-            /**
+
+            /*
              * Content Resolver query
              */
             Cursor cursor = eyeRSContentResolver.query(DBOperations.CONTENT_URI_USER_REG, projection,
                     whereClause, whereArgs, sortOrder);
 
             if (!cursor.moveToFirst()) {
+
                 Toast.makeText(this, "Login failed. Please ensure you have registered your details first before " +
                         "attempting to login", Toast.LENGTH_SHORT).show();
+                /*
+                 * Enable the Register button
+                 */
+                this.registerButton.setEnabled(true);
+
             } else if (cursor.moveToFirst()) {
 
-                /**
+                /*
                  * Enable the Login button
                  */
                 this.loginButton.setEnabled(true);

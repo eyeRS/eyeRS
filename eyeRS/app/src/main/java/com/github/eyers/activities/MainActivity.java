@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        /**
+        /*
          * Create the ActionBarDrawerToggle
          */
         toggle = new ActionBarDrawerToggle(
@@ -98,10 +98,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawer.setDrawerListener(toggle);
 
         final ArrayList<ItemLabel> items = new ArrayList<>();
-        /**
+        /*
          * Populate the list view
          */
         try {
+
             listView = (ListView) findViewById(R.id.main_listView);
 
             if (STATE.equals("main")) {
@@ -109,7 +110,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     items.add(category);
                 }
             } else {
+
                 for (ItemWrapper item : EyeRS.getItems(STATE, this)) {
+
                     items.add(new ItemLabel(item.getName(), item.getImage(), item.getDescription()));
                 }
             }
@@ -144,7 +147,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         if (item.getName().toLowerCase().contains(newText.toLowerCase())) {
                             lstFound.add(item.getName());
                         }
-                        ArrayAdapter adapter = new ArrayAdapter(MainActivity.this, android.R.layout.simple_list_item_1, lstFound);
+                        ArrayAdapter adapter = new ArrayAdapter(MainActivity.this,
+                                android.R.layout.simple_list_item_1, lstFound);
                         listView.setAdapter(adapter);
                     }
                 }
@@ -185,11 +189,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
         try {
-            /**
+            /*
              * If the drawer is open, hide related items to the content view
              */
             boolean drawerOpen = drawer.isDrawerOpen(navigationView);
-            /**
+            /*
              * Set the visibility of the menu items when the Drawer is opened or closed
              */
             menu.findItem(R.id.action_settings).setVisible(!drawerOpen); //Hide the action settings when drawer is open
@@ -215,12 +219,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
      */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        /**
+        /*
          * Inflate the menu; this adds items to the action bar if it is present.
          */
         getMenuInflater().inflate(R.menu.main, menu);
 
-        /**
+        /*
          * Creates search menu bar in the action bar
          */
         getMenuInflater().inflate(R.menu.search_bar, menu);
@@ -233,13 +237,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        /**
+        /*
          * Handle action bar item clicks here. The action bar will
          * automatically handle clicks on the Home/Up button, so long
          * as you specify a parent activity in AndroidManifest.xml
          */
 
-        /**
+        /*
          * If the ActionBarDrawerToggle is clicked, let it handle what happens
          */
         if (item.getItemId() == R.id.action_settings) {
@@ -301,7 +305,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     private void promptExit() {
-        /**
+        /*
          *
          * We need to specify an AlertDialog to alert the user when they wish to
          * exit the app
@@ -318,10 +322,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
 
-                        /** Calls the method to exit the app when user clicks the Ok button */
+                        /* Calls the method to exit the app when user clicks the Ok button */
                         exit();
                     }
-                    /**
+                    /*
                      * User clicks on Cancel so abort the operation
                      */
                 }).setNegativeButton("Cancel", null);
@@ -334,7 +338,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
      * Closes the app.
      */
     private void exit() {
+
         try {
+
             Intent intent = new Intent(Intent.ACTION_MAIN);
             intent.addCategory(Intent.CATEGORY_HOME);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -392,7 +398,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
      */
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
         try {
+
             if (STATE.equals("main")) {
                 STATE = listView.getItemAtPosition(position).toString(); // Retrieves the selected category
                 startActivity(new Intent(this, MainActivity.class));

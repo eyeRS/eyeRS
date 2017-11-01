@@ -20,7 +20,7 @@ import com.github.eyers.R;
  */
 public class ItemManagementSettings extends AppCompatActivity implements OnItemClickListener {
 
-    // Field declarations
+    /* Field declarations */
     private ListView listView;
 
     @Override

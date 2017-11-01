@@ -88,12 +88,12 @@ public class ProfileSettingsActivity extends AppCompatActivity implements View.O
 
     public void addProfileInfo() {
 
-        /**
+        /*
          * Content resolver declaration
          */
         ContentResolver eyeRSContentResolver = this.getContentResolver();
 
-        /**
+        /*
          * Define an object to contain the new values to insert.
          */
         ContentValues profileValues = new ContentValues();
@@ -103,7 +103,7 @@ public class ProfileSettingsActivity extends AppCompatActivity implements View.O
 
         try {
 
-            /**
+            /*
              * Content resolver profile insert
              */
             eyeRSContentResolver.insert(
@@ -143,7 +143,7 @@ public class ProfileSettingsActivity extends AppCompatActivity implements View.O
 
                     username = txtUsername.getText().toString();
 
-                    /**
+                    /*
                      * Empty username
                      */
                     if (username.isEmpty()) {
@@ -151,7 +151,7 @@ public class ProfileSettingsActivity extends AppCompatActivity implements View.O
                         Toast.makeText(this, "Please enter a username", Toast.LENGTH_SHORT).show();
                         break;
                     }
-                    /**
+                    /*
                      * No image added
                      */
                     else if (img.isEmpty()) {
@@ -159,7 +159,6 @@ public class ProfileSettingsActivity extends AppCompatActivity implements View.O
                         Toast.makeText(this, "Please add an image", Toast.LENGTH_SHORT).show();
                         break;
                     }
-
                     addProfileInfo(); //Method to save user profile data
                     break;
                 case R.id.new_user_avatar:
@@ -171,7 +170,6 @@ public class ProfileSettingsActivity extends AppCompatActivity implements View.O
 
             Log.e("Profile event handler", ex.getMessage(), ex);
         }
-
     }
 
     @Override
@@ -186,8 +184,10 @@ public class ProfileSettingsActivity extends AppCompatActivity implements View.O
                     if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                         if (userChoosenTask.equals("Take Photo"))
                             cameraIntent();
+
                         else if (userChoosenTask.equals("Choose from Library"))
                             galleryIntent();
+
                     } else {
                         //code for deny
                     }

@@ -37,7 +37,7 @@ public class NewCategoryActivity extends AppCompatActivity implements View.OnCli
         LoaderManager.LoaderCallbacks<Cursor>, AdapterView.OnItemSelectedListener {
 
 
-    // Fields & other declarations
+    /* Fields & other declarations */
     private EditText txtTitle;
     private String categoryName;
     private EditText txtDesc;
@@ -162,12 +162,12 @@ public class NewCategoryActivity extends AppCompatActivity implements View.OnCli
      */
     public void validateCategories() {
 
-        /**
+        /*
          * Content resolver object
          */
         eyeRSContentResolver = this.getContentResolver();
 
-        /**
+        /*
          * Array of columns to be included for each row retrieved
          */
         String[] projection = {
@@ -178,14 +178,12 @@ public class NewCategoryActivity extends AppCompatActivity implements View.OnCli
         };
 
         String whereClause = "";
-
         String[] whereArgs = {};
-
         String sortOrder = "";
 
         try {
 
-            /**
+            /*
              * Content resolver query
              */
             Cursor cursor = eyeRSContentResolver.query(
@@ -199,11 +197,12 @@ public class NewCategoryActivity extends AppCompatActivity implements View.OnCli
 
                 Toast.makeText(this, "Oops something happened there!", Toast.LENGTH_SHORT).show();
                 Log.e("NewCategoryActivity", "Null Cursor object");
+
             } else if (cursor.moveToFirst()) {
 
                 do {
 
-                    /**
+                    /*
                      * If the user tries to create an existing category display appropriate message
                      */
                     if (cursor.getString(cursor.getColumnIndex(CategoryInfo.CATEGORY_NAME)).equals(categoryName)) {
@@ -211,17 +210,17 @@ public class NewCategoryActivity extends AppCompatActivity implements View.OnCli
                         Toast.makeText(this, "This category is already in use. " +
                                 "Please select a unique name for your new category", Toast.LENGTH_SHORT).show();
 
-                        /**
+                        /*
                          * Clear the fields to allow the user to re-enter details
                          */
                         this.txtTitle.setText("");
                         this.txtDesc.setText("");
 
                     }
-                    /**
+                    /*
                      * If the user is creating a new category
                      */
-                    if (!cursor.getString(cursor.getColumnIndex(CategoryInfo.CATEGORY_NAME)).equals(categoryName)) {
+                    else if (!cursor.getString(cursor.getColumnIndex(CategoryInfo.CATEGORY_NAME)).equals(categoryName)) {
 
                         addNewCategory(); //method to add the new category
                     }
@@ -248,12 +247,12 @@ public class NewCategoryActivity extends AppCompatActivity implements View.OnCli
      */
     public void addNewCategory() {
 
-        /**
+        /*
          * Content resolver object
          */
         eyeRSContentResolver = this.getContentResolver();
 
-        /**
+        /*
          * Define an object to contain the new values to insert
          */
         ContentValues categoryValues = new ContentValues();
@@ -264,7 +263,7 @@ public class NewCategoryActivity extends AppCompatActivity implements View.OnCli
 
         try {
 
-            /**
+            /*
              * Content resolver insert operation
              */
             eyeRSContentResolver.insert(
@@ -274,7 +273,7 @@ public class NewCategoryActivity extends AppCompatActivity implements View.OnCli
             Toast.makeText(this, "Your new category has been created successfully ",
                     Toast.LENGTH_SHORT).show();
 
-            /**
+            /*
              * Clear the text fields
              */
             this.txtTitle.setText("");
@@ -282,7 +281,7 @@ public class NewCategoryActivity extends AppCompatActivity implements View.OnCli
 
             Log.e("DATABASE OPERATIONS", "...New category added to DB!");
 
-            /**
+            /*
              *  Then navigate the user to the Home screen after successfully creating the category
              */
             startActivity(new Intent(this, MainActivity.class));

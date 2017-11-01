@@ -99,7 +99,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         findViewById(R.id.btnClearReg).setOnClickListener(this);
 
         if (savedInstanceState != null) {
-            /**
+            /*
              * Retrieve the saved state of the spinner before the app was destroyed
              */
             spinner.setSelection(savedInstanceState.getInt("spinner"));
@@ -111,14 +111,14 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
      */
     public void addRegInfo() {
 
-        /**
+        /*
          * Content Resolver declaration
          */
         eyeRSContentResolver = this.getContentResolver();
 
         try {
 
-            /**
+            /*
              * Define an object to contain the new values to insert
              */
             ContentValues userRegValues = new ContentValues();
@@ -129,7 +129,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             userRegValues.put(UserRegistrationInfo.SECURITY_QUESTION, securityQuestion); //User's security question
             userRegValues.put(UserRegistrationInfo.SECURITY_RESPONSE, securityResponse); //User's security response
 
-            /**
+            /*
              * Content resolver insert operation
              */
             eyeRSContentResolver.insert(
@@ -139,7 +139,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             Toast.makeText(this, "Your details have been saved successfully", Toast.LENGTH_LONG).show();
             Log.e("DATABASE OPERATIONS", "...New user added to DB!");
 
-            /**
+            /*
              * Then clear the fields
              */
             this.txtUsername.setText("");
@@ -148,7 +148,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             this.txtPIN2.setText("");
             this.txtResponse.setText("");
 
-            /**
+            /*
              * Navigate to the Login screen once registration has been successful
              */
             super.startActivity(new Intent(this, LoginActivity.class));
@@ -172,7 +172,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
-        /**
+        /*
          * Question selected from Spinner
          */
         securityQuestion = parent.getItemAtPosition(position).toString();
@@ -201,7 +201,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             switch (view.getId()) {
                 case R.id.btnRegister: //user clicks the register button
 
-                    /**
+                    /*
                      * Retrieve user input from fields
                      */
                     username = txtUsername.getText().toString();
@@ -210,7 +210,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                     String pinA = txtPIN1.getText().toString();
                     String pinB = txtPIN2.getText().toString();
 
-                    /**
+                    /*
                      * Empty username
                      */
                     if (username.isEmpty()) {
@@ -218,7 +218,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                         Toast.makeText(this, "Please enter a username", Toast.LENGTH_SHORT).show();
                         break;
                     }
-                    /**
+                    /*
                      * Empty email
                      */
                     else if (email.isEmpty()) {
@@ -226,7 +226,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                         Toast.makeText(this, "Please enter a valid email address", Toast.LENGTH_SHORT).show();
                         break;
                     }
-                    /**
+                    /*
                      * Validate email
                      */
                     else if (!validateEmailAddress(email)) {
@@ -234,8 +234,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                         Toast.makeText(this, "Please enter a valid email address", Toast.LENGTH_SHORT).show();
                         break;
                     }
-                    /**
-                     *
+                    /*
                      * PIN 1 missing
                      */
                     else if (pinA.isEmpty()) {
@@ -243,7 +242,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                         Toast.makeText(this, "Please enter a new PIN", Toast.LENGTH_LONG).show();
                         break;
                     }
-                    /**
+                    /*
                      * PIN 2 missing
                      */
                     else if (pinB.isEmpty()) {
@@ -251,7 +250,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                         Toast.makeText(this, "Please verify the new PIN", Toast.LENGTH_LONG).show();
                         break;
                     }
-                    /**
+                    /*
                      * PINs do not match
                      */
                     else if (!pinA.equals(pinB)) {
@@ -259,7 +258,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                         Toast.makeText(this, "Sorry but your PINs do not match", Toast.LENGTH_SHORT).show();
                         break;
                     }
-                    /**
+                    /*
                      * Length of the PINs
                      */
                     else if ((pinA.length() < 4) && (pinB.length() < 4)) {
@@ -268,7 +267,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                                 Toast.LENGTH_SHORT).show();
                         break;
                     }
-                    /**
+                    /*
                      * Empty security question
                      */
                     else if (securityQuestion.isEmpty()) {
@@ -277,7 +276,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                                 Toast.LENGTH_SHORT).show();
                         break;
                     }
-                    /**
+                    /*
                      * Empty security response
                      */
                     else if (securityResponse.isEmpty()) {
@@ -285,14 +284,14 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                         Toast.makeText(this, "Please enter a response to your security question", Toast.LENGTH_SHORT).show();
                         break;
                     }
-                    /**
+                    /*
                      * PINs match
                      */
                     else if (pinA.equals(pinB)) {
 
                         matchedPIN = txtPIN2.getText().toString(); //get a copy
                     }
-                    /**
+                    /*
                      * User input validated
                      */
                     addRegInfo(); //add registration info
@@ -330,7 +329,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     @Override
     public void onSaveInstanceState(Bundle savedInstanceState) {
 
-        /**
+        /*
          * Save the selection of the spinner
          */
         savedInstanceState.putInt("spinner", spinner.getSelectedItemPosition());
@@ -346,7 +345,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
         try {
 
-            /**
+            /*
              * Save the spinner's selection
              */
             spinner = (Spinner) findViewById(R.id.register_spinner);
@@ -370,7 +369,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
         try {
 
-            /**
+            /*
              * Retrieve the saved spinner selection
              */
             spinner = (Spinner) findViewById(R.id.register_spinner);

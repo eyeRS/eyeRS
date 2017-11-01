@@ -1,6 +1,5 @@
 package com.github.eyers;
 
-import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.SQLException;
@@ -66,7 +65,6 @@ public class EyeRSDatabaseHelper extends SQLiteOpenHelper {
      */
     private static final String DB_NAME = "eyeRS.db";
     private static final int DB_VERSION = 1;
-    private ContentResolver eyeRSContentResolver;
 
     /**
      * We're calling the constructor of the SQLiteOpenHelper superclass,
@@ -76,7 +74,7 @@ public class EyeRSDatabaseHelper extends SQLiteOpenHelper {
      */
     public EyeRSDatabaseHelper(Context context) {
 
-        /**
+        /*
          * The null parameter is an advanced feature relating to CursorFactory
          */
         super(context, DB_NAME, null, DB_VERSION);
@@ -92,22 +90,22 @@ public class EyeRSDatabaseHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
 
         try {
-            /**
+            /*
              * Creates the Item table
              */
             db.execSQL(CREATE_ITEM_TABLE_QUERY);
             Log.e("DATABASE OPERATIONS", "...Item table created!");
-            /**
+            /*
              * Creates the Category table
              */
             db.execSQL(CREATE_CATEGORY_TABLE_QUERY);
             Log.e("DATABASE OPERATIONS", "...Category table created!");
-            /**
+            /*
              * Creates the User Registration table
              */
             db.execSQL(CREATE_USER_REGISTRATION_TABLE_QUERY);
             Log.e("DATABASE OPERATIONS", "...User Registration table created!");
-            /**
+            /*
              * Creates the Profile Settings table
              */
             db.execSQL(CREATE_USER_PROFILE_TABLE_QUERY);
@@ -144,7 +142,7 @@ public class EyeRSDatabaseHelper extends SQLiteOpenHelper {
      */
     public void insertDefaultCategoryBooks(SQLiteDatabase db) {
 
-        /**
+        /*
          * Define an object to contain the new values to insert
          */
         ContentValues bookValues = new ContentValues();
@@ -156,6 +154,7 @@ public class EyeRSDatabaseHelper extends SQLiteOpenHelper {
 
             field = R.drawable.class.getField("ic_white_book");
             bookIcon = field.toString();
+
         } catch (NoSuchFieldException e) {
             e.printStackTrace();
         }
@@ -165,7 +164,7 @@ public class EyeRSDatabaseHelper extends SQLiteOpenHelper {
         bookValues.put(CategoryInfo.CATEGORY_ICON, bookIcon);
 
 
-        /**
+        /*
          * Content resolver insert operation
          */
         db.insert(CategoryInfo.TABLE_NAME, null, bookValues);
@@ -176,7 +175,7 @@ public class EyeRSDatabaseHelper extends SQLiteOpenHelper {
      */
     public void insertDefaultCategoryClothes(SQLiteDatabase db) {
 
-        /**
+        /*
          * Define an object to contain the new values to insert
          */
         ContentValues clothesValues = new ContentValues();
@@ -198,7 +197,7 @@ public class EyeRSDatabaseHelper extends SQLiteOpenHelper {
         clothesValues.put(CategoryInfo.CATEGORY_DESC, "Formal/Casual");
         clothesValues.put(CategoryInfo.CATEGORY_ICON, clothingIcon);
 
-        /**
+        /*
          * Content resolver insert operation
          */
         db.insert(CategoryInfo.TABLE_NAME, null, clothesValues);
@@ -210,7 +209,7 @@ public class EyeRSDatabaseHelper extends SQLiteOpenHelper {
      */
     public void insertDefaultCategoryAccessories(SQLiteDatabase db) {
 
-        /**
+        /*
          * Define an object to contain the new values to insert
          */
         ContentValues accessoryValues = new ContentValues();
@@ -229,7 +228,7 @@ public class EyeRSDatabaseHelper extends SQLiteOpenHelper {
         accessoryValues.put(CategoryInfo.CATEGORY_DESC, "Collectibles");
         accessoryValues.put(CategoryInfo.CATEGORY_ICON, accessoryIcon);
 
-        /**
+        /*
          * Content resolver insert operation
          */
         db.insert(CategoryInfo.TABLE_NAME, null, accessoryValues);
@@ -241,7 +240,7 @@ public class EyeRSDatabaseHelper extends SQLiteOpenHelper {
      */
     public void insertDefaultCategoryGames(SQLiteDatabase db) {
 
-        /**
+        /*
          * Define an object to contain the new values to insert
          */
         ContentValues gameValues = new ContentValues();
@@ -261,7 +260,7 @@ public class EyeRSDatabaseHelper extends SQLiteOpenHelper {
         gameValues.put(CategoryInfo.CATEGORY_DESC, "Sport/Shooting/VR");
         gameValues.put(CategoryInfo.CATEGORY_ICON, gameIcon);
 
-        /**
+        /*
          * Content resolver insert operation
          */
         db.insert(CategoryInfo.TABLE_NAME, null, gameValues);
@@ -273,7 +272,7 @@ public class EyeRSDatabaseHelper extends SQLiteOpenHelper {
      */
     public void insertDefaultCategoryOther(SQLiteDatabase db) {
 
-        /**
+        /*
          * Define an object to contain the new values to insert
          */
         ContentValues otherValues = new ContentValues();
@@ -292,11 +291,10 @@ public class EyeRSDatabaseHelper extends SQLiteOpenHelper {
         otherValues.put(CategoryInfo.CATEGORY_DESC, "Random stuff");
         otherValues.put(CategoryInfo.CATEGORY_ICON, otherIcon);
 
-        /**
+        /*
          * Content resolver insert operation
          */
         db.insert(CategoryInfo.TABLE_NAME, null, otherValues);
-
     }
 
 } //end class EyeRSDatabaseHelper

@@ -99,18 +99,16 @@ public class ViewItemActivity extends AppCompatActivity implements View.OnClickL
 
     private void edit() {
 
-        /**
+        /*
          * Content resolver object
          */
         eyeRSContentResolver = this.getContentResolver();
-
-
     }
 
 
     private void promptDeletion() {
 
-        /**
+        /*
          * We need to specify an AlertDialog to prompt the user for deletion
          * to avoid accidental deletion
          */
@@ -142,7 +140,7 @@ public class ViewItemActivity extends AppCompatActivity implements View.OnClickL
      */
     private void deleteItem() {
 
-        /**
+        /*
          * Content resolver object
          */
         eyeRSContentResolver = this.getContentResolver();
@@ -163,7 +161,7 @@ public class ViewItemActivity extends AppCompatActivity implements View.OnClickL
 
         try {
 
-            /**
+            /*
              * Content resolver query
              */
             Cursor cursor = eyeRSContentResolver.query(
@@ -182,6 +180,7 @@ public class ViewItemActivity extends AppCompatActivity implements View.OnClickL
                      * Retrieves the id of the item to be deleted
                      */
                     idToDelete = cursor.getString(cursor.getColumnIndex(ItemInfo.ITEM_ID));
+
                 } else {
 
                     Log.e("ViewItemActivity", "Sorry that item doesn't exist");
@@ -193,13 +192,13 @@ public class ViewItemActivity extends AppCompatActivity implements View.OnClickL
             Log.e("ViewItemActivity", "Unable to retrieve item details");
         }
 
-        /**
+        /*
          * To delete the item simply specify the item's ID in the where clause
          */
         String deleteWhereClause = ItemInfo.ITEM_ID + " = ?";
         String[] deleteWhereArgs = {idToDelete};
 
-        /**
+        /*
          * Content Resolver delete operation
          */
         eyeRSContentResolver.delete(DBOperations.CONTENT_URI_ITEMS,

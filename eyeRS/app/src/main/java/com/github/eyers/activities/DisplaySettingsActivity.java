@@ -41,7 +41,7 @@ public class DisplaySettingsActivity extends AppCompatActivity implements OnClic
 
         fontTypeSpinner = (Spinner) findViewById(R.id.spinnerFontType);
 
-        /**
+        /*
          * Event handler for font type spinner
          */
         fontTypeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -129,7 +129,8 @@ public class DisplaySettingsActivity extends AppCompatActivity implements OnClic
 
 
     private void promptChangeThemeDefault() {
-        /**
+
+        /*
          * We need to specify an AlertDialog to prompt the user to change the app theme
          */
         AlertDialog.Builder builder = new AlertDialog.Builder(DisplaySettingsActivity.this);
@@ -145,7 +146,7 @@ public class DisplaySettingsActivity extends AppCompatActivity implements OnClic
                     public void onClick(DialogInterface dialog, int which) {
                         changeThemeDefault();
                     }
-                    /**
+                    /*
                      * User clicks on Cancel so do nothing
                      */
                 }).setNegativeButton("Cancel", null);
@@ -156,7 +157,7 @@ public class DisplaySettingsActivity extends AppCompatActivity implements OnClic
 
     private void promptChangeThemeRed() {
 
-        /**
+        /*
          * We need to specify an AlertDialog to prompt the user to change the app theme
          */
         AlertDialog.Builder builder = new AlertDialog.Builder(DisplaySettingsActivity.this);
@@ -172,7 +173,7 @@ public class DisplaySettingsActivity extends AppCompatActivity implements OnClic
                     public void onClick(DialogInterface dialog, int which) {
                         changeThemeRed();
                     }
-                    /**
+                    /*
                      * User clicks on Cancel so do nothing
                      */
                 }).setNegativeButton("Cancel", null);
@@ -183,7 +184,7 @@ public class DisplaySettingsActivity extends AppCompatActivity implements OnClic
 
     private void promptChangeThemeYellow() {
 
-        /**
+        /*
          * We need to specify an AlertDialog to prompt the user to change the app theme
          */
         AlertDialog.Builder builder = new AlertDialog.Builder(DisplaySettingsActivity.this);
@@ -199,7 +200,7 @@ public class DisplaySettingsActivity extends AppCompatActivity implements OnClic
                     public void onClick(DialogInterface dialog, int which) {
                         changeThemeYellow();
                     }
-                    /**
+                    /*
                      * User clicks on Cancel so do nothing
                      */
                 }).setNegativeButton("Cancel", null);
@@ -210,7 +211,7 @@ public class DisplaySettingsActivity extends AppCompatActivity implements OnClic
 
     private void promptChangeThemeGreen() {
 
-        /**
+        /*
          * We need to specify an AlertDialog to prompt the user to change the app theme
          */
         AlertDialog.Builder builder = new AlertDialog.Builder(DisplaySettingsActivity.this);
@@ -226,7 +227,7 @@ public class DisplaySettingsActivity extends AppCompatActivity implements OnClic
                     public void onClick(DialogInterface dialog, int which) {
                         changeThemeGreen();
                     }
-                    /**
+                    /*
                      * User clicks on Cancel so do nothing
                      */
                 }).setNegativeButton("Cancel", null);
@@ -240,7 +241,6 @@ public class DisplaySettingsActivity extends AppCompatActivity implements OnClic
         try {
 
             Utils.changeToTheme(this, Utils.App_Theme);
-
             Intent intent = getBaseContext().getPackageManager()
                     .getLaunchIntentForPackage(getBaseContext().getPackageName());
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);

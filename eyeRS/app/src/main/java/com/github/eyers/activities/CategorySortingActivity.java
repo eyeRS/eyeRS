@@ -33,7 +33,7 @@ public class CategorySortingActivity extends AppCompatActivity {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 
-                /** If the user wishes to sort alphabetically */
+                /* If the user wishes to sort alphabetically */
                 if (isChecked) {
 
                     try {
@@ -47,7 +47,7 @@ public class CategorySortingActivity extends AppCompatActivity {
                         Log.e("CategorySort switch", ex.getMessage(), ex);
                     }
                 }
-                /** If the user does not wish to sort alphabetically */
+                /* If the user does not wish to sort alphabetically */
                 if (!isChecked) {
 
                     try {
@@ -69,7 +69,7 @@ public class CategorySortingActivity extends AppCompatActivity {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 
-                /** If the user wishes to sort by the most recently added items */
+                /* If the user wishes to sort by the most recently added items */
                 if (isChecked) {
 
                     try {
@@ -84,7 +84,7 @@ public class CategorySortingActivity extends AppCompatActivity {
                     }
                 }
 
-                /** If the user does not wish to sort alphabetically */
+                /* If the user does not wish to sort alphabetically */
                 if (!isChecked) {
 
                     try {

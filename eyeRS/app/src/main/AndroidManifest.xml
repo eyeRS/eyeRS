@@ -78,7 +78,6 @@
             android:label="@string/title_activity_slideshow"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="adjustPan" />
-        android:windowSoftInputMode="adjustPan">
         <activity
             android:name=".activities.RegisterActivity"
             android:label="@string/title_activity_register"
@@ -129,14 +128,13 @@
             android:windowSoftInputMode="adjustPan">
 
         </activity>
-
         <provider
-            android:name=".DBOperations"
+            android:name="com.github.eyers.DBOperations"
             android:authorities="com.github.eyers.DBOperations"
             android:exported="true"
             android:syncable="true">
-            .</provider>
 
+        </provider>
         <activity
             android:name=".activities.CategorySortingActivity"
             android:label="@string/title_activity_sorting"
@@ -159,6 +157,7 @@
             android:theme="@style/AppTheme.NoActionBar">
 
         </activity>
+
     </application>
 
 </manifest>

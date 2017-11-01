@@ -61,7 +61,6 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
     /**
      * Categories list declaration
      */
-    public List<String> popCategories;
     private EditText txtTitle;
     private EditText txtDesc;
     private Spinner categorySpinner;
@@ -127,17 +126,17 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
     /**
      * Method to populate the spinner.
      */
-    public void populateSpinner() {
+    private void populateSpinner() {
 
         try {
 
-            popCategories = getCategoriesList();
+            List<String> categoriesList = categoriesList();
 
             /*
              * Spinner adapter
              */
             categoriesAdapter = new ArrayAdapter<String>(this,
-                    android.R.layout.simple_spinner_item, popCategories);
+                    android.R.layout.simple_spinner_item, categoriesList);
 
             this.categorySpinner.setAdapter(categoriesAdapter);
 
@@ -150,9 +149,9 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
      * Method returns the categories result set of the SQL query and adds elements into a
      * list structure for the spinner.
      */
-    public List<String> getCategoriesList() {
+    private List<String> categoriesList() {
 
-        List<String> addCategories = new ArrayList<String>();
+        List<String> addCategories = new ArrayList<>();
 
         /*
          * Content resolver object
@@ -167,10 +166,9 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
         };
 
         String whereClause = "";
-
         String[] whereArgs = {};
-
         String sortOrder = CategoryInfo.CATEGORY_NAME;
+        TreeSet<String> data = new TreeSet<>();
 
         try {
 
@@ -184,13 +182,17 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
                     whereArgs,
                     sortOrder);
 
-            TreeSet<String> data = new TreeSet<>();
+            if (!cursor.moveToFirst()) {
 
-            if (cursor.moveToFirst()) {
+                Toast.makeText(this, "Oops something happened there!", Toast.LENGTH_SHORT).show();
+                Log.e("NewItemActivity", "Null Cursor object");
+
+            }
+            else if (cursor.moveToFirst()) {
 
                 do {
 
-                    data.add(cursor.getString(1));
+                    data.add(cursor.getString(cursor.getColumnIndex(CategoryInfo.CATEGORY_NAME)));
 
                 } while (cursor.moveToNext());
 
@@ -201,16 +203,15 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
                 Log.e("NewItemActivity", "Empty categories list");
             }
 
-            addCategories.addAll(data);
-
         } catch (Exception ex) {
 
             Log.e("Categories list", ex.getMessage(), ex);
         }
 
+        addCategories.addAll(data);
+
         return addCategories; //return the list of categories
     }
-
 
     /**
      * Method allows us to save the activity's selections just before the app gets paused.
@@ -1096,6 +1097,5 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
         super.startActivity(new Intent(this, MainActivity.class));
         super.finish();
     }
-
 
 } //end class NewItemActivity

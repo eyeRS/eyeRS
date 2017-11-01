@@ -85,7 +85,7 @@ public class SetPINActivity extends AppCompatActivity implements View.OnClickLis
      */
     private Spinner spinner;
     /**
-     * Content Resolver and db declarations.
+     * Content Resolver declarations
      */
     private ContentResolver eyeRSContentResolver;
 
@@ -114,7 +114,7 @@ public class SetPINActivity extends AppCompatActivity implements View.OnClickLis
         findViewById(R.id.btnClearPIN).setOnClickListener(this);
 
         if (savedInstanceState != null) {
-            /**
+            /*
              * Retrieve the saved state of the spinner before the app was destroyed
              */
             spinner.setSelection(savedInstanceState.getInt("spinner"));
@@ -148,7 +148,7 @@ public class SetPINActivity extends AppCompatActivity implements View.OnClickLis
                     email = txtEmail.getText().toString();
                     securityResponse = txtResponse.getText().toString();
 
-                    /**
+                    /*
                      * Empty username
                      */
                     if (username.isEmpty()) {
@@ -156,7 +156,7 @@ public class SetPINActivity extends AppCompatActivity implements View.OnClickLis
                         Toast.makeText(this, "Please enter a valid email", Toast.LENGTH_SHORT).show();
                         break;
                     }
-                    /**
+                    /*
                      * Empty email
                      */
                     else if (email.isEmpty()) {
@@ -164,7 +164,7 @@ public class SetPINActivity extends AppCompatActivity implements View.OnClickLis
                         Toast.makeText(this, "Please enter a valid email address.", Toast.LENGTH_LONG).show();
                         break;
                     }
-                    /**
+                    /*
                      * Email validation
                      */
                     else if (!validateEmailAddress(email)) {
@@ -172,7 +172,7 @@ public class SetPINActivity extends AppCompatActivity implements View.OnClickLis
                         Toast.makeText(this, "Please enter a valid email address.", Toast.LENGTH_LONG).show();
                         break;
                     }
-                    /**
+                    /*
                      * PIN 1 is empty
                      */
                     else if (pinA.isEmpty()) {
@@ -180,7 +180,7 @@ public class SetPINActivity extends AppCompatActivity implements View.OnClickLis
                         Toast.makeText(this, "Please enter a new PIN", Toast.LENGTH_LONG).show();
                         break;
                     }
-                    /**
+                    /*
                      * PIN 2 is empty
                      */
                     else if (pinB.isEmpty()) {
@@ -188,7 +188,7 @@ public class SetPINActivity extends AppCompatActivity implements View.OnClickLis
                         Toast.makeText(this, "Please confirm your new PIN", Toast.LENGTH_LONG).show();
                         break;
                     }
-                    /**
+                    /*
                      * PINs do not match
                      */
                     else if (!pinA.equals(pinB)) {
@@ -197,7 +197,7 @@ public class SetPINActivity extends AppCompatActivity implements View.OnClickLis
                         break;
 
                     }
-                    /**
+                    /*
                      * Empty security question
                      */
                     else if (securityQuestion.isEmpty()) {
@@ -206,7 +206,7 @@ public class SetPINActivity extends AppCompatActivity implements View.OnClickLis
                                 Toast.LENGTH_SHORT).show();
                         break;
                     }
-                    /**
+                    /*
                      * Empty security response
                      */
                     else if (securityResponse.isEmpty()) {
@@ -215,7 +215,7 @@ public class SetPINActivity extends AppCompatActivity implements View.OnClickLis
                                 Toast.LENGTH_SHORT).show();
                         break;
                     }
-                    /**
+                    /*
                      * No matching PIN
                      */
                     else if (matchedPIN.isEmpty()) {
@@ -224,12 +224,12 @@ public class SetPINActivity extends AppCompatActivity implements View.OnClickLis
                                 Toast.LENGTH_SHORT).show();
                         break;
                     }
-                    /**
+                    /*
                      * PINs match so get a copy
                      */
                     else if (pinA.equals(pinB)) {
 
-                        /**
+                        /*
                          * Get a copy of the matched PINs
                          */
                         matchedPIN = txtPIN2.getText().toString();
@@ -250,7 +250,7 @@ public class SetPINActivity extends AppCompatActivity implements View.OnClickLis
      */
     public void updateLoginInfo() {
 
-        /**
+        /*
          * Array of columns to be included for each row retrieved
          */
         String[] projection = {UserRegistrationInfo.REG_ID,
@@ -264,15 +264,14 @@ public class SetPINActivity extends AppCompatActivity implements View.OnClickLis
                 + "' AND " + UserRegistrationInfo.SECURITY_RESPONSE + " = '" + securityResponse + "'";
 
         String[] whereArgs = {};
-
         String sortOrder = "";
 
-        /**
+        /*
          * Content resolver object
          */
         eyeRSContentResolver = this.getContentResolver();
 
-        /**
+        /*
          * Cursor object to retrieve query results
          */
         Cursor cursor = eyeRSContentResolver.query(DBOperations.CONTENT_URI_USER_REG,
@@ -286,7 +285,7 @@ public class SetPINActivity extends AppCompatActivity implements View.OnClickLis
 
         } else if (cursor.moveToFirst()) {
 
-            /**
+            /*
              * Validating input for security purposes
              */
             if (!(cursor.getString(cursor.getColumnIndex(UserRegistrationInfo.USER_NAME))
@@ -294,7 +293,7 @@ public class SetPINActivity extends AppCompatActivity implements View.OnClickLis
 
                 Toast.makeText(this, "Please enter the correct username", Toast.LENGTH_SHORT).show();
             }
-            /**
+            /*
              * Invalid security question
              */
             else if (!(cursor.getString(cursor.getColumnIndex(UserRegistrationInfo.SECURITY_QUESTION))
@@ -303,7 +302,7 @@ public class SetPINActivity extends AppCompatActivity implements View.OnClickLis
                 Toast.makeText(this, "Please select the security question you specified during Registration",
                         Toast.LENGTH_SHORT).show();
             }
-            /**
+            /*
              * Invalid security response
              */
             else if (!(cursor.getString(cursor.getColumnIndex(UserRegistrationInfo.SECURITY_RESPONSE))
@@ -311,7 +310,7 @@ public class SetPINActivity extends AppCompatActivity implements View.OnClickLis
 
                 Toast.makeText(this, "Your security response is invalid", Toast.LENGTH_SHORT).show();
             }
-            /**
+            /*
              * The username, security question & security response used during
              * the Registration process will be used to validate PIN resetting.
              * User can only change a PIN if a matching record exists from the
@@ -324,18 +323,15 @@ public class SetPINActivity extends AppCompatActivity implements View.OnClickLis
                     && (cursor.getString(cursor.getColumnIndex(UserRegistrationInfo.SECURITY_RESPONSE))
                     .equals(securityResponse))) {
 
-                /**
-                 *
-                 */
+
                 String whereClauseUpdate = UserRegistrationInfo.USER_NAME + " = '"
                         + username + "'";
 
-                /**
+                /*
                  * Define an object to contain the new values to insert
                  */
                 ContentValues userRegValues = new ContentValues();
-
-                /**
+                /*
                  * Get the new values to be updated
                  */
                 userRegValues.put(UserRegistrationInfo.EMAIL_ADD, email);
@@ -352,7 +348,7 @@ public class SetPINActivity extends AppCompatActivity implements View.OnClickLis
                             Toast.LENGTH_SHORT).show();
                     Log.e("DATABASE OPERATIONS", "...Credentials updated successfully!");
 
-                    /**
+                    /*
                      * Then clear the fields
                      */
                     this.txtUsername.setText("");
@@ -360,8 +356,7 @@ public class SetPINActivity extends AppCompatActivity implements View.OnClickLis
                     this.txtPIN1.setText("");
                     this.txtPIN2.setText("");
                     this.txtResponse.setText("");
-
-                    /**
+                    /*
                      * Once credentials are successfully updated,
                      * navigate user back to the Login screen
                      */
@@ -433,7 +428,7 @@ public class SetPINActivity extends AppCompatActivity implements View.OnClickLis
 
         try {
 
-            /**
+            /*
              * Save the spinner's selection
              */
             spinner = (Spinner) findViewById(R.id.setPin_spinner);
@@ -455,7 +450,7 @@ public class SetPINActivity extends AppCompatActivity implements View.OnClickLis
 
         try {
 
-            /**
+            /*
              * Retrieve the saved spinner selection
              */
             spinner = (Spinner) findViewById(R.id.setPin_spinner);

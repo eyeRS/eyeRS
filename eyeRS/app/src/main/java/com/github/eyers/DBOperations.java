@@ -63,7 +63,7 @@ public class DBOperations extends ContentProvider {
      */
     private static final UriMatcher uriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
 
-    /**
+    /*
      * Add the URIs for the respective db tables.
      */
     static {
@@ -108,7 +108,7 @@ public class DBOperations extends ContentProvider {
     @Override
     public boolean onCreate() {
 
-        /**
+        /*
          * Get access to the database helper
          */
         eyeRSDatabaseHelper = new EyeRSDatabaseHelper(getContext());
@@ -157,7 +157,8 @@ public class DBOperations extends ContentProvider {
                 Log.e("Query Operation", "Unable to retrieve data");
         }
 
-        Cursor cursor = queryBuilder.query(eyeRSDatabaseHelper.getReadableDatabase(),
+        Cursor cursor = queryBuilder.query(
+                eyeRSDatabaseHelper.getReadableDatabase(),
                 projection,
                 whereClause,
                 whereArgs,
@@ -165,7 +166,7 @@ public class DBOperations extends ContentProvider {
                 null,
                 sortOrder);
 
-        /**
+        /*
          * If we want to be notified of any changes
          */
         cursor.setNotificationUri(getContext().getContentResolver(), uri);

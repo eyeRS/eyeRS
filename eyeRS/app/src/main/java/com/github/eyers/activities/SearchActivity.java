@@ -24,7 +24,7 @@ public class SearchActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        /**
+        /*
          * From here on copy the code to the necessary activities for functionality of the search
          * function.
          */

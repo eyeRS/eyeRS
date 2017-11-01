@@ -131,8 +131,12 @@ public final class EyeRS {
         String[] whereArgs = {};
         String sortOrder = CategoryInfo.CATEGORY_NAME;
 
-        Cursor cursor = eyeRSContentResolver.query(DBOperations.CONTENT_URI_CATEGORIES,
-                projection, whereClause, whereArgs, sortOrder);
+        Cursor cursor = eyeRSContentResolver.query(
+                DBOperations.CONTENT_URI_CATEGORIES,
+                projection,
+                whereClause,
+                whereArgs,
+                sortOrder);
 
         TreeSet<ItemLabel> data = new TreeSet<>();
 
@@ -188,11 +192,17 @@ public final class EyeRS {
         String[] whereArgs = {};
         String sortOrder = ItemInfo.ITEM_NAME;
 
-        Cursor cursor = eyeRSContentResolver.query(DBOperations.CONTENT_URI_ITEMS,
-                projection, whereClause, whereArgs, sortOrder);
+        Cursor cursor = eyeRSContentResolver.query(
+                DBOperations.CONTENT_URI_ITEMS,
+                projection,
+                whereClause,
+                whereArgs,
+                sortOrder);
 
         if (cursor.moveToFirst()) {
+
             do {
+
                 Bitmap decodedByte;
                 try {
                     byte[] decodedString = Base64.decode(cursor.getString(4), Base64.DEFAULT);
@@ -207,7 +217,9 @@ public final class EyeRS {
             cursor.close();
 
         } else {
+
             if (activity == null) {
+
                 Toast.makeText(activity, "Nothing to display.", Toast.LENGTH_SHORT).show();
             }
         }
