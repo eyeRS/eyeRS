@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.Loader;
 import android.content.res.Configuration;
 import android.database.Cursor;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -41,7 +42,7 @@ import java.util.List;
  */
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener,
         View.OnClickListener, LoaderManager.LoaderCallbacks<Cursor>, OnItemClickListener {
-
+    MediaPlayer exitMsg;
     /**
      * Fields & other declarations
      */
@@ -63,7 +64,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
+        exitMsg=MediaPlayer.create(MainActivity.this, R.raw.byemessage);
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
 
         navigationView = (NavigationView) findViewById(R.id.nav_view);
@@ -290,8 +291,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 }
                 break;
                 case R.id.nav_exit:
-
-                    //put exit soun here
                     promptExit();
                     break;
             }
@@ -322,9 +321,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                      */
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-
+                        exitMsg.start();
                         /* Calls the method to exit the app when user clicks the Ok button */
                         exit();
+
                     }
                     /*
                      * User clicks on Cancel so abort the operation

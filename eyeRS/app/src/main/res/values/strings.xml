@@ -91,7 +91,7 @@
 
     <!-- Sound Settings -->
     <string name="WelcomeMsg">Welcome Message</string>
-    <string name="TouchMsg">Touch Sounds</string>
+    <string name="ByeMsg">Bye Message</string>
 
     <!-- Security Settings -->
     <string name="pref_header_security">Security</string>
