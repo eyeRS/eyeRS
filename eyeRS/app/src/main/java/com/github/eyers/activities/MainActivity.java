@@ -340,9 +340,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
      * Closes the app.
      */
     private void exit() {
-
         try {
-
             Intent intent = new Intent(Intent.ACTION_MAIN);
             intent.addCategory(Intent.CATEGORY_HOME);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
