@@ -1,3 +1,188 @@
+commit a13fe664a5ba5f08df2c61ce5172dcb2a2e9ba74
+Author: Matthew 'siD' Van der Bijl <matthewvdbijl@gmail.com>
+Date:   Wed Nov 1 09:01:20 2017 +0200
+
+    Added LibGDX android preference code. Might remove the base interface and just use the Android Preference class.
+    
+    https://github.com/libgdx/libgdx/blob/master/gdx/src/com/badlogic/gdx/Preferences.java
+    https://github.com/libgdx/libgdx/blob/master/backends/gdx-backend-android/src/com/badlogic/gdx/backends/android/AndroidPreferences.java
+
+commit c2aefb771a1111ab7abbf7935558c36bb2cbfac0
+Author: Matthew 'siD' Van der Bijl <matthewvdbijl@gmail.com>
+Date:   Mon Oct 30 12:10:21 2017 +0200
+
+    testing hot fix
+
+commit 6791f28e9d32a1169688b8a8c7612e8ba79d9d13
+Author: Nathan Shava <nathantendai.shava@gmail.com>
+Date:   Mon Oct 30 09:18:22 2017 +0200
+
+    Exit dialog feature
+    
+    # Conflicts:
+    #       eyeRS/app/src/main/java/com/github/eyers/MainActivity.java
+    #       eyeRS/app/src/main/res/layout/activity_main.xml
+    #       eyeRS/app/src/main/res/values/strings.xml
+
+commit f84595ddf693978c8ef8da4b0d5aa3d220ba7204
+Author: Nathan Shava <nathantendai.shava@gmail.com>
+Date:   Mon Oct 30 00:24:00 2017 +0200
+
+    Exit dialog feature
+    
+    # Conflicts:
+    #       eyeRS/app/src/main/java/com/github/eyers/MainActivity.java
+    #       eyeRS/app/src/main/res/layout/activity_main.xml
+    #       eyeRS/app/src/main/res/values/strings.xml
+
+commit 42585f9f79ed89e374a8db09f72fc21d0bc77f0a
+Author: Nathan Shava <nathantendai.shava@gmail.com>
+Date:   Thu Oct 26 22:15:40 2017 +0200
+
+    Remove unused drawables
+    
+    # Conflicts:
+    #       eyeRS/app/src/main/java/com/github/eyers/MainActivity.java
+    #       eyeRS/app/src/main/res/layout/activity_main.xml
+    #       eyeRS/app/src/main/res/values/strings.xml
+
+commit 2af8e33506893bdd56f9bb5f38f73cb9e643fb9b
+Author: Nathan Shava <nathantendai.shava@gmail.com>
+Date:   Thu Oct 26 21:43:03 2017 +0200
+
+    Hot fix
+    
+    # Conflicts:
+    #       eyeRS/app/src/main/java/com/github/eyers/MainActivity.java
+    #       eyeRS/app/src/main/res/layout/activity_main.xml
+    #       eyeRS/app/src/main/res/values/strings.xml
+
+commit 1254c879601857454b15a462672fac1b64ca940a
+Author: Nathan Shava <nathantendai.shava@gmail.com>
+Date:   Thu Oct 26 09:11:12 2017 +0200
+
+    Hot fixes
+    
+    # Conflicts:
+    #       eyeRS/app/src/main/java/com/github/eyers/MainActivity.java
+    #       eyeRS/app/src/main/res/layout/activity_main.xml
+    #       eyeRS/app/src/main/res/values/strings.xml
+
+commit e3d2a31411ce912960c51aa4615f3a459349997e
+Author: Matthew 'siD' Van der Bijl <matthewvdbijl@gmail.com>
+Date:   Thu Oct 26 09:04:16 2017 +0200
+
+    fixed slideshow
+
+commit ee4704ac3496d9d5feb1bdfd49c629e59fd9b95d
+Author: Matthew 'siD' Van der Bijl <matthewvdbijl@gmail.com>
+Date:   Thu Oct 26 08:33:17 2017 +0200
+
+    updatedd share and trade messages
+
+commit ba297c9d1957fd22e305a5af580da009f8b7d9e6
+Merge: 780e948 3df9f19
+Author: Matthew 'siD' Van der Bijl <matthewvdbijl@gmail.com>
+Date:   Thu Oct 26 08:29:30 2017 +0200
+
+    Merge remote-tracking branch 'origin/master'
+
+commit 3df9f196f2e51c5f95e77b7708056dc59a9b8f68
+Author: Nathan Shava <nathantendai.shava@gmail.com>
+Date:   Wed Oct 25 23:40:28 2017 +0200
+
+    User validation
+    
+    # Conflicts:
+    #       eyeRS/app/src/main/java/com/github/eyers/MainActivity.java
+    #       eyeRS/app/src/main/res/layout/activity_main.xml
+    #       eyeRS/app/src/main/res/values/strings.xml
+
+commit 92e116efdaf79331e6e2b91ad7befb561c8ad08f
+Author: Nathan Shava <nathantendai.shava@gmail.com>
+Date:   Wed Oct 25 22:41:49 2017 +0200
+
+    Register validation
+    
+    # Conflicts:
+    #       eyeRS/app/src/main/java/com/github/eyers/MainActivity.java
+    #       eyeRS/app/src/main/res/layout/activity_main.xml
+    #       eyeRS/app/src/main/res/values/strings.xml
+
+commit 780e948ca373667541a312737fb60d27922a9e59
+Merge: e134195 aa7c158
+Author: Matthew 'siD' Van der Bijl <matthewvdbijl@gmail.com>
+Date:   Wed Oct 25 22:02:19 2017 +0200
+
+    Merge branch 'master' of https://github.com/eyers/eyers
+
+commit aa7c158802154644d3b9c7dded1bc071984ceae8
+Author: Nathan Shava <nathantendai.shava@gmail.com>
+Date:   Wed Oct 25 21:52:40 2017 +0200
+
+    Delete & App Theme Dialogs
+    
+    # Conflicts:
+    #       eyeRS/app/src/main/java/com/github/eyers/MainActivity.java
+    #       eyeRS/app/src/main/res/layout/activity_main.xml
+    #       eyeRS/app/src/main/res/values/strings.xml
+
+commit e134195be8e2cf4d4ed6b7e19cbdb630c95ebd70
+Author: Matthew 'siD' Van der Bijl <matthewvdbijl@gmail.com>
+Date:   Wed Oct 25 21:32:43 2017 +0200
+
+    implemented category image, still need to size
+
+commit 97286764211f782ec72da1f2b656031f415bff67
+Author: Nathan Shava <nathantendai.shava@gmail.com>
+Date:   Wed Oct 25 14:45:27 2017 +0200
+
+    Hot fix
+    
+    # Conflicts:
+    #       eyeRS/app/src/main/java/com/github/eyers/MainActivity.java
+    #       eyeRS/app/src/main/res/layout/activity_main.xml
+    #       eyeRS/app/src/main/res/values/strings.xml
+
+commit 440712d801050dfb89eb19c5f6350f89464ec7e2
+Author: Nathan Shava <nathantendai.shava@gmail.com>
+Date:   Wed Oct 25 12:32:56 2017 +0200
+
+    Item Delete operation
+    
+    # Conflicts:
+    #       eyeRS/app/src/main/java/com/github/eyers/MainActivity.java
+    #       eyeRS/app/src/main/res/layout/activity_main.xml
+    #       eyeRS/app/src/main/res/values/strings.xml
+
+commit 1e9966d24ee96310f5b36f219005e186a1afa7ed
+Author: Nathan Shava <nathantendai.shava@gmail.com>
+Date:   Wed Oct 25 00:55:23 2017 +0200
+
+    Delete update
+    
+    # Conflicts:
+    #       eyeRS/app/src/main/java/com/github/eyers/MainActivity.java
+    #       eyeRS/app/src/main/res/layout/activity_main.xml
+    #       eyeRS/app/src/main/res/values/strings.xml
+
+commit 7ca96d6801a891c39fea97f30bb3bee7533f55ab
+Author: Nathan Shava <nathantendai.shava@gmail.com>
+Date:   Tue Oct 24 23:24:45 2017 +0200
+
+    Text size fix
+    
+    # Conflicts:
+    #       eyeRS/app/src/main/java/com/github/eyers/MainActivity.java
+    #       eyeRS/app/src/main/res/layout/activity_main.xml
+    #       eyeRS/app/src/main/res/values/strings.xml
+
+commit 95057a45237f5890fad8347e05e783cd7f348b86
+Author: Matthew 'siD' Van der Bijl <matthewvdbijl@gmail.com>
+Date:   Tue Oct 24 23:15:29 2017 +0200
+
+    worked on search bar
+
 commit d527c51b9758a426ed718250db9ccdd375226e87
 Author: Nathan Shava <nathantendai.shava@gmail.com>
 Date:   Tue Oct 24 22:54:08 2017 +0200
