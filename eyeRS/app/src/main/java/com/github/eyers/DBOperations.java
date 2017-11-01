@@ -234,6 +234,7 @@ public class DBOperations extends ContentProvider {
         switch (uriType) {
 
             case CATEGORIES:
+                deletedRows = db.delete(CATEGORIES_TABLE, whereClause, whereArgs);
                 break;
             case ITEMS:
                 deletedRows = db.delete(ITEMS_TABLE, whereClause, whereArgs);

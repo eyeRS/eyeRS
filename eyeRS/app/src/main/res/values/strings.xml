@@ -60,7 +60,7 @@
 
     <!--Strings related to New Activity -->
 
-    <string name="txtItemTitle">Name of item</string>
+    <string name="txtItemTitle">Item name</string>
     <string name="txtItemDesc">Item description</string>
     <string name="btnAddItem">Add</string>
     <string name="txtSelectCategory">Select a category using the drop-down list</string>
@@ -97,10 +97,8 @@
     <string name="pref_header_security">Security</string>
 
     <!-- Display Settings -->
-    <string name="selectChangeTheme">Change App Themes</string>
-    <string name="selectChangetheme">Choose a theme color below</string>
-    <string name="selectChangeFont">Change App Fonts</string>
-    <string name="selectChangefont">Choose a font style from the drop-down list</string>
+    <string name="selectChangetheme">Select a theme color below</string>
+    <string name="selectChangefont">Select a font style from the drop-down list</string>
 
     <!-- Profile Settings -->
     <string name="pref_header_profile">Profile</string>
