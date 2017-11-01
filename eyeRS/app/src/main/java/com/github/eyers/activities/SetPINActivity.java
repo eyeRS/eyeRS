@@ -138,6 +138,7 @@ public class SetPINActivity extends AppCompatActivity implements View.OnClickLis
                     this.txtUsername.setText("");
                     this.txtPIN1.setText("");
                     this.txtPIN2.setText("");
+                    this.txtEmail.setText("");
                     this.txtResponse.setText("");
                     break;
                 case R.id.btnResetPIN:
