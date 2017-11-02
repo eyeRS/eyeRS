@@ -30,7 +30,7 @@ MediaPlayer mpb;
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         mpw=MediaPlayer.create(SoundSettings.this, R.raw.welcomemsg);
-        mpb=MediaPlayer.create(SoundSettings.this, R.raw.byemessage);
+        mpb=MediaPlayer.create(SoundSettings.this, R.raw.bye);
 
         final Switch welcomeSwitch = (Switch) findViewById(R.id.welcomeSwitch);
         welcomeSwitch.setChecked(true);
