@@ -1,4 +1,4 @@
-package com.github.eyers.activities;
+package com.github.eyers.activities.settings;
 
 import android.content.ContentResolver;
 import android.content.DialogInterface;
@@ -17,7 +17,8 @@ import android.widget.Toast;
 
 import com.github.eyers.DBOperations;
 import com.github.eyers.R;
-import com.github.eyers.Utils;
+import com.github.eyers.activities.MainActivity;
+import com.github.eyers.activities.NewCategoryActivity;
 import com.github.eyers.info.CategoryInfo;
 
 /**
@@ -38,7 +39,7 @@ public class CategoryManagementSettings extends AppCompatActivity implements OnI
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Utils.onActivityCreateSetTheme(this);
+        SettingUtilities.onActivityCreateSetTheme(this);
         setContentView(R.layout.activity_category_management_settings);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);

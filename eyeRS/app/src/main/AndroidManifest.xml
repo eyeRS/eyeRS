@@ -97,27 +97,27 @@
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".activities.AppSettingsActivity"
+            android:name=".activities.settings.AppSettingsActivity"
             android:label="@string/title_activity_app_settings"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".activities.DisplaySettingsActivity"
+            android:name=".activities.settings.DisplaySettingsActivity"
             android:label="@string/title_activity_display_settings"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".activities.SoundSettings"
+            android:name=".activities.settings.SoundSettings"
             android:label="@string/title_activity_sound_settings"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".activities.CategoryManagementSettings"
+            android:name=".activities.settings.CategoryManagementSettings"
             android:label="@string/title_activity_category_mgmt_settings"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".activities.ItemManagementSettings"
+            android:name=".activities.settings.ItemManagementSettings"
             android:label="@string/title_activity_item_mgmt_settings"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="adjustPan">

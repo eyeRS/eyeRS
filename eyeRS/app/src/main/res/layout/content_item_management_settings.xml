@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.github.eyers.activities.ItemManagementSettings"
+    tools:context="com.github.eyers.activities.settings.ItemManagementSettings"
     tools:showIn="@layout/activity_item_management_settings">
 
     <ScrollView

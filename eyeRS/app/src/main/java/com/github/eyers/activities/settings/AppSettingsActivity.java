@@ -1,4 +1,4 @@
-package com.github.eyers.activities;
+package com.github.eyers.activities.settings;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,7 +11,9 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
 import com.github.eyers.R;
-import com.github.eyers.Utils;
+import com.github.eyers.activities.AboutActivity;
+import com.github.eyers.activities.HelpActivity;
+import com.github.eyers.activities.SetPINActivity;
 
 /**
  * This class will contain a list of settings in which the user can
@@ -27,7 +29,7 @@ public class AppSettingsActivity extends AppCompatActivity implements OnItemClic
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Utils.onActivityCreateSetTheme(this);
+        SettingUtilities.onActivityCreateSetTheme(this);
         setContentView(R.layout.activity_app_settings);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);

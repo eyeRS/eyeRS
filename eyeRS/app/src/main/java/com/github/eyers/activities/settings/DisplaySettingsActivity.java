@@ -1,4 +1,4 @@
-package com.github.eyers.activities;
+package com.github.eyers.activities.settings;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -15,7 +15,6 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.github.eyers.R;
-import com.github.eyers.Utils;
 
 
 /**
@@ -28,7 +27,7 @@ public class DisplaySettingsActivity extends AppCompatActivity implements OnClic
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Utils.onActivityCreateSetTheme(this);
+        SettingUtilities.onActivityCreateSetTheme(this);
         setContentView(R.layout.activity_display_settings);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -233,7 +232,7 @@ public class DisplaySettingsActivity extends AppCompatActivity implements OnClic
 
         try {
 
-            Utils.changeToTheme(this, Utils.App_Theme);
+            SettingUtilities.changeToTheme(this, SettingUtilities.App_Theme);
             Intent intent = getBaseContext().getPackageManager()
                     .getLaunchIntentForPackage(getBaseContext().getPackageName());
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -249,7 +248,7 @@ public class DisplaySettingsActivity extends AppCompatActivity implements OnClic
 
         try {
 
-            Utils.changeToTheme(this, Utils.AppTheme_Red);
+            SettingUtilities.changeToTheme(this, SettingUtilities.AppTheme_Red);
             Intent intent = getBaseContext().getPackageManager()
                     .getLaunchIntentForPackage(getBaseContext().getPackageName());
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -265,7 +264,7 @@ public class DisplaySettingsActivity extends AppCompatActivity implements OnClic
 
         try {
 
-            Utils.changeToTheme(this, Utils.AppTheme_Yellow);
+            SettingUtilities.changeToTheme(this, SettingUtilities.AppTheme_Yellow);
             Intent intent = getBaseContext().getPackageManager()
                     .getLaunchIntentForPackage(getBaseContext().getPackageName());
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -281,7 +280,7 @@ public class DisplaySettingsActivity extends AppCompatActivity implements OnClic
 
         try {
 
-            Utils.changeToTheme(this, Utils.AppTheme_Green);
+            SettingUtilities.changeToTheme(this, SettingUtilities.AppTheme_Green);
             Intent intent = getBaseContext().getPackageManager()
                     .getLaunchIntentForPackage(getBaseContext().getPackageName());
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);

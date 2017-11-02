@@ -35,7 +35,7 @@ import android.widget.Toast;
 import com.github.eyers.DBOperations;
 import com.github.eyers.EyeRS;
 import com.github.eyers.R;
-import com.github.eyers.Utils;
+import com.github.eyers.activities.settings.SettingUtilities;
 import com.github.eyers.info.CategoryInfo;
 import com.github.eyers.info.ItemInfo;
 
@@ -79,7 +79,7 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Utils.onActivityCreateSetTheme(this);
+        SettingUtilities.onActivityCreateSetTheme(this);
         setContentView(R.layout.activity_new_item);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);

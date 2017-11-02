@@ -8,7 +8,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.github.eyers.R;
-import com.github.eyers.Utils;
+import com.github.eyers.activities.settings.SettingUtilities;
 import com.miguelcatalan.materialsearchview.MaterialSearchView;
 
 public class SearchActivity extends AppCompatActivity {
@@ -20,7 +20,7 @@ public class SearchActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Utils.onActivityCreateSetTheme(this);
+        SettingUtilities.onActivityCreateSetTheme(this);
         setContentView(R.layout.activity_search);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);

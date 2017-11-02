@@ -1,4 +1,4 @@
-package com.github.eyers.activities;
+package com.github.eyers.activities.settings;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,7 +11,8 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
 import com.github.eyers.R;
-import com.github.eyers.Utils;
+import com.github.eyers.activities.MainActivity;
+import com.github.eyers.activities.NewItemActivity;
 
 /**
  * This class will handle item management settings based on the user's preference.
@@ -27,7 +28,7 @@ public class ItemManagementSettings extends AppCompatActivity implements OnItemC
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Utils.onActivityCreateSetTheme(this);
+        SettingUtilities.onActivityCreateSetTheme(this);
         setContentView(R.layout.activity_item_management_settings);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);

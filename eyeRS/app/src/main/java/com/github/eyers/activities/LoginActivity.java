@@ -19,7 +19,7 @@ import com.badlogic.gdx.backends.android.AndroidPreferences;
 import com.github.eyers.DBOperations;
 import com.github.eyers.EyeRS;
 import com.github.eyers.R;
-import com.github.eyers.Utils;
+import com.github.eyers.activities.settings.SettingUtilities;
 import com.github.eyers.info.UserRegistrationInfo;
 
 /**
@@ -47,7 +47,7 @@ public final class LoginActivity extends AppCompatActivity implements View.OnCli
         }
 
         super.onCreate(savedInstanceState);
-        Utils.onActivityCreateSetTheme(this);
+        SettingUtilities.onActivityCreateSetTheme(this);
         super.setContentView(R.layout.activity_login);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);

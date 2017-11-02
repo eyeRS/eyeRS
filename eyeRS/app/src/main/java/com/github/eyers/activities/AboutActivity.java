@@ -7,7 +7,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.KeyEvent;
 
 import com.github.eyers.R;
-import com.github.eyers.Utils;
+import com.github.eyers.activities.settings.SettingUtilities;
 
 /**
  * This class displays the information about the application.
@@ -19,7 +19,7 @@ public class AboutActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Utils.onActivityCreateSetTheme(this);
+        SettingUtilities.onActivityCreateSetTheme(this);
         setContentView(R.layout.activity_about);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);

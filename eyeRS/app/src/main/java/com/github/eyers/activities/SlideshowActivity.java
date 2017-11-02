@@ -13,7 +13,7 @@ import android.widget.Toast;
 import com.github.eyers.EyeRS;
 import com.github.eyers.ItemLabel;
 import com.github.eyers.R;
-import com.github.eyers.Utils;
+import com.github.eyers.activities.settings.SettingUtilities;
 import com.github.eyers.wrapper.ItemWrapper;
 
 import java.util.ArrayList;
@@ -31,7 +31,7 @@ public class SlideshowActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Utils.onActivityCreateSetTheme(this);
+        SettingUtilities.onActivityCreateSetTheme(this);
         setContentView(R.layout.activity_slideshow);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);

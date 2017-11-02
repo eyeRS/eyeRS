@@ -1,15 +1,19 @@
-package com.github.eyers;
+package com.github.eyers.activities.settings;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
+
+import com.github.eyers.EyeRS;
+import com.github.eyers.R;
 
 /**
  * Utilities to support the library. So basically anything that didn't fit anywhere else.
  * Created on 10/10/2017.
  *
  * @author Emilde
+ * @author Matthew
  */
-public class Utils {
+public class SettingUtilities {
 
     public final static int App_Theme = 0;
     public final static int AppTheme_Red = 1;

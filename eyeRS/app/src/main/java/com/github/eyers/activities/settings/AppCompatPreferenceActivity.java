@@ -1,4 +1,4 @@
-package com.github.eyers.activities;
+package com.github.eyers.activities.settings;
 
 import android.content.res.Configuration;
 import android.os.Bundle;

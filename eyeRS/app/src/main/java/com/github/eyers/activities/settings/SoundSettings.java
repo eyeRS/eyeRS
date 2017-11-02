@@ -1,4 +1,4 @@
-package com.github.eyers.activities;
+package com.github.eyers.activities.settings;
 
 import android.media.MediaPlayer;
 import android.os.Bundle;
@@ -9,7 +9,6 @@ import android.widget.Switch;
 import android.widget.Toast;
 
 import com.github.eyers.R;
-import com.github.eyers.Utils;
 
 /**
  * This class will handle sound settings events based on the user's selection. Created by Nathan Shava
@@ -25,7 +24,7 @@ public class SoundSettings extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Utils.onActivityCreateSetTheme(this);
+        SettingUtilities.onActivityCreateSetTheme(this);
         setContentView(R.layout.activity_sound_settings);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
