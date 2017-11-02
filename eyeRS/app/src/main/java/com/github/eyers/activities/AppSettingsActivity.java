@@ -18,8 +18,6 @@ import com.github.eyers.R;
  */
 public class AppSettingsActivity extends AppCompatActivity implements OnItemClickListener {
 
-    static boolean hasRun = false;
-
     /**
      * Field & other declarations
      */
@@ -59,27 +57,23 @@ public class AppSettingsActivity extends AppCompatActivity implements OnItemClic
                 Intent intent = new Intent(this, DisplaySettingsActivity.class);
                 startActivity(intent);
             }
-            if (position == 2) { //Profile settings is the next item in the list view i.e. position 2
-                Intent intent = new Intent(this, ProfileSettingsActivity.class);
-                startActivity(intent);
-            }
-            if (position == 3) { //Sound settings is the next item in the list view i.e. position 3
+            if (position == 2) { //Sound settings is the next item in the list view i.e. position 3
                 Intent intent = new Intent(this, SoundSettings.class);
                 startActivity(intent);
             }
-            if (position == 4) { //Category management settings is the next item in the list view i.e. position 4
+            if (position == 3) { //Category management settings is the next item in the list view i.e. position 4
                 Intent intent = new Intent(this, CategoryManagementSettings.class);
                 startActivity(intent);
             }
-            if (position == 5) { //Item management settings is the next item in the list view i.e. position 5
+            if (position == 4) { //Item management settings is the next item in the list view i.e. position 5
                 Intent intent = new Intent(this, ItemManagementSettings.class);
                 startActivity(intent);
             }
-            if (position == 6) { //Help & tips is the next item in the list view i.e. position 6
+            if (position == 5) { //Help & tips is the next item in the list view i.e. position 6
                 Intent intent = new Intent(this, HelpActivity.class);
                 startActivity(intent);
             }
-            if (position == 7) { //About is the next item in the list view i.e. position 7
+            if (position == 6) { //About is the next item in the list view i.e. position 7
                 Intent intent = new Intent(this, AboutActivity.class);
                 startActivity(intent);
             }

@@ -69,9 +69,6 @@ public class CategoryManagementSettings extends AppCompatActivity implements OnI
                 Intent intent = new Intent(this, MainActivity.class);
                 startActivity(intent);
             }
-            if (position == 3) { //Change Sorting
-                startActivity(new Intent(this, CategorySortingActivity.class));
-            }
 
         } catch (Exception ex) {
             Log.e("CategoryManagement", ex.getMessage(), ex);

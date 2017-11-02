@@ -65,12 +65,6 @@ public class ItemManagementSettings extends AppCompatActivity implements OnItemC
                     startActivity(intent);
                     break;
                 }
-                case 3: {
-                    // Change Sorting
-                    Intent intent = new Intent(this, ItemSortingActivity.class);
-                    startActivity(intent);
-                    break;
-                }
             }
 
         } catch (Exception ex) {

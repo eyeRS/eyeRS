@@ -117,11 +117,6 @@
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".activities.ProfileSettingsActivity"
-            android:label="@string/title_activity_profile_settings"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:windowSoftInputMode="adjustPan" />
-        <activity
             android:name=".activities.ItemManagementSettings"
             android:label="@string/title_activity_item_mgmt_settings"
             android:theme="@style/AppTheme.NoActionBar"
@@ -137,16 +132,6 @@
 
         </provider>
 
-        <activity
-            android:name=".activities.CategorySortingActivity"
-            android:label="@string/title_activity_sorting"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:windowSoftInputMode="adjustPan" />
-        <activity
-            android:name=".activities.ItemSortingActivity"
-            android:label="@string/title_activity_sorting"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".activities.ViewItemActivity"
             android:label="@string/title_activity_view_item"

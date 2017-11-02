@@ -35,6 +35,8 @@
         android:maxWidth="75dp"
         android:minHeight="30dp"
         android:minWidth="75dp"
+        android:scaleType="centerInside"
+        android:adjustViewBounds="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"

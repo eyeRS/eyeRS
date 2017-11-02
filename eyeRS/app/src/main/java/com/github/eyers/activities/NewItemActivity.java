@@ -57,7 +57,7 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
     // Fields & other declarations
     private static String itemName;
     private static String itemDesc;
-    private static String category;
+    private String category;
     /**
      * Categories list declaration
      */
@@ -88,6 +88,8 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
         this.categorySpinner = (Spinner) findViewById(R.id.category_spinner);
         this.categorySpinner.setOnItemSelectedListener(this); //spinner click listener
 
+        populateSpinner();
+
         findViewById(R.id.btnAddItem).setOnClickListener(this);
 
         this.ivImage = (ImageView) findViewById(R.id.new_item_image);
@@ -105,6 +107,7 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
         }
 
         try {
+
             if (ContextCompat.checkSelfPermission(NewItemActivity.this,
                     Manifest.permission.CAMERA)
                     != PackageManager.PERMISSION_GRANTED) {
@@ -229,20 +232,16 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
      */
     @Override
     protected void onResume() {
-        super.onResume();
-        try {
-            /*
-             * Retrieve the saved spinner selection
-             */
-            categorySpinner = (Spinner) findViewById(R.id.category_spinner);
-            SharedPreferences category_prefs = getSharedPreferences("category_prefs", Context.MODE_PRIVATE);
-            int spinner_index = category_prefs.getInt("spinner_indx", 0);
-            categorySpinner.setSelection(spinner_index);
-            populateSpinner();
 
-        } catch (Exception ex) {
-            Log.e("onPause()", ex.getMessage(), ex);
-        }
+        /*
+         * Retrieve the saved spinner selection
+         */
+        super.onResume();
+        categorySpinner = (Spinner) findViewById(R.id.category_spinner);
+        SharedPreferences category_prefs = getSharedPreferences("category_prefs", Context.MODE_PRIVATE);
+        int spinner_index = category_prefs.getInt("spinner_indx", 0);
+        categorySpinner.setSelection(spinner_index);
+
     }
 
     /**
@@ -312,275 +311,288 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
 
         try {
 
-            if (view.getId() == R.id.btnAddItem) {
+            switch (view.getId()) {
 
-                if (userSpecifiedCategory.equals("books")) {
+                case R.id.btnAddItem: //user clicks add
+                    switch (categorySpinner.getSelectedItem().toString().toLowerCase()) {
+                        case "books": { // if the user is adding a book item
+                            /*
+                             * Retrieve user input from fields
+                             */
+                            itemName = txtTitle.getText().toString();
+                            itemDesc = txtDesc.getText().toString();
+                                /*
+                                 * Empty category
+                                */
+                            if (category.isEmpty()) {
 
-                    /*
-                     * Retrieve user input from fields
-                     */
-                    itemName = txtTitle.getText().toString();
-                    itemDesc = txtDesc.getText().toString();
+                                Toast.makeText(this, "Please select a category from the spinner",
+                                        Toast.LENGTH_SHORT).show();
+                                break;
+                            }
+                                /*
+                                 * Empty item name
+                                */
+                            else if (itemName.isEmpty()) {
 
-                    /*
-                     * Empty category
-                     */
-                    if (category.isEmpty()) {
+                                Toast.makeText(this, "Please give the item a name",
+                                        Toast.LENGTH_SHORT).show();
+                                break;
+                            }
+                                /*
+                                * Empty item description
+                                */
+                            else if (itemDesc.isEmpty()) {
 
-                        Toast.makeText(this, "Please select a category from the spinner",
-                                Toast.LENGTH_SHORT).show();
+                                Toast.makeText(this, "Please give the item a description",
+                                        Toast.LENGTH_SHORT).show();
+                                break;
+                            }
+                                /*
+                                * No image added
+                                */
+                            else if (img.isEmpty()) {
+
+                                Toast.makeText(this, "Please add an image for the item",
+                                        Toast.LENGTH_SHORT).show();
+                                break;
+                            }
+                            addBook(); // call the method to add a book item to the db
+                        }
+                        break;
+                        case "clothes": { // if the user is adding a clothing item
+                                /*
+                                 * Retrieve user input from fields
+                                */
+                            itemName = txtTitle.getText().toString();
+                            itemDesc = txtDesc.getText().toString();
+                                /*
+                                 * Empty category
+                                */
+                            if (category.isEmpty()) {
+
+                                Toast.makeText(this, "Please select a category from the spinner",
+                                        Toast.LENGTH_SHORT).show();
+                                break;
+                            }
+                                /*
+                                 * Empty item name
+                                */
+                            else if (itemName.isEmpty()) {
+
+                                Toast.makeText(this, "Please give the item a name",
+                                        Toast.LENGTH_SHORT).show();
+                                break;
+                            }
+                                /*
+                                * Empty item description
+                                */
+                            else if (itemDesc.isEmpty()) {
+
+                                Toast.makeText(this, "Please give the item a description",
+                                        Toast.LENGTH_SHORT).show();
+                                break;
+                            }
+                                /*
+                                * No image added
+                                */
+                            else if (img.isEmpty()) {
+
+                                Toast.makeText(this, "Please add an image for the item",
+                                        Toast.LENGTH_SHORT).show();
+                                break;
+                            }
+                            addClothing(); // call the method to add a clothing item to the db
+                        }
+                        break;
+                        case "accessories": { // if the user is adding an accessory item
+                                /*
+                                 * Retrieve user input from fields
+                                */
+                            itemName = txtTitle.getText().toString();
+                            itemDesc = txtDesc.getText().toString();
+                                /*
+                                 * Empty category
+                                */
+                            if (category.isEmpty()) {
+
+                                Toast.makeText(this, "Please select a category from the spinner",
+                                        Toast.LENGTH_SHORT).show();
+                                break;
+                            }
+                                /*
+                                 * Empty item name
+                                */
+                            else if (itemName.isEmpty()) {
+
+                                Toast.makeText(this, "Please give the item a name",
+                                        Toast.LENGTH_SHORT).show();
+                                break;
+                            }
+                                /*
+                                * Empty item description
+                                */
+                            else if (itemDesc.isEmpty()) {
+
+                                Toast.makeText(this, "Please give the item a description",
+                                        Toast.LENGTH_SHORT).show();
+                                break;
+                            }
+                                /*
+                                * No image added
+                                */
+                            else if (img.isEmpty()) {
+
+                                Toast.makeText(this, "Please add an image for the item",
+                                        Toast.LENGTH_SHORT).show();
+                                break;
+                            }
+                            addAccessory(); // call the method to add an accessory item to the db
+                        }
+                        break;
+                        case "games": { //if the user is adding a gaming item
+                                /*
+                                 * Retrieve user input from fields
+                                */
+                            itemName = txtTitle.getText().toString();
+                            itemDesc = txtDesc.getText().toString();
+                                /*
+                                 * Empty category
+                                */
+                            if (category.isEmpty()) {
+
+                                Toast.makeText(this, "Please select a category from the spinner",
+                                        Toast.LENGTH_SHORT).show();
+                                break;
+                            }
+                            /*
+                            * Empty item name
+                            */
+                            else if (itemName.isEmpty()) {
+
+                                Toast.makeText(this, "Please give the item a name",
+                                        Toast.LENGTH_SHORT).show();
+                                break;
+                            }
+                            /*
+                             * Empty item description
+                            */
+                            else if (itemDesc.isEmpty()) {
+
+                                Toast.makeText(this, "Please give the item a description",
+                                        Toast.LENGTH_SHORT).show();
+                                break;
+                            }
+                            /*
+                             * No image added
+                            */
+                            else if (img.isEmpty()) {
+
+                                Toast.makeText(this, "Please add an image for the item",
+                                        Toast.LENGTH_SHORT).show();
+                                break;
+                            }
+                            addGame();
+                        }
+                        break;
+                        case "other": { // call the method to add another item to the db
+                            /*
+                             * Retrieve user input from fields
+                            */
+                            itemName = txtTitle.getText().toString();
+                            itemDesc = txtDesc.getText().toString();
+                            /*
+                             * Empty category
+                            */
+                            if (category.isEmpty()) {
+
+                                Toast.makeText(this, "Please select a category from the spinner",
+                                        Toast.LENGTH_SHORT).show();
+                                break;
+                            }
+                            /*
+                             * Empty item name
+                            */
+                            else if (itemName.isEmpty()) {
+
+                                Toast.makeText(this, "Please give the item a name",
+                                        Toast.LENGTH_SHORT).show();
+                                break;
+                            }
+                            /*
+                             * Empty item description
+                            */
+                            else if (itemDesc.isEmpty()) {
+
+                                Toast.makeText(this, "Please give the item a description",
+                                        Toast.LENGTH_SHORT).show();
+                                break;
+                            }
+                            /*
+                             * No image added
+                            */
+                            else if (img.isEmpty()) {
+
+                                Toast.makeText(this, "Please add an image for the item",
+                                        Toast.LENGTH_SHORT).show();
+                                break;
+                            }
+                            addOther(); // call the method to add a gaming item to the db
+                        }
+                        break;
+                        default:
+                            /*
+                         * Retrieve user input from fields
+                         */
+                            itemName = txtTitle.getText().toString();
+                            itemDesc = txtDesc.getText().toString();
+                        /*
+                        * Empty category
+                        */
+                            if (category.isEmpty()) {
+
+                                Toast.makeText(this, "Please select a category from the spinner",
+                                        Toast.LENGTH_SHORT).show();
+                                break;
+                            }
+                        /*
+                         * Empty item name
+                         */
+                            else if (itemName.isEmpty()) {
+
+                                Toast.makeText(this, "Please give the item a name",
+                                        Toast.LENGTH_SHORT).show();
+                                break;
+                            }
+                        /*
+                         * Empty item description
+                         */
+                            else if (itemDesc.isEmpty()) {
+
+                                Toast.makeText(this, "Please give the item a description",
+                                        Toast.LENGTH_SHORT).show();
+                                break;
+                            }
+                        /*
+                         * No image added
+                         */
+                            else if (img.isEmpty()) {
+
+                                Toast.makeText(this, "Please add an image for the item",
+                                        Toast.LENGTH_SHORT).show();
+                                break;
+                            }
+
+                            addItemInfo(); // call the method to add a user specified-item to the db
                     }
-                    /*
-                     * Empty item name
-                     */
-                    else if (itemName.isEmpty()) {
-
-                        Toast.makeText(this, "Please give the item a name",
-                                Toast.LENGTH_SHORT).show();
-                    }
-                    /*
-                     * Empty item description
-                     */
-                    else if (itemDesc.isEmpty()) {
-
-                        Toast.makeText(this, "Please give the item a description",
-                                Toast.LENGTH_SHORT).show();
-                    }
-                    /*
-                     * No image added
-                     */
-                    else if (img.isEmpty()) {
-
-                        Toast.makeText(this, "Please add an image for the item",
-                                Toast.LENGTH_SHORT).show();
-                    }
-
-                    addBook();
-                }
-                if (userSpecifiedCategory.equals("clothes")) {
-
-                    /*
-                     * Retrieve user input from fields
-                     */
-                    itemName = txtTitle.getText().toString();
-                    itemDesc = txtDesc.getText().toString();
-
-                    /*
-                     * Empty category
-                     */
-                    if (category.isEmpty()) {
-
-                        Toast.makeText(this, "Please select a category from the spinner",
-                                Toast.LENGTH_SHORT).show();
-                    }
-                    /*
-                     * Empty item name
-                     */
-                    else if (itemName.isEmpty()) {
-
-                        Toast.makeText(this, "Please give the item a name",
-                                Toast.LENGTH_SHORT).show();
-                    }
-                    /*
-                     * Empty item description
-                     */
-                    else if (itemDesc.isEmpty()) {
-
-                        Toast.makeText(this, "Please give the item a description",
-                                Toast.LENGTH_SHORT).show();
-                    }
-                    /*
-                     * No image added
-                     */
-                    else if (img.isEmpty()) {
-
-                        Toast.makeText(this, "Please add an image for the item",
-                                Toast.LENGTH_SHORT).show();
-                    }
-
-                    addClothing();
-                }
-                if (userSpecifiedCategory.equals("accessories")) {
-
-                    /*
-                     * Retrieve user input from fields
-                     */
-                    itemName = txtTitle.getText().toString();
-                    itemDesc = txtDesc.getText().toString();
-
-                    /*
-                     * Empty category
-                     */
-                    if (category.isEmpty()) {
-
-                        Toast.makeText(this, "Please select a category from the spinner",
-                                Toast.LENGTH_SHORT).show();
-                    }
-                    /*
-                     * Empty item name
-                     */
-                    else if (itemName.isEmpty()) {
-
-                        Toast.makeText(this, "Please give the item a name",
-                                Toast.LENGTH_SHORT).show();
-                    }
-                    /*
-                     * Empty item description
-                     */
-                    else if (itemDesc.isEmpty()) {
-
-                        Toast.makeText(this, "Please give the item a description",
-                                Toast.LENGTH_SHORT).show();
-                    }
-                    /*
-                     * No image added
-                     */
-                    else if (img.isEmpty()) {
-
-                        Toast.makeText(this, "Please add an image for the item",
-                                Toast.LENGTH_SHORT).show();
-                    }
-
-                    addAccessory();
-                }
-                if (userSpecifiedCategory.equals("games")) {
-
-                    /*
-                     * Retrieve user input from fields
-                     */
-                    itemName = txtTitle.getText().toString();
-                    itemDesc = txtDesc.getText().toString();
-
-                    /*
-                     * Empty category
-                     */
-                    if (category.isEmpty()) {
-
-                        Toast.makeText(this, "Please select a category from the spinner",
-                                Toast.LENGTH_SHORT).show();
-                    }
-                    /*
-                     * Empty item name
-                     */
-                    else if (itemName.isEmpty()) {
-
-                        Toast.makeText(this, "Please give the item a name",
-                                Toast.LENGTH_SHORT).show();
-                    }
-                    /*
-                     * Empty item description
-                     */
-                    else if (itemDesc.isEmpty()) {
-
-                        Toast.makeText(this, "Please give the item a description",
-                                Toast.LENGTH_SHORT).show();
-                    }
-                    /*
-                     * No image added
-                     */
-                    else if (img.isEmpty()) {
-
-                        Toast.makeText(this, "Please add an image for the item",
-                                Toast.LENGTH_SHORT).show();
-                    }
-
-                    addGame();
-                }
-                if (userSpecifiedCategory.equals("other")) {
-
-                    /*
-                     * Retrieve user input from fields
-                     */
-                    itemName = txtTitle.getText().toString();
-                    itemDesc = txtDesc.getText().toString();
-
-                    /*
-                     * Empty category
-                     */
-                    if (category.isEmpty()) {
-
-                        Toast.makeText(this, "Please select a category from the spinner",
-                                Toast.LENGTH_SHORT).show();
-                    }
-                    /*
-                     * Empty item name
-                     */
-                    else if (itemName.isEmpty()) {
-
-                        Toast.makeText(this, "Please give the item a name",
-                                Toast.LENGTH_SHORT).show();
-                    }
-                    /*
-                     * Empty item description
-                     */
-                    else if (itemDesc.isEmpty()) {
-
-                        Toast.makeText(this, "Please give the item a description",
-                                Toast.LENGTH_SHORT).show();
-                    }
-                    /*
-                     * No image added
-                     */
-                    else if (img.isEmpty()) {
-
-                        Toast.makeText(this, "Please add an image for the item",
-                                Toast.LENGTH_SHORT).show();
-                    }
-
-                    addOther();
-                }
-                if (userSpecifiedCategory.equals(getUserCategory)) {
-
-                    /*
-                     * Retrieve user input from fields
-                     */
-                    itemName = txtTitle.getText().toString();
-                    itemDesc = txtDesc.getText().toString();
-
-                    /*
-                     * Empty category
-                     */
-                    if (category.isEmpty()) {
-
-                        Toast.makeText(this, "Please select a category from the spinner",
-                                Toast.LENGTH_SHORT).show();
-                    }
-                    /*
-                     * Empty item name
-                     */
-                    else if (itemName.isEmpty()) {
-
-                        Toast.makeText(this, "Please give the item a name",
-                                Toast.LENGTH_SHORT).show();
-                    }
-                    /*
-                     * Empty item description
-                     */
-                    else if (itemDesc.isEmpty()) {
-
-                        Toast.makeText(this, "Please give the item a description",
-                                Toast.LENGTH_SHORT).show();
-                    }
-                    /*
-                     *No image added
-                     */
-                    else if (img.isEmpty()) {
-
-                        Toast.makeText(this, "Please add an image for the item",
-                                Toast.LENGTH_SHORT).show();
-                    }
-
-                    addItemInfo();
-                }
-            }
-            if (view.getId() == R.id.new_item_image) {
-
-                selectImage();
+                case R.id.new_item_image:
+                    selectImage();
+                    break;
             }
 
         } catch (Exception ex) {
 
-            Log.e("Add item event handlers", ex.getMessage(), ex);
+            Log.e("NewItemActivity", ex.getMessage(), ex);
         }
 
     }
@@ -719,7 +731,9 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
             /*
              * Content resolver accessories insert
              */
-            eyeRSContentResolver.insert(DBOperations.CONTENT_URI_ITEMS, accessoriesValues);
+            eyeRSContentResolver.insert(
+                    DBOperations.CONTENT_URI_ITEMS,
+                    accessoriesValues);
 
             Toast.makeText(this, "Your accessory item has been added successfully ", Toast.LENGTH_SHORT).show();
             //Display message in the logcat window after successful operation execution
@@ -768,7 +782,9 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
             /*
              * Content resolver games insert
              */
-            eyeRSContentResolver.insert(DBOperations.CONTENT_URI_ITEMS, gamesValues);
+            eyeRSContentResolver.insert(
+                    DBOperations.CONTENT_URI_ITEMS,
+                    gamesValues);
 
             Toast.makeText(this, "Your gaming item has been added successfully ", Toast.LENGTH_SHORT).show();
             //Display message in the logcat window after successful operation execution
@@ -1060,6 +1076,7 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
 
         //Category selected from Spinner
         category = parent.getItemAtPosition(position).toString();
+
     }
 
     /**
@@ -1075,6 +1092,7 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
      */
     @Override
     public void onSaveInstanceState(Bundle savedInstanceState) {
+
         savedInstanceState.putInt("category_spinner", categorySpinner.getSelectedItemPosition());
         savedInstanceState.putString("item_name", txtTitle.getText().toString());
         savedInstanceState.putString("item_desc", txtDesc.getText().toString());
@@ -1108,6 +1126,7 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
+
         if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.ECLAIR
                 && keyCode == KeyEvent.KEYCODE_BACK
                 && event.getRepeatCount() == 0) {
@@ -1119,6 +1138,7 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
 
     @Override
     public void onBackPressed() {
+
         MainActivity.STATE = "main";
         super.startActivity(new Intent(this, MainActivity.class));
         super.finish();

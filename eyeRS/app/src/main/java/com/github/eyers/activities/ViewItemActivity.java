@@ -200,8 +200,10 @@ public class ViewItemActivity extends AppCompatActivity implements View.OnClickL
         /*
          * Content Resolver delete operation
          */
-        eyeRSContentResolver.delete(DBOperations.CONTENT_URI_ITEMS,
-                deleteWhereClause, deleteWhereArgs);
+        eyeRSContentResolver.delete(
+                DBOperations.CONTENT_URI_ITEMS,
+                deleteWhereClause,
+                deleteWhereArgs);
 
         Toast.makeText(this, "Your item was deleted successfully", Toast.LENGTH_SHORT).show();
         MainActivity.STATE = "main";
