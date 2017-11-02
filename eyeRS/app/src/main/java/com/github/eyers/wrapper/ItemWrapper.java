@@ -39,4 +39,26 @@ public class ItemWrapper {
                 ", description='" + description + '\'' +
                 '}';
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        ItemWrapper that = (ItemWrapper) o;
+
+        if (getName() != null ? !getName().equals(that.getName()) : that.getName() != null)
+            return false;
+        if (getImage() != null ? !getImage().equals(that.getImage()) : that.getImage() != null)
+            return false;
+        return getDescription() != null ? getDescription().equals(that.getDescription()) : that.getDescription() == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = getName() != null ? getName().hashCode() : 0;
+        result = 31 * result + (getImage() != null ? getImage().hashCode() : 0);
+        result = 31 * result + (getDescription() != null ? getDescription().hashCode() : 0);
+        return result;
+    }
 }

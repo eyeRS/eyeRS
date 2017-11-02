@@ -43,11 +43,10 @@ import java.util.List;
  */
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener,
         View.OnClickListener, LoaderManager.LoaderCallbacks<Cursor>, OnItemClickListener {
-    MediaPlayer exitMsg;
-    /**
-     * Fields & other declarations
-     */
+
+    // Fields & other declarations
     public static String STATE = "main";
+    private MediaPlayer exitMsg;
     private ActionBarDrawerToggle toggle;
     private DrawerLayout drawer;
     private NavigationView navigationView;
@@ -65,7 +64,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        exitMsg=MediaPlayer.create(MainActivity.this, R.raw.bye);
+        exitMsg = MediaPlayer.create(MainActivity.this, R.raw.bye);
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
 
         navigationView = (NavigationView) findViewById(R.id.nav_view);

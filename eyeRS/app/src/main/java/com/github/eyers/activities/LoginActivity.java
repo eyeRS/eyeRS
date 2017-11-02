@@ -1,6 +1,7 @@
 package com.github.eyers.activities;
 
 import android.content.ContentResolver;
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.media.MediaPlayer;
@@ -14,20 +15,23 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.badlogic.gdx.backends.android.AndroidPreferences;
 import com.github.eyers.DBOperations;
+import com.github.eyers.EyeRS;
 import com.github.eyers.R;
 import com.github.eyers.Utils;
 import com.github.eyers.info.UserRegistrationInfo;
 
 /**
- * This class will handle the Login event of the app.
+ * This class will handle the Login event of the app. Starting activity of the app.
  *
  * @see View.OnClickListener
  * @see AppCompatActivity
  */
 public final class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
-    MediaPlayer welcomeMessage;
+
+    private MediaPlayer welcomeMessage;
     private EditText txtPIN;
     private Button registerButton;
     private Button loginButton;
@@ -38,6 +42,9 @@ public final class LoginActivity extends AppCompatActivity implements View.OnCli
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        if (EyeRS.PREFERENCES == null) {
+            EyeRS.PREFERENCES = new AndroidPreferences(getSharedPreferences(EyeRS.PREFS_NAME, Context.MODE_PRIVATE));
+        }
 
         super.onCreate(savedInstanceState);
         Utils.onActivityCreateSetTheme(this);
@@ -158,8 +165,8 @@ public final class LoginActivity extends AppCompatActivity implements View.OnCli
 
             if (!cursor.moveToFirst()) {
 
-                Toast.makeText(this, "Login failed. Please ensure you have registered your details first before " +
-                        "attempting to login", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Login failed. Please ensure you have registered " +
+                        "your details first before attempting to login", Toast.LENGTH_SHORT).show();
                 /*
                  * Enable the Register button
                  */
@@ -174,7 +181,8 @@ public final class LoginActivity extends AppCompatActivity implements View.OnCli
                 boolean flag = true;
                 do {
                     if (cursor.getString(cursor.getColumnIndex(UserRegistrationInfo.USER_PIN)).equals("")) { //No PIN entered
-                        Toast.makeText(this, "Login failed. Please insert a valid PIN to login successfully", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(this, "Login failed. Please insert a valid PIN to " +
+                                "login successfully", Toast.LENGTH_SHORT).show();
                     }
                     if (cursor.getString(cursor.getColumnIndex(UserRegistrationInfo.USER_PIN)).equals(txtPIN.getText().toString())) { //Correct PIN entered
                         super.startActivity(new Intent(getApplicationContext(), MainActivity.class)); //Grant access
@@ -187,7 +195,8 @@ public final class LoginActivity extends AppCompatActivity implements View.OnCli
 
                 if (flag) {
 
-                    Toast.makeText(this, "Login failed. Please enter the correct PIN", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "Login failed. Please enter the correct PIN",
+                            Toast.LENGTH_SHORT).show();
                 }
             } else {
 

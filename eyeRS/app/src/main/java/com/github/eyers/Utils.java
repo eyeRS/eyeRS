@@ -3,9 +3,8 @@ package com.github.eyers;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 
-import com.github.eyers.R;
-
 /**
+ * Utilities to support the library. So basically anything that didn't fit anywhere else.
  * Created on 10/10/2017.
  *
  * @author Emilde
@@ -17,13 +16,13 @@ public class Utils {
     public final static int AppTheme_Yellow = 2;
     public final static int AppTheme_Green = 3;
 
-    public static int sTheme = App_Theme;
-
     /**
      * Set the theme of the Activity, and restart it by creating a new Activity of the same type.
      */
     public static void changeToTheme(AppCompatActivity activity, int theme) {
-        sTheme = theme;
+//        sTheme = theme;
+        EyeRS.PREFERENCES.putInteger("theme", theme);
+        EyeRS.PREFERENCES.flush();
         // activity.setTheme(theme);
         activity.finish();
         activity.startActivity(new Intent(activity, activity.getClass()));
@@ -33,7 +32,7 @@ public class Utils {
      * Set the theme of the activity, according to the configuration.
      */
     public static void onActivityCreateSetTheme(AppCompatActivity activity) {
-        switch (sTheme) {
+        switch (getThemeID()) {
             case App_Theme:
                 activity.setTheme(R.style.AppTheme);
                 break;
@@ -50,18 +49,20 @@ public class Utils {
     }
 
     public static int getTheme() {
-        switch (sTheme) {
-            case App_Theme:
-                return (R.style.AppTheme);
+        switch (getThemeID()) {
             case AppTheme_Red:
                 return (R.style.AppThemeRed);
             case AppTheme_Yellow:
                 return (R.style.AppThemeYellow);
             case AppTheme_Green:
                 return (R.style.AppThemeGreen);
+            case App_Theme:
             default:
-                return -1;
+                return (R.style.AppTheme);
         }
     }
 
+    static int getThemeID() {
+        return EyeRS.PREFERENCES.getInteger("theme", App_Theme);
+    }
 }

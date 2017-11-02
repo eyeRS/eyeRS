@@ -13,7 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  ******************************************************************************/
-
 package com.badlogic.gdx.backends.android;
 
 import android.content.SharedPreferences;
@@ -26,6 +25,8 @@ import java.util.Map.Entry;
 /**
  * Taken from LibGDX.
  */
+// https://github.com/libgdx/libgdx/wiki/Preferences
+// https://github.com/libgdx/libgdx/blob/master/backends/gdx-backend-android/src/com/badlogic/gdx/backends/android/AndroidPreferences.java
 public class AndroidPreferences {
 
     private SharedPreferences sharedPrefs;

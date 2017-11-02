@@ -3,7 +3,6 @@ package com.github.eyers;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.ContentResolver;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
@@ -18,12 +17,11 @@ import android.util.Base64;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.badlogic.gdx.backends.android.AndroidPreferences;
 import com.github.eyers.info.CategoryInfo;
 import com.github.eyers.info.ItemInfo;
 import com.github.eyers.wrapper.ItemWrapper;
 
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.TreeSet;
@@ -44,38 +42,36 @@ public final class EyeRS {
      */
     public static final String PREFS_NAME = "EyeRS";
     /**
-     *
+     * User prefrences. Initilised when the login activity is created.
      */
-    public static EyeRS app;
+    public static AndroidPreferences PREFERENCES;
 
-
-    /**
-     * @param context
-     */
-    public EyeRS(Context context) {
+    @Deprecated
+    private EyeRS() {
     }
 
-    /**
-     * @param password
-     * @return
-     * @throws RuntimeException No Such Algorithm Exception
-     */
-    public static String sha256(String password) throws RuntimeException {
-        try {
-
-            MessageDigest sha256 = MessageDigest.getInstance("SHA-256");
-            byte[] passHash = sha256.digest((password + "0c@RFe-5G47|GTN").getBytes());
-
-            StringBuilder str = new StringBuilder();
-            for (int i = 0; i < passHash.length; i++) {
-                str.append(Integer.toString((passHash[i] & 0xff) + 0x100, 16).substring(1));
-            }
-
-            return str.toString();
-        } catch (NoSuchAlgorithmException ex) {
-            throw new RuntimeException(ex);
-        }
-    }
+//    02/11/2017 Matthew: No longer used?
+//    /**
+//     * @param password
+//     * @return
+//     * @throws RuntimeException No Such Algorithm Exception
+//     */
+//    public static String sha256(String password) throws RuntimeException {
+//        try {
+//
+//            MessageDigest sha256 = MessageDigest.getInstance("SHA-256");
+//            byte[] passHash = sha256.digest((password + "0c@RFe-5G47|GTN").getBytes());
+//
+//            StringBuilder str = new StringBuilder();
+//            for (int i = 0; i < passHash.length; i++) {
+//                str.append(Integer.toString((passHash[i] & 0xff) + 0x100, 16).substring(1));
+//            }
+//
+//            return str.toString();
+//        } catch (NoSuchAlgorithmException ex) {
+//            throw new RuntimeException(ex);
+//        }
+//    }
 
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     public static boolean checkPermission(final AppCompatActivity context) {
@@ -150,7 +146,7 @@ public final class EyeRS {
                     byte[] decodedString = Base64.decode(img, Base64.DEFAULT);
                     decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
                 } catch (Throwable t) { // lets be sure we get it
-                    Log.e("Error loading image", cursor.getString(1) + " " + t.getMessage(), t);
+                    Log.w("Error loading image", cursor.getString(1) + " " + t.getMessage(), t);
                     byte[] decodedString = Base64.decode("", Base64.DEFAULT);
                     decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
                 }
@@ -204,7 +200,6 @@ public final class EyeRS {
                 sortOrder);
 
         if (cursor.moveToFirst()) {
-
             do {
 
                 Bitmap decodedByte;
@@ -221,9 +216,7 @@ public final class EyeRS {
             cursor.close();
 
         } else {
-
             if (activity == null) {
-
                 Toast.makeText(activity, "Nothing to display.", Toast.LENGTH_SHORT).show();
             }
         }
