@@ -21,6 +21,9 @@ import com.github.eyers.info.UserRegistrationInfo;
  * Created on 15-Sep-17
  *
  * @author Nathan Shava
+ *
+ * @see ContentProvider
+ * @see EyeRSDatabaseHelper
  */
 public class DBOperations extends ContentProvider {
 

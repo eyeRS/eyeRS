@@ -41,11 +41,37 @@ public final class LabelAdapter extends ArrayAdapter<ItemLabel> {
     }
 
     /**
-     * View lookup cache.
+     * View lookup cache (struct).
      */
     private class ViewHolder {
 
         TextView name;
         ImageView image;
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+
+            ViewHolder that = (ViewHolder) o;
+
+            if (name != null ? !name.equals(that.name) : that.name != null) return false;
+            return image != null ? image.equals(that.image) : that.image == null;
+        }
+
+        @Override
+        public int hashCode() {
+            int result = name != null ? name.hashCode() : 0;
+            result = 31 * result + (image != null ? image.hashCode() : 0);
+            return result;
+        }
+
+        @Override
+        public String toString() {
+            return "ViewHolder{" +
+                    "name=" + name +
+                    ", image=" + image +
+                    '}';
+        }
     }
 } //end class LabelAdapter

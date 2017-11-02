@@ -19,6 +19,9 @@ import java.lang.reflect.Field;
  * Created on 29-Jul-17
  *
  * @author Nathan Shava
+ *
+ * @see SQLiteOpenHelper
+ * @see DBOperations
  */
 public class EyeRSDatabaseHelper extends SQLiteOpenHelper {
 

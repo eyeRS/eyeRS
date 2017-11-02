@@ -54,6 +54,7 @@ public class SoundSettings extends AppCompatActivity {
 
             }
         });
+
         final Switch byeSwitch = (Switch) findViewById(R.id.byeSwitch);
         byeSwitch.setChecked(true);
         byeSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {

@@ -13,11 +13,13 @@ import android.util.SparseIntArray;
 import android.util.TypedValue;
 
 /**
- * http://stackoverflow.com/questions/16017165/auto-fit-textview-for-android
+ * AutoResizeTextView. http://stackoverflow.com/questions/16017165/auto-fit-textview-for-android
  * <br>
  * Matthew 19/06/2016: This may be useful. Made some minor changes.
  *
  * @author M-WaJeEh
+ *
+ * @see android.support.v7.widget.AppCompatTextView
  */
 public class AutoResizeTextView extends android.support.v7.widget.AppCompatTextView {
 
@@ -290,6 +292,6 @@ public class AutoResizeTextView extends android.support.v7.widget.AppCompatTextV
          * @return an integer < 0 if after applying {@code suggestedSize} to
          * text, it takes less space than {@code availableSpace}, > 0 otherwise
          */
-        public int onTestSize(int suggestedSize, RectF availableSpace);
+        int onTestSize(int suggestedSize, RectF availableSpace);
     }
 }

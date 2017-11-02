@@ -5,7 +5,9 @@ import android.support.v7.widget.AppCompatImageView;
 import android.util.AttributeSet;
 
 /**
+ * SquareImageView.
  *
+ * @see AppCompatImageView
  */
 public class SquareImageView extends AppCompatImageView {
 
