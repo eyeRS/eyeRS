@@ -35,6 +35,7 @@ import android.widget.Toast;
 import com.github.eyers.DBOperations;
 import com.github.eyers.EyeRS;
 import com.github.eyers.R;
+import com.github.eyers.Utils;
 import com.github.eyers.info.CategoryInfo;
 import com.github.eyers.info.ItemInfo;
 
@@ -109,8 +110,7 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
         try {
 
             if (ContextCompat.checkSelfPermission(NewItemActivity.this,
-                    Manifest.permission.CAMERA)
-                    != PackageManager.PERMISSION_GRANTED) {
+                    Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
                 if (ActivityCompat.shouldShowRequestPermissionRationale(NewItemActivity.this,
                         Manifest.permission.CAMERA)) {
                 } else {
@@ -122,7 +122,6 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
         } catch (Exception ex) {
             Log.e("CAMERA PERMISSIONS", "Retrieved permission for in-built camera use");
         }
-
     }
 
     /**
@@ -920,7 +919,7 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
 
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
-        Toast.makeText(this, requestCode + "", Toast.LENGTH_LONG).show();
+//        Toast.makeText(this, requestCode + "", Toast.LENGTH_LONG).show();
 
         try {
             switch (requestCode) {

@@ -7,6 +7,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.KeyEvent;
 
 import com.github.eyers.R;
+import com.github.eyers.Utils;
 
 /**
  * This class displays the information about the application.

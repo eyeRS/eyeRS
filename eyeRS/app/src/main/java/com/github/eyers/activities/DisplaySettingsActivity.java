@@ -15,6 +15,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.github.eyers.R;
+import com.github.eyers.Utils;
 
 
 /**

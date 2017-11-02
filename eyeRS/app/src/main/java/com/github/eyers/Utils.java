@@ -1,4 +1,4 @@
-package com.github.eyers.activities;
+package com.github.eyers;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;

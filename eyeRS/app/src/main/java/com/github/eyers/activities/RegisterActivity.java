@@ -22,6 +22,7 @@ import android.widget.Toast;
 
 import com.github.eyers.DBOperations;
 import com.github.eyers.R;
+import com.github.eyers.Utils;
 import com.github.eyers.info.UserRegistrationInfo;
 
 import java.util.regex.Pattern;
