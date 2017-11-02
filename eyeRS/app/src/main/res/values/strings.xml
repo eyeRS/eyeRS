@@ -81,7 +81,6 @@
     <string-array name="settings_titles">
         <item>Security</item>
         <item>Display</item>
-        <item>Profile</item>
         <item>Sound</item>
         <item>Category management</item>
         <item>Item management</item>
@@ -110,7 +109,6 @@
         <item>Add Category</item>
         <item>Edit Category</item>
         <item>Delete Category</item>
-        <item>Change Sorting</item>
 
     </string-array>
 
@@ -123,7 +121,6 @@
         <item>Add Item</item>
         <item>Edit Item</item>
         <item>Delete Item</item>
-        <item>Change Sorting</item>
 
     </string-array>
 
