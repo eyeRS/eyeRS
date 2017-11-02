@@ -358,7 +358,7 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
                             }
                             addBook(); // call the method to add a book item to the db
                         }
-                        break;
+                        return;
                         case "clothes": { // if the user is adding a clothing item
                                 /*
                                  * Retrieve user input from fields
@@ -403,7 +403,7 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
                             }
                             addClothing(); // call the method to add a clothing item to the db
                         }
-                        break;
+                        return;
                         case "accessories": { // if the user is adding an accessory item
                                 /*
                                  * Retrieve user input from fields
@@ -448,7 +448,7 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
                             }
                             addAccessory(); // call the method to add an accessory item to the db
                         }
-                        break;
+                        return;
                         case "games": { //if the user is adding a gaming item
                                 /*
                                  * Retrieve user input from fields
@@ -493,7 +493,7 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
                             }
                             addGame();
                         }
-                        break;
+                        return;
                         case "other": { // call the method to add another item to the db
                             /*
                              * Retrieve user input from fields
@@ -538,8 +538,8 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
                             }
                             addOther(); // call the method to add a gaming item to the db
                         }
-                        break;
-                        default:
+                        return;
+                        default: {
                             /*
                          * Retrieve user input from fields
                          */
@@ -583,6 +583,8 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
                             }
 
                             addItemInfo(); // call the method to add a user specified-item to the db
+                        }
+                        return;
                     }
                 case R.id.new_item_image:
                     selectImage();
