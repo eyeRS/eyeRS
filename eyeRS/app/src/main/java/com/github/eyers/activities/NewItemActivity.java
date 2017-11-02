@@ -35,6 +35,7 @@ import android.widget.Toast;
 import com.github.eyers.DBOperations;
 import com.github.eyers.EyeRS;
 import com.github.eyers.R;
+import com.github.eyers.Utils;
 import com.github.eyers.info.CategoryInfo;
 import com.github.eyers.info.ItemInfo;
 

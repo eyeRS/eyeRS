@@ -11,6 +11,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
 import com.github.eyers.R;
+import com.github.eyers.Utils;
 
 /**
  * This class will handle item management settings based on the user's preference.

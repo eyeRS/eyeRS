@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import com.github.eyers.DBOperations;
 import com.github.eyers.R;
+import com.github.eyers.Utils;
 import com.github.eyers.info.ItemInfo;
 import com.github.eyers.wrapper.ItemWrapper;
 import com.vj.widgets.AutoResizeTextView;

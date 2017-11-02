@@ -17,6 +17,7 @@ import com.github.eyers.EyeRS;
 import com.github.eyers.ItemLabel;
 import com.github.eyers.LabelAdapter;
 import com.github.eyers.R;
+import com.github.eyers.Utils;
 import com.github.eyers.wrapper.ItemWrapper;
 
 import java.io.ByteArrayOutputStream;

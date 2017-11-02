@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.VideoView;
 
 import com.github.eyers.R;
+import com.github.eyers.Utils;
 
 /**
  * This class allows the user to view a video tutorial on how to use the app as well as have the ability

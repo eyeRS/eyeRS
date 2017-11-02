@@ -4,12 +4,12 @@ import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.Switch;
 import android.widget.Toast;
 
 import com.github.eyers.R;
+import com.github.eyers.Utils;
 
 /**
  * This class will handle sound settings events based on the user's selection. Created by Nathan Shava
@@ -19,18 +19,18 @@ import com.github.eyers.R;
  */
 public class SoundSettings extends AppCompatActivity {
 
-MediaPlayer mpw;
-MediaPlayer mpb;
+    private MediaPlayer mpw;
+    private MediaPlayer mpb;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
         Utils.onActivityCreateSetTheme(this);
         setContentView(R.layout.activity_sound_settings);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        mpw=MediaPlayer.create(SoundSettings.this, R.raw.welcomemsg);
-        mpb=MediaPlayer.create(SoundSettings.this, R.raw.bye);
+        mpw = MediaPlayer.create(SoundSettings.this, R.raw.welcomemsg);
+        mpb = MediaPlayer.create(SoundSettings.this, R.raw.bye);
 
         final Switch welcomeSwitch = (Switch) findViewById(R.id.welcomeSwitch);
         welcomeSwitch.setChecked(true);
@@ -56,7 +56,7 @@ MediaPlayer mpb;
             }
         });
         final Switch byeSwitch = (Switch) findViewById(R.id.byeSwitch);
-      byeSwitch.setChecked(true);
+        byeSwitch.setChecked(true);
         byeSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 
             @Override
@@ -78,4 +78,4 @@ MediaPlayer mpb;
             }
         });
     }
-   } //end class SoundSettings
+} //end class SoundSettings

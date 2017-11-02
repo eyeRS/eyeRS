@@ -8,6 +8,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.github.eyers.R;
+import com.github.eyers.Utils;
 import com.miguelcatalan.materialsearchview.MaterialSearchView;
 
 public class SearchActivity extends AppCompatActivity {

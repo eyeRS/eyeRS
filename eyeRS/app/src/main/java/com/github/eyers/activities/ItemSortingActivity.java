@@ -9,6 +9,7 @@ import android.widget.Switch;
 import android.widget.Toast;
 
 import com.github.eyers.R;
+import com.github.eyers.Utils;
 
 public class ItemSortingActivity extends AppCompatActivity {
 

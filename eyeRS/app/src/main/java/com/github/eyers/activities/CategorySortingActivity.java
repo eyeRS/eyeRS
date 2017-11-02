@@ -9,6 +9,7 @@ import android.widget.Switch;
 import android.widget.Toast;
 
 import com.github.eyers.R;
+import com.github.eyers.Utils;
 
 /**
  * This class will handle category sorting based on the user's preference.
