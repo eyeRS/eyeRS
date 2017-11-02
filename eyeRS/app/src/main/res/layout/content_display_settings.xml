@@ -41,37 +41,33 @@
             app:layout_constraintRight_toRightOf="parent">
 
             <TextView
-                android:id="@+id/txtViewChangeTheme"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:text="@string/selectChangeTheme"
-                android:textSize="30sp"
-                android:textStyle="bold" />
-
-            <TextView
                 android:id="@+id/txtView_ChangeTheme"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginStart="8dp"
                 android:layout_marginTop="10dp"
+                android:gravity="center"
                 android:text="@string/selectChangetheme"
-                android:textSize="20sp"
-                app:layout_constraintTop_toBottomOf="@+id/txtViewChangeTheme" />
+                android:textSize="20sp" />
 
             <LinearLayout
                 android:id="@+id/colors"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:layout_marginTop="25dp"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toBottomOf="@+id/txtView_ChangeTheme">
 
                 <ImageButton
                     android:id="@+id/imgbtn_Blue"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_marginBottom="8dp"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="15dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginStart="10dp"
                     android:backgroundTint="@color/eyeRSBlue"
                     android:tint="@color/eyeRSBlue"
                     app:srcCompat="@drawable/color_cursor_white" />
@@ -82,9 +78,8 @@
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_marginBottom="8dp"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="15dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginStart="20dp"
                     android:backgroundTint="@color/eyeRSDarkRed"
                     android:tint="@color/eyeRSRed"
                     app:srcCompat="@drawable/color_cursor_white" />
@@ -94,9 +89,8 @@
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_marginBottom="8dp"
-                    android:layout_marginLeft="24dp"
-                    android:layout_marginStart="24dp"
-                    android:layout_marginTop="15dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginStart="20dp"
                     android:backgroundTint="@color/eyeRSDarkYellow"
                     android:tint="@color/eyeRSYellow"
                     app:srcCompat="@drawable/color_cursor_white" />
@@ -106,9 +100,8 @@
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_marginBottom="8dp"
-                    android:layout_marginLeft="32dp"
-                    android:layout_marginStart="32dp"
-                    android:layout_marginTop="15dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginStart="20dp"
                     android:backgroundTint="@color/eyeRSDarkGreen"
                     android:tint="@color/eyeRSGreen"
                     app:srcCompat="@drawable/color_cursor_white" />
@@ -116,36 +109,29 @@
             </LinearLayout>
 
             <TextView
-                android:id="@+id/txtViewChangeFont"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="50dp"
-                android:text="@string/selectChangeFont"
-                android:textSize="30sp"
-                android:textStyle="bold"
-                app:layout_constraintTop_toBottomOf="@+id/colors" />
-
-            <TextView
                 android:id="@+id/txtViewChange_Font"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="50dp"
+                android:gravity="center"
                 android:text="@string/selectChangefont"
-                android:textSize="20sp"
-                app:layout_constraintTop_toBottomOf="@+id/txtViewChangeFont" />
-
+                android:textSize="20sp" />
 
             <Spinner
                 android:id="@+id/spinnerFontType"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
                 android:layout_marginEnd="8dp"
                 android:layout_marginLeft="8dp"
                 android:layout_marginRight="8dp"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="30dp"
                 android:entries="@array/font_types"
+                android:gravity="center"
                 android:scrollbars="horizontal|vertical"
                 app:layout_constraintHorizontal_bias="0.501"
                 app:layout_constraintLeft_toLeftOf="parent"

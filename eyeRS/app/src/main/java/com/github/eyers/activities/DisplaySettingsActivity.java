@@ -55,39 +55,31 @@ public class DisplaySettingsActivity extends AppCompatActivity implements OnClic
                 String Candy = "fonts/Candy Shop Personal Use.ttf";
                 String DroidSans = "fonts/DroidSans-Bold.ttf";
 
-                TextView viewChangeTheme = (TextView) findViewById(R.id.txtViewChangeTheme);
-                TextView viewChange_Theme = (TextView) findViewById(R.id.txtView_ChangeTheme);
-                TextView ViewChangeFont = (TextView) findViewById(R.id.txtViewChangeFont);
-                TextView ViewChange_Font = (TextView) findViewById(R.id.txtViewChange_Font);
+                TextView viewChangeTheme = (TextView) findViewById(R.id.txtView_ChangeTheme);
+                TextView ViewChangeFont = (TextView) findViewById(R.id.txtViewChange_Font);
 
 
                 if (position == 0) {
                     Typeface tf = Typeface.createFromAsset(getAssets(), Default);
                     viewChangeTheme.setTypeface(tf);
-                    viewChange_Theme.setTypeface(tf);
                     ViewChangeFont.setTypeface(tf);
-                    ViewChange_Font.setTypeface(tf);
 
 
                 } else if (position == 1) {
                     Typeface tf = Typeface.createFromAsset(getAssets(), Arial);
                     viewChangeTheme.setTypeface(tf);
-                    viewChange_Theme.setTypeface(tf);
 
                 } else if (position == 2) {
                     Typeface tf = Typeface.createFromAsset(getAssets(), Antonio);
                     viewChangeTheme.setTypeface(tf);
-                    viewChange_Theme.setTypeface(tf);
 
                 } else if (position == 3) {
                     Typeface tf = Typeface.createFromAsset(getAssets(), Candy);
                     viewChangeTheme.setTypeface(tf);
-                    viewChange_Theme.setTypeface(tf);
 
                 } else if (position == 4) {
                     Typeface tf = Typeface.createFromAsset(getAssets(), DroidSans);
                     viewChangeTheme.setTypeface(tf);
-                    viewChange_Theme.setTypeface(tf);
                 }
 
 

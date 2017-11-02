@@ -267,6 +267,8 @@ public class SetPINActivity extends AppCompatActivity implements View.OnClickLis
         String[] whereArgs = {};
         String sortOrder = "";
 
+        String idToUpdate = "";
+
         /*
          * Content resolver object
          */
@@ -324,9 +326,12 @@ public class SetPINActivity extends AppCompatActivity implements View.OnClickLis
                     && (cursor.getString(cursor.getColumnIndex(UserRegistrationInfo.SECURITY_RESPONSE))
                     .equals(securityResponse))) {
 
-
-                String whereClauseUpdate = UserRegistrationInfo.USER_NAME + " = '"
-                        + username + "'";
+                /*
+                 * Retrieve the user id to update their details
+                 */
+                idToUpdate = cursor.getString(cursor.getColumnIndex(UserRegistrationInfo.REG_ID));
+                String updateWhereClause = UserRegistrationInfo.REG_ID + " = ?";
+                String[] updateWhereArgs = {idToUpdate};
 
                 /*
                  * Define an object to contain the new values to insert
@@ -343,7 +348,7 @@ public class SetPINActivity extends AppCompatActivity implements View.OnClickLis
                 try {
 
                     eyeRSContentResolver.update(DBOperations.CONTENT_URI_USER_REG, userRegValues,
-                            whereClauseUpdate, null);
+                            updateWhereClause, updateWhereArgs);
 
                     Toast.makeText(this, "Your details have been updated successfully ",
                             Toast.LENGTH_SHORT).show();

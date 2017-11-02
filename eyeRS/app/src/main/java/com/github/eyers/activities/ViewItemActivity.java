@@ -105,7 +105,6 @@ public class ViewItemActivity extends AppCompatActivity implements View.OnClickL
         eyeRSContentResolver = this.getContentResolver();
     }
 
-
     private void promptDeletion() {
 
         /*

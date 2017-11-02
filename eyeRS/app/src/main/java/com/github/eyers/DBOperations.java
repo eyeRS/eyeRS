@@ -9,7 +9,6 @@ import android.database.sqlite.SQLiteQueryBuilder;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.text.TextUtils;
 import android.util.Log;
 
 import com.github.eyers.info.CategoryInfo;
@@ -234,6 +233,7 @@ public class DBOperations extends ContentProvider {
         switch (uriType) {
 
             case CATEGORIES:
+                deletedRows = db.delete(CATEGORIES_TABLE, whereClause, whereArgs);
                 break;
             case ITEMS:
                 deletedRows = db.delete(ITEMS_TABLE, whereClause, whereArgs);
@@ -272,37 +272,36 @@ public class DBOperations extends ContentProvider {
         switch (uriType) {
 
             case CATEGORIES:
-                updatedRows = db.update(CATEGORIES_TABLE,
+                updatedRows = db.update(
+                        CATEGORIES_TABLE,
                         values,
                         whereClause,
                         whereArgs);
                 break;
             case ITEMS:
-                updatedRows = db.update(ITEMS_TABLE,
+                updatedRows = db.update(
+                        ITEMS_TABLE,
                         values,
                         whereClause,
                         whereArgs);
                 break;
             case REG_DETAILS:
-                String username = uri.getLastPathSegment();
-
-                if (TextUtils.isEmpty(whereClause)) {
-
-                    updatedRows = db.update(USER_REGISTRATION_TABLE,
-                            values,
-                            UserRegistrationInfo.USER_NAME + " = " + username,
-                            null);
-                } else {
-
-                    Log.e("Register Table", "Sorry could not update update the user credentials");
-                }
+                updatedRows = db.update(
+                        USER_REGISTRATION_TABLE,
+                        values,
+                        whereClause,
+                        whereArgs);
                 break;
 
             default:
                 throw new IllegalArgumentException("Unknown URI: " + uri);
         }
 
-        getContext().getContentResolver().notifyChange(uri, null);
+        if (updatedRows > 0) {
+
+            getContext().getContentResolver().notifyChange(uri, null);
+        }
+
         return updatedRows;
     }
 
