@@ -29,12 +29,6 @@
         <GridLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -119,7 +113,8 @@
                 android:layout_marginTop="20dp"
                 android:gravity="center"
                 android:text="@string/selectChangefont"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                app:layout_constraintTop_toBottomOf="@+id/colors" />
 
             <Spinner
                 android:id="@+id/spinnerFontType"

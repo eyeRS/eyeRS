@@ -62,17 +62,17 @@ public class DeleteCategory extends AppCompatActivity implements AdapterView.OnI
         listView.setAdapter(adapter);
     }
 
-    private void promptDeletion() {
+    private void promptDeleteCategory() {
         /*
          * We need to specify an AlertDialog to prompt the user for deletion
          * to avoid accidental deletion
          */
         AlertDialog.Builder builder = new AlertDialog.Builder(DeleteCategory.this);
-        builder.setMessage("Are you sure you want to delete this item? \n" +
+        builder.setMessage("Are you sure you want to delete this category? \n" +
                 "This operation cannot be undone!")
                 .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                     /**
-                     * User clicks on Ok so delete the item
+                     * User clicks on Ok so delete the category
                      * @param dialog
                      * @param which
                      */
@@ -126,6 +126,7 @@ public class DeleteCategory extends AppCompatActivity implements AdapterView.OnI
                     sortOrder);
 
             if (cursor.moveToFirst()) {
+
                 if (cursor.getString(cursor.getColumnIndex(CategoryInfo.CATEGORY_NAME)).equals(name)) {
 
                     /**
@@ -155,7 +156,7 @@ public class DeleteCategory extends AppCompatActivity implements AdapterView.OnI
         eyeRSContentResolver.delete(DBOperations.CONTENT_URI_CATEGORIES,
                 deleteWhereClause, deleteWhereArgs);
 
-        Toast.makeText(this, "Your item was deleted successfully", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Your category was deleted successfully", Toast.LENGTH_SHORT).show();
         MainActivity.STATE = "main";
         super.startActivity(new Intent(this, MainActivity.class));
         super.finish();
@@ -177,7 +178,7 @@ public class DeleteCategory extends AppCompatActivity implements AdapterView.OnI
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         name = listView.getItemAtPosition(position).toString();
-        promptDeletion();
+        promptDeleteCategory();
     }
 
     @Override

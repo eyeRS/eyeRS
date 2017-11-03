@@ -21,7 +21,6 @@ import com.github.eyers.info.UserRegistrationInfo;
  * Created on 15-Sep-17
  *
  * @author Nathan Shava
- *
  * @see ContentProvider
  * @see EyeRSDatabaseHelper
  */
@@ -236,6 +235,7 @@ public class DBOperations extends ContentProvider {
         switch (uriType) {
 
             case CATEGORIES:
+                deletedRows = db.delete(CATEGORIES_TABLE, whereClause, whereArgs);
                 break;
             case ITEMS:
                 deletedRows = db.delete(ITEMS_TABLE, whereClause, whereArgs);
@@ -246,6 +246,7 @@ public class DBOperations extends ContentProvider {
         }
 
         if (deletedRows > 0) {
+
             getContext().getContentResolver().notifyChange(uri, null);
         }
 

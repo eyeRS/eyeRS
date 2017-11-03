@@ -18,7 +18,6 @@ import android.util.TypedValue;
  * Matthew 19/06/2016: This may be useful. Made some minor changes.
  *
  * @author M-WaJeEh
- *
  * @see android.support.v7.widget.AppCompatTextView
  */
 public class AutoResizeTextView extends android.support.v7.widget.AppCompatTextView {

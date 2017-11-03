@@ -110,7 +110,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     /**
      * Method to add user's Registration details.
      */
-    public void addRegInfo() {
+    private void addRegInfo() {
 
         /*
          * Content Resolver declaration
@@ -217,7 +217,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                     if (username.isEmpty()) {
 
                         Toast.makeText(this, "Please enter a username", Toast.LENGTH_SHORT).show();
-                        break;
+                        return;
                     }
                     /*
                      * Empty email
@@ -225,7 +225,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                     else if (email.isEmpty()) {
 
                         Toast.makeText(this, "Please enter a valid email address", Toast.LENGTH_SHORT).show();
-                        break;
+                        return;
                     }
                     /*
                      * Validate email
@@ -233,7 +233,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                     else if (!validateEmailAddress(email)) {
 
                         Toast.makeText(this, "Please enter a valid email address", Toast.LENGTH_SHORT).show();
-                        break;
+                        return;
                     }
                     /*
                      * PIN 1 missing
@@ -241,7 +241,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                     else if (pinA.isEmpty()) {
 
                         Toast.makeText(this, "Please enter a new PIN", Toast.LENGTH_LONG).show();
-                        break;
+                        return;
                     }
                     /*
                      * PIN 2 missing
@@ -249,7 +249,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                     else if (pinB.isEmpty()) {
 
                         Toast.makeText(this, "Please verify the new PIN", Toast.LENGTH_LONG).show();
-                        break;
+                        return;
                     }
                     /*
                      * PINs do not match
@@ -257,7 +257,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                     else if (!pinA.equals(pinB)) {
 
                         Toast.makeText(this, "Sorry but your PINs do not match", Toast.LENGTH_SHORT).show();
-                        break;
+                        return;
                     }
                     /*
                      * Length of the PINs
@@ -266,7 +266,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
                         Toast.makeText(this, "Please ensure your PIN is at least 4 digits",
                                 Toast.LENGTH_SHORT).show();
-                        break;
+                        return;
                     }
                     /*
                      * Empty security question
@@ -275,7 +275,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
                         Toast.makeText(this, "Please select a security question from the drop-down list",
                                 Toast.LENGTH_SHORT).show();
-                        break;
+                        return;
                     }
                     /*
                      * Empty security response
@@ -283,7 +283,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                     else if (securityResponse.isEmpty()) {
 
                         Toast.makeText(this, "Please enter a response to your security question", Toast.LENGTH_SHORT).show();
-                        break;
+                        return;
                     }
                     /*
                      * PINs match
