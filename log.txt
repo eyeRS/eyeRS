@@ -1,3 +1,239 @@
+commit 6d52332f82b446870d7402ad4bbced9fd92a9f89
+Merge: 0220a62 9874b60
+Author: Matthew 'siD' Van der Bijl <matthewvdbijl@gmail.com>
+Date:   Thu Nov 2 20:56:47 2017 +0200
+
+    Merge remote-tracking branch 'origin/master'
+
+commit 9874b602cce6aad152e6452840097ab84d6f2ad6
+Author: Matthew 'siD' Van der Bijl <matthewvdbijl@gmail.com>
+Date:   Thu Nov 2 20:55:00 2017 +0200
+
+    Add files via upload
+    
+    Added D4 & 5 to the repo.
+
+commit 75987e66903ca4d40ca0dd0b6b72bbe3c1b2947b
+Author: Nathan Shava <nathantendai.shava@gmail.com>
+Date:   Thu Nov 2 16:50:37 2017 +0200
+
+    Bug fixes
+    
+    # Conflicts:
+    #       eyeRS/app/src/main/java/com/github/eyers/MainActivity.java
+    #       eyeRS/app/src/main/res/layout/activity_main.xml
+    #       eyeRS/app/src/main/res/values/strings.xml
+
+commit 0220a62a8af7ec36eee0be013c7b12f822a0ee3d
+Author: Matthew 'siD' Van der Bijl <matthewvdbijl@gmail.com>
+Date:   Thu Nov 2 13:59:36 2017 +0200
+
+    a bit of a hacky fix but it works
+
+commit 0668d25862c50fe63c95c6b438ba2866a074d337
+Author: Matthew 'siD' Van der Bijl <matthewvdbijl@gmail.com>
+Date:   Thu Nov 2 13:39:00 2017 +0200
+
+    Create package-info.java
+    
+    Added package info for the new settings package.
+
+commit 03bd27e3a956e00a501e7b45add5ab4e7553f898
+Author: Matthew 'siD' Van der Bijl <matthewvdbijl@gmail.com>
+Date:   Thu Nov 2 13:33:39 2017 +0200
+
+    renamed Utils to SettingsUtilities & moved all settings classes to thier own package
+
+commit be862ac2ff393793e462c59d982d2fa29b9f3d77
+Author: Matthew 'siD' Van der Bijl <matthewvdbijl@gmail.com>
+Date:   Thu Nov 2 13:29:37 2017 +0200
+
+    The theme is now saving. fixing search bar overlap next
+
+commit 327df40c886d0d1d563b190d172e633623187ac0
+Author: An3aClo <andreacloetekaap@outlook.com>
+Date:   Thu Nov 2 12:59:49 2017 +0200
+
+    Add files via upload
+
+commit 4e1ed2b2f6517d7af303339037acf5e6abd1c25f
+Merge: 87261fd fb50af6
+Author: Nathan Shava <nathantendai.shava@gmail.com>
+Date:   Thu Nov 2 12:10:30 2017 +0200
+
+    Merge remote-tracking branch 'origin/master'
+    
+    # Conflicts:
+    #       eyeRS/app/src/main/java/com/github/eyers/activities/CategorySortingActivity.java
+    #       eyeRS/app/src/main/java/com/github/eyers/activities/ItemSortingActivity.java
+    #       eyeRS/app/src/main/java/com/github/eyers/activities/ProfileSettingsActivity.java
+
+commit 87261fd0cf71d5f468824dac823e603a0dfe5fcc
+Author: Nathan Shava <nathantendai.shava@gmail.com>
+Date:   Thu Nov 2 12:08:40 2017 +0200
+
+    NewItemActivity, remove profile & sorting activities
+    
+    # Conflicts:
+    #       eyeRS/app/src/main/java/com/github/eyers/MainActivity.java
+    #       eyeRS/app/src/main/res/layout/activity_main.xml
+    #       eyeRS/app/src/main/res/values/strings.xml
+
+commit fb50af6445522776e2f740cb6cf248de651b27ad
+Author: Andrea <andreacloetekaap@outlook.com>
+Date:   Thu Nov 2 09:24:33 2017 +0200
+
+    hotfix. matt
+
+commit 4b1d532d71c218c61c99c97a8c42abec20821109
+Author: Andrea <andreacloetekaap@outlook.com>
+Date:   Thu Nov 2 09:15:36 2017 +0200
+
+    moved util out of activities
+
+commit ef0bd75d61168bd98cc48fc2a7eb0217876f39b9
+Author: Andrea <andreacloetekaap@outlook.com>
+Date:   Thu Nov 2 08:52:42 2017 +0200
+
+    Fix on Bye Sound
+
+commit 5e362fa7db450b18477d058c16d3d1bc715ab7c3
+Merge: 17d70e5 1e6806c
+Author: Andrea <andreacloetekaap@outlook.com>
+Date:   Thu Nov 2 08:50:26 2017 +0200
+
+    Merge remote-tracking branch 'origin/master'
+    
+    # Conflicts:
+    #       eyeRS/app/src/main/java/com/github/eyers/activities/MainActivity.java
+    #       eyeRS/app/src/main/java/com/github/eyers/activities/SoundSettings.java
+
+commit 17d70e50e79d1a9fb405bc1705c3b4dcc3cdd8be
+Author: Andrea <andreacloetekaap@outlook.com>
+Date:   Thu Nov 2 08:41:47 2017 +0200
+
+    Fix on Bye Sound
+
+commit 1e6806cd6ae2b1b07dedbf4d06cb20d72f43623f
+Author: Nathan Shava <nathantendai.shava@gmail.com>
+Date:   Wed Nov 1 23:29:35 2017 +0200
+
+    Reset PIN fix
+    
+    # Conflicts:
+    #       eyeRS/app/src/main/java/com/github/eyers/MainActivity.java
+    #       eyeRS/app/src/main/res/layout/activity_main.xml
+    #       eyeRS/app/src/main/res/values/strings.xml
+
+commit 90889790aa46a563defab66d8f7d014b0543431a
+Author: Nathan Shava <nathantendai.shava@gmail.com>
+Date:   Wed Nov 1 23:16:30 2017 +0200
+
+    land orientation support & other commits
+    
+    # Conflicts:
+    #       eyeRS/app/src/main/java/com/github/eyers/MainActivity.java
+    #       eyeRS/app/src/main/res/layout/activity_main.xml
+    #       eyeRS/app/src/main/res/values/strings.xml
+
+commit c6172160ff99b3a76ee7822f724e8f4d94137b4e
+Author: Andrea <andreacloetekaap@outlook.com>
+Date:   Wed Nov 1 19:35:29 2017 +0200
+
+    Bye Sound
+
+commit ccd0baffa6bb1cf44e8ea5efa241d78229fe4fd9
+Author: Matthew 'siD' Van der Bijl <matthewvdbijl@gmail.com>
+Date:   Wed Nov 1 13:12:40 2017 +0200
+
+    fixed spelling error on trade activity.
+    moved trade out of todo
+    working on saving prefrences
+
+commit a6a6240aeb430dbae2544d947910777b499fb0ac
+Author: Matthew 'siD' Van der Bijl <matthewvdbijl@gmail.com>
+Date:   Wed Nov 1 13:00:17 2017 +0200
+
+    hotfix on login activity. closes the app when back button pressed.
+    some java doc stuff have been added with this commit.
+
+commit fc8aa4c7b1a19dc857e31e9dd8dde71f4381141c
+Merge: b6ac57d 079f2e9
+Author: Matthew 'siD' Van der Bijl <matthewvdbijl@gmail.com>
+Date:   Wed Nov 1 12:31:58 2017 +0200
+
+    Merge branch 'master' of https://github.com/eyers/eyers
+
+commit b6ac57d047fb11e49f541752c84bf2c4e30b16a0
+Author: Matthew 'siD' Van der Bijl <matthewvdbijl@gmail.com>
+Date:   Wed Nov 1 12:27:31 2017 +0200
+
+    hotfix with random question mark. a bit hacky
+
+commit 079f2e9c7c8de5a88dca9939e5803a287db348aa
+Merge: 2e1dc52 5bc775a
+Author: Nathan Shava <nathantendai.shava@gmail.com>
+Date:   Wed Nov 1 12:09:30 2017 +0200
+
+    Merge remote-tracking branch 'origin/master'
+
+commit 2e1dc5234a694dd35354e2aaa5c35107eabb9f34
+Author: Nathan Shava <nathantendai.shava@gmail.com>
+Date:   Wed Nov 1 12:09:06 2017 +0200
+
+    NewItemActivity bug fix
+    
+    # Conflicts:
+    #       eyeRS/app/src/main/java/com/github/eyers/MainActivity.java
+    #       eyeRS/app/src/main/res/layout/activity_main.xml
+    #       eyeRS/app/src/main/res/values/strings.xml
+
+commit 5bc775a3e14c3b956c213f52b4ba7e10e26a736c
+Author: Andrea <andreacloetekaap@outlook.com>
+Date:   Wed Nov 1 09:35:49 2017 +0200
+
+    bye switch and sound
+
+commit 67b783f1aa9bc18a14c99153301e91541d4c22fc
+Author: Nathan Shava <nathantendai.shava@gmail.com>
+Date:   Wed Nov 1 09:34:23 2017 +0200
+
+    ItemLabel textSize
+    
+    # Conflicts:
+    #       eyeRS/app/src/main/java/com/github/eyers/MainActivity.java
+    #       eyeRS/app/src/main/res/layout/activity_main.xml
+    #       eyeRS/app/src/main/res/values/strings.xml
+
+commit 105239eb05ae225f51c251777508f7b6b8f3bda3
+Author: Matthew 'siD' Van der Bijl <matthewvdbijl@gmail.com>
+Date:   Wed Nov 1 09:26:58 2017 +0200
+
+    hotfix
+
+commit 806bc4de59b5636800cab932300110103b2dba87
+Author: Matthew 'siD' Van der Bijl <matthewvdbijl@gmail.com>
+Date:   Wed Nov 1 09:24:59 2017 +0200
+
+    javadoc update
+
+commit e97ca8330d3681416da295781d1e4c5f558c8d4c
+Author: Matthew 'siD' Van der Bijl <matthewvdbijl@gmail.com>
+Date:   Wed Nov 1 09:22:23 2017 +0200
+
+    Hot fix on item label. The images are no longer huge.
+
+commit c982f0f0dae1a582b60539795bf85288db64cefc
+Author: Nathan Shava <nathantendai.shava@gmail.com>
+Date:   Wed Nov 1 09:14:33 2017 +0200
+
+    NewItemActivity spinner bug fix
+    
+    # Conflicts:
+    #       eyeRS/app/src/main/java/com/github/eyers/MainActivity.java
+    #       eyeRS/app/src/main/res/layout/activity_main.xml
+    #       eyeRS/app/src/main/res/values/strings.xml
+
 commit a13fe664a5ba5f08df2c61ce5172dcb2a2e9ba74
 Author: Matthew 'siD' Van der Bijl <matthewvdbijl@gmail.com>
 Date:   Wed Nov 1 09:01:20 2017 +0200
