@@ -207,5 +207,6 @@
     <!-- Strings related to ViewItem Activity -->
     <string name="btnEditItem">Edit</string>
     <string name="btnDeleteItem">Delete</string>
+    <string name="title_activity_delete_category">Delete Category</string>
 
 </resources>
