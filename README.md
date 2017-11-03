@@ -2,7 +2,7 @@
 https://github.com/eyeRS
 
 ## Aim
-The proposed eyeRS mobile application (eyeRS app) is designed to allow users to catalog their personal effects and beloved belongings while creating a platform to facilitate the trade of their items in the future.
+The proposed eyeRS mobile application (app) is designed to allow users to catalog their personal effects and beloved belongings while creating a platform to facilitate the trade of their items in the future.
 
 ## Purpose
 The eyeRS app is a Management Information System (MIS). A MIS is system that uses data to generate a report for the end-user to make routine decisions in response to a daily problem (Cress, 2017). In the case of the eyeRS app, a summarised report is created for each item that the user can add to the system. The purpose of the eyeRS app is to give individuals the power to manage and organise their personal and professional lives with less workforce. The eyeRS app achieves this control by allowing users to freely access and catalog all of their belongings and items that are uploaded to the app. Uploads can be done anywhere. Each belonging is saved by means of photo identification and a short description. The app allows users to be connected with friends and family. The connection is achieved by allowing users to share and trade items on their catalogs. The app also allows a user to be connected with their personal belongings anywhere.
