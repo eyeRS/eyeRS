@@ -98,7 +98,7 @@ public final class LoginActivity extends AppCompatActivity implements View.OnCli
                 /*
                  * If a user has been registered already
                  * we need to disable the Register button to follow
-                 * the One user per device policy
+                 * the Single-User per Device policy
                  */
                 this.registerButton.setEnabled(false);
 

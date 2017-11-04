@@ -162,7 +162,6 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
         String[] projection = {
                 CategoryInfo.CATEGORY_ID,
                 CategoryInfo.CATEGORY_NAME,
-                CategoryInfo.CATEGORY_DESC,
                 CategoryInfo.CATEGORY_ICON
         };
 
@@ -262,7 +261,6 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
         String[] projection = {
                 CategoryInfo.CATEGORY_ID,
                 CategoryInfo.CATEGORY_NAME,
-                CategoryInfo.CATEGORY_DESC,
                 CategoryInfo.CATEGORY_ICON
         };
 

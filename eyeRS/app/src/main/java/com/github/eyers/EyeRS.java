@@ -119,7 +119,6 @@ public final class EyeRS {
         String[] projection = {
                 CategoryInfo.CATEGORY_ID,
                 CategoryInfo.CATEGORY_NAME,
-                CategoryInfo.CATEGORY_DESC,
                 CategoryInfo.CATEGORY_ICON
         };
 
@@ -146,11 +145,16 @@ public final class EyeRS {
                     byte[] decodedString = Base64.decode(img, Base64.DEFAULT);
                     decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
                 } catch (Throwable t) { // lets be sure we get it
-                    Log.w("Error loading image", cursor.getString(1) + " " + t.getMessage(), t);
+                    Log.w("Error loading image",
+                            cursor.getString(cursor.getColumnIndex(CategoryInfo.CATEGORY_NAME))
+                                    + " " + t.getMessage(), t);
+
                     byte[] decodedString = Base64.decode("", Base64.DEFAULT);
                     decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
                 }
-                data.add(new ItemLabel(cursor.getString(1), decodedByte, ""));
+
+                data.add(new ItemLabel(cursor.getString(cursor.getColumnIndex(CategoryInfo.CATEGORY_NAME)),
+                        decodedByte, ""));
 
             } while (cursor.moveToNext());
 
@@ -204,18 +208,26 @@ public final class EyeRS {
 
                 Bitmap decodedByte;
                 try {
-                    byte[] decodedString = Base64.decode(cursor.getString(4), Base64.DEFAULT);
+
+                    byte[] decodedString = Base64.decode(cursor.getString(
+                            cursor.getColumnIndex(ItemInfo.ITEM_IMAGE)), Base64.DEFAULT);
                     decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+
                 } catch (NullPointerException npe) {
                     Log.e("error loading image", npe.getMessage());
                     decodedByte = BitmapFactory.decodeResource(activity.getResources(), R.drawable.ic_action_help);
                 }
-                items.add(new ItemWrapper(cursor.getString(2), decodedByte, cursor.getString(3)));
+                items.add(new ItemWrapper(
+                        cursor.getString(cursor.getColumnIndex(ItemInfo.ITEM_NAME)),
+                        decodedByte,
+                        cursor.getString(cursor.getColumnIndex(ItemInfo.ITEM_DESC))));
+
             } while (cursor.moveToNext());
 
             cursor.close();
 
         } else {
+
             if (activity == null) {
                 Toast.makeText(activity, "Nothing to display.", Toast.LENGTH_SHORT).show();
             }

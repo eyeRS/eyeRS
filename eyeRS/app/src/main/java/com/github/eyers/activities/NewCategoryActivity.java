@@ -41,8 +41,6 @@ public class NewCategoryActivity extends AppCompatActivity implements View.OnCli
     /* Fields & other declarations */
     private EditText txtTitle;
     private String categoryName;
-    private EditText txtDesc;
-    private String categoryDesc;
     private Spinner iconSpinner;
     private ImageView imageView;
     private String categoryIcon;
@@ -68,7 +66,6 @@ public class NewCategoryActivity extends AppCompatActivity implements View.OnCli
         setSupportActionBar(toolbar);
 
         this.txtTitle = (EditText) findViewById(R.id.edtTxtCatTitle);
-        this.txtDesc = (EditText) findViewById(R.id.edtTxtCatDesc);
         this.iconSpinner = (Spinner) findViewById(R.id.iconSpinner);
         this.iconSpinner.setOnItemSelectedListener(this);
         this.imageView = (ImageView) findViewById(R.id.new_category_image);
@@ -84,7 +81,6 @@ public class NewCategoryActivity extends AppCompatActivity implements View.OnCli
 
             iconSpinner.setSelection(savedInstanceState.getInt("icon_spinner"));
             txtTitle.setText(savedInstanceState.getString("category_name"));
-            txtDesc.setText(savedInstanceState.getString("category_desc"));
         }
     }
 
@@ -100,7 +96,6 @@ public class NewCategoryActivity extends AppCompatActivity implements View.OnCli
                      * Retrieve user input from fields
                      */
                     categoryName = txtTitle.getText().toString();
-                    categoryDesc = txtDesc.getText().toString();
 
                     /*
                      * Empty category name
@@ -108,15 +103,6 @@ public class NewCategoryActivity extends AppCompatActivity implements View.OnCli
                     if (categoryName.isEmpty()) {
 
                         Toast.makeText(this, "Please give the category a name",
-                                Toast.LENGTH_SHORT).show();
-                        break;
-                    }
-                    /*
-                     * Empty category description
-                     */
-                    else if (categoryDesc.isEmpty()) {
-
-                        Toast.makeText(this, "Please give the category a description",
                                 Toast.LENGTH_SHORT).show();
                         break;
                     }
@@ -174,7 +160,6 @@ public class NewCategoryActivity extends AppCompatActivity implements View.OnCli
         String[] projection = {
                 CategoryInfo.CATEGORY_ID,
                 CategoryInfo.CATEGORY_NAME,
-                CategoryInfo.CATEGORY_DESC,
                 CategoryInfo.CATEGORY_ICON
         };
 
@@ -215,7 +200,6 @@ public class NewCategoryActivity extends AppCompatActivity implements View.OnCli
                          * Clear the fields to allow the user to re-enter details
                          */
                         this.txtTitle.setText("");
-                        this.txtDesc.setText("");
 
                     }
                     /*
@@ -259,7 +243,6 @@ public class NewCategoryActivity extends AppCompatActivity implements View.OnCli
         ContentValues categoryValues = new ContentValues();
 
         categoryValues.put(CategoryInfo.CATEGORY_NAME, categoryName.toUpperCase()); //Category's name
-        categoryValues.put(CategoryInfo.CATEGORY_DESC, categoryDesc); //Category's description
         categoryValues.put(CategoryInfo.CATEGORY_ICON, categoryIcon); //Icon
 
         try {
@@ -278,7 +261,6 @@ public class NewCategoryActivity extends AppCompatActivity implements View.OnCli
              * Clear the text fields
              */
             this.txtTitle.setText("");
-            this.txtDesc.setText("");
 
             Log.e("DATABASE OPERATIONS", "...New category added to DB!");
 
@@ -382,7 +364,6 @@ public class NewCategoryActivity extends AppCompatActivity implements View.OnCli
 
         savedInstanceState.putInt("icon_spinner", iconSpinner.getSelectedItemPosition());
         savedInstanceState.putString("category_name", txtTitle.getText().toString());
-        savedInstanceState.putString("category_desc", txtDesc.getText().toString());
     }
 
     @Override

@@ -45,8 +45,7 @@ public class DBOperations extends ContentProvider {
     public static final String REGISTRATION_PATH = "/" + USER_REGISTRATION_TABLE;
     public static final String PROFILE_PATH = "/" + USER_PROFILE_TABLE;
     /**
-     * A uri to do operations on the Categories table.
-     * A content provider is identified by its uri.
+     * A uri to identify the provider which will perform operations on the various Database tables
      */
     public static final Uri CONTENT_URI_CATEGORIES = Uri.parse("content://" + AUTHORITY + CATEGORIES_PATH);
     public static final Uri CONTENT_URI_ITEMS = Uri.parse("content://" + AUTHORITY + ITEMS_PATH);
@@ -60,7 +59,7 @@ public class DBOperations extends ContentProvider {
     public static final int REG_DETAILS = 3;
     public static final int PROFILE_DETAILS = 4;
     /**
-     * The URI matcher maps to the specified table_name in the database.
+     * The URI matcher maps to the specified table name in the Database.
      */
     private static final UriMatcher uriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
 

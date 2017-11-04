@@ -41,7 +41,6 @@ public class EyeRSDatabaseHelper extends SQLiteOpenHelper {
             "CREATE TABLE IF NOT EXISTS " + CategoryInfo.TABLE_NAME + " ( "
                     + CategoryInfo.CATEGORY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                     + CategoryInfo.CATEGORY_NAME + " TEXT, "
-                    + CategoryInfo.CATEGORY_DESC + " TEXT, "
                     + CategoryInfo.CATEGORY_ICON + " TEXT);";
     /**
      * CREATE USER REGISTRATION TABLE QUERY.
@@ -162,7 +161,6 @@ public class EyeRSDatabaseHelper extends SQLiteOpenHelper {
         }
 
         bookValues.put(CategoryInfo.CATEGORY_NAME, "BOOKS");
-        bookValues.put(CategoryInfo.CATEGORY_DESC, "Educational/Sci-Fi/Comics");
         bookValues.put(CategoryInfo.CATEGORY_ICON, bookIcon);
 
 
@@ -196,7 +194,6 @@ public class EyeRSDatabaseHelper extends SQLiteOpenHelper {
         }
 
         clothesValues.put(CategoryInfo.CATEGORY_NAME, "CLOTHES");
-        clothesValues.put(CategoryInfo.CATEGORY_DESC, "Formal/Casual");
         clothesValues.put(CategoryInfo.CATEGORY_ICON, clothingIcon);
 
         /*
@@ -227,7 +224,6 @@ public class EyeRSDatabaseHelper extends SQLiteOpenHelper {
         }
 
         accessoryValues.put(CategoryInfo.CATEGORY_NAME, "ACCESSORIES");
-        accessoryValues.put(CategoryInfo.CATEGORY_DESC, "Collectibles");
         accessoryValues.put(CategoryInfo.CATEGORY_ICON, accessoryIcon);
 
         /*
@@ -259,7 +255,6 @@ public class EyeRSDatabaseHelper extends SQLiteOpenHelper {
 
 
         gameValues.put(CategoryInfo.CATEGORY_NAME, "GAMES");
-        gameValues.put(CategoryInfo.CATEGORY_DESC, "Sport/Shooting/VR");
         gameValues.put(CategoryInfo.CATEGORY_ICON, gameIcon);
 
         /*
@@ -290,7 +285,6 @@ public class EyeRSDatabaseHelper extends SQLiteOpenHelper {
 
 
         otherValues.put(CategoryInfo.CATEGORY_NAME, "OTHER");
-        otherValues.put(CategoryInfo.CATEGORY_DESC, "Random stuff");
         otherValues.put(CategoryInfo.CATEGORY_ICON, otherIcon);
 
         /*

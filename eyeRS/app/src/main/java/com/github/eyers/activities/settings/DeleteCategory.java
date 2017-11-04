@@ -103,7 +103,6 @@ public class DeleteCategory extends AppCompatActivity implements AdapterView.OnI
         String[] projection = {
                 CategoryInfo.CATEGORY_ID,
                 CategoryInfo.CATEGORY_NAME,
-                CategoryInfo.CATEGORY_DESC,
                 CategoryInfo.CATEGORY_ICON
         };
 
