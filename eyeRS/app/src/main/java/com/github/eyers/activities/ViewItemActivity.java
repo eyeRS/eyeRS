@@ -157,7 +157,7 @@ public class ViewItemActivity extends AppCompatActivity implements View.OnClickL
         String[] whereArgs = {};
         String sortOrder = ItemInfo.ITEM_NAME;
 
-        String idToDelete = "";
+        String itemToDelete = "";
 
         try {
 
@@ -179,7 +179,7 @@ public class ViewItemActivity extends AppCompatActivity implements View.OnClickL
                     /**
                      * Retrieves the id of the item to be deleted
                      */
-                    idToDelete = cursor.getString(cursor.getColumnIndex(ItemInfo.ITEM_ID));
+                    itemToDelete = cursor.getString(cursor.getColumnIndex(ItemInfo.ITEM_ID));
 
                 } else {
 
@@ -196,7 +196,7 @@ public class ViewItemActivity extends AppCompatActivity implements View.OnClickL
          * To delete the item simply specify the item's ID in the where clause
          */
         String deleteWhereClause = ItemInfo.ITEM_ID + " = ?";
-        String[] deleteWhereArgs = {idToDelete};
+        String[] deleteWhereArgs = {itemToDelete};
 
         /*
          * Content Resolver delete operation

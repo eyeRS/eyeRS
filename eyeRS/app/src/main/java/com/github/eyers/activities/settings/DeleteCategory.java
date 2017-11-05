@@ -78,7 +78,7 @@ public class DeleteCategory extends AppCompatActivity implements AdapterView.OnI
                      */
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        deleteCategory();
+                        validateDeletion();
                     }
                     /**
                      * User clicks on Cancel so do nothing
@@ -93,7 +93,7 @@ public class DeleteCategory extends AppCompatActivity implements AdapterView.OnI
      * Removes the record of the item when the user clicks Ok when prompted for deletion
      * Once an item is deleted it cannot be undone
      */
-    private void deleteCategory() {
+    private void validateDeletion() {
 
         /*
          * Content resolver object
@@ -110,7 +110,7 @@ public class DeleteCategory extends AppCompatActivity implements AdapterView.OnI
         String[] whereArgs = {};
         String sortOrder = CategoryInfo.CATEGORY_NAME;
 
-        String idToDelete = "";
+        String categoryToDelete = "";
 
         try {
 
@@ -126,36 +126,66 @@ public class DeleteCategory extends AppCompatActivity implements AdapterView.OnI
 
             if (cursor.moveToFirst()) {
 
-                if (cursor.getString(cursor.getColumnIndex(CategoryInfo.CATEGORY_NAME)).equals(name)) {
+                do {
 
-                    /**
-                     * Retrieves the id of the category to be deleted
-                     */
-                    idToDelete = cursor.getString(cursor.getColumnIndex(CategoryInfo.CATEGORY_ID));
+                    if (cursor.getString(cursor.getColumnIndex(CategoryInfo.CATEGORY_NAME)).
+                            equals(name.toUpperCase())) {
 
-                } else {
-                    Log.e("CatMgmtSettings", "Sorry that category doesn't exist");
-                }
+                        /*
+                         * Retrieves the id of the category to be deleted
+                         */
+                        categoryToDelete = cursor.getString(cursor.getColumnIndex(CategoryInfo.CATEGORY_ID));
+                        deleteCategory(categoryToDelete);
+                    }
+
+                } while (cursor.moveToNext());
 
                 cursor.close();
+
+            } else {
+
+                Log.e("DeleteCategory", "Unable to retrieve category");
             }
         } catch (Exception ex) {
-            Log.e("ViewItemActivity", "Unable to retrieve item details");
+
+            Log.e("CatMgmtSettings", "Sorry that category doesn't exist");
         }
+    }
+
+    /**
+     * Method to delete a category
+     * @param categoryToDelete
+     */
+    private void deleteCategory(String categoryToDelete) {
+
+        /*
+         * Content resolver object
+         */
+        eyeRSContentResolver = this.getContentResolver();
 
         /*
          * To delete a category simply specify the item's ID in the where clause
          */
         String deleteWhereClause = CategoryInfo.CATEGORY_ID + " = ?";
-        String[] deleteWhereArgs = {idToDelete};
+        String[] deleteWhereArgs = {categoryToDelete};
 
-        /*
-         * Content Resolver delete operation
-         */
-        eyeRSContentResolver.delete(DBOperations.CONTENT_URI_CATEGORIES,
-                deleteWhereClause, deleteWhereArgs);
+        try {
+
+            /*
+             * Content Resolver delete operation
+             */
+            eyeRSContentResolver.delete(
+                    DBOperations.CONTENT_URI_CATEGORIES,
+                    deleteWhereClause,
+                    deleteWhereArgs);
+
+        } catch (Exception ex) {
+
+            Log.e("DeleteCategory", ex.getMessage(), ex);
+        }
 
         Toast.makeText(this, "Your category was deleted successfully", Toast.LENGTH_SHORT).show();
+        Log.e("Deleted item id", deleteWhereClause);
         MainActivity.STATE = "main";
         super.startActivity(new Intent(this, MainActivity.class));
         super.finish();
@@ -176,8 +206,22 @@ public class DeleteCategory extends AppCompatActivity implements AdapterView.OnI
      */
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        name = listView.getItemAtPosition(position).toString();
-        promptDeleteCategory();
+
+        name = parent.getItemAtPosition(position).toString();
+
+        if (name.toUpperCase().equals("BOOKS")
+                || name.toUpperCase().equals("CLOTHES")
+                || name.toUpperCase().equals("ACCESSORIES")
+                || name.toUpperCase().equals("GAMES")
+                || name.toUpperCase().equals("OTHER")){
+
+            Toast.makeText(this, "Sorry default categories cannot be deleted!",
+                    Toast.LENGTH_SHORT).show();
+        } else{
+
+            promptDeleteCategory();
+        }
+
     }
 
     @Override
@@ -197,6 +241,7 @@ public class DeleteCategory extends AppCompatActivity implements AdapterView.OnI
 
         return super.onKeyDown(keyCode, event);
     }
+
     @Override
     public void onBackPressed() {
         MainActivity.STATE = "main";

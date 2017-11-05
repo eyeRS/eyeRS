@@ -95,8 +95,7 @@ public class NewCategoryActivity extends AppCompatActivity implements View.OnCli
                     /*
                      * Retrieve user input from fields
                      */
-                    categoryName = txtTitle.getText().toString();
-
+                    categoryName = txtTitle.getText().toString().toUpperCase();
                     /*
                      * Empty category name
                      */
@@ -106,17 +105,78 @@ public class NewCategoryActivity extends AppCompatActivity implements View.OnCli
                                 Toast.LENGTH_SHORT).show();
                         break;
                     }
-                    /*
-                     * No category icon selected
-                     */
-                    else if (categoryIcon.isEmpty()) {
 
-                        Toast.makeText(this, "Please select an icon for the category",
-                                Toast.LENGTH_SHORT).show();
-                        break;
+                    /*
+                     * Content resolver object
+                     */
+                    eyeRSContentResolver = this.getContentResolver();
+
+                    /*
+                     * Array of columns to be included for each row retrieved
+                     */
+                    String[] projection = {
+                            CategoryInfo.CATEGORY_ID,
+                            CategoryInfo.CATEGORY_NAME,
+                            CategoryInfo.CATEGORY_ICON
+                    };
+
+                    String whereClause = "";
+                    String[] whereArgs = {};
+                    String sortOrder = CategoryInfo.CATEGORY_NAME;
+
+                    try {
+
+                        /*
+                         * Content resolver query
+                         */
+                        Cursor cursor = eyeRSContentResolver.query(
+                                DBOperations.CONTENT_URI_CATEGORIES,
+                                projection,
+                                whereClause,
+                                whereArgs,
+                                sortOrder);
+
+                        if (!cursor.moveToFirst()) {
+
+                            Toast.makeText(this, "Oops something happened there!", Toast.LENGTH_SHORT).show();
+                            Log.e("NewCategoryActivity", "Null Cursor object");
+
+                        }
+                        if (cursor.moveToFirst()) {
+
+                            do {
+
+                                /*
+                                 * If the user tries to create an existing category display appropriate message
+                                 */
+                                if (cursor.getString(cursor.getColumnIndex(CategoryInfo.CATEGORY_NAME)).
+                                        equals(categoryName.toUpperCase())) {
+
+                                    Toast.makeText(this, "This category already exists! \n" +
+                                            "Please select a unique name for your new category", Toast.LENGTH_SHORT).show();
+                                    /*
+                                     * Clear the text fields
+                                     */
+                                    this.txtTitle.setText("");
+
+                                }
+                                if (!cursor.getString(cursor.getColumnIndex(CategoryInfo.CATEGORY_NAME)).
+                                        equals(categoryName.toUpperCase())) {
+
+                                    addNewCategory(categoryName);
+                                }
+
+                            } while (cursor.moveToNext());
+
+                            cursor.close();
+
+                        }
+
+                    } catch (Exception ex) {
+
+                        Log.e("Categories query", ex.getMessage(), ex);
                     }
 
-                    validateCategories();
                     break;
             }
 
@@ -144,93 +204,7 @@ public class NewCategoryActivity extends AppCompatActivity implements View.OnCli
         categoryIcon = Base64.encodeToString(bytes.toByteArray(), Base64.DEFAULT);
     }
 
-    /**
-     * Method performs validation to ensure that the user cannot re-create an existing category.
-     */
-    public void validateCategories() {
-
-        /*
-         * Content resolver object
-         */
-        eyeRSContentResolver = this.getContentResolver();
-
-        /*
-         * Array of columns to be included for each row retrieved
-         */
-        String[] projection = {
-                CategoryInfo.CATEGORY_ID,
-                CategoryInfo.CATEGORY_NAME,
-                CategoryInfo.CATEGORY_ICON
-        };
-
-        String whereClause = "";
-        String[] whereArgs = {};
-        String sortOrder = "";
-
-        try {
-
-            /*
-             * Content resolver query
-             */
-            Cursor cursor = eyeRSContentResolver.query(
-                    DBOperations.CONTENT_URI_CATEGORIES,
-                    projection,
-                    whereClause,
-                    whereArgs,
-                    sortOrder);
-
-            if (!cursor.moveToFirst()) {
-
-                Toast.makeText(this, "Oops something happened there!", Toast.LENGTH_SHORT).show();
-                Log.e("NewCategoryActivity", "Null Cursor object");
-
-            } else if (cursor.moveToFirst()) {
-
-                do {
-
-                    /*
-                     * If the user tries to create an existing category display appropriate message
-                     */
-                    if (cursor.getString(cursor.getColumnIndex(CategoryInfo.CATEGORY_NAME)).equals(categoryName)) {
-
-                        Toast.makeText(this, "This category is already in use. " +
-                                "Please select a unique name for your new category", Toast.LENGTH_SHORT).show();
-
-                        /*
-                         * Clear the fields to allow the user to re-enter details
-                         */
-                        this.txtTitle.setText("");
-
-                    }
-                    /*
-                     * If the user is creating a new category
-                     */
-                    else if (!cursor.getString(cursor.getColumnIndex(CategoryInfo.CATEGORY_NAME)).equals(categoryName)) {
-
-                        addNewCategory(); //method to add the new category
-                    }
-
-                } while (cursor.moveToNext());
-
-                cursor.close();
-
-            } else {
-
-                Log.e("NewCategoryActivity", "Cannot retrieve categories");
-            }
-
-
-        } catch (Exception ex) {
-
-            Log.e("Categories query", ex.getMessage(), ex);
-        }
-
-    } //end void validateCategories()
-
-    /**
-     * Method adds the new category to the db only if it has passed the validation test.
-     */
-    public void addNewCategory() {
+    private void addNewCategory(String categoryName) {
 
         /*
          * Content resolver object
@@ -261,11 +235,10 @@ public class NewCategoryActivity extends AppCompatActivity implements View.OnCli
              * Clear the text fields
              */
             this.txtTitle.setText("");
-
             Log.e("DATABASE OPERATIONS", "...New category added to DB!");
 
             /*
-             *  Then navigate the user to the Home screen after successfully creating the category
+             * Then navigate the user to the Home screen after successfully creating the category
              */
             startActivity(new Intent(this, MainActivity.class));
 
@@ -273,9 +246,7 @@ public class NewCategoryActivity extends AppCompatActivity implements View.OnCli
 
             Toast.makeText(this, "Unable to create category", Toast.LENGTH_SHORT).show();
         }
-
-
-    } //end void addNewCategory()
+    }
 
     /**
      * A callback method invoked by the loader when initLoader() is called.

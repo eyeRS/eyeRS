@@ -43,11 +43,11 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
             "What is the name of your junior school?",
             "What is the name of your first pet?",
-            "In what year was your father born?",
-            "What city does your nearest sibling stay?",
-            "What city was your first full time job?",
-            "What are the last 5 digits of your ID number?",
-            "What time of the day were you born (hh:mm)?"
+            "In what month was your father born?",
+            "Which city does your nearest sibling stay?",
+            "Where was your first full time job?",
+            "What are the last 4 digits of your ID number?",
+            "What time of the day were you born (hh:mm:ss)?"
     };
 
     /**

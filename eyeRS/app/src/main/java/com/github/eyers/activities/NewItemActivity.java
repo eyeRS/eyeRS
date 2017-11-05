@@ -242,62 +242,6 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
     @Override
     public void onClick(View view) {
 
-        String userSpecifiedCategory = category;
-        String getUserCategory = "";
-
-        /*
-         * Content resolver object
-         */
-        eyeRSContentResolver = this.getContentResolver();
-
-        String[] projection = {
-                CategoryInfo.CATEGORY_ID,
-                CategoryInfo.CATEGORY_NAME,
-                CategoryInfo.CATEGORY_ICON
-        };
-
-        String whereClause = "";
-        String[] whereArgs = {};
-        String sortOrder = CategoryInfo.CATEGORY_NAME;
-
-        try {
-
-            /*
-             * Content resolver query
-             */
-            Cursor cursor = eyeRSContentResolver.query(
-                    DBOperations.CONTENT_URI_CATEGORIES,
-                    projection,
-                    whereClause,
-                    whereArgs,
-                    sortOrder);
-
-            if (!cursor.moveToFirst()) {
-
-                Log.e("NewItemActivity", "Null Cursor object");
-            } else if (cursor.moveToFirst()) {
-
-                /*
-                 * Found a user specified category
-                 */
-                if (cursor.getString(cursor.getColumnIndex(CategoryInfo.CATEGORY_NAME))
-                        .equals(userSpecifiedCategory)) {
-
-                    /*
-                     * Get that reference
-                     */
-                    getUserCategory = cursor.getString(cursor.getColumnIndex(CategoryInfo.CATEGORY_NAME));
-                }
-            } else {
-
-                Log.e("NewItemActivity", "Empty categories list");
-            }
-
-        } catch (Exception ex) {
-
-            Log.e("NewItemActivity", ex.getMessage(), ex);
-        }
-
         try {
 
             switch (view.getId()) {
