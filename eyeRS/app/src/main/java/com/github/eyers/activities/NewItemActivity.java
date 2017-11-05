@@ -34,6 +34,7 @@ import android.widget.Toast;
 
 import com.github.eyers.DBOperations;
 import com.github.eyers.EyeRS;
+import com.github.eyers.ItemLabel;
 import com.github.eyers.R;
 import com.github.eyers.activities.settings.SettingUtilities;
 import com.github.eyers.info.CategoryInfo;
@@ -52,6 +53,11 @@ import static com.github.eyers.EyeRS.REQUEST_READ_EXTERNAL_STORAGE;
  */
 public class NewItemActivity extends AppCompatActivity implements View.OnClickListener,
         OnItemSelectedListener, LoaderManager.LoaderCallbacks<Cursor> {
+
+    /**
+     * A little hacky but  we need to get this to work. Need to fix later.
+     */
+    public static ItemLabel EDIT_ITEM = null;
 
     public static ArrayAdapter<String> categoriesAdapter;
 
@@ -122,6 +128,12 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
         }
 
         fillCategories();
+
+        if (EDIT_ITEM != null) {
+            txtTitle.setText(EDIT_ITEM.getName());
+            ivImage.setImageBitmap(EDIT_ITEM.getImage());
+            txtDesc.setText(EDIT_ITEM.getName());
+        }
     }
 
     /**
@@ -1129,10 +1141,25 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
 
     @Override
     public void onBackPressed() {
-
+        EDIT_ITEM = null;
         MainActivity.STATE = "main";
         super.startActivity(new Intent(this, MainActivity.class));
         super.finish();
+    }
+
+    /**
+     * Same as {@link #startActivity(Intent, Bundle)} with no options
+     * specified.
+     *
+     * @param intent The intent to start.
+     * @throws android.content.ActivityNotFoundException
+     * @see #startActivity(Intent, Bundle)
+     * @see #startActivityForResult
+     */
+    @Override
+    public void startActivity(Intent intent) {
+        EDIT_ITEM = null;
+        super.startActivity(intent);
     }
 
 } //end class NewItemActivity

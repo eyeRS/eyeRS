@@ -3,6 +3,8 @@ package com.github.eyers;
 import android.graphics.Bitmap;
 import android.support.annotation.NonNull;
 
+import com.github.eyers.wrapper.ItemWrapper;
+
 /**
  * ItemLabel. Created by Matthew Van der Bijl on 2017/08/17.
  *
@@ -18,6 +20,12 @@ public class ItemLabel implements Comparable<ItemLabel> {
         this.name = name;
         this.image = image;
         this.description = description;
+    }
+
+    public ItemLabel(ItemWrapper item) {
+        this.name = item.getName();
+        this.image = item.getImage();
+        this.description = item.getDescription();
     }
 
     public String getName() {

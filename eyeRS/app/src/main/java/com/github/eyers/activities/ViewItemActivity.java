@@ -15,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.github.eyers.DBOperations;
+import com.github.eyers.ItemLabel;
 import com.github.eyers.R;
 import com.github.eyers.activities.settings.SettingUtilities;
 import com.github.eyers.info.ItemInfo;
@@ -98,12 +99,13 @@ public class ViewItemActivity extends AppCompatActivity implements View.OnClickL
         }
     }
 
+    /**
+     * Called to edit the viewed item.
+     */
     private void edit() {
-
-        /*
-         * Content resolver object
-         */
-        eyeRSContentResolver = this.getContentResolver();
+        NewItemActivity.EDIT_ITEM = new ItemLabel(ITEM);
+        startActivity(new Intent(this, NewItemActivity.class));
+        super.finish();
     }
 
     private void promptDeletion() {
