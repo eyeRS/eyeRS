@@ -1,3 +1,80 @@
+commit aa448d383097bbb09e7d34e0b9e0452963db61cc
+Author: Matthew 'siD' Van der Bijl <matthewvdbijl@gmail.com>
+Date:   Sun Nov 5 19:12:07 2017 +0200
+
+    First edit item attempt. Please test on tablet.
+
+commit 339f8f63efe829d7a89d1cb0fb8a4d2074088601
+Author: Nathan Shava <nathantendai.shava@gmail.com>
+Date:   Sun Nov 5 15:53:34 2017 +0200
+
+    Bug fixes
+    
+    # Conflicts:
+    #       eyeRS/app/src/main/java/com/github/eyers/MainActivity.java
+    #       eyeRS/app/src/main/res/layout/activity_main.xml
+    #       eyeRS/app/src/main/res/values/strings.xml
+
+commit 9ce651b26656ce35f845b679278ec7168bda618c
+Author: Matthew 'siD' Van der Bijl <matthewvdbijl@gmail.com>
+Date:   Sun Nov 5 13:02:50 2017 +0200
+
+    Update README.md
+    
+    Changed eyeRS to EyeRS.
+
+commit dc07887506768a7ffaebcef788335d77e3f12e94
+Author: Matthew 'siD' Van der Bijl <matthewvdbijl@gmail.com>
+Date:   Sun Nov 5 12:26:48 2017 +0200
+
+    Delete ITSP200_ System Presentation.pdf
+    
+    Removed duplicate.
+
+commit af5ad2afae374f63aa92b4a01bf39cb5c14a03d5
+Author: Matthew 'siD' Van der Bijl <matthewvdbijl@gmail.com>
+Date:   Sun Nov 5 12:25:09 2017 +0200
+
+    Add files via upload
+    
+    Uploaded ITSP200 System Presentation to the repo. (Forgot to attach the file on the previous commit.)
+
+commit 849a48f25f287eef9f39ec87d5111e3a6153957c
+Author: Matthew 'siD' Van der Bijl <matthewvdbijl@gmail.com>
+Date:   Sun Nov 5 12:23:55 2017 +0200
+
+    Add files via upload
+    
+    Uploaded ITSP200 System Presentation to the repo.
+
+commit e7c70e17e002652627a40d38ab2bf4f3e79f0094
+Author: Matthew 'siD' Van der Bijl <matthewvdbijl@gmail.com>
+Date:   Sun Nov 5 10:54:01 2017 +0200
+
+    hot fix
+
+commit 26c54bc747e57f3131b212244ef0be1beb23aa7d
+Author: Nathan Shava <nathantendai.shava@gmail.com>
+Date:   Sat Nov 4 15:20:06 2017 +0200
+
+    Remove category description
+    
+    # Conflicts:
+    #       eyeRS/app/src/main/java/com/github/eyers/MainActivity.java
+    #       eyeRS/app/src/main/res/layout/activity_main.xml
+    #       eyeRS/app/src/main/res/values/strings.xml
+
+commit ce8d19fb5171ad370dd2467f3867d6e369bc516b
+Author: Nathan Shava <nathantendai.shava@gmail.com>
+Date:   Fri Nov 3 23:36:59 2017 +0200
+
+    Reset PIN, layout and bug fixes
+    
+    # Conflicts:
+    #       eyeRS/app/src/main/java/com/github/eyers/MainActivity.java
+    #       eyeRS/app/src/main/res/layout/activity_main.xml
+    #       eyeRS/app/src/main/res/values/strings.xml
+
 commit a75b3540a8ae3160affe6700cd070744491b4ffe
 Author: Matthew 'siD' Van der Bijl <matthewvdbijl@gmail.com>
 Date:   Fri Nov 3 18:08:35 2017 +0200
