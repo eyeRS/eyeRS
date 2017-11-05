@@ -32,7 +32,7 @@ public final class HelpActivity extends AppCompatActivity implements View.OnClic
 
         try {
             final VideoView videoView = (VideoView) findViewById(R.id.videoView);
-            Uri uri = Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.tut);
+            Uri uri = Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.tab);
             videoView.setVideoURI(uri);
             videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
 
