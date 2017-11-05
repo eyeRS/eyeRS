@@ -141,10 +141,6 @@ public class ViewItemActivity extends AppCompatActivity implements View.OnClickL
      * Once an item is deleted it cannot be undone
      */
     private void deleteItem() {
-
-        /*
-         * Content resolver object
-         */
         eyeRSContentResolver = this.getContentResolver();
 
         String[] projection = {
