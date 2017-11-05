@@ -34,6 +34,7 @@ import android.widget.Toast;
 
 import com.github.eyers.DBOperations;
 import com.github.eyers.EyeRS;
+import com.github.eyers.ItemLabel;
 import com.github.eyers.R;
 import com.github.eyers.activities.settings.SettingUtilities;
 import com.github.eyers.info.CategoryInfo;
@@ -52,6 +53,11 @@ import static com.github.eyers.EyeRS.REQUEST_READ_EXTERNAL_STORAGE;
  */
 public class NewItemActivity extends AppCompatActivity implements View.OnClickListener,
         OnItemSelectedListener, LoaderManager.LoaderCallbacks<Cursor> {
+
+    /**
+     * A little hacky but  we need to get this to work. Need to fix later.
+     */
+    public static ItemLabel EDIT_ITEM = null;
 
     public static ArrayAdapter<String> categoriesAdapter;
 
@@ -122,6 +128,18 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
         }
 
         fillCategories();
+
+        if (EDIT_ITEM != null) {
+            txtTitle.setText(EDIT_ITEM.getName());
+            ivImage.setImageBitmap(EDIT_ITEM.getImage());
+            txtDesc.setText(EDIT_ITEM.getName());
+
+            thumbnail = EDIT_ITEM.getImage();
+            ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+            thumbnail.compress(Bitmap.CompressFormat.JPEG, 90, bytes);
+
+            img = Base64.encodeToString(bytes.toByteArray(), Base64.DEFAULT);
+        }
     }
 
     /**
@@ -1073,10 +1091,89 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
 
     @Override
     public void onBackPressed() {
-
+        EDIT_ITEM = null;
         MainActivity.STATE = "main";
         super.startActivity(new Intent(this, MainActivity.class));
         super.finish();
+    }
+
+    /**
+     * Same as {@link #startActivity(Intent, Bundle)} with no options
+     * specified.
+     *
+     * @param intent The intent to start.
+     * @throws android.content.ActivityNotFoundException
+     * @see #startActivity(Intent, Bundle)
+     * @see #startActivityForResult
+     */
+    @Override
+    public void startActivity(Intent intent) {
+        if (EDIT_ITEM != null) {
+            eyeRSContentResolver = this.getContentResolver();
+
+            String[] projection = {
+                    ItemInfo.ITEM_ID,
+                    ItemInfo.CATEGORY_NAME,
+                    ItemInfo.ITEM_NAME,
+                    ItemInfo.ITEM_DESC,
+                    ItemInfo.ITEM_IMAGE
+            };
+
+            String whereClause = "";
+            String[] whereArgs = {};
+            String sortOrder = ItemInfo.ITEM_NAME;
+
+            String idToDelete = "";
+
+            try {
+
+            /*
+             * Content resolver query
+             */
+                Cursor cursor = eyeRSContentResolver.query(
+                        DBOperations.CONTENT_URI_ITEMS,
+                        projection,
+                        whereClause,
+                        whereArgs,
+                        sortOrder);
+
+                if (cursor.moveToFirst()) {
+
+                    if (cursor.getString(cursor.getColumnIndex(ItemInfo.ITEM_NAME))
+                            .equals(EDIT_ITEM.getName().toString())) {
+
+                        /**
+                         * Retrieves the id of the item to be deleted
+                         */
+                        idToDelete = cursor.getString(cursor.getColumnIndex(ItemInfo.ITEM_ID));
+
+                    } else {
+
+                        Log.e("ViewItemActivity", "Sorry that item doesn't exist");
+                    }
+
+                    cursor.close();
+                }
+            } catch (Exception ex) {
+                Log.e("ViewItemActivity", "Unable to retrieve item details");
+            }
+
+        /*
+         * To delete the item simply specify the item's ID in the where clause
+         */
+            String deleteWhereClause = ItemInfo.ITEM_ID + " = ?";
+            String[] deleteWhereArgs = {idToDelete};
+
+        /*
+         * Content Resolver delete operation
+         */
+            eyeRSContentResolver.delete(
+                    DBOperations.CONTENT_URI_ITEMS,
+                    deleteWhereClause,
+                    deleteWhereArgs);
+        }
+        EDIT_ITEM = null;
+        super.startActivity(intent);
     }
 
 } //end class NewItemActivity
