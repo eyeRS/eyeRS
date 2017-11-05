@@ -133,6 +133,12 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
             txtTitle.setText(EDIT_ITEM.getName());
             ivImage.setImageBitmap(EDIT_ITEM.getImage());
             txtDesc.setText(EDIT_ITEM.getName());
+
+            thumbnail = EDIT_ITEM.getImage();
+            ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+            thumbnail.compress(Bitmap.CompressFormat.JPEG, 90, bytes);
+
+            img = Base64.encodeToString(bytes.toByteArray(), Base64.DEFAULT);
         }
     }
 
