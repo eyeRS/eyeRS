@@ -1,4 +1,4 @@
-# eyeRS
+# EyeRS
 https://github.com/eyeRS
 
 ## Aim
