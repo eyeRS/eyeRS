@@ -60,6 +60,8 @@ public class DeleteCategory extends AppCompatActivity implements AdapterView.OnI
 
         LabelAdapter adapter = new LabelAdapter(this, items);
         listView.setAdapter(adapter);
+
+        Toast.makeText(this, "Please select the item you wish to delete.", Toast.LENGTH_LONG).show();
     }
 
     private void promptDeleteCategory() {
@@ -197,17 +199,10 @@ public class DeleteCategory extends AppCompatActivity implements AdapterView.OnI
 
         return super.onKeyDown(keyCode, event);
     }
-
     @Override
-    protected void onResume() {
-        String action = getIntent().getAction();
-        if (action == null || !action.equals("Already created")) {
-            Intent intent = new Intent(this, MainActivity.class);
-            startActivity(intent);
-            finish();
-        } else {
-            getIntent().setAction(null);
-        }
-        super.onResume();
+    public void onBackPressed() {
+        MainActivity.STATE = "main";
+        super.startActivity(new Intent(this, MainActivity.class));
+        super.finish();
     }
 }

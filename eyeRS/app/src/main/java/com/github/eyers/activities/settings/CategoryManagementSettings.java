@@ -50,12 +50,15 @@ public class CategoryManagementSettings extends AppCompatActivity implements OnI
         try {
             if (position == 0) { //Add Category
                 startActivity(new Intent(this, NewCategoryActivity.class));
+                return;
             } else if (position == 1) { //Edit Category
                 Intent intent = new Intent(this, MainActivity.class);
                 startActivity(intent);
+                return;
             } else if (position == 2) { //Delete Category
                 Intent intent = new Intent(this, DeleteCategory.class);
                 startActivity(intent);
+                return;
             }
         } catch (Exception ex) {
             Log.e("Category Management", "error selecting option", ex);

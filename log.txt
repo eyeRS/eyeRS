@@ -1,3 +1,78 @@
+commit a75b3540a8ae3160affe6700cd070744491b4ffe
+Author: Matthew 'siD' Van der Bijl <matthewvdbijl@gmail.com>
+Date:   Fri Nov 3 18:08:35 2017 +0200
+
+    Update README.md
+
+commit 726f2f4afac76b6db8b18493586182d182e9ddd0
+Author: Matthew 'siD' Van der Bijl <matthewvdbijl@gmail.com>
+Date:   Fri Nov 3 18:04:40 2017 +0200
+
+    Add files via upload
+    
+    Uploaded Deliverable 6 to the repo.
+
+commit 8e61d9379bb5ac9ce65948850f6ce5376354cf0c
+Author: Matthew 'siD' Van der Bijl <matthewvdbijl@gmail.com>
+Date:   Fri Nov 3 17:54:36 2017 +0200
+
+    Delete notes.txt
+    
+    Not being used.
+
+commit 76a98f5009413a48461ce34c1681dce96f0828e5
+Author: Matthew 'siD' Van der Bijl <matthewvdbijl@gmail.com>
+Date:   Fri Nov 3 17:54:12 2017 +0200
+
+    Delete stuff.txt
+    
+    Not being used.
+
+commit 0c8e58b60b164303457af1e60e01ae7e5ffdb585
+Author: Matthew 'siD' Van der Bijl <matthewvdbijl@gmail.com>
+Date:   Fri Nov 3 17:43:12 2017 +0200
+
+    Delete category has been created. However, the method to delete the category is still buggy
+
+commit 0955dec72fab7009d25e36840cac60ae88ff389d
+Merge: ec8ef9d 986e446
+Author: Matthew 'siD' Van der Bijl <matthewvdbijl@gmail.com>
+Date:   Fri Nov 3 17:00:28 2017 +0200
+
+    Merge branch 'master' of https://github.com/eyers/eyers
+
+commit 986e4468b53bbabb6abff2d679028fabf6d72528
+Author: Matthew 'siD' Van der Bijl <matthewvdbijl@gmail.com>
+Date:   Fri Nov 3 17:00:05 2017 +0200
+
+    Update TODO List.txt
+    
+    Spelling error.
+
+commit ec8ef9da7b2dd7ec17a457042df4257289f5352d
+Merge: a46e927 e80e354
+Author: Matthew 'siD' Van der Bijl <matthewvdbijl@gmail.com>
+Date:   Fri Nov 3 16:58:47 2017 +0200
+
+    Merge branch 'master' of https://github.com/eyers/eyers
+
+commit e80e35403f8c02380384129b19ed72cb2497ada4
+Author: Matthew 'siD' Van der Bijl <matthewvdbijl@gmail.com>
+Date:   Fri Nov 3 16:58:35 2017 +0200
+
+    Update TODO List.txt
+    
+    edit item
+    edit & remove category
+    more validation
+
+commit a46e927032e834acc7b1e376ac92a92df5066f58
+Author: Matthew 'siD' Van der Bijl <matthewvdbijl@gmail.com>
+Date:   Fri Nov 3 16:55:32 2017 +0200
+
+    Made a small change to make-log.sh & updated the log file.
+    Some javadoc files have been added with this commit.
+
 commit 6d52332f82b446870d7402ad4bbced9fd92a9f89
 Merge: 0220a62 9874b60
 Author: Matthew 'siD' Van der Bijl <matthewvdbijl@gmail.com>
