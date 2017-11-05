@@ -51,8 +51,6 @@ public class DeleteCategory extends AppCompatActivity implements AdapterView.OnI
         this.listView = (ListView) findViewById(R.id.listview);
         this.listView.setOnItemClickListener(this);
 
-        this.name = "";
-
         ArrayList<ItemLabel> items = new ArrayList<>();
         for (ItemLabel category : EyeRS.getCategoriesList(this)) {
             items.add(category);

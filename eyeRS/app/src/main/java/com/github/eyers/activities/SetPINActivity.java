@@ -202,6 +202,12 @@ public class SetPINActivity extends AppCompatActivity implements View.OnClickLis
                         return;
 
                     }
+                    else if ((pinA.length() < 4) && (pinB.length() < 4)) {
+
+                        Toast.makeText(this, "Please ensure your PIN is at least 4 digits",
+                                Toast.LENGTH_SHORT).show();
+                        return;
+                    }
                     /*
                      * Empty security question
                      */

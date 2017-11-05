@@ -89,8 +89,6 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
         this.categorySpinner = (Spinner) findViewById(R.id.category_spinner);
         this.categorySpinner.setOnItemSelectedListener(this); //spinner click listener
 
-        populateSpinner();
-
         findViewById(R.id.btnAddItem).setOnClickListener(this);
 
         this.ivImage = (ImageView) findViewById(R.id.new_item_image);
@@ -122,37 +120,31 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
         } catch (Exception ex) {
             Log.e("CAMERA PERMISSIONS", "Retrieved permission for in-built camera use");
         }
+
+        fillCategories();
     }
 
     /**
      * Method to populate the spinner.
      */
-    private void populateSpinner() {
+    private void fillCategories() {
 
-        try {
-
-            List<String> categoriesList = categoriesList();
-
-            /*
-             * Spinner adapter
-             */
-            categoriesAdapter = new ArrayAdapter<String>(this,
-                    android.R.layout.simple_spinner_item, categoriesList);
-
-            this.categorySpinner.setAdapter(categoriesAdapter);
-
-        } catch (Exception ex) {
-            Log.e("Populating the spinner", ex.getMessage(), ex);
-        }
+        List<String> categoriesDropDown = retrieveCategories();
+        /*
+         * Spinner adapter
+         */
+        categoriesAdapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, categoriesDropDown);
+        this.categorySpinner.setAdapter(categoriesAdapter);
     }
 
     /**
      * Method returns the categories result set of the SQL query and adds elements into a
      * list structure for the spinner.
      */
-    private List<String> categoriesList() {
+    private List<String> retrieveCategories() {
 
-        List<String> addCategories = new ArrayList<>();
+        List<String> categories = new ArrayList<>();
 
         /*
          * Content resolver object
@@ -207,9 +199,9 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
             Log.e("Categories list", ex.getMessage(), ex);
         }
 
-        addCategories.addAll(data);
+        categories.addAll(data);
 
-        return addCategories; //return the list of categories
+        return categories; //return the list of categories
     }
 
     /**

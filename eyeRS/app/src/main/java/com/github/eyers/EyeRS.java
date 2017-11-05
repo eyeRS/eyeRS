@@ -140,21 +140,26 @@ public final class EyeRS {
             do {
                 Bitmap decodedByte = BitmapFactory.decodeResource(activity.getResources(), R.drawable.ic_action_help);
                 try {
-                    String img = cursor.getString(3);
+                    String img = cursor.getString(
+                            cursor.getColumnIndex(CategoryInfo.CATEGORY_ICON));
 
                     byte[] decodedString = Base64.decode(img, Base64.DEFAULT);
                     decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
                 } catch (Throwable t) { // lets be sure we get it
                     Log.w("Error loading image",
-                            cursor.getString(cursor.getColumnIndex(CategoryInfo.CATEGORY_NAME))
-                                    + " " + t.getMessage(), t);
+                            cursor.getString(
+                                    cursor.getColumnIndex(CategoryInfo.CATEGORY_NAME))
+                                    + " "
+                                    + t.getMessage(), t);
 
                     byte[] decodedString = Base64.decode("", Base64.DEFAULT);
                     decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
                 }
 
-                data.add(new ItemLabel(cursor.getString(cursor.getColumnIndex(CategoryInfo.CATEGORY_NAME)),
-                        decodedByte, ""));
+                data.add(new ItemLabel(cursor.getString(
+                        cursor.getColumnIndex(CategoryInfo.CATEGORY_NAME)),
+                        decodedByte,
+                        ""));
 
             } while (cursor.moveToNext());
 

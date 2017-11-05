@@ -38,7 +38,7 @@
 
     <string name="title_activity_login">EyeRS</string>
     <string name="title_activity_main">My Stuff</string>
-    <string name="title_activity_view_item">My Items</string>
+    <string name="title_activity_view_item">My Item</string>
     <string name="title_activity_new_item">My new Item</string>
     <string name="title_activity_help">Help &amp; Tips</string>
     <string name="title_activity_register">My Registration</string>
@@ -107,7 +107,6 @@
     <!-- Category Settings -->
     <string-array name="category_mgmt_titles">
         <item>Add Category</item>
-        <item>Edit Category</item>
         <item>Delete Category</item>
 
     </string-array>

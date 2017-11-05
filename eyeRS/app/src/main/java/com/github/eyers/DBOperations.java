@@ -13,7 +13,6 @@ import android.util.Log;
 
 import com.github.eyers.info.CategoryInfo;
 import com.github.eyers.info.ItemInfo;
-import com.github.eyers.info.UserProfileInfo;
 import com.github.eyers.info.UserRegistrationInfo;
 
 /**
@@ -36,28 +35,24 @@ public class DBOperations extends ContentProvider {
     public static final String CATEGORIES_TABLE = CategoryInfo.TABLE_NAME;
     public static final String ITEMS_TABLE = ItemInfo.TABLE_NAME;
     public static final String USER_REGISTRATION_TABLE = UserRegistrationInfo.TABLE_NAME;
-    public static final String USER_PROFILE_TABLE = UserProfileInfo.TABLE_NAME;
     /**
      * Specify the table paths.
      */
     public static final String CATEGORIES_PATH = "/" + CATEGORIES_TABLE;
     public static final String ITEMS_PATH = "/" + ITEMS_TABLE;
     public static final String REGISTRATION_PATH = "/" + USER_REGISTRATION_TABLE;
-    public static final String PROFILE_PATH = "/" + USER_PROFILE_TABLE;
     /**
      * A uri to identify the provider which will perform operations on the various Database tables
      */
     public static final Uri CONTENT_URI_CATEGORIES = Uri.parse("content://" + AUTHORITY + CATEGORIES_PATH);
     public static final Uri CONTENT_URI_ITEMS = Uri.parse("content://" + AUTHORITY + ITEMS_PATH);
     public static final Uri CONTENT_URI_USER_REG = Uri.parse("content://" + AUTHORITY + REGISTRATION_PATH);
-    public static final Uri CONTENT_URI_USER_PROFILE = Uri.parse("content://" + AUTHORITY + PROFILE_PATH);
     /**
      * Constants to identify the requested operation
      */
     public static final int CATEGORIES = 1;
     public static final int ITEMS = 2;
     public static final int REG_DETAILS = 3;
-    public static final int PROFILE_DETAILS = 4;
     /**
      * The URI matcher maps to the specified table name in the Database.
      */
@@ -71,7 +66,6 @@ public class DBOperations extends ContentProvider {
         uriMatcher.addURI(AUTHORITY, CATEGORIES_TABLE, CATEGORIES);
         uriMatcher.addURI(AUTHORITY, ITEMS_TABLE, ITEMS);
         uriMatcher.addURI(AUTHORITY, USER_REGISTRATION_TABLE, REG_DETAILS);
-        uriMatcher.addURI(AUTHORITY, USER_PROFILE_TABLE, PROFILE_DETAILS);
 
     }
 
@@ -94,9 +88,6 @@ public class DBOperations extends ContentProvider {
         }
         if (uri.equals(CONTENT_URI_USER_REG)) {
             return USER_REGISTRATION_TABLE;
-        }
-        if (uri.equals(CONTENT_URI_USER_PROFILE)) {
-            return USER_PROFILE_TABLE;
         } else {
             return "Table does not exist";
         }
@@ -151,8 +142,6 @@ public class DBOperations extends ContentProvider {
                 break;
             case REG_DETAILS:
                 break;
-            case PROFILE_DETAILS:
-                break;
             default:
                 Log.e("Query Operation", "Unable to retrieve data");
         }
@@ -203,11 +192,6 @@ public class DBOperations extends ContentProvider {
             long regID = db.insert(table, null, values);
             getContext().getContentResolver().notifyChange(uri, null);
             return Uri.parse(table + "/" + regID);
-        }
-        if (uriType == PROFILE_DETAILS) {
-            long profileID = db.insert(table, null, values);
-            getContext().getContentResolver().notifyChange(uri, null);
-            return Uri.parse(table + "/" + profileID);
         } else {
             Log.e("INSERT OPERATION", "Unable to perform insert operation");
             throw new UnsupportedOperationException("Unsupported URI: " + uri);

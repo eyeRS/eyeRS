@@ -9,7 +9,6 @@ import android.util.Log;
 
 import com.github.eyers.info.CategoryInfo;
 import com.github.eyers.info.ItemInfo;
-import com.github.eyers.info.UserProfileInfo;
 import com.github.eyers.info.UserRegistrationInfo;
 
 import java.lang.reflect.Field;
@@ -53,14 +52,6 @@ public class EyeRSDatabaseHelper extends SQLiteOpenHelper {
                     + UserRegistrationInfo.USER_PIN + " TEXT, "
                     + UserRegistrationInfo.SECURITY_QUESTION + " TEXT, "
                     + UserRegistrationInfo.SECURITY_RESPONSE + " TEXT);";
-    /**
-     * CREATE USER PROFILE TABLE QUERY.
-     */
-    private static final String CREATE_USER_PROFILE_TABLE_QUERY =
-            "CREATE TABLE IF NOT EXISTS " + UserProfileInfo.TABLE_NAME + " ( "
-                    + UserProfileInfo.PROFILE_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-                    + UserProfileInfo.USER_NAME + " TEXT, "
-                    + UserProfileInfo.USER_AVATAR + " TEXT);";
     /**
      * DB variables
      */
@@ -106,11 +97,6 @@ public class EyeRSDatabaseHelper extends SQLiteOpenHelper {
              */
             db.execSQL(CREATE_USER_REGISTRATION_TABLE_QUERY);
             Log.e("DATABASE OPERATIONS", "...User Registration table created!");
-            /*
-             * Creates the Profile Settings table
-             */
-            db.execSQL(CREATE_USER_PROFILE_TABLE_QUERY);
-            Log.e("DATABASE OPERATIONS", "...Profile Settings table created!");
 
             insertDefaultCategoryBooks(db);
             insertDefaultCategoryClothes(db);
