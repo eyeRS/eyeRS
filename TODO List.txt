@@ -1,12 +1,18 @@
+06/11/2017
+Fix slideshow
+Load image from galary
+Save sound settings
+Clean up code 
+
 03/11/2017
-edit item
-edit & remove category
-more validation
+Edit item
+Edit & remove category
+More validation
 
 23/10/2017
-edit & remove item
-edit & remove category
-trade
-share
-search
-fix eveything
+Edit & remove item
+Edit & remove category
+Trade
+Share
+Search
+Fix eveything
