@@ -898,7 +898,7 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
     }
 
     private void selectImage() {
-        final String[] items = {"Take Photo", "Choose from Library", "Cancel"};
+        final String[] items = {"Take Photo", /*"Choose from Library",*/ "Cancel"};
 
         try {
 
@@ -914,12 +914,14 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
                         if (result) {
                             cameraIntent();
                         }
-                    } else if (items[item].equals("Choose from Library")) {
-                        userChoosenTask = "Choose from Library";
-                        if (result)
-                            galleryIntent();
-
-                    } else if (items[item].equals("Cancel")) {
+                    }
+//                    else if (items[item].equals("Choose from Library")) {
+//                        userChoosenTask = "Choose from Library";
+//                        if (result)
+//                            galleryIntent();
+//
+//                    }
+                    else if (items[item].equals("Cancel")) {
                         dialog.dismiss();
                     }
                 }
