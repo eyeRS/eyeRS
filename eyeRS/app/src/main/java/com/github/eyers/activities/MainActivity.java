@@ -351,6 +351,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
     }
 
+    // TODO Remove the method below, no longer used.
     /**
      * Called when a view has been clicked.
      *
@@ -399,9 +400,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
      */
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
         try {
-
             if (STATE.equals("main")) {
                 STATE = listView.getItemAtPosition(position).toString(); // Retrieves the selected category
                 startActivity(new Intent(this, MainActivity.class));

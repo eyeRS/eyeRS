@@ -40,7 +40,6 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
      * The possible security questions.
      */
     private static final String[] QUESTIONS = {
-
             "What is the name of your junior school?",
             "What is the name of your first pet?",
             "In what month was your father born?",

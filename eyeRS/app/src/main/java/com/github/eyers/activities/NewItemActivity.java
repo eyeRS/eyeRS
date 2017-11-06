@@ -809,7 +809,6 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
             startActivity(new Intent(this, MainActivity.class));
 
         } catch (Exception ex) {
-
             Toast.makeText(this, "Unable to add item", Toast.LENGTH_SHORT).show();
             Log.e(getClass().getSimpleName(), "Other item not added.", ex);
             txtTitle.setText("");
@@ -818,7 +817,6 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
             ivImage.setImageBitmap(null);
         }
     }
-
     //end void addOther()
 
     /**
@@ -938,9 +936,7 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
 
 
     private void galleryIntent() {
-
         try {
-
             Intent intent = new Intent();
             intent.setType("image/*");
             intent.setAction(Intent.ACTION_GET_CONTENT);//

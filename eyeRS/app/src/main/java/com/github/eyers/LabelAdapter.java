@@ -17,7 +17,6 @@ public final class LabelAdapter extends ArrayAdapter<ItemLabel> {
         super(context, R.layout.item_label, stocks);
     }
 
-
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         final ItemLabel label = getItem(position);

@@ -232,7 +232,6 @@ public final class EyeRS {
             cursor.close();
 
         } else {
-
             if (activity == null) {
                 Toast.makeText(activity, "Nothing to display.", Toast.LENGTH_SHORT).show();
             }

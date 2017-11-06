@@ -12,6 +12,7 @@ import com.github.eyers.activities.settings.SettingUtilities;
 import com.miguelcatalan.materialsearchview.MaterialSearchView;
 
 public class SearchActivity extends AppCompatActivity {
+
     /**
      * Declare MaterialSearchView when used in activities.
      */

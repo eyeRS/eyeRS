@@ -52,9 +52,8 @@ public class EyeRSDatabaseHelper extends SQLiteOpenHelper {
                     + UserRegistrationInfo.USER_PIN + " TEXT, "
                     + UserRegistrationInfo.SECURITY_QUESTION + " TEXT, "
                     + UserRegistrationInfo.SECURITY_RESPONSE + " TEXT);";
-    /**
-     * DB variables
-     */
+
+    // DB variables
     private static final String DB_NAME = "eyeRS.db";
     private static final int DB_VERSION = 1;
 
@@ -67,16 +66,15 @@ public class EyeRSDatabaseHelper extends SQLiteOpenHelper {
     public EyeRSDatabaseHelper(Context context) {
 
         /*
-         * The null parameter is an advanced feature relating to CursorFactory
+         * The null parameter is an advanced feature relating to CursorFactory.
          */
         super(context, DB_NAME, null, DB_VERSION);
-
-
     }
 
     /**
-     * @param db Method is used to create the db tables
-     *           It accepts a SQLite db object
+     * Method is used to create the db tables. It accepts a SQLite db object.
+     *
+     * @param db the acsepted SQLite object
      */
     @Override
     public void onCreate(SQLiteDatabase db) {

@@ -1,3 +1,15 @@
+commit 9f92135507c375af0cf8d8ec15a5e2404dc2ae14
+Author: Matthew 'siD' Van der Bijl <matthewvdbijl@gmail.com>
+Date:   Mon Nov 6 11:52:12 2017 +0200
+
+    Renamed Prototypes folder.
+
+commit a2546577d14c1bc6194161ae25fd2f996e6ab300
+Author: Matthew 'siD' Van der Bijl <matthewvdbijl@gmail.com>
+Date:   Mon Nov 6 11:50:11 2017 +0200
+
+    Updated javadoc + remade log
+
 commit ce384daaffcbf49315d68ea2f5f18ad71b17857f
 Merge: d01a0f7 e6b4c4f
 Author: Matthew 'siD' Van der Bijl <matthewvdbijl@gmail.com>
