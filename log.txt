@@ -1,3 +1,21 @@
+commit 728ad8c09bde0b9b024958750022f2831f8d5638
+Author: Matthew 'siD' Van der Bijl <matthewvdbijl@gmail.com>
+Date:   Sun Nov 5 20:22:50 2017 +0200
+
+    hot fix on edit item
+
+commit 4f94cecdffecf5e2a21f98be71cb1631b97b9774
+Author: Matthew 'siD' Van der Bijl <matthewvdbijl@gmail.com>
+Date:   Sun Nov 5 19:17:37 2017 +0200
+
+    hot fi
+
+commit c9a58f28fe98e78e3e1895cceeb0b05f7a112709
+Author: Matthew 'siD' Van der Bijl <matthewvdbijl@gmail.com>
+Date:   Sun Nov 5 19:13:05 2017 +0200
+
+    javadoc + log update
+
 commit aa448d383097bbb09e7d34e0b9e0452963db61cc
 Author: Matthew 'siD' Van der Bijl <matthewvdbijl@gmail.com>
 Date:   Sun Nov 5 19:12:07 2017 +0200
