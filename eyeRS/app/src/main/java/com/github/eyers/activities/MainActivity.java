@@ -351,19 +351,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
     }
 
-    // TODO Remove the method below, no longer used.
-    /**
-     * Called when a view has been clicked.
-     *
-     * @param v The view that was clicked.
-     */
-    @Override
-    public void onClick(View v) {
-//        switch (v.getId()) {
-//        }
-//        Toast.makeText(this, "TODO Button: " + v.getId(), Toast.LENGTH_LONG).show();
-    }
-
     /**
      * A callback method invoked by the loader when initLoader() is called.
      *
@@ -458,5 +445,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             getIntent().setAction(null);
         }
         super.onResume();
+    }
+
+    @Override
+    public void onClick(View v) {
+
     }
 } //end class MainActivity

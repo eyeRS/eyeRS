@@ -219,10 +219,12 @@ public final class EyeRS {
                     decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
 
                 } catch (NullPointerException npe) {
+
                     Log.e("error loading image", npe.getMessage());
                     decodedByte = BitmapFactory.decodeResource(activity.getResources(), R.drawable.ic_action_help);
                 }
                 items.add(new ItemWrapper(
+
                         cursor.getString(cursor.getColumnIndex(ItemInfo.ITEM_NAME)),
                         decodedByte,
                         cursor.getString(cursor.getColumnIndex(ItemInfo.ITEM_DESC))));
@@ -233,6 +235,7 @@ public final class EyeRS {
 
         } else {
             if (activity == null) {
+
                 Toast.makeText(activity, "Nothing to display.", Toast.LENGTH_SHORT).show();
             }
         }

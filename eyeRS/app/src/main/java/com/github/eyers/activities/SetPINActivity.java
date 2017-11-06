@@ -236,7 +236,7 @@ public class SetPINActivity extends AppCompatActivity implements View.OnClickLis
                         matchedPIN = txtPIN2.getText().toString();
                     }
 
-                    updateLoginInfo(); //update the user's details
+                    validateRegInfo(); //update the user's details
                     break;
             }
 
@@ -249,7 +249,7 @@ public class SetPINActivity extends AppCompatActivity implements View.OnClickLis
     /**
      * Method to add the updated user credentials & security details
      */
-    private void updateLoginInfo() {
+    private void validateRegInfo() {
 
         /*
          * Retrieve field values
@@ -335,56 +335,7 @@ public class SetPINActivity extends AppCompatActivity implements View.OnClickLis
                  * Retrieve the user id to update their details
                  */
                 idToUpdate = cursor.getString(cursor.getColumnIndex(UserRegistrationInfo.REG_ID));
-
-                /*
-                 * Define an object to contain the new values to insert
-                 */
-                ContentValues userRegValues = new ContentValues();
-                String updateWhereClause = UserRegistrationInfo.REG_ID + " = ?";
-                String[] updateWhereArgs = {idToUpdate};
-
-                /*
-                 * Get the new values to be updated
-                 */
-                userRegValues.put(UserRegistrationInfo.EMAIL_ADD, email);
-                userRegValues.put(UserRegistrationInfo.USER_PIN, matchedPIN); //new matched pin
-                userRegValues.put(UserRegistrationInfo.SECURITY_QUESTION, securityQuestion); //new security question
-                userRegValues.put(UserRegistrationInfo.SECURITY_RESPONSE, securityResponse); //new security response
-
-                try {
-
-                    /*
-                     * Content resolver update operation
-                     */
-                    eyeRSContentResolver.update(
-                            DBOperations.CONTENT_URI_USER_REG,
-                            userRegValues,
-                            updateWhereClause,
-                            updateWhereArgs);
-
-                    Toast.makeText(this, "Your details have been updated successfully ",
-                            Toast.LENGTH_SHORT).show();
-                    Log.e("DATABASE OPERATIONS", "...Credentials updated successfully!");
-
-                    /*
-                     * Then clear the fields
-                     */
-                    this.txtUsername.setText("");
-                    this.txtEmail.setText("");
-                    this.txtPIN1.setText("");
-                    this.txtPIN2.setText("");
-                    this.txtResponse.setText("");
-                    /*
-                     * Once credentials are successfully updated,
-                     * navigate user back to the Login screen
-                     */
-                    super.startActivity(new Intent(this, LoginActivity.class));
-
-                } catch (Exception ex) {
-
-                    Log.e("PIN update query", ex.getMessage(), ex);
-                    Toast.makeText(this, "Unable to add item", Toast.LENGTH_SHORT).show();
-                }
+                updateLoginInfo(idToUpdate);
 
             } else {
 
@@ -394,18 +345,78 @@ public class SetPINActivity extends AppCompatActivity implements View.OnClickLis
 
             }
 
-            cursor.close();
         }
+    } //end void validateRegInfo()
 
+    private void updateLoginInfo(String idToUpdate) {
+
+        /*
+         * Content resolver object
+         */
+        eyeRSContentResolver = this.getContentResolver();
+
+        /*
+         * Define an object to contain the new values to insert
+         */
+        ContentValues userRegValues = new ContentValues();
+        String updateWhereClause = UserRegistrationInfo.REG_ID + " = ?";
+        String[] updateWhereArgs = {idToUpdate};
+
+        /*
+         * Get the new values to be updated
+         */
+        userRegValues.put(UserRegistrationInfo.EMAIL_ADD, email);
+        userRegValues.put(UserRegistrationInfo.USER_PIN, matchedPIN); //new matched pin
+        userRegValues.put(UserRegistrationInfo.SECURITY_QUESTION, securityQuestion); //new security question
+        userRegValues.put(UserRegistrationInfo.SECURITY_RESPONSE, securityResponse); //new security response
+
+        try {
+
+            /*
+             * Content resolver update operation
+             */
+            eyeRSContentResolver.update(
+                    DBOperations.CONTENT_URI_USER_REG,
+                    userRegValues,
+                    updateWhereClause,
+                    updateWhereArgs);
+
+            Log.e("DATABASE OPERATIONS", "...Credentials updated successfully!");
+
+            /*
+             * Then clear the fields
+             */
+            this.txtUsername.setText("");
+            this.txtEmail.setText("");
+            this.txtPIN1.setText("");
+            this.txtPIN2.setText("");
+            this.txtResponse.setText("");
+            /*
+             * Once credentials are successfully updated,
+             * navigate user back to the Login screen
+             */
+            super.startActivity(new Intent(this, LoginActivity.class));
+
+        } catch (Exception ex) {
+
+            Log.e("PIN update query", ex.getMessage(), ex);
+            Toast.makeText(this, "Unable to add item", Toast.LENGTH_SHORT).show();
+
+        } finally {
+
+            Toast.makeText(this, "Your details have been updated successfully ",
+                    Toast.LENGTH_SHORT).show();
+        }
     }
+
 
     /**
      * Method handles what happens when an item is selected from the spinner.
      *
-     * @param parent the spinner's AdapterView
-     * @param view the spinner
+     * @param parent   the spinner's AdapterView
+     * @param view     the spinner
      * @param position the position of the selected spinner item
-     * @param id the id of the selected spinner item
+     * @param id       the id of the selected spinner item
      */
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {

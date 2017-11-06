@@ -125,7 +125,7 @@ public class EyeRSDatabaseHelper extends SQLiteOpenHelper {
     /**
      * Method to insert the BOOKS default category.
      */
-    public void insertDefaultCategoryBooks(SQLiteDatabase db) {
+    private void insertDefaultCategoryBooks(SQLiteDatabase db) {
 
         /*
          * Define an object to contain the new values to insert
@@ -157,7 +157,7 @@ public class EyeRSDatabaseHelper extends SQLiteOpenHelper {
     /**
      * Method to insert the CLOTHES default category.
      */
-    public void insertDefaultCategoryClothes(SQLiteDatabase db) {
+    private void insertDefaultCategoryClothes(SQLiteDatabase db) {
 
         /*
          * Define an object to contain the new values to insert
@@ -190,7 +190,7 @@ public class EyeRSDatabaseHelper extends SQLiteOpenHelper {
     /**
      * Method to insert the ACCESSORIES default category
      */
-    public void insertDefaultCategoryAccessories(SQLiteDatabase db) {
+    private void insertDefaultCategoryAccessories(SQLiteDatabase db) {
 
         /*
          * Define an object to contain the new values to insert
@@ -220,7 +220,7 @@ public class EyeRSDatabaseHelper extends SQLiteOpenHelper {
     /**
      * Method to insert the GAMES default category.
      */
-    public void insertDefaultCategoryGames(SQLiteDatabase db) {
+    private void insertDefaultCategoryGames(SQLiteDatabase db) {
 
         /*
          * Define an object to contain the new values to insert
@@ -231,6 +231,7 @@ public class EyeRSDatabaseHelper extends SQLiteOpenHelper {
         Field field;
 
         try {
+
             field = R.drawable.class.getField("ic_retro_controller");
             gameIcon = field.toString();
         } catch (Exception ex) {
@@ -251,7 +252,7 @@ public class EyeRSDatabaseHelper extends SQLiteOpenHelper {
     /**
      * Method to insert the OTHER default category.
      */
-    public void insertDefaultCategoryOther(SQLiteDatabase db) {
+    private void insertDefaultCategoryOther(SQLiteDatabase db) {
 
         /*
          * Define an object to contain the new values to insert
@@ -261,8 +262,10 @@ public class EyeRSDatabaseHelper extends SQLiteOpenHelper {
         String otherIcon = "";
         Field field;
         try {
+
             field = R.drawable.class.getField("ic_add_black_24dp");
             otherIcon = field.toString();
+
         } catch (Exception ex) {
             Log.e("Insert Error", ex.getMessage());
         }

@@ -136,7 +136,6 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                     DBOperations.CONTENT_URI_USER_REG,
                     userRegValues);
 
-            Toast.makeText(this, "Your details have been saved successfully", Toast.LENGTH_LONG).show();
             Log.e("DATABASE OPERATIONS", "...New user added to DB!");
 
             /*
@@ -157,6 +156,11 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
             Log.e("Registration insert", ex.getMessage(), ex);
             Toast.makeText(this, "Unable to add details", Toast.LENGTH_SHORT).show();
+
+        } finally {
+
+            Toast.makeText(this, "Your details have been saved successfully",
+                    Toast.LENGTH_LONG).show();
         }
 
     }

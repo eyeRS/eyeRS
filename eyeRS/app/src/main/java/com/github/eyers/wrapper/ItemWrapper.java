@@ -3,7 +3,8 @@ package com.github.eyers.wrapper;
 import android.graphics.Bitmap;
 
 /**
- * Item Wrapper. Created by Matthew Van der Bijl on 2017/10/17.
+ * Item Wrapper.
+ * Created on 2017/10/17.
  *
  * @author Matthew Van der Bijl
  */

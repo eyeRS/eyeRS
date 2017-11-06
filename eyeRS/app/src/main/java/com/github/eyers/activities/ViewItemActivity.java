@@ -50,9 +50,11 @@ public class ViewItemActivity extends AppCompatActivity implements View.OnClickL
         this.image = (ImageView) findViewById(R.id.imgViewItem);
 
         try {
+
             this.title.setText(ITEM.getName());
             this.description.setText(ITEM.getDescription());
             this.image.setImageBitmap(ITEM.getImage());
+
         } catch (NullPointerException npe) {
             Log.e("Error adding item", "Something is null");
         }
@@ -60,7 +62,6 @@ public class ViewItemActivity extends AppCompatActivity implements View.OnClickL
         findViewById(R.id.btnEditItem).setOnClickListener(this);
         findViewById(R.id.btnDeleteItem).setOnClickListener(this);
 
-        Toast.makeText(this, ViewItemActivity.ITEM.getName(), Toast.LENGTH_LONG).show();
     }
 
     @Override
@@ -76,6 +77,7 @@ public class ViewItemActivity extends AppCompatActivity implements View.OnClickL
 
     @Override
     public void onBackPressed() {
+
         MainActivity.STATE = "main";
         super.startActivity(new Intent(this, MainActivity.class));
         super.finish();
@@ -90,12 +92,16 @@ public class ViewItemActivity extends AppCompatActivity implements View.OnClickL
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.btnEditItem:
+            case R.id.btnEditItem: {
+
                 this.edit();
-                break;
-            case R.id.btnDeleteItem:
+            }
+            break;
+            case R.id.btnDeleteItem: {
+
                 this.promptDeletion();
-                break;
+            }
+            break;
         }
     }
 
@@ -103,6 +109,7 @@ public class ViewItemActivity extends AppCompatActivity implements View.OnClickL
      * Called to edit the viewed item.
      */
     private void edit() {
+
         NewItemActivity.EDIT_ITEM = new ItemLabel(ITEM);
         startActivity(new Intent(this, NewItemActivity.class));
         super.finish();
@@ -174,6 +181,7 @@ public class ViewItemActivity extends AppCompatActivity implements View.OnClickL
 
                 Toast.makeText(this, "Oops something happened there", Toast.LENGTH_SHORT).show();
                 Log.e("ViewItemActivity", "Unable to retrieve cursor value");
+
             } else if (cursor.moveToFirst()) {
 
                 if (cursor.getString(cursor.getColumnIndex(ItemInfo.ITEM_NAME))
@@ -191,7 +199,9 @@ public class ViewItemActivity extends AppCompatActivity implements View.OnClickL
 
                 cursor.close();
             }
+
         } catch (Exception ex) {
+
             Log.e("ViewItemActivity", "Unable to retrieve item details");
         }
 
@@ -214,12 +224,15 @@ public class ViewItemActivity extends AppCompatActivity implements View.OnClickL
         } catch (Exception ex) {
 
             Log.e("ViewItemActivity", ex.getMessage(), ex);
-        }
 
-        Toast.makeText(this, "Your item was deleted successfully", Toast.LENGTH_SHORT).show();
-        MainActivity.STATE = "main";
-        super.startActivity(new Intent(this, MainActivity.class));
-        super.finish();
+        } finally {
+
+            Toast.makeText(this, "Your item was deleted successfully",
+                    Toast.LENGTH_SHORT).show();
+            MainActivity.STATE = "main";
+            super.startActivity(new Intent(this, MainActivity.class));
+            super.finish();
+        }
     }
 
 } //end class ViewItemActivity

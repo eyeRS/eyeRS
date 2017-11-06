@@ -59,7 +59,8 @@ public class DeleteCategory extends AppCompatActivity implements AdapterView.OnI
         LabelAdapter adapter = new LabelAdapter(this, items);
         listView.setAdapter(adapter);
 
-        Toast.makeText(this, "Please select the item you wish to delete.", Toast.LENGTH_LONG).show();
+        Toast.makeText(this, "Please select the category you wish to delete.",
+                Toast.LENGTH_SHORT).show();
     }
 
     private void promptDeleteCategory() {
@@ -184,16 +185,18 @@ public class DeleteCategory extends AppCompatActivity implements AdapterView.OnI
                     deleteWhereClause,
                     deleteWhereArgs);
 
+            Log.e("Deleted item id", deleteWhereClause);
+
         } catch (Exception ex) {
 
             Log.e("DeleteCategory", ex.getMessage(), ex);
         }
+        finally {
 
-        Toast.makeText(this, "Your category was deleted successfully", Toast.LENGTH_SHORT).show();
-        Log.e("Deleted item id", deleteWhereClause);
-        MainActivity.STATE = "main";
-        super.startActivity(new Intent(this, MainActivity.class));
-        super.finish();
+            MainActivity.STATE = "main";
+            super.startActivity(new Intent(this, MainActivity.class));
+            super.finish();
+        }
     }
 
     /**
@@ -222,7 +225,7 @@ public class DeleteCategory extends AppCompatActivity implements AdapterView.OnI
 
             Toast.makeText(this, "Sorry default categories cannot be deleted!",
                     Toast.LENGTH_SHORT).show();
-            super.startActivity(new Intent(this, ItemManagementSettings.class));
+            super.startActivity(new Intent(this, MainActivity.class));
 
         } else if (!name.toUpperCase().equals("BOOKS")
                 || !name.toUpperCase().equals("CLOTHES")
@@ -238,6 +241,7 @@ public class DeleteCategory extends AppCompatActivity implements AdapterView.OnI
         }
         else{
 
+            Toast.makeText(this, "Oops something happened there", Toast.LENGTH_SHORT).show();
             Log.e("Delete Category", "Error deleting category");
         }
 
