@@ -1,3 +1,81 @@
+commit ce384daaffcbf49315d68ea2f5f18ad71b17857f
+Merge: d01a0f7 e6b4c4f
+Author: Matthew 'siD' Van der Bijl <matthewvdbijl@gmail.com>
+Date:   Mon Nov 6 11:39:10 2017 +0200
+
+    Merge branch 'master' of https://github.com/eyers/eyers
+
+commit d01a0f766dfa17abedcd8b906c9bd104742a6acb
+Author: Matthew 'siD' Van der Bijl <matthewvdbijl@gmail.com>
+Date:   Mon Nov 6 11:36:23 2017 +0200
+
+    Renamed the prototype images.
+
+commit 104e47db1dcd527e465491f8067cbaebd8c92407
+Author: Matthew 'siD' Van der Bijl <matthewvdbijl@gmail.com>
+Date:   Mon Nov 6 11:32:34 2017 +0200
+
+    Renamed the deliverables so that the names are consistant.
+
+commit e6b4c4f3269421cbbfd51c2127212eb58bcd0f4f
+Author: Matthew 'siD' Van der Bijl <matthewvdbijl@gmail.com>
+Date:   Mon Nov 6 11:20:02 2017 +0200
+
+    Create readme.txt
+    
+    Created a readme file for the resources folder.
+    Contains a link to game-icons.net.
+
+commit 72ada89e528d46bac4646d79bf5ef35045e1ce38
+Author: Matthew 'siD' Van der Bijl <matthewvdbijl@gmail.com>
+Date:   Mon Nov 6 11:03:56 2017 +0200
+
+    Update TODO List.txt
+    
+    Added some stuff based on the marker's comments.
+
+commit 5edb4232bb24be64e443ac41173223f5a85300f1
+Author: Andrea <andreacloetekaap@outlook.com>
+Date:   Mon Nov 6 10:43:28 2017 +0200
+
+    changes
+
+commit 95ab692fc3b051262bbb6c6ad2e78bb8c79addad
+Author: Matthew 'siD' Van der Bijl <matthewvdbijl@gmail.com>
+Date:   Mon Nov 6 08:18:52 2017 +0200
+
+    Removed add from galery
+
+commit 697bc6e6c13a8a3ac9d3fc2612b14ecd6dc3867a
+Author: An3aClo <andreacloetekaap@outlook.com>
+Date:   Mon Nov 6 01:00:32 2017 +0200
+
+    Add files via upload
+
+commit f76aa1e60ce86399d66124af10ff6bf9fe31d4ee
+Author: Andrea <andreacloetekaap@outlook.com>
+Date:   Mon Nov 6 00:53:43 2017 +0200
+
+    tutorial video
+
+commit 65458f29d6d58f07b1659b1afb37346bb3e1f86d
+Merge: ec04e25 728ad8c
+Author: Nathan Shava <nathantendai.shava@gmail.com>
+Date:   Sun Nov 5 23:31:27 2017 +0200
+
+    Merge remote-tracking branch 'origin/master'
+
+commit ec04e25b5995015576823449d4bd3c9192966b8b
+Author: Nathan Shava <nathantendai.shava@gmail.com>
+Date:   Sun Nov 5 23:31:06 2017 +0200
+
+    Delete category & bug fixes
+    
+    # Conflicts:
+    #       eyeRS/app/src/main/java/com/github/eyers/MainActivity.java
+    #       eyeRS/app/src/main/res/layout/activity_main.xml
+    #       eyeRS/app/src/main/res/values/strings.xml
+
 commit 728ad8c09bde0b9b024958750022f2831f8d5638
 Author: Matthew 'siD' Van der Bijl <matthewvdbijl@gmail.com>
 Date:   Sun Nov 5 20:22:50 2017 +0200
