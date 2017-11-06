@@ -15,10 +15,10 @@ import com.github.eyers.R;
  */
 public class SettingUtilities {
 
-    private final static int App_Theme = 0;
-    private final static int AppTheme_Red = 1;
-    private final static int AppTheme_Yellow = 2;
-    private final static int AppTheme_Green = 3;
+    final static int App_Theme = 0;
+    final static int AppTheme_Red = 1;
+    final static int AppTheme_Yellow = 2;
+    final static int AppTheme_Green = 3;
 
     /**
      * Set the theme of the Activity, and restart it by creating a new Activity of the same type.

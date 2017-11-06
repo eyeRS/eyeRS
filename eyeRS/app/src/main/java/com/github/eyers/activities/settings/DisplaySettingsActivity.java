@@ -276,7 +276,7 @@ public class DisplaySettingsActivity extends AppCompatActivity implements OnClic
         }
     }
 
-    private void changeThemeGreen() {
+    public void changeThemeGreen() {
 
         try {
 

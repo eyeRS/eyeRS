@@ -97,7 +97,7 @@
                     android:id="@+id/txtNewPIN1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/enterPinHint"
+                    android:hint="@string/createPinHint"
                     android:inputType="numberPassword"
                     android:textAlignment="center" />
 

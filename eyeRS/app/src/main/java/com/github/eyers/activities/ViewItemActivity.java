@@ -170,12 +170,11 @@ public class ViewItemActivity extends AppCompatActivity implements View.OnClickL
                     whereArgs,
                     sortOrder);
 
-            if (!cursor.moveToFirst()){
+            if (!cursor.moveToFirst()) {
 
                 Toast.makeText(this, "Oops something happened there", Toast.LENGTH_SHORT).show();
                 Log.e("ViewItemActivity", "Unable to retrieve cursor value");
-            }
-            else if (cursor.moveToFirst()) {
+            } else if (cursor.moveToFirst()) {
 
                 if (cursor.getString(cursor.getColumnIndex(ItemInfo.ITEM_NAME))
                         .equals(this.title.getText().toString())) {
@@ -202,13 +201,20 @@ public class ViewItemActivity extends AppCompatActivity implements View.OnClickL
         String deleteWhereClause = ItemInfo.ITEM_ID + " = ?";
         String[] deleteWhereArgs = {itemToDelete};
 
-        /*
-         * Content Resolver delete operation
-         */
-        eyeRSContentResolver.delete(
-                DBOperations.CONTENT_URI_ITEMS,
-                deleteWhereClause,
-                deleteWhereArgs);
+        try {
+
+            /*
+             * Content Resolver delete operation
+            */
+            eyeRSContentResolver.delete(
+                    DBOperations.CONTENT_URI_ITEMS,
+                    deleteWhereClause,
+                    deleteWhereArgs);
+
+        } catch (Exception ex) {
+
+            Log.e("ViewItemActivity", ex.getMessage(), ex);
+        }
 
         Toast.makeText(this, "Your item was deleted successfully", Toast.LENGTH_SHORT).show();
         MainActivity.STATE = "main";
