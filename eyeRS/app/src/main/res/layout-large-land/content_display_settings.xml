@@ -74,7 +74,7 @@
                     android:layout_marginBottom="8dp"
                     android:layout_marginLeft="140dp"
                     android:layout_marginStart="140dp"
-                    android:backgroundTint="@color/eyeRSDarkRed"
+                    android:backgroundTint="@color/eyeRSRed"
                     android:tint="@color/eyeRSRed"
                     app:srcCompat="@drawable/color_cursor_white" />
 

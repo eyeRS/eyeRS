@@ -201,10 +201,9 @@ public class SetPINActivity extends AppCompatActivity implements View.OnClickLis
                         Toast.makeText(this, "Your PINs do not match.", Toast.LENGTH_LONG).show();
                         return;
 
-                    }
-                    else if ((pinA.length() < 4) && (pinB.length() < 4)) {
+                    } else if ((pinA.length() < 5) && (pinB.length() < 5)) {
 
-                        Toast.makeText(this, "Please ensure your PIN is at least 4 digits",
+                        Toast.makeText(this, "Please ensure your PIN is at least 5 digits",
                                 Toast.LENGTH_SHORT).show();
                         return;
                     }

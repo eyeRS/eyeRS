@@ -132,7 +132,7 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
         if (EDIT_ITEM != null) {
             txtTitle.setText(EDIT_ITEM.getName());
             ivImage.setImageBitmap(EDIT_ITEM.getImage());
-            txtDesc.setText(EDIT_ITEM.getName());
+            txtDesc.setText(EDIT_ITEM.getDescription());
 
             thumbnail = EDIT_ITEM.getImage();
             ByteArrayOutputStream bytes = new ByteArrayOutputStream();
@@ -218,6 +218,9 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
         }
 
         categories.addAll(data);
+//        for (String str : data) {
+//            categories.add(str);
+//        }
 
         return categories; //return the list of categories
     }

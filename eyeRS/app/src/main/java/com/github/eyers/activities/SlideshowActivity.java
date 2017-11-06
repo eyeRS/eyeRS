@@ -57,10 +57,10 @@ public class SlideshowActivity extends AppCompatActivity {
 
     private void setImage() {
         if (!items.isEmpty()) {
-            ItemWrapper item = items.get(new Random().nextInt(items.size()));
-            Toast.makeText(this, item.getName(), Toast.LENGTH_SHORT).show();
             try {
+                ItemWrapper item = items.get(new Random().nextInt(items.size()));
                 this.img.setImageBitmap(item.getImage());
+                Toast.makeText(this, item.getName(), Toast.LENGTH_SHORT).show();
             } catch (NullPointerException npe) {
                 Log.e("Slideshow image error", "error showing image", npe);
             }
