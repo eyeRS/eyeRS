@@ -120,14 +120,14 @@ public class ViewItemActivity extends AppCompatActivity implements View.OnClickL
                 .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                     /**
                      * User clicks on Ok so delete the item
-                     * @param dialog
-                     * @param which
+                     * @param dialog delete item
+                     * @param which the selection clicked by the user
                      */
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         deleteItem();
                     }
-                    /**
+                    /*
                      * User clicks on Cancel so do nothing
                      */
                 }).setNegativeButton("Cancel", null);
@@ -141,6 +141,7 @@ public class ViewItemActivity extends AppCompatActivity implements View.OnClickL
      * Once an item is deleted it cannot be undone
      */
     private void deleteItem() {
+
         eyeRSContentResolver = this.getContentResolver();
 
         String[] projection = {
@@ -169,12 +170,17 @@ public class ViewItemActivity extends AppCompatActivity implements View.OnClickL
                     whereArgs,
                     sortOrder);
 
-            if (cursor.moveToFirst()) {
+            if (!cursor.moveToFirst()){
+
+                Toast.makeText(this, "Oops something happened there", Toast.LENGTH_SHORT).show();
+                Log.e("ViewItemActivity", "Unable to retrieve cursor value");
+            }
+            else if (cursor.moveToFirst()) {
 
                 if (cursor.getString(cursor.getColumnIndex(ItemInfo.ITEM_NAME))
                         .equals(this.title.getText().toString())) {
 
-                    /**
+                    /*
                      * Retrieves the id of the item to be deleted
                      */
                     itemToDelete = cursor.getString(cursor.getColumnIndex(ItemInfo.ITEM_ID));

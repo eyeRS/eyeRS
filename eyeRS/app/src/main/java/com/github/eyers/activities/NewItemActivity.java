@@ -39,6 +39,7 @@ import com.github.eyers.R;
 import com.github.eyers.activities.settings.SettingUtilities;
 import com.github.eyers.info.CategoryInfo;
 import com.github.eyers.info.ItemInfo;
+import com.github.eyers.info.UserRegistrationInfo;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -218,9 +219,6 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
         }
 
         categories.addAll(data);
-//        for (String str : data) {
-//            categories.add(str);
-//        }
 
         return categories; //return the list of categories
     }
@@ -231,7 +229,9 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
     public void onPause() {
         super.onPause();
 
-        //Save the spinner's selection
+        /*
+         * Save the spinner's selection
+         */
         categorySpinner = (Spinner) findViewById(R.id.category_spinner);
         SharedPreferences category_prefs = getSharedPreferences("category_prefs", Context.MODE_PRIVATE);
         category_prefs.edit().putInt("spinner_indx", categorySpinner.getSelectedItemPosition()).apply();
@@ -827,12 +827,12 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
         /**
          * Define an object to contain the new values to insert.
          */
-        ContentValues itemsValues = new ContentValues();
+        ContentValues itemValues = new ContentValues();
 
-        itemsValues.put(ItemInfo.CATEGORY_NAME, category); //user specified category
-        itemsValues.put(ItemInfo.ITEM_NAME, itemName); //item's name
-        itemsValues.put(ItemInfo.ITEM_DESC, itemDesc); //item's description
-        itemsValues.put(ItemInfo.ITEM_IMAGE, img); //item's image
+        itemValues.put(ItemInfo.CATEGORY_NAME, category); //user specified category
+        itemValues.put(ItemInfo.ITEM_NAME, itemName); //item's name
+        itemValues.put(ItemInfo.ITEM_DESC, itemDesc); //item's description
+        itemValues.put(ItemInfo.ITEM_IMAGE, img); //item's image
 
         /**
          * Content resolver object
@@ -841,18 +841,18 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
 
         try {
 
-            /**
+            /*
              * Content resolver items insert
              */
             eyeRSContentResolver.insert(
                     DBOperations.CONTENT_URI_ITEMS,
-                    itemsValues);
+                    itemValues);
 
             Toast.makeText(this, "Your item has been added successfully", Toast.LENGTH_SHORT).show();
             //Display message in the logcat window after successful operation execution
             Log.e("DATABASE OPERATIONS", "...New item added to DB!");
 
-            /**
+            /*
              * Then clear the fields after successfully inserting the data
              */
             txtTitle.setText("");
@@ -862,6 +862,7 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
             startActivity(new Intent(this, MainActivity.class));
 
         } catch (Exception ex) {
+
             Toast.makeText(this, "Unable to add item", Toast.LENGTH_SHORT).show();
             Log.e(getClass().getSimpleName(), "User specified item not added.", ex);
             txtTitle.setText("");
@@ -1110,6 +1111,10 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
     @Override
     public void startActivity(Intent intent) {
         if (EDIT_ITEM != null) {
+
+            /*
+             * Content resolver object
+             */
             eyeRSContentResolver = this.getContentResolver();
 
             String[] projection = {
@@ -1124,13 +1129,13 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
             String[] whereArgs = {};
             String sortOrder = ItemInfo.ITEM_NAME;
 
-            String idToDelete = "";
+            String idToUpdate = ""; // ID of the item to update
 
             try {
 
-            /*
-             * Content resolver query
-             */
+                /*
+                 * Content resolver query
+                 */
                 Cursor cursor = eyeRSContentResolver.query(
                         DBOperations.CONTENT_URI_ITEMS,
                         projection,
@@ -1143,10 +1148,10 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
                     if (cursor.getString(cursor.getColumnIndex(ItemInfo.ITEM_NAME))
                             .equals(EDIT_ITEM.getName().toString())) {
 
-                        /**
+                        /*
                          * Retrieves the id of the item to be deleted
                          */
-                        idToDelete = cursor.getString(cursor.getColumnIndex(ItemInfo.ITEM_ID));
+                        idToUpdate = cursor.getString(cursor.getColumnIndex(ItemInfo.ITEM_ID));
 
                     } else {
 
@@ -1159,20 +1164,53 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
                 Log.e("ViewItemActivity", "Unable to retrieve item details");
             }
 
-        /*
-         * To delete the item simply specify the item's ID in the where clause
-         */
-            String deleteWhereClause = ItemInfo.ITEM_ID + " = ?";
-            String[] deleteWhereArgs = {idToDelete};
+            /*
+             * To update the item simply specify the item's ID in the where clause
+             */
+            ContentValues itemValues = new ContentValues();
+            String updateWhereClause = ItemInfo.ITEM_ID + " = ?";
+            String[] updateWhereArgs = {idToUpdate};
 
-        /*
-         * Content Resolver delete operation
-         */
-            eyeRSContentResolver.delete(
-                    DBOperations.CONTENT_URI_ITEMS,
-                    deleteWhereClause,
-                    deleteWhereArgs);
+            /*
+             * Get the new values to be updated
+             */
+            itemValues.put(ItemInfo.CATEGORY_NAME, category); //user specified category
+            itemValues.put(ItemInfo.ITEM_NAME, itemName); //item's name
+            itemValues.put(ItemInfo.ITEM_DESC, itemDesc); //item's description
+            itemValues.put(ItemInfo.ITEM_IMAGE, img); //item's image
+
+            try{
+
+                /*
+                 * Content resolver update operation
+                 */
+                eyeRSContentResolver.update(
+                        DBOperations.CONTENT_URI_ITEMS,
+                        itemValues,
+                        updateWhereClause,
+                        updateWhereArgs
+                );
+
+                Toast.makeText(this, "Your item has updated successfully ",
+                        Toast.LENGTH_SHORT).show();
+                Log.e("DATABASE OPERATIONS", "...Item details updated successfully!");
+
+                /*
+                 * Then clear the fields after successfully inserting the data
+                 */
+                txtTitle.setText("");
+                txtDesc.setText("");
+                img = "";
+                ivImage.setImageBitmap(null);
+                startActivity(new Intent(this, MainActivity.class));
+
+            }
+            catch (Exception ex){
+
+                Log.e("NewItemActivity", ex.getMessage(), ex);
+            }
         }
+
         EDIT_ITEM = null;
         super.startActivity(intent);
     }

@@ -38,14 +38,14 @@ public class SoundSettings extends AppCompatActivity {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 
-                /** If the user wishes to receive a welcome message pop up*/
+                /* If the user wishes to receive a welcome message pop up*/
                 if (isChecked) {
 
                     Toast.makeText(SoundSettings.this, "Welcome message enabled!", Toast.LENGTH_SHORT).show();
                     mpw.start();
 
                 }
-                /** If the user does not wish to receive a welcome message pop up**/
+                /* If the user does not wish to receive a welcome message pop up**/
                 if (!isChecked) {
 
                     Toast.makeText(SoundSettings.this, "Welcome message disabled!", Toast.LENGTH_SHORT).show();
@@ -62,7 +62,7 @@ public class SoundSettings extends AppCompatActivity {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 
-                /** If the user wishes to receive a welcome message pop up*/
+                /* If the user wishes to receive a welcome message pop up*/
                 if (isChecked) {
 
                     Toast.makeText(SoundSettings.this, "Bye message enabled!", Toast.LENGTH_SHORT).show();
@@ -70,7 +70,7 @@ public class SoundSettings extends AppCompatActivity {
                     mpb.start();
 
                 }
-                /** If the user does not wish to receive a welcome message pop up**/
+                /* If the user does not wish to receive a welcome message pop up**/
                 if (!isChecked) {
 
                     Toast.makeText(SoundSettings.this, "Bye message disabled!", Toast.LENGTH_SHORT).show();

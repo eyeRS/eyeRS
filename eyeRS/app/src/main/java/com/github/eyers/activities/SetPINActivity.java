@@ -272,7 +272,7 @@ public class SetPINActivity extends AppCompatActivity implements View.OnClickLis
         String[] whereArgs = {};
         String sortOrder = "";
 
-        String idToUpdate = "";
+        String idToUpdate;
 
         /*
          * Content resolver object
@@ -353,8 +353,14 @@ public class SetPINActivity extends AppCompatActivity implements View.OnClickLis
 
                 try {
 
-                    eyeRSContentResolver.update(DBOperations.CONTENT_URI_USER_REG, userRegValues,
-                            updateWhereClause, updateWhereArgs);
+                    /*
+                     * Content resolver update operation
+                     */
+                    eyeRSContentResolver.update(
+                            DBOperations.CONTENT_URI_USER_REG,
+                            userRegValues,
+                            updateWhereClause,
+                            updateWhereArgs);
 
                     Toast.makeText(this, "Your details have been updated successfully ",
                             Toast.LENGTH_SHORT).show();
@@ -396,25 +402,24 @@ public class SetPINActivity extends AppCompatActivity implements View.OnClickLis
     /**
      * Method handles what happens when an item is selected from the spinner.
      *
-     * @param parent
-     * @param view
-     * @param position
-     * @param id
+     * @param parent the spinner's AdapterView
+     * @param view the spinner
+     * @param position the position of the selected spinner item
+     * @param id the id of the selected spinner item
      */
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
-        /**
+        /*
          * Question selected from Spinner
          */
         securityQuestion = parent.getItemAtPosition(position).toString();
     }
 
     /**
-     * @param emailAddress
-     * @return
+     * @param emailAddress is retrieved from the email EditText field
+     * @return true if the email is valid, false otherwise
      */
-
     public boolean validateEmailAddress(String emailAddress) {
 
         return regexPattern.matcher(emailAddress).matches();
@@ -475,7 +480,7 @@ public class SetPINActivity extends AppCompatActivity implements View.OnClickLis
     /**
      * Save the state of the spinner if it's about to be destroyed.
      *
-     * @param savedInstanceState
+     * @param savedInstanceState stores the values of the spinner selection
      */
     @Override
     public void onSaveInstanceState(Bundle savedInstanceState) {
@@ -487,6 +492,7 @@ public class SetPINActivity extends AppCompatActivity implements View.OnClickLis
             savedInstanceState.putInt("spinner", spinner.getSelectedItemPosition());
 
         } catch (Exception ex) {
+
             Log.e("SetPINActivity", "onSaveInstanceState method");
         }
     }
