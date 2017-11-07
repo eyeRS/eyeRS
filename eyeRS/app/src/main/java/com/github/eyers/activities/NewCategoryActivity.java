@@ -89,7 +89,7 @@ public class NewCategoryActivity extends AppCompatActivity implements View.OnCli
         try {
             switch (view.getId()) {
 
-                case R.id.btnAddCat: //user clicks add
+                case R.id.btnAddCat: { //user clicks add
 
                     /*
                      * Retrieve user input from fields
@@ -176,7 +176,8 @@ public class NewCategoryActivity extends AppCompatActivity implements View.OnCli
                         Log.e("Categories query", ex.getMessage(), ex);
                     }
 
-                    break;
+                }
+                break;
             }
 
         } catch (Exception ex) {
@@ -227,23 +228,21 @@ public class NewCategoryActivity extends AppCompatActivity implements View.OnCli
                     DBOperations.CONTENT_URI_CATEGORIES,
                     categoryValues);
 
-            Toast.makeText(this, "Your new category has been created successfully ",
-                    Toast.LENGTH_SHORT).show();
+        } catch (Exception ex) {
+
+            Toast.makeText(this, "Unable to create category", Toast.LENGTH_SHORT).show();
+        }
+        finally {
 
             /*
              * Clear the text fields
              */
             this.txtTitle.setText("");
             Log.e("DATABASE OPERATIONS", "...New category added to DB!");
-
             /*
              * Then navigate the user to the Home screen after successfully creating the category
              */
             startActivity(new Intent(this, MainActivity.class));
-
-        } catch (Exception ex) {
-
-            Toast.makeText(this, "Unable to create category", Toast.LENGTH_SHORT).show();
         }
     }
 

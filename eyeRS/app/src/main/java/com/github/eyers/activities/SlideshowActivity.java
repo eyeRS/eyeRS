@@ -64,7 +64,6 @@ public class SlideshowActivity extends AppCompatActivity {
             } catch (NullPointerException npe) {
                 Log.e("Slideshow image error", "error showing image", npe);
             }
-//            Toast.makeText(this, item.getName() + item.getImage(), Toast.LENGTH_SHORT).show();
         }
     }
 

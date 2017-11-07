@@ -15,15 +15,15 @@ import com.github.eyers.R;
  */
 public class SettingUtilities {
 
-    public final static int App_Theme = 0;
-    public final static int AppTheme_Red = 1;
-    public final static int AppTheme_Yellow = 2;
-    public final static int AppTheme_Green = 3;
+    final static int App_Theme = 0;
+    final static int AppTheme_Red = 1;
+    final static int AppTheme_Yellow = 2;
+    final static int AppTheme_Green = 3;
 
     /**
      * Set the theme of the Activity, and restart it by creating a new Activity of the same type.
      */
-    public static void changeToTheme(AppCompatActivity activity, int theme) {
+    static void changeToTheme(AppCompatActivity activity, int theme) {
 //        sTheme = theme;
         EyeRS.PREFERENCES.putInteger("theme", theme);
         EyeRS.PREFERENCES.flush();
@@ -66,7 +66,7 @@ public class SettingUtilities {
         }
     }
 
-    static int getThemeID() {
+    private static int getThemeID() {
         return EyeRS.PREFERENCES.getInteger("theme", App_Theme);
     }
 }
