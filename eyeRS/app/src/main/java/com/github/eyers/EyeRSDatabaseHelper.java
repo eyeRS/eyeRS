@@ -39,8 +39,7 @@ public class EyeRSDatabaseHelper extends SQLiteOpenHelper {
     private static final String CREATE_CATEGORY_TABLE_QUERY =
             "CREATE TABLE IF NOT EXISTS " + CategoryInfo.TABLE_NAME + " ( "
                     + CategoryInfo.CATEGORY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-                    + CategoryInfo.CATEGORY_NAME + " TEXT, "
-                    + CategoryInfo.CATEGORY_ICON + " TEXT);";
+                    + CategoryInfo.CATEGORY_NAME + " TEXT);";
     /**
      * CREATE USER REGISTRATION TABLE QUERY.
      */
@@ -132,21 +131,7 @@ public class EyeRSDatabaseHelper extends SQLiteOpenHelper {
          */
         ContentValues bookValues = new ContentValues();
 
-        String bookIcon = "";
-        Field field;
-
-        try {
-
-            field = R.drawable.class.getField("ic_white_book");
-            bookIcon = field.toString();
-
-        } catch (NoSuchFieldException e) {
-            e.printStackTrace();
-        }
-
         bookValues.put(CategoryInfo.CATEGORY_NAME, "BOOKS");
-        bookValues.put(CategoryInfo.CATEGORY_ICON, bookIcon);
-
 
         /*
          * Content resolver insert operation
@@ -164,21 +149,7 @@ public class EyeRSDatabaseHelper extends SQLiteOpenHelper {
          */
         ContentValues clothesValues = new ContentValues();
 
-        String clothingIcon = "";
-        Field field;
-
-        try {
-
-            field = R.drawable.class.getField("ic_polo_shirt");
-            clothingIcon = field.toString();
-
-        } catch (Exception ex) {
-
-            Log.e("Insert Error", ex.getMessage());
-        }
-
         clothesValues.put(CategoryInfo.CATEGORY_NAME, "CLOTHES");
-        clothesValues.put(CategoryInfo.CATEGORY_ICON, clothingIcon);
 
         /*
          * Content resolver insert operation
@@ -197,18 +168,7 @@ public class EyeRSDatabaseHelper extends SQLiteOpenHelper {
          */
         ContentValues accessoryValues = new ContentValues();
 
-        String accessoryIcon = "";
-        Field field;
-
-        try {
-            field = R.drawable.class.getField("ic_swap_bag");
-            accessoryIcon = field.toString();
-        } catch (Exception ex) {
-            Log.e("Insert Error", ex.getMessage());
-        }
-
         accessoryValues.put(CategoryInfo.CATEGORY_NAME, "ACCESSORIES");
-        accessoryValues.put(CategoryInfo.CATEGORY_ICON, accessoryIcon);
 
         /*
          * Content resolver insert operation
@@ -227,20 +187,7 @@ public class EyeRSDatabaseHelper extends SQLiteOpenHelper {
          */
         ContentValues gameValues = new ContentValues();
 
-        String gameIcon = "";
-        Field field;
-
-        try {
-
-            field = R.drawable.class.getField("ic_retro_controller");
-            gameIcon = field.toString();
-        } catch (Exception ex) {
-            Log.e("Insert Error", ex.getMessage());
-        }
-
-
         gameValues.put(CategoryInfo.CATEGORY_NAME, "GAMES");
-        gameValues.put(CategoryInfo.CATEGORY_ICON, gameIcon);
 
         /*
          * Content resolver insert operation
@@ -259,20 +206,7 @@ public class EyeRSDatabaseHelper extends SQLiteOpenHelper {
          */
         ContentValues otherValues = new ContentValues();
 
-        String otherIcon = "";
-        Field field;
-        try {
-
-            field = R.drawable.class.getField("ic_add_black_24dp");
-            otherIcon = field.toString();
-
-        } catch (Exception ex) {
-            Log.e("Insert Error", ex.getMessage());
-        }
-
-
         otherValues.put(CategoryInfo.CATEGORY_NAME, "OTHER");
-        otherValues.put(CategoryInfo.CATEGORY_ICON, otherIcon);
 
         /*
          * Content resolver insert operation

@@ -68,7 +68,7 @@
     <string name="txtCategoryName">Category Name</string>
     <string name="txtCategoryDesc">Description</string>
     <string name="btnAddCat">Add</string>
-    <string name="txtCategoryIcon">Select an icon using the drop-down list</string>
+    <string name="txtNewCategoryDesc">Enter your new unique category name below</string>
 
     <!-- Item stock label strings -->
     <string name="lblName">Name</string>

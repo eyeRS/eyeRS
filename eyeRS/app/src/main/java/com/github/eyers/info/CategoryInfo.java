@@ -18,5 +18,4 @@ public interface CategoryInfo {
      */
     String CATEGORY_ID = "_id";
     String CATEGORY_NAME = "category_name";
-    String CATEGORY_ICON = "category_icon";
 }

@@ -40,10 +40,10 @@ public class NewCategoryActivity extends AppCompatActivity implements View.OnCli
     /* Fields & other declarations */
     private EditText txtTitle;
     private String categoryName;
-    private Spinner iconSpinner;
+    //private Spinner iconSpinner;
     private ImageView imageView;
     private String categoryIcon;
-    private HashMap<String, Integer> data;
+    //private HashMap<String, Integer> data;
     /**
      * Content Resolver declaration.
      */
@@ -52,9 +52,9 @@ public class NewCategoryActivity extends AppCompatActivity implements View.OnCli
     /**
      * Constructor
      */
-    public NewCategoryActivity() {
-        this.data = new HashMap<>();
-    }
+    //public NewCategoryActivity() {
+    //    this.data = new HashMap<>();
+    //}
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,20 +65,17 @@ public class NewCategoryActivity extends AppCompatActivity implements View.OnCli
         setSupportActionBar(toolbar);
 
         this.txtTitle = (EditText) findViewById(R.id.edtTxtCatTitle);
-        this.iconSpinner = (Spinner) findViewById(R.id.iconSpinner);
-        this.iconSpinner.setOnItemSelectedListener(this);
-        this.imageView = (ImageView) findViewById(R.id.new_category_image);
 
         findViewById(R.id.btnAddCat).setOnClickListener(this);
 
-        populateSpinner();
+        //populateSpinner();
 
         /*
          * Retrieve the saved state values before the activity was destroyed
          */
         if (savedInstanceState != null) {
 
-            iconSpinner.setSelection(savedInstanceState.getInt("icon_spinner"));
+            //iconSpinner.setSelection(savedInstanceState.getInt("icon_spinner"));
             txtTitle.setText(savedInstanceState.getString("category_name"));
         }
     }
@@ -115,8 +112,7 @@ public class NewCategoryActivity extends AppCompatActivity implements View.OnCli
                      */
                     String[] projection = {
                             CategoryInfo.CATEGORY_ID,
-                            CategoryInfo.CATEGORY_NAME,
-                            CategoryInfo.CATEGORY_ICON
+                            CategoryInfo.CATEGORY_NAME
                     };
 
                     String whereClause = "";
@@ -193,15 +189,15 @@ public class NewCategoryActivity extends AppCompatActivity implements View.OnCli
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
         //Display the icon selected for the new category
-        this.imageView.setImageDrawable(getResources().getDrawable(data.get(iconSpinner.getSelectedItem())));
+        //this.imageView.setImageDrawable(getResources().getDrawable(data.get(iconSpinner.getSelectedItem())));
 
-        imageView.buildDrawingCache();
-        Bitmap bmap = imageView.getDrawingCache();
-        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
-        bmap.compress(Bitmap.CompressFormat.JPEG, 90, bytes);
+        //imageView.buildDrawingCache();
+        //Bitmap bmap = imageView.getDrawingCache();
+        //ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+        //bmap.compress(Bitmap.CompressFormat.JPEG, 90, bytes);
 
         //Get a string reference to store into the db
-        categoryIcon = Base64.encodeToString(bytes.toByteArray(), Base64.DEFAULT);
+        //categoryIcon = Base64.encodeToString(bytes.toByteArray(), Base64.DEFAULT);
     }
 
     private void addNewCategory(String categoryName) {
@@ -217,7 +213,6 @@ public class NewCategoryActivity extends AppCompatActivity implements View.OnCli
         ContentValues categoryValues = new ContentValues();
 
         categoryValues.put(CategoryInfo.CATEGORY_NAME, categoryName.toUpperCase()); //Category's name
-        categoryValues.put(CategoryInfo.CATEGORY_ICON, categoryIcon); //Icon
 
         try {
 
@@ -280,6 +275,7 @@ public class NewCategoryActivity extends AppCompatActivity implements View.OnCli
     /**
      * Method to populate the spinner.
      */
+    /*
     public void populateSpinner() {
 
         for (Field field : R.drawable.class.getDeclaredFields()) {
@@ -324,6 +320,7 @@ public class NewCategoryActivity extends AppCompatActivity implements View.OnCli
         //Set the adapter to the spinner
         this.iconSpinner.setAdapter(adapter);
     }
+    */
 
     /**
      * @param savedInstanceState Save the state of the activity if it's about to be destroyed
@@ -331,7 +328,7 @@ public class NewCategoryActivity extends AppCompatActivity implements View.OnCli
     @Override
     public void onSaveInstanceState(Bundle savedInstanceState) {
 
-        savedInstanceState.putInt("icon_spinner", iconSpinner.getSelectedItemPosition());
+        //savedInstanceState.putInt("icon_spinner", iconSpinner.getSelectedItemPosition());
         savedInstanceState.putString("category_name", txtTitle.getText().toString());
     }
 
