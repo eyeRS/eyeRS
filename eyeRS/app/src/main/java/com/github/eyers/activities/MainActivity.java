@@ -52,6 +52,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private DrawerLayout drawer;
     private NavigationView navigationView;
     private ListView listView;
+    private Menu menu;
 
     /**
      * Used to declare the search view bar.
@@ -138,6 +139,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             @Override
             public boolean onQueryTextSubmit(String query) {
+                this.onClose();
                 return false;
             }
 
@@ -154,8 +156,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         listView.setAdapter(adapter);
                     }
                 }
+
                 return true;
             }
+
+            private void onClose(){
+
+                menu.findItem(R.id.search_view).collapseActionView();
+            }
+
         });
     }
 
@@ -198,7 +207,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             /*
              * Set the visibility of the menu items when the Drawer is opened or closed
              */
-            menu.findItem(R.id.action_settings).setVisible(!drawerOpen); //Hide the action settings when drawer is open
+            menu.findItem(R.id.action_settings).setVisible(!drawerOpen);
+            menu.findItem(R.id.action_help).setVisible(!drawerOpen);
+            menu.findItem(R.id.action_exit).setVisible(!drawerOpen);
+
         } catch (Exception ex) {
             Log.e("Navigation Drawer", ex.getMessage(), ex);
         }
@@ -208,6 +220,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public void onBackPressed() {
+
         MainActivity.STATE = "main";
         super.startActivity(new Intent(this, MainActivity.class));
         super.finish();
@@ -256,6 +269,28 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             } catch (Exception ex) {
                 Log.e("Action settings", ex.getMessage(), ex);
+            }
+        }
+        if (item.getItemId() == R.id.action_help){
+
+            try{
+                super.startActivity(new Intent(this, HelpActivity.class));
+                return true;
+            }
+            catch (Exception ex){
+
+                Log.e("Action Help", ex.getMessage(), ex);
+            }
+        }
+        if (item.getItemId() == R.id.action_exit){
+
+            try{
+                promptExit();
+                return true;
+            }
+            catch (Exception ex){
+
+                Log.e("Action Exit", ex.getMessage(), ex);
             }
         }
 

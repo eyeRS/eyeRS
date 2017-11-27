@@ -59,7 +59,7 @@ public class ViewItemActivity extends AppCompatActivity implements View.OnClickL
             Log.e("Error adding item", "Something is null");
         }
 
-        findViewById(R.id.btnEditItem).setOnClickListener(this);
+        //findViewById(R.id.btnEditItem).setOnClickListener(this);
         findViewById(R.id.btnDeleteItem).setOnClickListener(this);
 
     }
@@ -92,11 +92,13 @@ public class ViewItemActivity extends AppCompatActivity implements View.OnClickL
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+            /*
             case R.id.btnEditItem: {
 
                 this.edit();
             }
             break;
+            */
             case R.id.btnDeleteItem: {
 
                 this.promptDeletion();
@@ -110,9 +112,8 @@ public class ViewItemActivity extends AppCompatActivity implements View.OnClickL
      */
     private void edit() {
 
-        NewItemActivity.EDIT_ITEM = new ItemLabel(ITEM);
-        startActivity(new Intent(this, NewItemActivity.class));
-        super.finish();
+        UpdateItemActivity.EDIT_ITEM = new ItemLabel(ITEM);
+        startActivity(new Intent(this, UpdateItemActivity.class));
     }
 
     private void promptDeletion() {
@@ -184,20 +185,24 @@ public class ViewItemActivity extends AppCompatActivity implements View.OnClickL
 
             } else if (cursor.moveToFirst()) {
 
-                if (cursor.getString(cursor.getColumnIndex(ItemInfo.ITEM_NAME))
-                        .equals(this.title.getText().toString())) {
+                do{
+
+                    if (cursor.getString(cursor.getColumnIndex(ItemInfo.ITEM_NAME))
+                            .equals(this.title.getText().toString())) {
 
                     /*
                      * Retrieves the id of the item to be deleted
                      */
-                    itemToDelete = cursor.getString(cursor.getColumnIndex(ItemInfo.ITEM_ID));
+                        itemToDelete = cursor.getString(cursor.getColumnIndex(ItemInfo.ITEM_ID));
 
-                } else {
+                    } else {
 
-                    Log.e("ViewItemActivity", "Sorry that item doesn't exist");
-                }
+                        Log.e("ViewItemActivity", "Sorry that item doesn't exist");
+                    }
 
-                cursor.close();
+                    cursor.close();
+
+                } while (cursor.moveToNext());
             }
 
         } catch (Exception ex) {

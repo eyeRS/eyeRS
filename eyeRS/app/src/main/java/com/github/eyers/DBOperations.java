@@ -209,7 +209,7 @@ public class DBOperations extends ContentProvider {
      * @return
      */
     @Override
-    public int delete(Uri uri, String whereClause, String[] whereArgs) {
+    public int delete(@NonNull Uri uri, String whereClause, String[] whereArgs) {
 
         int uriType = uriMatcher.match(uri);
         SQLiteDatabase db = eyeRSDatabaseHelper.getWritableDatabase();
@@ -217,21 +217,24 @@ public class DBOperations extends ContentProvider {
 
         switch (uriType) {
 
-            case CATEGORIES:
+            case CATEGORIES: {
                 deletedRows = db.delete(
                         CATEGORIES_TABLE,
                         whereClause,
                         whereArgs);
                 break;
-            case ITEMS:
+            }
+            case ITEMS: {
                 deletedRows = db.delete(
                         ITEMS_TABLE,
                         whereClause,
                         whereArgs);
                 break;
-            default:
+            }
+            default: {
                 Log.e("DELETE OPERATION", "Unable to perform delete operation");
                 throw new IllegalArgumentException("Unknown URI: " + uri);
+            }
         }
 
         if (deletedRows > 0) {
@@ -251,11 +254,12 @@ public class DBOperations extends ContentProvider {
      * @param values
      * @param whereClause
      * @param whereArgs
+     *
      * @return
      */
     @Override
-    public int update(Uri uri, ContentValues values, String whereClause,
-                      String[] whereArgs) throws IllegalArgumentException {
+    public int update(@NonNull Uri uri, ContentValues values, String whereClause,
+                      String[] whereArgs) {
 
         int uriType = uriMatcher.match(uri);
         SQLiteDatabase db = eyeRSDatabaseHelper.getWritableDatabase();
@@ -263,30 +267,26 @@ public class DBOperations extends ContentProvider {
 
         switch (uriType) {
 
-            case CATEGORIES:
-                updatedRows = db.update(
-                        CATEGORIES_TABLE,
-                        values,
-                        whereClause,
-                        whereArgs);
-                break;
-            case ITEMS:
+            case ITEMS: {
                 updatedRows = db.update(
                         ITEMS_TABLE,
                         values,
                         whereClause,
                         whereArgs);
                 break;
-            case REG_DETAILS:
+            }
+            case REG_DETAILS: {
                 updatedRows = db.update(
                         USER_REGISTRATION_TABLE,
                         values,
                         whereClause,
                         whereArgs);
                 break;
-
-            default:
+            }
+            default: {
+                Log.e("UPDATE OPERATION", "Unable to perform update operation");
                 throw new IllegalArgumentException("Unknown URI: " + uri);
+            }
         }
 
         if (updatedRows > 0) {

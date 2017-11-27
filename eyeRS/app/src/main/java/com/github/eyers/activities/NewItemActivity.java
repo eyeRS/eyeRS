@@ -39,7 +39,6 @@ import com.github.eyers.R;
 import com.github.eyers.activities.settings.SettingUtilities;
 import com.github.eyers.info.CategoryInfo;
 import com.github.eyers.info.ItemInfo;
-import com.github.eyers.info.UserRegistrationInfo;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -62,13 +61,12 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
 
     public static ArrayAdapter<String> categoriesAdapter;
 
-    // Fields & other declarations
+    /**
+     * Fields & other declarations
+     */
     private static String itemName;
     private static String itemDesc;
     private String category;
-    /**
-     * Categories list declaration
-     */
     private EditText txtTitle;
     private EditText txtDesc;
     private Spinner categorySpinner;
@@ -1121,125 +1119,6 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
         MainActivity.STATE = "main";
         super.startActivity(new Intent(this, MainActivity.class));
         super.finish();
-    }
-
-    /**
-     * Same as {@link #startActivity(Intent, Bundle)} with no options
-     * specified.
-     *
-     * @param intent The intent to start.
-     * @throws android.content.ActivityNotFoundException
-     * @see #startActivity(Intent, Bundle)
-     * @see #startActivityForResult
-     */
-    @Override
-    public void startActivity(Intent intent) {
-        if (EDIT_ITEM != null) {
-
-            /*
-             * Content resolver object
-             */
-            eyeRSContentResolver = this.getContentResolver();
-
-            String[] projection = {
-                    ItemInfo.ITEM_ID,
-                    ItemInfo.CATEGORY_NAME,
-                    ItemInfo.ITEM_NAME,
-                    ItemInfo.ITEM_DESC,
-                    ItemInfo.ITEM_IMAGE
-            };
-
-            String whereClause = "";
-            String[] whereArgs = {};
-            String sortOrder = ItemInfo.ITEM_NAME;
-
-            String idToUpdate = ""; // ID of the item to update
-
-            try {
-
-                /*
-                 * Content resolver query
-                 */
-                Cursor cursor = eyeRSContentResolver.query(
-                        DBOperations.CONTENT_URI_ITEMS,
-                        projection,
-                        whereClause,
-                        whereArgs,
-                        sortOrder);
-
-                if (cursor.moveToFirst()) {
-
-                    if (cursor.getString(cursor.getColumnIndex(ItemInfo.ITEM_NAME))
-                            .equals(EDIT_ITEM.getName().toString())) {
-
-                        /*
-                         * Retrieves the id of the item to be deleted
-                         */
-                        idToUpdate = cursor.getString(cursor.getColumnIndex(ItemInfo.ITEM_ID));
-
-                    } else {
-
-                        Log.e("ViewItemActivity", "Sorry that item doesn't exist");
-                    }
-
-                    cursor.close();
-                }
-            } catch (Exception ex) {
-                Log.e("ViewItemActivity", "Unable to retrieve item details");
-            }
-
-            /*
-             * To update the item simply specify the item's ID in the where clause
-             */
-            ContentValues itemValues = new ContentValues();
-            String updateWhereClause = ItemInfo.ITEM_ID + " = ?";
-            String[] updateWhereArgs = {idToUpdate};
-
-            /*
-             * Get the new values to be updated
-             */
-            itemValues.put(ItemInfo.CATEGORY_NAME, category); //user specified category
-            itemValues.put(ItemInfo.ITEM_NAME, itemName); //item's name
-            itemValues.put(ItemInfo.ITEM_DESC, itemDesc); //item's description
-            itemValues.put(ItemInfo.ITEM_IMAGE, img); //item's image
-
-            try{
-
-                /*
-                 * Content resolver update operation
-                 */
-                eyeRSContentResolver.update(
-                        DBOperations.CONTENT_URI_ITEMS,
-                        itemValues,
-                        updateWhereClause,
-                        updateWhereArgs
-                );
-
-                Log.e("DATABASE OPERATIONS", "...Item details updated successfully!");
-
-                /*
-                 * Then clear the fields after successfully inserting the data
-                 */
-                txtTitle.setText("");
-                txtDesc.setText("");
-                img = "";
-                ivImage.setImageBitmap(null);
-                startActivity(new Intent(this, MainActivity.class));
-
-            }
-            catch (Exception ex){
-
-                Log.e("NewItemActivity", ex.getMessage(), ex);
-
-            } finally {
-
-                Toast.makeText(this, "Your item has updated successfully ",
-                        Toast.LENGTH_SHORT).show();
-            }
-        }
-
-        EDIT_ITEM = null;
-        super.startActivity(intent);
     }
 
 } //end class NewItemActivity

@@ -120,35 +120,31 @@
             android:name=".activities.settings.ItemManagementSettings"
             android:label="@string/title_activity_item_mgmt_settings"
             android:theme="@style/AppTheme.NoActionBar"
-            android:windowSoftInputMode="adjustPan">
-
-        </activity>
+            android:windowSoftInputMode="adjustPan"></activity>
 
         <provider
             android:name=".DBOperations"
             android:authorities="com.github.eyers.DBOperations"
             android:exported="true"
-            android:syncable="true">
-
-        </provider>
+            android:syncable="true"></provider>
 
         <activity
             android:name=".activities.ViewItemActivity"
             android:label="@string/title_activity_view_item"
-            android:theme="@style/AppTheme.NoActionBar">
-
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
             android:name=".activities.TradeActivity"
             android:label="@string/title_activity_trade"
-            android:theme="@style/AppTheme.NoActionBar">
-
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
             android:name=".activities.settings.DeleteCategory"
             android:label="@string/title_activity_delete_category"
-            android:theme="@style/AppTheme">
-
+            android:theme="@style/AppTheme"></activity>
+        <activity
+            android:name=".activities.UpdateItemActivity"
+            android:label="@string/title_activity_update_item"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustPan">
         </activity>
     </application>
 
