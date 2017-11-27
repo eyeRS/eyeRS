@@ -593,6 +593,7 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
             txtDesc.setText("");
             img = "";
             ivImage.setImageBitmap(null);
+            MainActivity.STATE = "main";
             startActivity(new Intent(this, MainActivity.class));
 
         } catch (Exception ex) {
@@ -649,6 +650,7 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
             txtDesc.setText("");
             img = "";
             ivImage.setImageBitmap(null);
+            MainActivity.STATE = "main";
             startActivity(new Intent(this, MainActivity.class));
 
         } catch (Exception ex) {
@@ -706,6 +708,7 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
             txtDesc.setText("");
             img = "";
             ivImage.setImageBitmap(null);
+            MainActivity.STATE = "main";
             startActivity(new Intent(this, MainActivity.class));
 
         } catch (Exception ex) {
@@ -763,6 +766,7 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
             txtDesc.setText("");
             img = "";
             ivImage.setImageBitmap(null);
+            MainActivity.STATE = "main";
             startActivity(new Intent(this, MainActivity.class));
 
         } catch (Exception ex) {
@@ -820,6 +824,7 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
             txtDesc.setText("");
             img = "";
             ivImage.setImageBitmap(null);
+            MainActivity.STATE = "main";
             startActivity(new Intent(this, MainActivity.class));
 
         } catch (Exception ex) {
@@ -876,6 +881,7 @@ public class NewItemActivity extends AppCompatActivity implements View.OnClickLi
             txtDesc.setText("");
             img = "";
             ivImage.setImageBitmap(null);
+            MainActivity.STATE = "main";
             startActivity(new Intent(this, MainActivity.class));
 
         } catch (Exception ex) {

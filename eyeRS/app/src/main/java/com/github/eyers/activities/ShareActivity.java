@@ -103,11 +103,11 @@ public class ShareActivity extends AppCompatActivity implements AdapterView.OnIt
         Intent shareIntent = new Intent();
         shareIntent.setAction(Intent.ACTION_SEND);
         shareIntent.putExtra(Intent.EXTRA_TEXT, String.format(
-                "Hey, look at my new %s", item.getName()));
+                "Hey, look at my %s", item.getName()));
         shareIntent.putExtra(Intent.EXTRA_STREAM, imageUri);
         shareIntent.setType("image/jpeg");
         shareIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-        startActivity(Intent.createChooser(shareIntent, "send"));
+        startActivity(Intent.createChooser(shareIntent, "Share"));
     }
 
     private Uri getImageUri(Bitmap inImage) {

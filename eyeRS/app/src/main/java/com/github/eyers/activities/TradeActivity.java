@@ -103,11 +103,11 @@ public class TradeActivity extends AppCompatActivity implements AdapterView.OnIt
         Intent shareIntent = new Intent();
         shareIntent.setAction(Intent.ACTION_SEND);
         shareIntent.putExtra(Intent.EXTRA_TEXT, String.format(
-                "I am looking to trade my %s, are you intrested?", item.getName()));
+                "I am looking to trade my %s, are you interested?", item.getName()));
         shareIntent.putExtra(Intent.EXTRA_STREAM, imageUri);
         shareIntent.setType("image/jpeg");
         shareIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-        startActivity(Intent.createChooser(shareIntent, "send"));
+        startActivity(Intent.createChooser(shareIntent, "Trade"));
     }
 
     private Uri getImageUri(Bitmap inImage) {
